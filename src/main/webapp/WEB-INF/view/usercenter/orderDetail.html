@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link href="${ctxPath}/static/custom/css/orderDetail.css"
+	rel="stylesheet" type="text/css">
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<div class="position">
+		当前位置：<a href="${ctxPath}/account/accountcenter">我的账户</a>&gt;<a href="${ctxPath}/buyerOrder/findUserOrder">订单列表</a>&gt;订单详情
+	</div>
+	<div class="content">
+		<div class="order_detail_title">订单详情</div>
+		<div class="order_detail_content">
+			<div class="order_detail_content_t">
+				<table class="order_info">
+					<tr>
+						<td>订单类型：<span class="span1"><%if(order.consume_method=='arrive_eat'){%>
+						到店消费
+						<%}else{%>
+						外卖
+						<%}%></span></td>
+						<td>订单号：<span class="span2">${order.order_no}</span></td>
+						<td>下单时间：<span class="span3">${date(order.order_time,'yyyyMMddHHmmss'),'yyyy-MM-dd hh:mm'}</span></td>
+						<%if(order.consume_method!''=='arrive_eat'){%>
+						<td>就餐时间：<span class="span3">${date(order.eat_time,'yyyyMMddHHmmss'),'yyyy-MM-dd hh:mm'}</span></td>
+						<%}else{%>
+						<td>姓名：<span class="span3">${order.buyer_name}</span>电话:<span class="span3">${order.phone}</span></td>
+						<%}%>
+					</tr>
+					<tr>
+						<td>就餐人数：<span class="span1">${order.people_num!1}人</span></td>
+						<td>消费码：<span class="span2">${order.consume_code}</span></td>
+						<td>订单状态：<span class="span1">${order.orderStatus}</span></td>
+						<td><%if(order.consume_method!''=='take_out'){%>送餐地址:<span class="span3">${order.buyer_address}</span><%}%></td>
+					</tr>
+					<tr>
+						<td colspan="4">买家留言：<span class="span4">${order.postscript}</span></td>
+					</tr>
+				</table>
+			</div>
+			<div class="order_detail_content_b">
+				<div class="saler_info_title">卖家信息</div>
+				<table class="saler_info">
+					<tr>
+						<td>店铺名：<span class="green"><a target="_blank"
+								href="${ctxPath}/store?storeId=${order.storeId}">${order.storeName}</a></span></td>
+						<td>电话号码：${order.tel}</td>
+						<td>所在地区：${order.storeRegion}</td>
+						<td>详细地址：${order.address}</td>
+					</tr>
+				</table>
+				<table class="goods_info">
+					<tr>
+						<th>商品</th>
+						<th>数量</th>
+						<th>单价（元）</th>
+						<th>优惠/折扣</th>
+						<th>商品总价（元）</th>
+					</tr>
+					<%for (o in orderDetail){%>
+					<tr>
+						<td><img style="height: 80px; width: 80px;" alt=""
+							src="/img${o.item_img}"> <span class="green goods_name"><a
+								target="_blank" href="${ctxPath}/goods/view?id=${o.item_id}">${o.item_name}</a></span></td>
+						<td>${o.counts}</td>
+						<td>${o.item_price}</td>
+						<td>- -</td>
+						<td>${o.item_price*o.counts}</td>
+					</tr>
+					<%}%>
+				</table>
+			</div>
+		</div>
+	</div>
+	<% include("../common/foot.html"){}%>
+</body>
+</html>

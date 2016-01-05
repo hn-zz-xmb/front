@@ -1,0 +1,251 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.wrap{
+	width:1180px;
+	margin:0 auto;
+	font-size:14px;
+	color:#565656;
+	margin-top: 10px;
+}
+.pane{
+	border:1px solid #ccc;
+}
+.pane_head{
+	background:url(../images/member/tixian_bg.png);
+	height:61px;
+	line-height:61px;
+}
+.tixian_title{
+	font-size:18px;
+	margin-left:30px;
+}
+.money{
+	color:red;
+	font-size:16px;
+}
+.right_link{
+	float:right;
+	margin-right:20px;
+}
+.right_link a{
+	color:#565656;
+}
+.right_link a:hover{
+	color:#409300;
+}
+.add{
+	background:url(../images/member/plus.png) no-repeat;
+	padding-left:16px;
+}
+.pane_content{
+	background-color:#fff;
+	min-height:400px;
+}
+.choose_bank_default{
+	margin-left:100px;
+	padding-top:100px;
+}
+.label{
+	float:left;
+	height:50px;
+	line-height:50px;
+	width:85px;
+	text-align:right;
+}
+.label_content{
+	float:left;
+	margin-left:20px;
+}
+.add_big{
+	background:url(../images/member/plus_white.png) no-repeat 30px center;
+	background-color:#daedbf;
+	display:inline-block;
+	width:400px;
+	height:50px;
+	line-height:50px;
+	padding-left:80px;
+	font-size:22px;
+	color:#409300;
+}
+.form{
+	padding-top:20px;
+	margin-left:30px;
+}
+.choose_bank{
+	
+}
+.selected_bank{
+	
+}
+.bank_box{
+	border:1px solid #ccc;
+	background-color:#fcfcfe;
+	height:50px;
+	line-height:50px;
+	padding-left:10px;
+	width:780px;
+	margin-bottom:10px;
+}
+.fl{
+	float:left;
+}
+.bank_info{
+	margin-left:20px;
+}
+.labels{
+	margin-left:100px;
+}
+.limit{
+	margin-left:50px;
+}
+.manage{
+	margin-left:100px;
+	float:left;
+}
+.dropdown{
+	line-height:20px;
+	margin-top:15px;
+	
+}
+.dropdown .trigger{
+	background:url(../images/member/triangle_down_green.png) no-repeat right;
+	padding-right:10px;
+	color:#409300;
+}
+.dropdown ul{
+	border:1px solid #ccc;
+	background-color:#fff;
+	position:absolute;
+}
+.dropdown ul li a{
+	color:#565656;
+	width:80px;
+	display:inline-block;
+}
+.dropdown ul li a:hover{
+	color:#409300;
+}
+.choose_other{
+	
+}
+.choose_other_link{
+	background:url(../images/member/triangle_down_b.png) no-repeat;
+	color:#409300;
+	padding-left:20px;
+}
+.tixian_money{
+	clear:both;
+	height: 50px;
+}
+.input_w{
+	height:50px;
+	line-height:50px;
+}
+.input_s{
+	width:100px;
+}
+.error{
+	color:red;
+	padding-left:110px;
+}
+.btn_w{
+	clear:both;
+	margin-top:50px;
+	padding-left:110px;
+}
+.btn_green{
+	background-color:#8cc842;
+	border:1px solid #409300;
+	color:#fff;
+	padding:5px 10px;
+}
+/*支付宝提现*/
+.form1{
+	width:400px;
+	margin:0 auto;
+	padding-top:50px;
+}
+.notice{
+	color:red;
+}
+/*提现记录*/
+.content_w{
+	padding:20px;
+}
+.top_bar{
+	
+}
+.fr{
+	float:right;
+}
+.btn_triangle_l {
+    background: url("../images/storeManage/triangle_left.jpg") no-repeat scroll center center rgba(0, 0, 0, 0);
+    border: 1px solid #ccc;
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    width: 18px;
+}
+.btn_triangle_r {
+    background: url("../images/storeManage/triangle_right.jpg") no-repeat scroll 50px center rgba(0, 0, 0, 0);
+    border: 1px solid #ccc;
+    color: #565656;
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 5px;
+    width: 50px;
+}
+.table_w{
+	margin-top:10px;
+}
+.tixian_record_table{
+	border-collapse:collapse;
+	width:100%;
+}
+.tixian_record_table th{
+	background-color:#f4f4f4;
+	border-bottom:1px solid #ccc;
+	height:25px;
+	text-align:left;
+}
+.tixian_record_table td{
+	height:50px;
+	border-bottom:1px solid #ccc;
+}
+.tr_grey{
+	background-color:#fafafa;
+}
+.bottom_bar{
+	text-align:right;
+	padding-right:20px;
+}

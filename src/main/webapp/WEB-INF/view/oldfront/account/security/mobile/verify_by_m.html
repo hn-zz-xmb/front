@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 绑定手机号码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/modify.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/validform/5.3.2/css/style.css" />
+
+<style type="text/css">
+.modi_pic_m {
+	width: 932px;
+	height: 94px;
+	margin-top: 10px;
+	background: url(${ctxPath}/static/front/images/yiyanzheng.png) no-repeat
+		0 0px;
+}
+</style>
+
+
+</head>
+
+<body>
+	<%include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="modify">
+		<p class="xgmm">修改已验证手机</p>
+		<div class="modi_pic_m"></div>
+		<!--modi_up start-->
+		<!--modi_up end-->
+		<div class="modi_down">
+			<form action="${ctxPath}/safecenter/phone/checkPhone" method="post"
+				id="modify_phone">
+				<input type="hidden" name="CSRFToken" value="${csrf!}" id="CSRFToken" />
+				<table height="100px">
+					<span id="showSpan" style="margin-left: 150px;">
+						${strutil.subStringTo(member.tel,0,3)}****${strutil.subString(member.tel,strutil.length(member.tel)-4)}
+					</span>
+					<tr>
+						<th>请填写已绑定的手机号:</th>
+						<td><input name="phone" type="text" id="phone" datatype="m"
+						nullmsg="请输入手机号" errormsg="手机格式不正确" sucmsg=" "/><label class="Validform_checktip"></label> 
+						<span id="error_msg" style="display: none;margin-left: 10px;"></span>
+						</td>
+					</tr>
+				</table>
+				<p>
+				 <input type="submit" class="btne" value="提交" />
+				</p>
+			</form>
+		</div>
+	</div>
+	<%include("/common/foot.html"){}%>
+
+	<script type="text/javascript"
+			src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript"
+			src="${ctxPath }/static/old/validform/5.3.2/js/Validform_v5.3.2.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#modify_phone")
+					.Validform(
+					{
+						postonce : true,
+						tiptype : function(msg, o, cssctl) {
+							//msg：提示信息;
+							//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+							//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+							if (!o.obj.is("form")) {//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
+								var objtip = o.obj
+										.siblings(".Validform_checktip");
+								cssctl(objtip, o.type);
+								objtip.text(msg);
+							} else {
+								var objtip = o.obj.find("#msgdemo");
+								cssctl(objtip, o.type);
+								objtip.text(msg);
+							}
+						},
+						ajaxPost : true,
+						callback : function(data) {
+							if (data.status == "y") {
+								window.location.href = "${ctxPath}/safecenter/phone/updateUI";
+							} else {
+								$("#error_msg").html(data.error);
+								$("#error_msg").show();
+							}
+						}
+					});
+		});
+	</script>
+</body>
+</html>

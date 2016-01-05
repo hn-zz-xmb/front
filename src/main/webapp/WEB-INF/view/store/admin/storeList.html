@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/storeList.css" rel="stylesheet" type="text/css">
+<title>店铺管理</title>
+</head>
+<body>
+<% include("/common/userhead.html"){}%>
+<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[1].className="active";
+	</script>
+	<div class="content">
+		<div class="stores_w">
+			<table class="stores">
+				<tr>
+					<th>店铺名称</th>
+					<th>店铺类型</th>
+					<th>所属套餐</th>
+					<th>申请时间</th>
+					<th>是否开启</th>
+					<th>是否审核</th>
+					<th></th>
+					<th>操作</th>
+					<th></th>
+				</tr>
+				<%for (s in page.list){%>
+				<tr>
+					<td>${s.name}</td>
+					<td><%if (s.store_type_id ==
+					@com.meishi.front.common.AppContextData.NORMAL){%>普通店铺 <%}
+					else{%>原料店铺<%}%></td>
+					<td>${s.storeLevelName}</td>
+					<td>${date(s.reg_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</td>
+					<td><%if (s.open_status=="1"){%>开启 <%} else{%>关闭 <%}%></td>
+					<td><%if (s.audit_status ==
+					@com.meishi.front.common.AppContextData.AUDITED){%>已审核 <%}
+					else if(s.audit_status ==
+					@com.meishi.front.common.AppContextData.UNAUDITED){%>未审核<%}else if(s.audit_status ==
+					@com.meishi.front.common.AppContextData.REFUSE){%>
+						已拒绝
+					<%}%>
+					</td>
+					<td>
+					<%if(s.open_status=="1"&&s.audit_status ==
+					@com.meishi.front.common.AppContextData.AUDITED){%>
+					<td>
+					<a class="btn_g" href="${ctxPath}/storeManage/inStore?storeId=${s.id !}" />进入管理</td>
+					<td><%if (s.store_type_id ==
+					@com.meishi.front.common.AppContextData.NORMAL){%>
+					<a target="_blank" class="btn_g" href="${ctxPath}/storeManage/consumeCode?storeId=${s.id !}" />消费码验证
+					<%}%></td>
+					<%} else if(s.open_status=="0"&&s.audit_status ==
+					@com.meishi.front.common.AppContextData.AUDITED){%>
+					<td><a class="btn_g" href="${ctxPath}/storemanage/#" />前往解冻</td> 
+					<%}else if(s.audit_status ==
+					@com.meishi.front.common.AppContextData.REFUSE){%>
+					<td><a class="btn_g" href="javascript:;" onclick="show('${s.id}')"/>查看拒绝原因</td> 
+					<td><a class="btn_g" href="${ctxPath}/storeManage/toagainapply?storeId=${s.id!}" />重新申请</td> 
+					<%}%>
+				</tr>
+				<%}%>
+			</table>
+		</div>
+	</div>
+	<% include("/common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/member.js"></script>
+	<script type="text/javascript">
+		function show(id) {
+			$.layer({
+				type : 2,
+				shadeClose : true,
+				title : '查看拒绝原因',
+				closeBtn : [ 0, true ],
+				shade : [ 0 ],
+				border : [ 10, 0.3, '#000' ],
+				offset : [ '20px', '' ],
+				area : [ '700px', '500px' ],
+				iframe : {
+					src : '${ctxPath}/storeManage/showrefuse?storeId=' + id
+				}
+			});
+		}
+	</script>
+	
+	
+</body>
+</html>

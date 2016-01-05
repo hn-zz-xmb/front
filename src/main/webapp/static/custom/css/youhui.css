@@ -1,0 +1,223 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.position{
+	width:1170px;
+	height:40px;
+	line-height:40px;
+	background-color:#e5e5e5;
+	font-size:15px;
+	margin:10px auto;
+	color:#565656;
+	padding-left:10px;
+}
+.position a{
+	color:#565656;
+}
+.position a:hover{
+	color:#409300;
+}
+.chooseList a{
+	background-color:#84c233;
+	padding:2px 5px;
+	color:#fff;
+	background-image:url(../images/arrowDown.png);
+	background-repeat:no-repeat;
+	padding-right:15px;
+	background-position:70px center;
+	border-radius:2px;
+}
+.chooseList a:hover{
+	color:#fff;
+	text-decoration:underline;
+}
+.search{
+	width:1178px;
+	margin:0 auto;
+	border:1px solid #e2e2e2;
+	background-color:#fff;
+	border-radius:5px;
+	overflow:hidden;
+	position:relative;
+	}
+.searchTitle{
+	height:30px;
+	background-color:#f3f3f3;
+	width:1158px;
+	margin:0 auto;
+	color:#494a4a;
+	font-size:12px;
+	line-height:30px;
+	padding:0 10px;
+
+}
+.searchInput{
+	float:right;
+	width:200px;
+	height:20px;
+	line-height:20px;
+	color:#8c8c8c;
+	border:1px solid #d9d9d9;
+    margin-top: 4px;
+    padding-left: 5px;
+	background:url(../images/order/search.jpg) no-repeat right center;
+	background-color:#fff;
+}
+.searchIf{
+	height:40px;
+	padding:0 20px;
+	border-bottom:1px dashed #e9e9e9;
+	color:#9d9d9d;
+}
+.searchIf:last-child{
+	border:none;
+}
+.searchIf a{
+	color:#5e5e5e;
+	display:inline-block;
+	margin-right:20px;
+	border:1px solid #dbdbdb;
+	background-color:#fff;
+	height:20px;
+	line-height:20px;
+	width:100px;
+	text-align:center;
+	margin-top:10px;
+}
+.searchIf a:hover{
+	color:#fff;
+	border:1px solid #84c133;
+	background-color:#84c133;
+}
+.searchIf a.on{
+	color:#fff;
+	border:1px solid #84c133;
+	background-color:#84c133;
+}
+.searchIf span a{
+	
+	width:50px;
+}
+.hdS_slt{
+	color:#5e5e5e;
+	border:1px solid #dbdbdb;
+	background-color:#fff;
+	height:20px;
+	line-height:20px;
+	width:100px;
+}
+.hdS_search{
+	position:absolute;
+	right:20px;
+	bottom:10px;
+	background-image:url(../images/order/sub_dianpu_list_searchbg.jpg); 
+	height:23px; 
+	width:100px; 
+	line-height:23px; 
+	text-align:center; 
+	box-shadow:1px 1px 2px #9f9f9f;
+}
+.hdS_search a{ color:#fff; text-decoration:none;}
+.hdS_search a:hover{ text-decoration:underline;}
+.listTitle{
+	width:1178px;
+	height:25px;
+	line-height:25px;
+	color:#000;
+	margin:0 auto;
+	border-bottom:1px solid #e2e2e2;
+	background-color:#f3f3f3;
+}
+.listTitle div{ float:left; text-align:center;}
+.listTitleSub01{ width:20%}
+.listTitleSub02{ width:15%}
+.listTitleSub03{ width:15%}
+.listTitleSub04{ width:15%}
+.listTitleSub05{ width:20%}
+.listTitleSub06{ width:15%}
+.listTitleSub01 input{ float:left; margin-top:6px; margin-left:10px;}
+.listBox{
+	width:1178px;
+	margin:0 auto;
+	}
+.listBoxT{
+	height:30px;
+	background-color:#f3f3f3;
+	width:1158px;
+	color:#000;
+	font-size:12px;
+	line-height:30px;
+	padding:0 10px;
+}
+.listBoxTSub01{float:left; text-align:left; width:2%}
+.listBoxTSub02{float:left; text-align:left; width:20%}
+.listBoxTSub03{float:left; text-align:left; width:20%}
+.listBoxTSub04{float:left; text-align:left; width:15%}
+.listBoxTSub05{ width:15%; float:right}
+.listBoxTSub05 a{
+	background-image:url(../images/writeIcon.png);
+	background-position: right center;
+    background-repeat: no-repeat;
+    display: block;
+	width:20px;
+	margin:0 auto;
+}
+.listBoxTSub02 span{
+	color:#ff6a04;}
+.listContent div{ height:50px; float:left; text-align:center;}
+.listContentSub01{ width:20%;}
+.listContentSub02{ width:15%;}
+.listContentSub03{ width:15%;}
+.listContentSub04{ width:15%;}
+.listContentSub05{ width:20%;}
+.listContentSub06{ width:15%;}
+.listContentSub01,.listContentSub02,.listContentSub03,.listContentSub04,.listContentSub05,.listContentSub06{
+	text-align:center;
+	line-height:50px;
+}
+.listBoxH{
+	width:1178px;
+	margin:0 auto;
+	border:1px solid #e2e2e2;
+	margin-top:10px;
+	background-color:#fff;
+	border-radius:5px;
+	overflow:hidden;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,256 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.green{
+	color:#409300;
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.dialog{
+	font-size:14px;
+	color:#565656;
+}
+.dialog_title{
+	font-size:20px;
+	background-color:#e5e5e5;
+	border-bottom:1px solid #ccc;
+}
+.close_btn{
+	float:right;
+}
+.dialog_content{
+	background-color:#fff;
+	padding:10px;
+}
+.goods{
+	
+}
+.title{
+	border-bottom:1px solid #ccc;
+	padding-bottom:10px;
+}
+.search{
+	float:right;
+}
+.btn_search{
+	background-color:#8cc842;
+	color:#fff;
+	padding:2px 5px;
+}
+.goods_content{
+	padding:10px;
+}
+.goods_content_left{
+	float:left;
+}
+.scroll_wrap{
+	height:280px;
+	 overflow-y:auto;
+	 width:120px;
+}
+.category{
+	border-top:1px solid #8bc73c;
+	width:100px;
+}
+.category li a{
+	display:inline-block;
+	width:100px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #8bc73c;
+	border-top:0;
+	background-color:#eaffce;
+	text-align:center;
+	color:#565656;
+}
+.category li a.active{
+	border-right:0;
+	background-color:#fff;
+	color:#409300;
+}
+.goods_content_right{
+	float:left;
+	margin-left:20px;
+}
+.goods_table{
+	width:620px;
+	min-height:231px;
+}
+.table_grey{
+	border:1px solid #ccc;
+	width:100%;
+	border-collapse:collapse;
+}
+.table_grey th{
+	background-color:#f9f9f9;
+	border-bottom:1px solid #ccc;
+	height:25px;
+	color:#409300;
+}
+.table_grey tr{
+	background-color:#f6f6f6;
+	border-bottom:1px solid #ccc;
+}
+.table_grey tr:hover{
+	background-color:#fff;
+}
+.table_grey td{
+	text-align:center;
+	height:30px;
+}
+/*分页*/
+.pagination {
+	text-align: center;
+	height: 50px;
+	margin-top:10px;
+}
+
+.pagination a {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	border: 1px solid #ccc;
+	background-color: white;
+	font-family: "宋体";
+	font-size: 16px;
+	color: #565656;
+	text-align: center;
+	line-height: 25px;
+}
+
+.pagination .btn.active {
+	color: white;
+	background-color: #84c233;
+}
+
+.pagination a:hover {
+	color: white;
+	background-color: #84c233;
+}
+
+.input_ss {
+	width: 50px;
+}
+.selected_goods{
+	
+}
+.selected_goods_content{
+	padding:10px;
+}
+.selected_goods_table{
+	min-height:182px;
+}
+.input_qty{
+	width:50px;
+	height:16px;
+	border:1px solid #ccc;
+}
+.input_qty a{
+	display:inline-block;
+	height:16px;
+	width:16px;
+	line-height:16px;
+	text-align:center;
+	color:#565656;
+}
+.input_qty a:hover{
+	color:#409300;
+}
+.input_qty .minus{
+	border-right:1px solid #ccc;
+}
+.input_qty .plus{
+	border-left:1px solid #ccc;
+}
+.input_qty span{
+	width:16px;
+	height:16px;
+	line-height:16px;
+	display:inline-block;
+	text-align:center;
+}
+.selected_goods_content_b{
+	padding:10px;
+}
+.btn_grey_b {
+    border: 1px solid #ccc;
+    color: #565656;
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    width: 80px;
+}
+.btn_grey_b:hover{
+	color:#409300;
+	border: 1px solid #8bc73c;
+}
+.btn_triangle_l {
+    background: url("../images/storeManage/triangle_left.jpg") no-repeat scroll center center rgba(0, 0, 0, 0);
+    border: 1px solid #ccc;
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    width: 18px;
+}
+
+.btn_triangle_r {
+    background: url("../images/storeManage/triangle_right.jpg") no-repeat scroll 50px center rgba(0, 0, 0, 0);
+    border: 1px solid #ccc;
+    color: #565656;
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 5px;
+    width: 50px;
+}
+.btn_triangle_r:hover{
+	color:#409300;
+}
+.bottom{
+	text-align:center;
+}
+.btn_cancel{
+	padding:5px 10px;
+	border:1px solid #ccc;
+	color:#000;
+	background-color:#f2f2f2;
+}
+.btn_ok{
+	padding:5px 10px;
+	border:1px solid #8bc73c;
+	color:#fff;
+	background-color:#8cc842;
+}

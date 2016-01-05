@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>填写订单</title>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/custom/css/write_order.css">
+<style type="text/css">
+.sf {
+	float: left
+}
+.jg {
+	display: none;
+	margin-left: 10px;
+	float: left;
+}
+</style>
+</head>
+
+<body>
+<% include("../common/head.html"){}%>
+<div class="wrap">
+  <div class="order_title"></div>
+  <!-- order_first start---------------->
+  <div class="order_first">
+    <div class="pay_style"> <span>选择消费方式</span> </div>
+    <div class="radio_group">
+      <li>
+        <input name="consume_method" type="radio" value="1" id="daodian_radio" checked="checked" >
+        到店消费</li>
+        <%if(store.is_take_out==1){%>
+      <li>
+        <input name="consume_method" type="radio" value="2" id="waimai_radio" >
+        外卖</li>
+        <%}%>
+    </div>
+    <div class="order_infor">
+      <div class="pay_style"> <span>填写预订信息</span> </div>
+      <form  class="cmxform" id="arriveEatForm" action="${ctxPath}/order/save?storeId=${store.id}&consume_method=arrive_eat" method="post">
+      <div class="write_info"  id="daodian">
+        <div class="base_info">
+          <ul>
+            <li><span class="info_name">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span>
+              <input name="orders.buyer_name" type="text" value="${member.realname !}">
+            </li>
+            <li><span class="info_name">就餐人数:</span>
+              <input name="orders.people_num" type="text">
+            </li>
+            <li><span class="info_name">就餐时间:</span>
+              <input name="orders.eat_time" type="text" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm:ss'})">
+            </li>
+            <li class="link_phone"><span class="info_name">联系电话:</span>
+              <input name="orders.phone" type="text" value="${member.tel !}">
+            </li>
+          </ul>
+        </div>
+        <div class="buyer_say">
+          <span>给卖家附言:</span>
+            <textarea name="orders.postscript" cols="" rows=""></textarea>
+        </div>
+         <div <%if(coupons.~size<=0){%> style="display:none;" <%}%>>
+  		<div class="sf"> 是否使用代金券：&nbsp;
+  		  <input  type="radio" id="tab_3" name="jiage">
+  			  是
+ 		   <input type="radio" id="tab_4" name="jiage">
+  		  否</div>
+  		<div class="active1 jg">
+   	 	 <select name="couponid">
+    	 	<%for(c in coupons!){%>
+    	 	 <option value="${c.id !}">${c.name!}</option>
+     		<%}%>
+   		 <select>
+ 		</div>
+		</div>
+      </div>
+       <div class="error"></div>
+      </form>
+      <%if(store.is_take_out==1){%>
+      <form id="takeOutForm" action="${ctxPath}/order/save?storeId=${store.id}&consume_method=take_out" method="post">
+      <div class="write_info" id="waimai" style="display:none;">
+       <div><p class="error" id="errorT" style="color: red;"></p></div>
+      <div class="address_list">
+      <ul>
+        <%for(address_ in addressList!){%>
+      	<li><input type="radio" class="address" name="orders.delivery" value="${address_.id}" >&nbsp;${address_.buyer_address}</li>
+        <%}%>
+      	<li><input type="radio" id="new_address"  name="orders.delivery" value="" >&nbsp;新地址</li>
+      </ul>
+      </div>
+        <div class="base_info" style="display:none;" id="base_info">
+          <ul>
+            <li><span class="info_name">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span>
+              <input name="receiveAddress.buyer_name" type="text" value="${member.realname !}">
+            </li>
+            <li><span class="info_name">店家配送地区:</span>
+            <input name="addre"  value="${addre !}" type="hidden"/>
+            ${addre !}
+             <select style="min-width:200px;" name="receiveAddress.region">
+               <option value="">请选择...</option>
+               <% for(a in deliveryScope!){%>
+               <option value="${a}">${a}</option>
+               <%}%>
+             </select>
+            </li>
+            <li><span class="info_name">详细地址:</span>
+              <input name="receiveAddress.buyer_address" type="text">
+            </li>
+            <li class="link_phone"><span class="info_name">联系电话:</span>
+              <input name="receiveAddress.phone" type="text" value="${member.tel !}">
+            </li>
+            <li class="link_phone"><input type="checkbox" class="checkbox" name="autoSave" value="1"><span class="baocun">自动保存送餐地址</span></li>
+          </ul>
+        </div>
+        <div class="buyer_say">
+          <span>给卖家附言:</span>
+            <textarea name="orders.postscript" cols="" rows=""></textarea>
+        </div>
+        <div <%if(coupons.~size<=0){%> style="display:none;" <%}%> >
+  		<div class="sf"> 是否使用代金券：&nbsp;
+  		  <input  type="radio" id="tab_3" name="jiage">
+  			  是
+ 		   <input type="radio" id="tab_4" name="jiage" >
+  		  否</div>
+  		<div  class="active1 jg">
+   		 <select name="couponid">
+    	 	<%for(c in coupons!){%>
+    	 	 <option value="${c.id !}">${c.name!}</option>
+     		<%}%>
+   		 <select>
+  </div>
+</div>
+      </div>
+      </form>
+      <%}%>
+      <!-- order_first end------------------> 
+      <!--order_infor end---------------------->
+      <div class="shop_list">
+        <div class="pay_style"> <span>商品清单</span> </div>
+        <div class="buyer_info">
+          <p>卖家信息</p>
+          <ul>
+            <li><span>店铺名:</span><a href="#" class="green">${store.name!}</a></li>
+            <li><span>电话号码:</span>${store.phone!}</li>
+            <li><span>所在地区:</span>${store.storeRegionName!}</li>
+            <li><span>详细地址:</span>${store.address!}</span></li>
+          </ul>
+        </div>
+        <div class="shop_mingxi">
+          <table width="1107px" cellpadding="0" cellspacing="0" border="0">
+            <tr class="table_title">
+              <th colspan="2">菜品名称</th>
+              <th>单价(元)</th>
+              <th>数量(份)</th>
+              <th>优惠(折扣)</th>
+              <th>小计(元)</th>
+            </tr>
+            <%var total=0.00;%>
+            <%for(cart_ in order_cart!){%>
+            <tr height="90px">
+              <td class="table_pic"><img src="/img${cart_.itemimage!}" width="107" height="79"></td>
+              <td>${cart_.itemname!}</td>
+              <td>${cart_.itemprice!}</td>
+              <td>${cart_.item_num!0}</td>
+              <td>--</td>
+              <%var sum=cart_.itemprice!0 * cart_.item_num!0;%>
+              <td>${sum}</td>
+              <%total=total+sum;%>
+            </tr>
+            <%}%>
+            </tr>
+          </table>
+       <!--price_totle start--------------->
+       <div class="totle_price">
+          <div class="price_totle">
+             <p>订单总价:<span>￥${total!0.00}</span></p>
+            <p><input type="button"  class="order_btn sure_ok" onclick="writeOrder()"></p>
+           </div>
+           </div>
+         <!--  price_totle end---------------->
+        </div>
+         
+      </div>
+     
+      <!--  shop_list end---------------------> 
+    </div>
+  </div>
+</div>
+<% include("../common/foot.html"){}%>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+<script src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/writeOrder.js"></script>
+<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"	src="${ctxPath}/static/jquery/validator/lang/additional-methods.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+	$("#arriveEatForm").validate({
+		errorPlacement: function(error, element) {  
+			layer.tips(error.text(), element, {guide: 1, time: 5,more:true});
+		},
+		
+		rules : {
+			"orders.buyer_name":"required",
+			"orders.people_num":{
+				required:true,
+				digits:true
+			},
+			"orders.eat_begin_time":"required",
+			"orders.eat_end_time":"required",
+			"orders.phone":{
+				required:true,
+				phone:true
+			}
+		},
+		messages : {
+			"orders.buyer_name":"请输入姓名",
+			"orders.people_num":{
+				required:"请输入就餐人数",
+				difits:"请输入有效数字"
+			},
+			"orders.eat_begin_time":"请输入就餐时间",
+			"orders.eat_end_time":"请输入就餐时间",
+			"orders.phone":{
+				required:"请输入手机号",	
+				phone:"请输入正确的手机号码"
+			}
+		}
+		
+	});
+	
+	$("#takeOutForm").validate({
+		errorPlacement: function(error, element) {  
+			layer.tips(error.text(), element , {guide: 1, time: 5,more:true});
+		},
+		rules : {
+			"orders.delivery":"required",
+			"receiveAddress.buyer_name":"required",
+			"receiveAddress.region":"required",
+			"receiveAddress.buyer_address":"required",
+			"receiveAddress.phone":{
+				required:true,
+				phone:true
+			}
+		},
+		messages : {
+			"orders.delivery":"请选择配送地址",
+			"receiveAddress.buyer_name":"请输入姓名",
+			"receiveAddress.region":"请选择配送地区",
+			"receiveAddress.buyer_address":"请输入详细地址",
+			"receiveAddress.phone":{
+				required:"请输入手机号",	
+				phone:"请输入正确的手机号码"
+			}
+		}
+	});
+	
+});
+$(function(){
+	$("#tab_3").click(function(){
+		$(".active1").slideDown();
+
+	})
+});
+$(function(){
+	$("#tab_4").click(function(){
+		$(".active1").slideUp();
+	})
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,621 @@
+/* CSS Document */
+/*--------------焦点图------------------*/
+.carousel {
+	margin: 0 auto;
+	width: 1180px;
+	height: 380px;
+}
+
+.carousel_left {
+	float: left;
+}
+
+.carousel_left img {
+	width: 980px;
+	height:376px;
+}
+
+.carousel_right {
+	float: left;
+}
+
+.carousel_item_tx {
+	width: 198px;
+	height: 43px;
+	background-color: #e6e6e6;
+	font-size: 14px;
+	color: #333;
+	margin: 1px;
+	text-align: center;
+	line-height: 43px;
+}
+
+.carousel_item_img {
+	background: url(../images/carousel_bk.png);
+	background-repeat: no-repeat;
+	display: none;
+	width: 189px;
+	margin-left: -14px;
+	padding: 5px 5px 5px 19px;
+}
+
+.carousel_item_img img {
+	width: 185px;
+	height: 56px;
+}
+
+.active .carousel_item_tx {
+	display: none;
+}
+
+.active .carousel_item_img {
+	display: block;
+}
+/*--商品筛选---------------------------*/
+.buyBoxRight01 {
+	width: 1180px;
+	background-color: #fff;
+	margin: 10px auto;
+	margin-top: 5px;
+}
+
+.buyBoxRight02 {
+	width: 1165px;
+	height: 30px;
+	background-color: #fff;
+	border: 1px solid #e7e8e9;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	color: #4c4c4c;
+	line-height: 30px;
+	padding-left: 15px;
+	position: relative;
+}
+
+#buy_down {
+	background: url(../images/selection_down.png);
+	width: 30px;
+	height: 34px;
+	background-repeat: no-repeat;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	cursor: pointer;
+}
+
+#buyBR02Hide {
+	width: 1180px;
+	height: 330px;
+	border: #e7e8e9 solid 1px;
+	border-top: none;
+	display: none;
+}
+/*--轮播图---------------------------*/
+.scroll {
+	padding:15px 12px;
+	width: 1154px;
+	position:relative;
+	margin: 0 auto;
+	border: 1px solid #dedede;
+	background-color: #fff;
+}
+
+.left {
+	left: 0;
+}
+.right {
+	right: 0;
+}
+
+.left, .right {
+	width:30px;
+	hight:60px;
+	cursor: pointer;
+	top:60px;
+	position:absolute;
+	z-index: 100;
+	display: none;
+}
+.mask{
+	width:1150px;
+	height:156px;
+	overflow:hidden;
+	position:relative;
+	}
+.mask ul li{
+	float:left;
+	}
+.mask ul{
+	width:3450px;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+.pic img {
+	width: 154px;
+	height: 154px;
+	border: #dedede solid 1px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+.picBox{
+	width:156px; 
+	height:156px; 
+	display:inline; 
+	margin-left:5px;
+	cursor:pointer;
+	position:relative;
+	}
+.picBox1 {
+	display:none;
+	
+}
+.picBox:hover .picBox1 {
+	display:block;
+	width: 156px;
+	height: 30px;
+	cursor:pointer;
+	background: rgba(0, 0, 0, 0.3);
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	border-radius: 0 0 10px 10px;
+	-moz-border-radius: 0 0 10px 10px;
+	-ms-border-radius: 0 0 10px 10px;
+	-o-border-radius: 0 0 10px 10px;
+	-webkit-border-radius: 0 0 10px 10px;
+	text-align: center;
+	line-height: 30px;
+}
+.picBox1 a {
+	font-family: "宋体";
+	color: #fff;
+	font-size: 14px;
+}
+
+.picBox1 a:hover {
+	color: #f40;
+}
+.pic li{
+	width:1148px;
+	height:154px;
+	}
+
+/*--人气美食，吃货专享，宅神必备----------------------------------------*/
+.findfoodBox {
+	width: 1178px;
+	border: 1px solid #dedede;
+	height: 610px;
+	background-color: #fff;
+	margin: 10px auto;
+}
+
+.findfood {
+	width: 1178px;
+	background-color: #d9d9d9;
+	height: 40px;
+}
+
+.findfood span {
+	float: left;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #d3d3d3;
+}
+
+.findfood span:last-child {
+	border-right: 0;
+}
+
+.findfood span:first-child {
+	border-left: 0;
+}
+
+.findfood a {
+	display: block;
+	float: left;
+	height: 40px;
+	width: 150px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 18px;
+	font-family: "微软雅黑";
+	color: #333;
+}
+
+.findfood_this a {
+	font-weight: bold;
+	border-top: 3px solid #86bf30;
+	width: 150px;
+	height: 37px;
+	line-height: 37px;
+	color: #86bf30;
+	background-color: #fff;
+}
+
+.findfood a:hover {
+	color: #f40;;
+	text-decoration: none;
+}
+
+#chooseBox02 {
+	width: 1178px;
+	height: 560px;
+}
+
+.findfoodBoxMod {
+	width: 208px;
+	height: 260px;
+	float: left;
+	margin-top: 15px;
+	margin-left: 15px;
+	margin-right: 10px;
+	cursor:pointer;
+}
+.findfoodBoxMod:hover{
+	background-color:#c0c0c0;
+}
+.findfoodBoxMod1 {
+	width: 208px;
+	height: 208px;
+}
+
+.findfoodBoxMod2 {
+	width: 208px;
+	height: 47px;
+	padding-top: 5px;
+	text-align: center;
+}
+
+.findfoodBoxMod2S1 a {
+	font-family: "微软雅黑";
+	font-size: 18px;
+	color: #333;
+}
+
+.findfoodBoxMod2S1 a:hover {
+	color: #f40;
+}
+
+.findfoodBoxMod2S2 {
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #999;
+}
+
+.findfoodBoxMod2S3 {
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #f40c04;
+}
+/*--1楼------------------------*/
+.floor {
+	margin: 0 auto;
+	width: 1180px;
+	height: 595px;
+	padding-left:
+}
+
+.floorBanner {
+	width: 1180px;
+	height: 95px;
+}
+
+.floorBanner img {
+	width: 1180px;
+	height: 95px;
+}
+
+.floor_left {
+	float: left;
+}
+
+.floor_left_head {
+	height: 40px;
+	background: #d9d9d9;
+	width: 902px;
+	line-height: 40px;
+	padding-right: 10px;
+	margin-top: 10px
+}
+
+.floor_left_head_title {
+	display: block;
+	float: left;
+	padding-left: 15px;
+	width: 185px;
+	background-color: #fd6385;
+	color: white;
+	height: 40px;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.floor_left_head a {
+	float: right;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	color: #333;
+}
+
+.floor_left_head a:hover {
+	color: #f40;
+}
+
+.floor_left_content {
+	border: 1px solid #ccc;
+	padding-left: 5px;
+	height: 435px;
+	width: 905px;
+}
+
+.floor_left_content_l {
+	float: left;
+	margin-top: 10px;
+	width: 370px;
+	height: 415px;
+	position: relative;
+}
+
+.floor_left_content_l_t img {
+	width: 360px;
+	height: 415px;
+	margin-left: 6px;
+	border: 1px solid #ccc;
+	border-bottom: none;
+}
+.floor_left_content_l_t img:hover{
+	border: 1px solid #7f7f7f;
+}
+.floor_left_content_l_b {
+	background: url(../images/bannerBig.png);
+	width: 366px;
+	height: 56px;
+	position: absolute;
+	bottom: -2px;
+	left: 0px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.floor_left_content_l_b_l {
+	float: left;
+	width: 270px;
+}
+
+.floor_left_content_l_b_l .title {
+	width: 250px;
+	height: 40px;
+	margin-top: 10px;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	color: #999;
+	padding-left: 20px;
+}
+
+.floor_left_content_l_b_l a {
+	font-size: 14px;
+	color: #333;
+	margin: 5px 0;
+}
+
+.floor_left_content_l_b_l a:hover {
+	color: #f40;
+}
+
+.floor_left_content_l_b_r {
+	float: left;
+	width: 90px;
+	height: 40px;
+	margin-top: 10px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 22px;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	color: #f40;
+}
+
+.floor_left_content_l_b_r span {
+	font-size: 16px;
+}
+
+.floor_left_content_r {
+	float: left;
+	width: 535px;
+	margin-top: 5px;
+}
+
+.floor_left_content_r .item {
+	border: 1px solid #ccc;
+	float: left;
+	height: 202px;
+	width: 165px;
+	margin: 5px;
+}
+.floor_left_content_r .item:hover{
+	border: 1px solid #7f7f7f;
+}
+.item_t img {
+	width: 165px;
+	height: 140px;
+}
+
+.item_m {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #999;
+	padding-left: 10px;
+	width: 150px;
+	height: 35px;
+}
+
+.item_m a {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #333;
+}
+
+.item_m a:hover {
+	color: #f40;
+}
+
+.floor_left_content_r .item_b {
+	background: #fafafa;
+	height: 26px;
+	line-height: 26px;
+	font-size: 20px;
+	font-family: "微软雅黑";
+	width: 145px;
+	padding: 0 10px;
+	border-top: 1px solid #ccc;
+	color: #f40;
+}
+
+.item_b_c {
+	display: block;
+	float: left;
+	width: 50px;
+	height: 26px;
+}
+
+.item_b_a, .item_b_b {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	float: right;
+}
+
+.item_b_b {
+	color: #999;
+}
+
+/*---美食品牌推荐-----*/
+.brandBox {
+	width: 1178px;
+	height: 330px;
+	border: 1px solid #ccc;
+	background-color: #FFF;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.brandBoxTitleBg {
+	width: 1178px;
+	height: 40px;
+	background-color: #d9d9d9;
+}
+
+.brandBoxTitle {
+	float: left;
+	width: 190px;
+	height: 37px;
+	border-top: 3px solid #86bf30;
+	line-height: 37px;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	color: #333;
+	font-weight: bold;
+	background-color: #FFF;
+}
+
+.brandBoxTitleMore a {
+	display:none;
+	float: right;
+	height: 40px;
+	width: 90px;
+	line-height: 40px;
+	color: #333;
+	font-size: 14px;
+}
+
+.brandBoxTitleMore a:hover {
+	color: #f40;
+}
+
+.brandBoxContent {
+	padding-left: 4px;
+}
+.brandBoxContent a{
+	opacity:0.5;
+}
+.brandBoxContent a:hover{
+	opacity:1;
+}
+.brandBoxContent a:last-child {
+	border-right: 0;
+}
+
+.brandBoxContent_01 {
+	height: 95px;
+}
+
+.brandBoxContent_01 a {
+	width: 109px;
+	height: 75px;
+	display: block;
+	float: left;
+	margin-left: 10px;
+	border-right: 1px dashed #ccc;
+	padding-right: 10px;
+}
+
+.brandbottom a {
+	padding-bottom: 10px;
+	margin-top: 10px;
+	
+}
+
+.brandtop a {
+	padding-top: 10px;
+}
+
+.brandBoxContent_02 {
+	width: 1168px;
+	margin-left: 10px;
+	height: 95px;
+	clear: both;
+}
+
+.brandBoxContent_02 img {
+	width: 109px;
+	height: 75px;
+	margin-right: 0px;
+	border: 1px dashed #ccc;
+	border-left: none;
+	padding: 10px;
+}
+/*专题活动——引用美食品牌推荐样式*/
+.brandBoxContent01_sub {
+	width: 180px;
+	height: 170px;
+	display: block;
+	float: left;
+	margin-left: 14px;
+	margin-top: 10px;
+}
+.brandBoxContent01_sub:hover{
+	background-color:#c0c0c0;
+}
+.brandBoxContent01_sub01 img {
+	width: 180px;
+	height: 110px;
+}
+
+.brandBoxContent01_sub02 {
+	font-size: 12px;
+	color: #999;
+	font-family: "微软雅黑";
+	margin-top: 5px;
+}
+
+.brandBoxContent01_sub02 a {
+	font-size: 14px;
+	color: #666;
+	font-weight: bold;
+	font-family: "微软雅黑";
+}

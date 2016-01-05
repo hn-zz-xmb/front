@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/manage.css"
+	rel="stylesheet" type="text/css">
+<title>店铺管理-店内分类</title>
+</head>
+<body>
+<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+			<% include("../common.html",{left_:"cate"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/foodtype/foodtype">分类列表</a></li>
+					<li><a href="#" class="active">编辑分类</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/foodtypetoAddCategory" class="btn_add">新增分类</a>
+			</div>
+			<div class="main">
+				<form action="${ctxPath}/salerManage/foodtype/updateCategory" id="foodType" class="from" method="post">
+				<input type="hidden" name="store_id" value="${foodType.store_id}" />
+				<input type="hidden" name="id" value="${foodType.id}" />
+					<div class="form">
+						<div class="row">
+							分类名称：<input type="text" name="name" value="${foodType.name}">
+						</div>
+						<div class="row_radio">
+							<%if(foodType.is_show == 1){%>
+							<label><input type="radio" name="isShow" checked="checked" value="1">是</label><label><input name="isShow" type="radio" value="0">否</label>
+							<%}else{%>
+							<label><input type="radio" name="isShow" value="1">是</label><label><input name="isShow" checked="checked" type="radio" value="0">否</label>
+							<%}%>
+						</div>
+						<div class="row">
+							排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：<input type="text" name="px" value="${foodType.px}"
+								class="input_s">
+						</div>
+
+						<div class="btn_w">
+							<button class="btn_g_l">保存</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+	<script type="text/javascript" src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+	$("#foodType").validate({
+		errorPlacement: function(error, element) {  
+			layer.tips(error.text(), element, {guide: 1, time: 3,more:true});
+		},
+		rules : {
+			name:"required",
+			px:{
+				required:true,
+				digits:true
+			}
+		},
+		messages:{
+			name:"名称不能为空",
+			px:{
+				required:"序号不能为空",
+				digits:"请输入正确的数字"
+			}
+		}
+		
+	});
+});
+</script>
+</body>
+</html>

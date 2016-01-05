@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/tuijian.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${ctxPath}/static/custom/js/tableBg.js"></script>
+<title>推荐中心</title>
+</head>
+<body>
+<% include("../common/userhead.html"){}%>
+<div class="position"><div class="fl">当前位置：<a href="#">店铺管理</a>&gt;：<a href="#">推荐中心</a></div>
+</div>
+<div class="content">
+    <div class="content_left">
+        <div class="rmdTitle"><a href="${ctxPath}/recommend">一级推荐人</a></div>
+        <div class="rmdTitleSub02"><a href="#">二级推荐人</a></div>
+        <div class="rmdTitleSubSub01"><a href="#">三级推荐人</a></div>
+        <div class="rmdShop"><a href="javascript:;" onclick="findRecommendStore()">推荐店铺</a></div>
+    </div>
+    <div class="content_right">
+        <div class="title">推荐信息</div>
+        <div class="serverConfig_content">
+            <div class="row">
+            	<div class="titleT">总获利：</div>
+                <span class="span_b">${recommendMoney.totalmoney!0.00}</span>
+            </div>
+            <div class="row">
+            	<div class="titleT">当日获利：</div>
+                <span class="span_b">${recommendMoney.datemoney!0.00}</span>
+            </div>
+            <div class="row">
+            	<div class="titleT">推荐号：</div>
+                <span class="span_b">${recommendMember.referee_no!}</span>
+            </div>
+            <div class="row">
+            	<div class="titleT">推荐连接：</div>
+                <span class="span_b">${recommendMember.referee_url!}
+                </span>
+            </div>
+        </div>
+        <div id="content">
+        <div class="hdScreening">
+            <div class="hdTitle">一级推荐人列表</div>
+            <table id="grid" width="100%" rules="all" cellpadding="10" bordercolor="#d5d5d5" cellspacing="1">
+              <tr class="tableTitle">
+                <td width="200">推荐人昵称</td>
+                <td>总获利</td>
+                <td>当日获利</td>
+                <td>推荐人数</td>
+                <td>操作</td>
+              </tr>
+              <%for(a in page.list!){%>
+              <tr class="tableBg">
+                <td>${a.username!}</td>
+                <td>${a.countmoney!0.00}</td>
+                <td>${a.datemoney!0.00}</td>
+                <td>${a.recommendcount!0}</td>
+                <td><a href="javascript:;" onclick="findSecondRecommend('${a.referral_id}')">查看</a></td>
+              </tr>
+              <%}%>
+              
+            </table>
+          </div>
+          </div>
+          <div class="footerPage">
+            <div class="footerPageBox">
+                <div class="footerPButton"><a href="#">首页</a></div>
+                <div class="footerPButton"><a href="#">上一页</a></div>
+                <div class="footerPButton01">页数<a href="#">1</a><a href="#">1</a><a href="#">2</a><span><a href="#">3</a></span><a href="#">3</a>...<a href="#">100</a></div>
+                <div class="footerPButton"><a href="#">下一页</a></div>
+                <div class="footerPButton"><a href="#">尾页</a></div>
+            </div>
+          </div>
+  </div>
+  <div style="clear:both;"></div>
+</div>
+<% include("../common/foot.html"){}%>
+</body>
+<script type="text/javascript">
+function findRecommendStore(){
+	var param={
+			"userId":"${recommendMember.member_id!}"
+	}
+	$("#content").load("${ctxPath}/recommend/findRecommendStore",param);
+}
+function findSecondRecommend(id){
+	var param={
+			"userId":id
+	}
+	$("#content").load("${ctxPath}/recommend/findSecondRecommend",param);
+}
+function findThirdRecommend(id){
+	var param={
+			"userId":id
+	}
+	$("#content").load("${ctxPath}/recommend/findThirdRecommend",param);
+}
+</script>
+</html>

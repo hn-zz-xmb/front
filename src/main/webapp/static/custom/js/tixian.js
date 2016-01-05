@@ -1,0 +1,11 @@
+$(function(){
+	$(".dropdown").on("mouseover",".trigger",function(){
+		$(this).parent().next().show();
+	});
+	$(".dropdown").on("mouseleave","ul",function(){
+		$(this).hide();
+	});
+	$("#choose_other_link").click(function(){
+		$("#other_bank_box").slideDown();
+	});
+});

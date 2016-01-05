@@ -1,0 +1,143 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.login_r {
+	width: 462px;
+	height: 506px;
+	display: block;
+	background: #f7f7f7;
+	border: 1px solid #cacaca;
+	float: left;
+}
+
+.login_r .login_title {
+	height: 55px;
+	line-height: 55px;
+	background: #83c233;
+	font-size: 22px;
+	font-family: "微软雅黑";
+	color: #FFF;
+	text-align: center;
+}
+
+.login_hover {
+	background: #FFF;
+}
+
+.login_r .login_style {
+	font-weight: bold;
+	color: #333;
+	font-family: "微软雅黑";
+	height: 53px;
+	border-bottom: 1px dashed #a7a7a6;
+	font-size:14px;
+}
+.login_style li{
+	cursor:pointer;
+}
+.login_style .normal {
+	width: 222px;
+	height: 53px;
+	line-height: 53px;
+	text-align: center;
+	float: left;
+	display: block;
+	border-right: 1px dashed #a7a7a6;
+}
+
+.login_style .phone {
+	width: 238px;
+	height: 53px;
+	float: right;
+	line-height: 53px;
+	text-align: center;
+	display: block;
+}
+/* mao end */
+.form{
+	
+}
+.input_container{
+	text-align:center;
+	margin-top:50px;
+	height:56px;
+}
+.input_container .phone{
+	background:url(../images/phone_re.png) no-repeat;
+	padding-left:45px;
+	height:39px;
+	display:inline-block;
+}
+.input_container input{
+	border: 1px solid #6cab05;
+    height: 37px;
+    padding-left: 20px;
+    width: 290px;
+}
+.input_container .lock{
+	background:url(../images/password.png) no-repeat;
+	padding-left:45px;
+	height:39px;
+	display:inline-block;
+}
+.forget{
+	text-align:right;
+	padding-right:100px;
+	height:60px;
+	padding-top:20px;
+}
+.forget a{
+	color:#333;
+}
+.forget a:hover{
+	color:#83c233;
+}
+.login_btn_w{
+	text-align:center;
+	margin-top:10px;
+}
+.send_btn_w{
+	text-align:right;
+	padding-right:100px;
+	height:60px;
+	padding-top:20px;
+}
+.send_btn_w .yanzheng{
+	background: url("../images/huoqu.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    height: 37px;
+    width: 155px;
+}
+.login_btn {
+	width: 350px;
+	height: 37px;
+	border: 0 none;
+	background: url(../images/login.png) no-repeat;
+}

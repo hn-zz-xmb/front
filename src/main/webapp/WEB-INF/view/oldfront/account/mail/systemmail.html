@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 系统消息</title>
+<script type="text/javascript" src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<link href="${ctxPath }/static/front/css/user_ms.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+.user_name {
+	position: relative;
+	bottom: 18px;
+	margin-left: 5px;
+}
+</style>
+	</head>
+	<body>
+	<%include("../../common/userhead.html"){}%>
+	<div class="content">
+		<div id="right">
+			<ul class="tab">
+				<li class="normal">
+					<a
+						href="${ctxPath }/account/mail">未读消息</a>
+				</li>
+				<li class="normal">
+					<a
+						href="${ctxPath }/account/mail/private">私人消息</a>
+				</li>
+				<li class="active">
+					系统消息
+				</li>
+				<li class="normal">
+					<a
+						href="${ctxPath }/account/mail/public">公共消息</a>
+				</li>
+			</ul>
+			<div class="wrap">
+				<!-- <div class="eject_btn" title="发送短消息">
+					<a href="${ctxPath }/account/email/write"><b class="ico2" >发送短消息</b></a>
+				</div> -->
+				<div class="public table">
+						<%if (!isEmpty(mailList)){%>
+				<table class="table_head_line">
+					<tbody>
+						<tr class="line_bold">
+							<th class="width1"><input id="all" class="checkall"
+								type="checkbox" onclick="checkAll(this)" /></th>
+							<th class="align1" colspan="4"><label for="all"> <span
+									class="all">全选</span>
+							</label> <a href="javascript:;" class="delete" onclick="deleteMails()">删除</a></th>
+						</tr>
+
+						<tr class="line tr_color">
+							<th></th>
+							<th class="align1">用户名</th>
+							<th>内容</th>
+							<th>最后更新</th>
+							<th class="width4">操作</th>
+						</tr>
+						<% for(mail in mailList){ %>
+						<tr class="line_bold">
+							<td class="align2"><input class="checkitem"
+								value="${mail.id}" type="checkbox" /></td>
+							<td class="width13"><% if(mail.sender.headImage !=null){ %>
+								<img class="makesmall" max_width="48" max_height="48"
+								src="${mail.sender.headImage }" height="48" width="48" /> <%
+								}else{ %> <img class="makesmall"
+								src="${ctxPath}/static/front/images/noavatar_big.gif"
+								height="48" width="48" /> <% } %> <span class="user_name">${mail.sender.username!}</span>
+							</td>
+							<td class="link2 font_bold">${mail.message!}</td>
+							<td class="align2 color1 width8">
+								${date(mail.time,'yyyyMMddHHmmss'),'yyyy-MM-dd HH:mm:ss'}</td>
+							<td class="width8"><a
+								href="${ctxPath}/account/mail/detail/${mail.id}" class="desc">查看详情</a>
+								<a href="javascript:;" class="delete"
+								onclick="deleteMail('${mail.id}')">删除</a></td>
+						</tr>
+						<% } %>
+					</tbody>
+				</table>
+				<% }else { %>
+				<table class="table_head_line">
+					<tbody>
+						<tr>
+							<td colspan="5" class="member_no_records padding6">没有系统消息</td>
+						</tr>
+					</tbody>
+				</table>
+				<%}%>
+				</div>
+				<div class="wrap_bottom"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="adorn_right1"></div>
+			<div class="adorn_right2"></div>
+			<div class="adorn_right3"></div>
+			<div class="adorn_right4"></div>
+		</div>
+		<div class="clear"></div>
+		</div>
+		<%include("../../common/foot.html"){}%>
+	</body>
+</html>

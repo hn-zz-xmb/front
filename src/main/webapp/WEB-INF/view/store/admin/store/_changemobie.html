@@ -1,0 +1,131 @@
+<script type="text/javascript"
+	src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+<script src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+<script src="${ctxPath}/static/custom/js/common.js"></script>
+<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<style>
+.messageerror {
+	color: red;
+	font-size: 12px;
+}
+</style>
+<form id="change" action="" method="post">
+<input id="id" name="store.id" type="hidden" value="${store.id}" />
+	<span>您原来的手机号码是：${store.phone}</span></br>
+	<tr>
+		手机号:
+		<input id="phone" name="store.phone" />
+	</tr>
+	</br>
+	<center>
+		<tr>
+			<input onclick="sendMessage()" id="btnSendCode" type="button" value="发送验证码" class="yanzheng">
+		</tr>
+	</center>
+	<tr>
+		校验码:
+		<input name="mobilecode" />
+	</tr>
+	</br>
+	<center>
+		<tr>
+			<input type="submit" value="修改" />
+		</tr>
+	</center>
+	<label class="messageerror"></label>
+</form>
+<script type="text/javascript">
+	//表单验证
+	$().ready(function() {
+		jQuery.validator.addMethod("isPhone", function(value, element) {
+			var tel = /^[1][3578][0-9]{9}$/;
+			return this.optional(element) || (tel.test(value));
+		}, "请输入正确的手机号码");
+		$("#change").validate({
+			errorPlacement : function(error, element) {
+				$(".messageerror").html(error);
+			},
+			rules : {
+				"store.phone" : {
+					required : true,
+					isPhone : true
+				},
+				mobilecode : "required"
+			},
+			messages : {
+				"store.phone" : {
+					required : "请输入手机号码",
+					isPhone : "请输入正确的手机号码"
+				},
+				mobilecode : "请输入手机校验码"
+			},
+			submitHandler : function(form) {
+				$(form).ajaxSubmit({
+					type : "post",
+					url : "${ctxPath}/salerManage/validPhoneCode",
+					dataType : "json",
+					success : function(result) {
+						if (result.status) {
+							 form.submit();
+							 parent.location.reload();
+	                         var index = parent.layer.getFrameIndex(window.name);
+	                         parent.layer.close(index);
+						} else {
+							$(".messageerror").html(result.error);
+						}
+					}
+				});
+			}
+		});
+	});
+</script>
+<script type="text/javascript">
+	var InterValObj; //timer变量，控制时间
+	var count = 60; //间隔函数，1秒执行
+	var curCount;//当前剩余秒数
+	function sendMessage() {
+		curCount = count;
+		var phone = $("#phone").val();
+		if (phone == "" || phone == null) {
+			$(".messageerror").html("请输入手机号");
+			return;
+		}else{
+			var reg=/^[1][3578][0-9]{9}$/;
+			if(!reg.test(phone)){
+				$(".messageerror").html("手机号不正确");
+				return;
+			}
+		}
+		//设置button效果，开始计时
+		$("#btnSendCode").attr("disabled", "true");
+		$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+		InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+		var url = "${ctxPath}/msg/send";
+		var params = {
+			"msgType" : "phone",
+			"phone" : $("#phone").val()
+		};
+		var result = callJson(url, params, false);
+		if (result.isMsg) {
+			alert("验证码发送成功");
+		} else {
+			alert(result.error);
+		}
+	}
+	//timer处理函数
+	function SetRemainTime() {
+		if (curCount == 0) {
+			window.clearInterval(InterValObj);//停止计时器
+			$("#btnSendCode").removeAttr("disabled");//启用按钮
+			$("#btnSendCode").val("重新发送验证码");
+			//code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效    
+		} else {
+			curCount--;
+			$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+		}
+	}
+</script>

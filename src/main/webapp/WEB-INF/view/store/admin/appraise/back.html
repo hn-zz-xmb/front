@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>店家回评</title>
+    <link href="${ctxPath}/static/custom/css/pjia.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="mainbox">
+    <div class="title">
+        <div class="wenzi">店家回评</div>
+    </div>
+    <div style="margin-top:10px;">
+        <div class="pl fl"></div>
+        <div class="pq fl"><b style="line-height:30px; text-align:center; margin-left:15px;">1.评论内容</b></div>
+    </div>
+    <div style=" margin-bottom:15px;">
+        <div class="left  fl">
+            <p>评论人：</p>
+            <p>评论时间：</p>
+            <p>订单号：</p>
+        </div>
+        <div class="center fl">
+            <p>${orderAppraise.username!}</p>
+            <p>${orderAppraise.create_time!}</p>
+            <p>${orderAppraise.order_no!}</p>
+        </div>
+        <div class="right fl">
+            <div class="fl" style=" height:92px; width:100px;line-height:92px; text-align:center; border-right:1px solid #d1d1d1; border-bottom:1px solid #d1d1d1;">内 容：</div>
+            <div class="fl text">
+                <input type="text" name="info" value="${orderAppraise.appraise_desc!}" />
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="margin-bottom:15px;">
+        <div class="pl fl"></div>
+        <div class="pq fl"><b style="line-height:30px; text-align:center; margin-left:15px;">2.回 评</b></div>
+    </div>
+    <div>
+        <div class="fl hp">回评内容：</div>
+        <div class="fl hp01">
+            <textarea  style="margin: 0px; width: 498px; height: 126px;" id="backDesc">
+            </textarea>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="margin-left:100px; margin-top:30px;">
+        <a href="javascript:void(0)" onclick="backAppraise('${orderAppraise.id!}')"><img src="${ctxPath}/static/custom/images/storeManage/queding.png" width="75" height="25" title="确定" />
+        </a>
+    </div>
+</div>
+</body>
+<script src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script>
+    var index = parent.layer.getFrameIndex(window.name);
+
+    //回复评价
+    function backAppraise(id){
+        var url="${ctxPath}/salerManage/backAppraise/back";
+
+        var backDesc=$("#backDesc").val();
+        var params={
+            "desc":backDesc,
+            "id":id
+        };
+        var result=callJson(url,params,false);
+        if(result.isSuccess){
+            alert("回复评论成功!");
+            parent.location.reload();
+            //成功
+            parent.layer.close(index);
+        }
+    }
+</script>
+</html>

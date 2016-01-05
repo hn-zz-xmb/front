@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心</title>
+<link href="${ctxPath}/static/custom/css/help-css.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+	<% include("../common/head.html"){}%>
+	<div class="mainnav">
+		<b>当前位置:首页&gt;帮助中心</b>
+	</div>
+	<div class="mainbox">
+		<div class="mainboxleft">
+			<ul id="nav">
+				<li style="border-bottom: 1px solid #ededed;"><a href=" "><strong>会员注册</strong></a>
+				</li>
+				<div class="title">
+					<a href="javascript:;" class="rn">
+					<span>1.变身37会员,只需简单四步</span>
+					</a>
+					<a>
+					<span>2.变身37会员,只需简单四步</span>
+					</a>
+					<a>
+					<span>3.变身37会员,只需简单四步</span>
+					</a>
+				</div>
+				<li><a href="javascript:;"><strong>申请开店</strong></a></li>
+				<div class="title" style="display: none">
+					<a href="javascript:;" class="rn"><span>1.变身37会员,只需简单四步</span>
+						<span>2.变身37会员,只需简单四步</span></a>
+				</div>
+				<li><a href="javascript:;"><strong>加盟流程</strong></a></li>
+				<div class="title" style="display: none">
+					<a href="javascript:;" class="rn"><span>1.变身37会员,只需简单四步</span><span>2.变身37会员,只需简单四步</span><span>3.变身37会员,只需简单四步</span>
+					</a>
+				</div>
+				<li><a href="javascript:;"><strong>新手上路</strong></a></li>
+				<div class="title" style="display: none">
+					<a href="javascript:;" class="rn"><span>1.变身37会员,只需简单四步</span><span>2.变身37会员,只需简单四步</span>
+					</a>
+				</div>
+				<li><a href="javascript:;"><strong>订购流程</strong></a></li>
+				<div class="title" style="display: none">
+					<a href="javascript:;" class="rn"><span>1.变身37会员,只需简单四步</span></a>
+				</div>
+				<li><a href="javascript:;"><strong>安全中心</strong></a></li>
+				<div class="title" style="display: none">
+					<a href="javascript:;" class="rn"><span>1.变身37会员,只需简单四步</span>
+						<span>2.变身37会员,只需简单四步</span><span>3.变身37会员,只需简单四步</span></a>
+				</div>
+			</ul>
+		</div>
+		<div class="mainboxright">
+			<div class="mrtitle">
+				<b class="help">变身37会员,只需简单四步</b>
+			</div>
+			<div class="lb">
+				${article.info!}
+			</div>
+		</div>
+		<script>
+			$(function() {
+				$("#nav li").click(function() {
+					$(".title").slideUp();
+					$(this).next().slideDown();
+				})
+			});
+		</script>
+		<div style="clear: both"></div>
+		<% include("../common/foot.html"){}%>
+</body>
+</html>

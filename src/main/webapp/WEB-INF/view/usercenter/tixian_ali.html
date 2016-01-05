@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/tixian.css" rel="stylesheet"
+	type="text/css">
+<title>支付宝提现</title>
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<div class="wrap">
+		<div class="pane">
+			<div class="pane_head">
+				<span class="tixian_title">提取账户余额到银行卡</span> <span>余额：<span
+					class="money">${coin.account_money!0.00}</span>元
+				</span> <span class="right_link"><a href="#" class="add addBankBtn">添加银行卡</a>&nbsp;|&nbsp;<a
+					href="#">支付宝提现</a>&nbsp;|&nbsp;<a
+					href="${ctxPath}/account/withdraw/findWithdrawRecord">提现记录</a></span>
+			</div>
+			<div class="pane_content">
+				<div class="form1">
+					<form action="">
+						<div class="row">
+							<div class="label">支付宝账户：</div>
+							<div class="label_content">
+								<div class="input_w">
+									<input type="text"><span class="notice">*字段不能为空</span>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+						<div class="row">
+							<div class="label">提现金额：</div>
+							<div class="label_content">
+								<div class="input_w">
+									<input type="text" class="input_s" placeholder="输入金额">元
+									<span class="notice">*字段不能为空</span>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+						<div class="error">余额不足！</div>
+						<div class="btn_w">
+							<button type="submit" class="btn_green">申请提现</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include("../common/foot.html"){}%>
+</body>
+</html>

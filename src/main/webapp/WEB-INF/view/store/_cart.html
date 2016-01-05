@@ -1,0 +1,47 @@
+<script type="text/javascript" src="${ctxPath}/static/custom/js/ajax.js"/>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/cart.js"/>
+
+<div class="menu_title">加入菜单</div>
+<%if(has(session.cartItems_)){%>
+<div class="menu_content" id="menu_div">
+    <table class="menu_box" id="cartTable">
+        <tr class="table_header">
+            <th width="5px"></th>
+            <th>菜名</th>
+            <th width="60px">单价（元）</th>
+            <th width="60px">数量</th>
+            <th width="22px"></th>
+        </tr>
+        <%var total=0;%>
+        <%for(entry_ in session.cartItems_!){%>
+        <%if(entry_.value.store_id==storeId){%>
+        <tr id="cartItem_${entry_.key}">
+            <td></td>
+            <td>${entry_.value.itemname}</td>
+            <td>${entry_.value.itemprice}元</td>
+            <td><span class="input_qty">
+            <a href="javascript:void(0)" onclick="changeCount('${entry_.key}','${storeId}',false)"
+                                           class="minus">-</a>
+            <span id="count_${entry_.key}">${entry_.value.item_num}</span>
+            <a href="javascript:void(0)" onclick="changeCount('${entry_.key}','${storeId}',true)" class="plus">+</a></span></td>
+            <td><a href="javascript:void(0)" onclick="removeCart('${entry_.key}','${storeId}')"><img alt=""
+                                 src="${ctxPath}/static/custom/images/del.jpg"></a></td>
+        </tr>
+        <% var sum=entry_.value.itemprice!0 * entry_.value.item_num!0;
+            total=total+sum;
+        %>
+        <%}%>
+        <%}%>
+    </table>
+    <div class="menu_price">
+
+        总金额：<span id="totalMoney">${total!0.00}元</span>
+    </div>
+    <div class="menu_btn_w">
+        <a href="javascript:void(0)" onclick="clearCart('${storeId}')" class="btn_gray">清空</a>
+        <a href="javascript:void(0)" onclick="toWriteOrder('${storeId}')" class="btn_green">支付</a>
+    </div>
+    <%}else{%>
+    暂无商品
+    <%}%>
+</div>

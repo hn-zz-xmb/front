@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/open_shop.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/public_.css" />
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[2].className="active";
+	</script>
+	<div class="content">
+		<div class="shop_title">
+			<div class="title_left">
+				<p>
+					<h2>
+						<span>SHOP REGISTRATION </span>申请开店
+					</h2>
+				</p>
+			</div>
+			<div class="title_right"></div>
+		</div>
+		<!--content_nr start------------------------>
+		<div class="content_nr">
+			<div class="shop_buzou succeed"></div>
+			<!----------------succeed_nr start------------------------->
+			<div class="succeed_nr">
+				<div class="succeed_title"></div>
+				<div class="succeed_tuwen">
+					<div class="succeed_top">
+						<div class="succeed_top_sub">
+							<div class="succeed_top_left">
+								<img src="${ctxPath}/static/custom/images/rejist_succeed.png" />
+							</div>
+							<div class="succeed_top_right">
+								<h2>恭喜您,信息提交成功</h2>
+							</div>
+						</div>
+					</div>
+					<div class="succeed_bottom">
+						<p>注意:店铺审核完成后,将以短信的方式通知您,请注意查收</p>
+					</div>
+				</div>
+			</div>
+			<!---------------------succeed_nr end--------------------------------->
+		</div>
+		<!--content_nr end------------------->
+	</div>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

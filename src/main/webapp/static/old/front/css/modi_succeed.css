@@ -1,0 +1,40 @@
+/* CSS Document */
+@import url("base.css");
+.modi_succeed{
+	margin:0 auto;
+	width:932px;
+	border:1px solid #dfdfdf;}
+.xgmm{
+	height:30px;
+	line-height:30px;
+	padding-left:10px;
+	font-weight:bold;
+	border-bottom:2px solid #84c233;
+	}
+.modi_pic{
+	width:932px;
+	height:94px;
+	margin-top:10px;
+	background:url(../images/modify.png) no-repeat 0 -204px;}
+.succeed{
+	height:100px;
+	padding-top:20px;
+	margin-top:20px;
+	background:#fff6cf;}
+.right{
+	float:left;
+	height:73px;
+	
+	margin-left:200px;}
+.congra{
+	float:left;
+	margin-top: 20px;
+	height:73px;
+	text-align:center;
+	font-weight:bold;
+	font-family:"微软雅黑" 锐利;
+	font-size:24px;
+	display:inline;
+	padding-left:30px;
+	color:#75c003;}
+

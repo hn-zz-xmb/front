@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 新增好友</title>
+<link href="${ctxPath }/static/front/css/user_ms.css" rel="stylesheet"
+	type="text/css">
+<script type="text/javascript"
+	src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+</head>
+
+<body>
+	<%include("../common/userhead.html"){}%>
+	<div id="righ">
+		<ul class="tab">
+			<li class="normal">
+				<a href="${ctxPath }/account/friend">好友列表</a>
+			</li>
+			<li class="active">添加好友</li>
+		</ul>
+		<div class="eject_con">
+			<div class="add_float">
+				<div id="warning"></div>
+				<form method="POST" action="${ctxPath }/account/friend/save"
+					id="friend_form">
+					<ul>
+						<li>
+							<h3>用户名:</h3>
+							<p>
+								<input class="text width_normal" name="username" type="text"><span
+									class="tip">多个用户名请用逗号隔开</span>
+							</p>
+						</li>
+					</ul>
+					<div class="submit">
+						<input class="btn" value="添加好友" type="submit">
+						<input type="hidden" name="CSRFToken"  id="CSRFToken" value="${csrf}" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<%include("../common/foot1.html"){}%>
+</body>
+</html>

@@ -1,0 +1,407 @@
+
+/**排序**/
+.sort {
+	color: #333;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	background-color: #ccc;
+	border: 1px solid #ccc;
+	height: 40px;
+	margin: 10px auto;
+	line-height: 40px;
+	width:1180px;
+}
+.active01 {
+	background-color: #fff;
+	color: #84c233
+}
+.sort a {
+	display: block;
+	float: left;
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	color: #333;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+.sort span{
+	background-color:#fff;
+	font-family: "微软雅黑";
+	font-size:12px;
+	color:#f9af88;
+	display:inline-block;
+	width:600px;
+	text-align:center;
+	height:30px;
+	line-height:30px;
+	margin-left:200px;
+}
+/**内容**/
+.main{
+	width:1180px;
+	margin:0 auto;
+}
+.main_left{
+	width: 920px;
+	float:left;
+}
+.main_content {
+	overflow: hidden;
+}
+.shopSearchBox {
+	width: 293px;
+	margin-bottom: 10px;
+	float: left;
+	margin-right: 10px;
+	height: 315px;
+	border: 1px solid #e6e6e6;
+	background-color: #FFF;
+}
+
+.shopSearchBox img {
+	margin: 7px;
+	width: 276px;
+	height: 218px;
+}
+
+.shopSearchBox_titleBox {
+	width: 280px;
+	height: 80px;
+	margin: 0 auto;
+}
+
+.shopSearchBox_title {
+	width: 286px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 3px;
+}
+
+.shopSearchBox_describe {
+	width: 286px;
+	height: 17px;
+}
+
+.shopSearchBox_D01 {
+	width: 110px;
+	float: left;
+}
+
+.shopSearchBox_D01 img {
+	width: 17px;
+	height: 17px;
+	margin: 0 1px;
+}
+
+.shopSearchBox_D02 {
+	width: 100px;
+	height: 17px;
+	line-height: 17px;
+	float: left;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #999;
+}
+
+.shopSearchBox_content {
+	width: 286px;
+	height: 30px;
+	padding-top: 5px;
+	color: #ef340b;
+	font-family: "微软雅黑";
+	font-size: 24px;
+}
+
+.shopSearchBox_content1 {
+	width: 150px;
+	float: left;
+	font-family: "微软雅黑";
+}
+
+.shopSearchBox_content span {
+	font-size: 14px;
+	font-family: "微软雅黑";
+}
+
+.shopSearchBox_content a {
+	display: block;
+	float: right;
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	color: #fff;
+	font-size: 16px;
+	font-family: "微软雅黑";
+	text-align: center;
+	background-color: #84c133;
+	text-decoration: none;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+
+.shopSearchBox_content a:hover {
+	background-color: #679728;
+}
+.pagination {
+	text-align: center;
+	height: 50px;
+}
+
+.pagination a {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	border: 1px solid #ccc;
+	background-color: white;
+	font-family: "宋体";
+	font-size: 16px;
+	color: #000;
+	text-align: center;
+	line-height: 36px;
+}
+
+.pagination .btn.active {
+	color: white;
+	background-color: #84c233;
+}
+
+.pagination a:hover {
+	color: white;
+	background-color: #84c233;
+}
+
+.input_ss {
+	width: 50px;
+}
+.main_right{
+	float:left;
+	width: 257px;
+}
+.menu{
+	border:1px solid #ccc;
+	
+}
+.menu_title{
+	width:237px;
+	height:50px;
+	line-height:50px;
+	padding-left:20px;
+	color:#fff;
+	font-family:"微软雅黑";
+	font-size:20px;
+	background-color:#8cc842;
+}
+.menu_content{
+	background-color:#fff;
+	padding-bottom:10px;
+	padding-top:10px;
+}
+.menu_box{
+	border:1px solid #ccc;
+	width:237px;
+	border-collapse:collapse;
+	margin:0 auto;
+}
+.menu_box tr{
+	height:30px;
+	line-height:30px;
+	background-color:#f9ffef;
+	border-bottom:1px dotted #ccc;
+}
+.menu_box .table_header{
+	height:38px;
+	background:url(../images/menu_bg.jpg);
+	border-bottom:1px solid #ccc;
+}
+.input_qty{
+	width:50px;
+	height:16px;
+	border:1px solid #ccc;
+}
+.input_qty a{
+	display:inline-block;
+	height:16px;
+	width:16px;
+	line-height:16px;
+	text-align:center;
+}
+.input_qty .minus{
+	border-right:1px solid #ccc;
+}
+.input_qty .plus{
+	border-left:1px solid #ccc;
+}
+.input_qty span{
+	width:16px;
+	height:16px;
+	line-height:16px;
+	display:inline-block;
+	text-align:center;
+}
+.menu_price{
+	text-align:right;
+	width:237px;
+	margin:0 auto;
+	border-bottom:1px solid #86c533;
+	padding-bottom:5px;
+	padding-top:10px;
+}
+.menu_price span{
+	color:#ff7300;
+}
+.menu_btn_w{
+	width:237px;
+	margin:0 auto;
+	padding:10px;
+}
+.menu_btn_w a{
+	width:89px;
+	height:28px;
+	display:inline-block;
+	line-height:28px;
+	text-align:center;
+}
+.btn_gray{
+	background-color:#f2f2f2;
+	border:1px solid #ccc;
+	margin-left:10px;
+}
+.btn_green{
+	color:#fff;
+	background-color:#8bc73a;
+	margin-left:20px;
+}
+
+.store_info{
+	margin-top:10px;
+	border: 1px solid #ccc;
+}
+.store_info_title{
+	background-color: #8cc842;
+    color: #fff;
+    font-family: "微软雅黑";
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    width: 237px;
+}
+.store_info_content{
+	background-color: #fff;
+	padding:0px;
+}
+.store_info .map{
+	border: 1px solid #ccc;
+}
+.store_info .map_b{
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	color:#ccc;
+	font-size:16px;
+}
+/* 本店特色 */
+.main_right {
+	float: left;
+	width: 257px;
+	padding-top: 5px;
+}
+
+.main_right .title {
+	font-family: "微软雅黑";
+	font-size: 18px;
+	color: #333;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+.main_right .goods {
+	margin-bottom: 10px;
+	height: 255px;
+}
+
+.main_right .goods_t {
+	height: 222px;
+}
+
+.main_right .goods_t img {
+	width: 257px;
+	height: 222px;
+}
+
+.main_right .goods_b {
+	border: 1px solid #ccc;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	background-color: white;
+	font-family: "微软雅黑";
+	font-size: 18px;
+}
+
+.main_right .goods_b .price {
+	color: #f90;
+	display: block;
+	font-weight: bold;
+	width: 80px;
+	height: 30px;
+	float: left
+}
+
+.main_right .goods_b .sale_count {
+	float: right;
+	display: block;
+	width: 100px;
+	height: 30px;
+	float: right;
+}
+
+
+.footer p {
+    font: normal 12px/2em '微软雅黑';
+    text-align: center;
+}
+ul, li {
+    list-style: none;
+}
+.box {
+    height: 35px;
+    background: #fff;
+    overflow: hidden;
+    margin: 0 auto; margin-top:3px;
+}
+.t_news {
+    height: 19px;
+    color: #000;
+    padding-left: 10px;
+    margin: 8px 0;
+    overflow: hidden;
+    position: relative;
+}
+.t_news b {
+    line-height: 19px;
+    font-weight: bold;
+    display: inline-block;
+}
+.news_li, .swap {
+    line-height: 19px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 72px; margin-left:10px;
+}
+.news_li a, .swap a {
+    color: #000;
+    font-family: '宋体';
+    margin-right: 15px;
+    width:100%;
+    height:auto; font-size:12px;
+    text-align:left;
+}
+
+.swap {
+    top: 19px;
+}

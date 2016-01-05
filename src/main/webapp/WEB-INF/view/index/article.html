@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/article.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/custom/css/list.css" rel="stylesheet" type="text/css" />
+<title>${article.title!}</title>
+</head>
+<body>
+<% include("../common/head.html"){}%>
+	<div class="position">
+		当前位置：<a href="${ctxPath}/">首页</a>&nbsp;&gt;&nbsp;<a href="${ctxPath}/article/articleList?typeId=${article.typeId !}">${article.typename !}</a>&nbsp;&gt;&nbsp;${article.title}
+	</div>
+	<div class="content">
+		<div class="content_left">
+			<div class="article_w">
+				<div class="article">
+					<div class="article_head">
+<h1 class="article_title">${article.title!}</h1>
+<div class="article_head_bottom">
+<span>${date(article.addtime!,'yyyyMMddHHmmss'),'yyyy-MM-dd hh:mm:ss'}</span>&nbsp;&nbsp;
+<span>来源：${article.author!}</span>
+<!--百度分享开始-->
+<div class="bdsharebuttonbox fr"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_baidu" data-cmd="baidu" title="分享到百度搜藏"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a></div>
+<script type="text/javascript">
+window._bd_share_config={
+		common:{"bdText":"${article.title}","bdDesc":"${strutil.subStringTo(article.article_info,0,18)}...","bdUrl":"http://www.37meishi.com/article/articleDetail?articleId=${article.id}","bdPic":"${article.image}","bdMini":"2","bdMiniList":false,"bdStyle":"0","bdSize":"16"},		
+	    share:{}
+		} 
+		with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<!--百度分享结束-->
+</div>
+</div>
+<div class="article_content_w">
+					<div class="article_content">
+					<a href="#" class="ad_img"><img src="${ctxPath}/static/custom/images/ad_default.jpg"></a>
+					${article.article_info!}
+					</div>
+					</div>
+				</div>
+				<div class="pagination" style="display:none;">
+					<span class="fr"> <span>共计<span class="green"></span>页
+					</span>
+					<a  class="btn_triangle_l">&nbsp;</a>
+					 &nbsp;
+					<a  class="btn_triangle_r">下一页</a>
+					</span>
+				</div>
+			</div>
+			<div class="block">
+<div class="block_title">猜你喜欢</div>
+<div class="block_content">
+<div class="like">
+<div class="like_left">
+<ul>
+<li><a href="#">&bull;&nbsp;秦皇河咏怀。那一年的美食</a></li>
+<li><a href="#">&bull;&nbsp;秦皇河咏怀。那一年的美食</a></li>
+<li><a href="#">&bull;&nbsp;秦皇河咏怀。那一年的美食</a></li>
+<li><a href="#">&bull;&nbsp;秦皇河咏怀。那一年的美食</a></li>
+</ul>
+</div>
+<div class="like_right">
+<ul>
+<li><a href="#">&bull;&nbsp;秦皇河咏怀。那一年的美食</a></li>
+<li><a href="#">&bull;&nbsp;秦皇河咏怀。那一年的美食</a></li>
+<li><a href="#">&bull;&nbsp;秦皇河咏怀。那一年的美食</a></li>
+<li><a href="#">&bull;&nbsp;秦皇河咏怀。那一年的美食</a></li>
+</ul>
+</div>
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+<div class="block">
+<div class="block_title">热门推荐</div>
+<div class="block_content">
+<div class="hot">
+<a href="#" class="img_w">
+<img alt="" src="${ctxPath}/static/custom/images/hot01.jpg">
+<div class="title">老外眼中的”舌尖上的中国“</div>
+</a>
+<a href="#" class="img_w">
+<img alt="" src="${ctxPath}/static/custom/images/hot01.jpg">
+<div class="title">老外眼中的”舌尖上的中国“</div>
+</a>
+<a href="#" class="img_w">
+<img alt="" src="${ctxPath}/static/custom/images/hot01.jpg">
+<div class="title">老外眼中的”舌尖上的中国“</div>
+</a>
+<a href="#" class="img_w">
+<img alt="" src="${ctxPath}/static/custom/images/hot01.jpg">
+<div class="title">老外眼中的”舌尖上的中国“</div>
+</a>
+<a href="#" class="img_w">
+<img alt="" src="${ctxPath}/static/custom/images/hot01.jpg">
+<div class="title">老外眼中的”舌尖上的中国“</div>
+</a>
+<a href="#" class="img_w">
+<img alt="" src="${ctxPath}/static/custom/images/hot01.jpg">
+<div class="title">老外眼中的”舌尖上的中国“</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+		<div class="content_right">
+			<div class="floor_right1">
+				<div class="bellows single">
+				<%for(type in articleTypes !){%>
+					<div <%if(type.id!''==typeId!''){%> class="bellows__item active" <%} else {%> class="bellows__item" <%}%>>
+						<div class="bellows__header">
+							<h3>
+								<a href="${ctxPath}/article/articleList?typeId=${type.id!}">${type.name!}</a>
+							</h3>
+						</div>
+						<div class="bellows__content">
+							<div class="floor_right_content">
+								<div class="floor_right_content_t">
+									<%var count=0;%>
+										<% for(a in top!){
+										if(count==2){
+											 break;
+											}
+										count++;
+										%>
+									<div class="item">
+										<div class="item_l">
+											<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id}"><img style="width: 87px; height: 67px;"  src="/img${a.image}"/></a>
+										</div>
+										<div class="item_r">
+											<div class="title">
+										<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id}">${a.title}</a>
+									</div>
+									<div class="item_content">
+										${strutil.subStringTo(a.article_info,0,18)}...
+										<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id}">[详细]</a>
+									</div>
+										</div>
+									</div>
+									<%}elsefor{%>
+										<div class="item">
+										<div class="item_l">
+											<a href="" target="_blank"> <img
+												style="width: 87px; height: 67px;"
+												src="${ctxPath}/static/custom/images/IMAGES_20141216093729_5106.jpg"></a>
+										</div>
+										<div class="item_r">
+											<div class="title">
+												<a target="_blank" href="">提升小餐饮服务水平为百姓饮食安全助力</a>
+											</div>
+											<div class="item_content">
+												为解决在小餐饮经营户管理制度不健... <a target="_blank" href="">[详细]</a>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="item_l">
+											<a href="" target="_blank"> <img
+												style="width: 87px; height: 67px;"
+												src="${ctxPath}/static/custom/images/IMAGES_20141216092932_4283.jpg"></a>
+										</div>
+										<div class="item_r">
+											<div class="title">
+												<a target="_blank" href="">中国不同定位的餐饮企业如何寻找出路</a>
+											</div>
+											<div class="item_content">
+												<p>
+													目前中国的餐饮行业大... <a target="_blank" href="">[详细]</a>
+												</p>
+											</div>
+										</div>
+									</div>				
+									<%}%>
+								</div>
+								<div class="floor_right_content_b">
+									<ul>
+									<%var count2=0;%>
+										<% for(a in top){%>
+											<%count2=count2+1;%>
+										<li><a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id}">${a.title}</a></li>
+									<%}%>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<%}%>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("../common/foot.html"){}%>
+</body>
+</html>

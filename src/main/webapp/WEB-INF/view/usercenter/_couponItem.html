@@ -1,0 +1,35 @@
+<div class="order_list_container">
+	<%for (info in page.list){%>
+	<table class="order_item">
+		<tr>
+			<th><input type="checkbox"></th>
+			<th>券名称</th>
+			<th>有效期</th>
+			<th>券额（元）</th>
+			<th>使用规则</th>
+			<th>状态</th>
+			<th><span class="grey">删除优惠券<img alt=""
+					src="images/member/del.png"></span></th>
+		</tr>
+		<tr>
+			<td></td>
+			<td>${info.couponName}</td>
+			<td>${date(info.begin_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}至${date(info.end_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</td>
+			<td>${info.coupon_money}</td>
+			<td>订单满${info.limit_money}元使用</td>
+			<%if(info.is_used==0){%>
+			<td>可使用</td>
+			<%}else{%>
+			<td>已使用</td>
+			<%}%>
+			<td><a href="javascript:;" onclick="show('${info.id}')"
+				class="btn_g">查看详情</a></td>
+		</tr>
+	</table>
+	<%}%>
+	<div class="order_list_bottom">
+		<input type="checkbox">全选 <a href="#" class="btn_gb">合并付款</a>
+		<a href="#" class="btn_gb">合并评价</a> <a href="#" class="btn_gb">批量删除</a>
+	</div>
+</div>
+<div class="pagination"><%include("../common/_ajaxpagination.html",{page:page}){}%></div>

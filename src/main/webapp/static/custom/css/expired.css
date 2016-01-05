@@ -1,0 +1,91 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.content{
+	width:1180px;
+	margin:0 auto;
+}
+.main{
+	width: 600px;
+	margin:0 auto;
+	margin-top:50px;
+}
+.main_left{
+	float:left;
+}
+.main_right{
+	float:left;
+	margin-left:20px;
+}
+.sorry_box{
+	border-bottom:1px dashed #ccc;
+	margin-top:50px;
+	padding-bottom:30px;
+}
+.sorry_title{
+	font-size:18px;
+	color:#f40;
+}
+.sorry_content{
+	color:#565656;
+}
+.may_box{
+	
+}
+.text1{
+	font-size:14px;
+	color:#f40;
+}
+.may_box .btn_w{
+	padding-left:90px;
+}
+.close_btn{
+	background:url(../images/storeManage/close.png) no-repeat 10px center;
+	display:inline-block;
+	background-color:#e5e5e5;
+	width:40px;
+	height:30px;
+	line-height:30px;
+	padding-left:25px;
+	font-size:14px;
+	color:#565656;
+}
+.back_btn{
+	background:url(../images/storeManage/arrow_left.png) no-repeat 10px center;
+	display:inline-block;
+	background-color:#71b834;
+	width:70px;
+	height:30px;
+	line-height:30px;
+	padding-left:25px;
+	font-size:14px;
+	color:#fff;
+}

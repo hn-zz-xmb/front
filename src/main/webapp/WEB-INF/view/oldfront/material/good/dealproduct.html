@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 -原料管理</title>
+<link href="${ctxPath}/static/old/front/css/user_37.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/old/custom/js/ajax.common.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/old/front/js/checkAll.js"></script>
+<script data-main="${ctxPath}/static/old/custom/js/recommendma" src="${ctxPath}/static/old/require.js"></script>
+<style type="text/css">
+.pos{
+	position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 3;
+}
+</style>
+<script type="text/javascript">
+function cancelRecommend(materialId){
+	var result=confirm("确定取消推荐么？");
+	if(result){
+		var url="${ctxPath }/salerManage/materialgoodsmanage/cancelRecommend";
+		var param={
+				"materialId": materialId
+		}
+		callText(url, param, true);
+		window.location.href="${ctxPath}/salerManage/materialgoodsmanage";
+	}
+}
+function delGoods(){
+	var ok = confirm("确定要删除这些商品吗？如果商品已添加到套餐中，那么套餐中的商品也会一并删除。");
+	if(!ok)return;
+	
+	var cbs = $(".checkitem:checked");
+	var ids = [];
+	for(var i=0; i<cbs.length; i++){
+		ids[i]=cbs[i].value;
+	}
+	var url = "${ctxPath }/salerManage/materialgoodsmanage/delGoods";
+	var param={
+			"ids": ids
+	}
+	var result = callText(url, param, true);
+	if(result=="success"){
+		window.location.href="${ctxPath }/salerManage/materialgoodsmanage";
+	}
+}
+function putGoodsOnSale(materialId){
+	if(!confirm("确定要上架吗？"))return;
+	
+	var url = "${ctxPath }/salerManage/materialgoodsmanage/shangjia";
+	var param={
+			"materialId": materialId
+	}
+	var result = callText(url, param, true);
+	if(result=="success"){
+		window.location.href="${ctxPath }/salerManage/materialgoodsmanage";
+	}
+}
+function banGoods(materialId){
+	if(!confirm("确定要下架吗？"))return;
+	
+	var url = "${ctxPath }/salerManage/materialgoodsmanage/xiajia";
+	var param={
+			"materialId": materialId
+	}
+	var result = callText(url, param, true);
+	if(result=="success"){
+		
+		window.location.href="${ctxPath }/salerManage/materialgoodsmanage";
+	}
+}
+</script>
+</head>
+<body>
+	<% layout("../../saler/member.html"){ %>
+	
+	<style>
+.member_no_records {
+	border-top: 0px !important;
+}
+
+.table td {
+	padding-left: 5px;
+}
+
+.table .ware_text {
+	width: 155px;
+}
+</style>
+	<div id="right">
+		<ul class="tab">
+			<li class="active">商品列表</li>
+		</ul>
+		<div class="wrap">
+			<div class="eject_btn_two pos" title="新增商品">
+				<a href="${ctxPath }/salerManage/materialgoodsmanage/addProduct"><b class="ico2">新增商品</b></a>
+			</div>
+			<div class="public_select table">
+				<table id="my_goods"
+					server="">
+
+					<tbody>
+						<tr class="line_bold">
+							<th class="width1"><input id="all" class="checkall"
+								type="checkbox" onclick="checkAll(this)"/></th>
+							<th class="align1" colspan="2"><span class="all"><label
+									for="all"> 全选 </label> </span> 
+								<a href="javascript:void(0);" class="delete" onclick="delGoods()">删除</a></th>
+							<th colspan="8">
+								<div class="select_div">
+
+									<form id="my_goods_form" method="get" action="${ctxPath }/salerManage/materialgoodsmanage">
+										<input type="hidden" name="CSRFToken" id="CSRFToken" value="">
+										<a id="truncate" class="detlink" style="float: right"
+											href="${ctxPath }/salerManage/materialgoodsmanage">清空结果</a>  <select class="select1"
+											name="materialtype">
+											<%
+							if(params.materialtype!''== null ){
+							%>
+							<option value="">所有分类</option>
+							<%
+								for(typeList in materialtypeList!){
+							%>
+							<option value="${typeList.id}">${typeList.name}</option>
+							<%
+								}
+							%>
+							<%
+							}else{%>
+							<option value="">所有分类</option>
+							<%	for(typeList in materialtypeList!){
+									if(params.materialtype!''==typeList.id){
+							%>
+							<option selected="selected" value="${typeList.id}">${typeList.name}</option>
+							<%		}else{%>
+							<option  value="${typeList.id}">${typeList.name}</option>
+								<%	}
+								}
+							}
+							%>
+												
+										</select> 
+										<select class="select2" name="recommend">
+										<%if(params.recommend!''==-1){%>
+											<option value="-1" >所有的</option>
+											<option value="1">推荐的</option>
+											<option value="0">未推荐</option>
+											<%}else{%>
+											<option value="-1">所有的</option>
+												<%if(params.recommend==1){
+											%>
+											<option selected="selected" value="1">推荐的</option>
+											<option value="0">未推荐</option>
+											<%	}else{%>
+											<option value="1">推荐的</option>
+											<option selected="selected" value="0">未推荐</option>
+											<%	}%>
+											<%}%>
+											
+										</select>
+										<select class="select3" name="show">
+										<%if(params.show!''==-1){%>
+											<option value="-1" >所有的</option>
+											<option value="1">显示的</option>
+											<option value="0">未显示</option>
+											<%}else{%>
+											<option value="-1">所有的</option>
+												<%if(params.show==1){
+											%>
+											<option selected="selected" value="1">显示的</option>
+											<option value="0">未显示</option>
+											<%	}else{%>
+											<option value="1">显示的</option>
+											<option selected="selected" value="0">未显示</option>
+											<%	}%>
+											<%}%>
+											
+										</select>
+										 <input class="text_normal" name="name" type="text" value="${params.name!}"/> <input
+											class="btn" value="搜索" type="submit" />
+									</form>
+								</div>
+							</th>
+						</tr>
+						<tr class="gray" ectype="table_header">
+							<th width="30"></th>
+							<th width="55"></th>
+							<th coltype="editable" column="goods_name"
+								checker="check_required" inputwidth="90%" title="商品名称"
+								class="cursor_pointer" width="165"><span ectype="order_by">商品名称</span>
+							</th>
+							<th column="cate_id" title="商品分类" class="cursor_pointer" width="70">
+								<span ectype="order_by">商品分类</span>
+							</th>
+							<th class="cursor_pointer" coltype="editable" column="price"
+								checker="check_number" inputwidth="50px" title="价格" width="55">
+								<span ectype="order_by">价格</span>
+							</th>
+							<th class="cursor_pointer" coltype="editable" column="stock"
+								checker="check_pint" inputwidth="50px" title="库存" width="55">
+								<span ectype="order_by">销量</span>
+							</th>
+							<th coltype="switchable" column="if_show" onclass="right_ico"
+								offclass="wrong_ico" title="上架" class="cursor_pointer"
+								width="25"><span ectype="order_by">禁售</span></th>
+							<th coltype="switchable" column="recommended" onclass="right_ico"
+								offclass="wrong_ico" title="推荐" class="cursor_pointer"
+								width="25"><span ectype="order_by">推荐</span></th>
+							
+							<th class="align2">操作</th>
+						</tr>
+						<% for (g in page.list){%>
+						<tr class="line" ectype="table_item" idvalue="237">
+							<td class="align2" width="25"><input class="checkitem"
+								value="${g.id}" type="checkbox" onclick="unCheck(this)"/></td>
+							<td class="align2" width="50"><a
+								href="${ctxPath}/goods/${g.id !}"
+								target="_blank"><img
+									src="${g.material_image !}" height="50"
+									width="50" /> </a></td>
+							<td align="align2" width="160">
+								<p class="ware_text">
+									<span idvalue="237" class="color2" ectype="editobj">${g.name !}</span>
+								</p>
+							</td>
+							<td width="50"><span class="color2">${g.material_type_id !}
+							</span></td>
+							<td width="50"><span idvalue="237"
+								class="color2" ectype="editobj">${g.sales_price !}</span></td>
+							<td width="50"><span idvalue="237"
+								class="color2" ectype="editobj">${g.original_price}份</span></td>
+							<td class="align2" width="20">
+							<% if(g.is_show==1){ %>
+							<span style="margin: 0px 5px;"  class="right_ico" onclick="banGoods('${g.id}')"></span>
+							<% }else{ %>
+							<span style="margin: 0px 5px;"  class="wrong_ico" onclick="putGoodsOnSale('${g.id}')"></span>
+							<% } %>
+							</td>
+							<td class="align2" width="20">
+							<% if(g.is_recommend==1){ %>
+							<span style="margin: 0px 5px;"  class="right_ico" onclick="cancelRecommend('${g.id}')"></span>
+							<% }else{ %>
+							<span style="margin: 0px 5px;"  class="wrong_ico" onclick="showDialog('${g.id}')"></span>
+							<% } %>
+							</td>
+							
+							<td class="align2" width="100">
+								<div>
+									<a href="${ctxPath }/salerManage/materialgoodsmanage/editProduct?id=${g.id !}" class="edit">编辑</a> 
+									<a href="${ctxPath }/salerManage/materialgoodsmanage/deleteMaterial?id=${g.id !}" 
+									onclick="if (confirm('确定删除该商品么？如果商品已添加到套餐中，套餐中的商品也会一并删除。')) return true; else return false;" class="delete">删除</a>
+								</div>
+							</td>
+						</tr>
+						<%}%>
+						<tr class="line_bold line_bold_bottom">
+							<td colspan="11"></td>
+						</tr>
+						<tr><td colspan="11">
+						<% include("_pagination.html",{page:page,paginationSize:10}){} %>
+						</td></tr>
+						<tr>
+							<th><input id="all2" class="checkall" type="checkbox" onclick="checkAll(this)"/></th>
+							<th colspan="10">
+								<p class="position1">
+									<span class="all"><label for="all2"> 全选 </label> </span>  
+									<a href="javascript:void(0);" class="delete" onclick="delGoods()">删除</a>
+								</p>
+								<p class="position2"></p>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="wrap_bottom"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<% } %>
+	<input type="hidden" value="${ctxPath}" id="ctx">
+	<input type="hidden" id="CSRFToken" value="${csrf}" />
+</body>
+</html>

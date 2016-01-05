@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/manage.css" rel="stylesheet"
+	type="text/css">
+<title>店铺管理-活动管理</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"active"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/activeCenter">活动中心</a></li>
+					<li><a href="${ctxPath}/salerManage/activeCenter/saveUI">添加活动</a></li>
+					<li><a href="#" class="active">奖项列表</a></li>
+					<li><a href="${ctxPath}/salerManage/prizeInfo">兑奖中心</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/prizeItem/saveUI" class="btn_add">新增奖项</a>
+			</div>
+			<div class="main">
+				<div class="top_bar">
+					<div class="fl">
+						<input type="checkbox">全选&nbsp;<a href="#"
+							class="btn_grey_b">删除</a>
+					</div>
+					<div class="fr">
+						<a href="#" class="btn_triangle_l">&nbsp;</a>&nbsp;<a href="#"
+							class="btn_triangle_r">下一页</a>
+					</div>
+				</div>
+				<div class="list">
+					<table>
+						<tr>
+							<th width="50px"></th>
+							<th>奖项名称</th>
+							<th>描述</th>
+							<th>类型</th>
+							<th width="200px">操作</th>
+						</tr>
+						<%for(item in page.list){%>
+						<tr
+							<%if(itemLP.index%2==0){%> class="tr_grey" <%}%>>
+							<td><input type="checkbox"></td>
+							<td>${item.item_name}</td>
+							<td>${item.item_desc}</td>
+							<td>
+							<%if (item.item_type==1){%>
+							自定义
+							<%} else if(item.item_type==2){ %>
+							代金券
+							<%} else{%>积分<%}%></td>
+							<td><a href="#" class="btn_edit">编辑</a><a href="#"
+								class="btn_del">删除</a></td>
+						</tr>
+						<%}%>
+					</table>
+				</div>
+				<div class="bottom_bar">
+					<input type="checkbox">全选&nbsp;<a href="#"
+						class="btn_grey_b">删除</a>
+				</div>
+				<div class="pagination">
+					<%include("/common/_pagination.html",{page:page}){}%></div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

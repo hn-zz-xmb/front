@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/front/css/error_ym.css" />
+</head>
+
+<body>
+	<div class="error_ym">
+		<!--error_left start-------------------->
+		<div class="error_left">
+			<div class="error_pic">
+				<img src="${ctxPath}/static/front/images/ico/error.png" width="245"
+					height="228" />
+			</div>
+		</div>
+		<!--error_right start-->
+		<div class="error_right">
+			<ul>
+				<li><h2>呃,权限不足!</h2></li>
+				<li>2.感谢您访问本站，如有疑问请联系我们</li>
+			</ul>
+			<p>
+				<input type="button" value="重试" class="chongshi" onclick="reload()" />
+			</p>
+		</div>
+		<!--error_right end-->
+	</div>
+
+	<script>
+		function reload() {
+			window.location.reload();
+		}
+	</script>
+</body>
+</html>

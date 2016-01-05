@@ -1,0 +1,125 @@
+<%var index_=0;%>
+<%for(menu_ in menuList!){%>
+<%if(menu_.m_level==1){%>
+        <%index_=index_+1;%>
+<div class="col col${index_}">
+    <%for(menu_child in menuList!){%>
+    <%if(menu_child.m_level==2 && menu_child.pid==menu_.id){%>
+    <div class="sub_menu" level="2" click="${menu_child.click}" id="${menu_child.id}" tag="${index_}">${menu_child.menu_name}</div>
+    <%}%>
+    <%}%>
+    <div class="menu" level="1" click="${menu_.click}" id="${menu_.id}" tag="${index_}">${menu_.menu_name}</div>
+</div>
+<%}%>
+<%}%>
+<div style="clear: both;"></div>
+
+<script type="text/javascript">
+    $(function(){
+        $(".col").each(function(){
+            $(this).find("div").each(function(){
+                var id=$(this).attr("id");
+                var click=$(this).attr("click");
+                var level=$(this).attr("level");
+                var tag=$(this).attr("tag");
+                $(this).click(function(){
+                    setCheck(id,click,level,tag);
+                })
+            })
+        })
+    })
+
+
+
+    //设置选中
+    function setCheck(id,click,level,tag){
+
+        var url=MSConfig.BaseURL+"/salerManage/weixin/menu/getWeixinMenu";
+        //是否进行处理 最左bian buchuli
+        if(tag=="1"){
+            return;
+        }
+        clearStatus();
+
+        $("#"+id).addClass("active");
+        lastStatusId=id;
+
+        //处理是否显示二级菜单
+        if(level=="1"){
+            $("#menuListUl li").each(function(){
+                var code=$(this).find("a").attr("code");
+                if(code=="sub_menu"){
+                    $(this).show();
+                }
+            })
+        }else if(level=="2"){
+            $("#menuListUl li").each(function(){
+                var code=$(this).find("a").attr("code");
+                if(code=="sub_menu"){
+                    $(this).hide();
+                }
+            })
+        }
+        $("#menuLevel").val(level);
+        //是否显示层
+        if(click=="link"){
+            $(".form").hide();
+            $("#form3").show();
+        }else if(click=="picture"){
+            $(".form").hide();
+            $("#form2").show();
+        }else if(click=="sub_menu"){
+            $(".form").hide();
+            $("#form1").show();
+        }else{
+            $("#form3").hide();
+            $("#form2").hide();
+            $("#form1").hide();
+        }
+        $("#menuClick").val(click);
+
+        var params={"id":id,"click":click,"level":level};
+        var result=callJson(url,params,false);
+        if(result) {
+            $("#menuListUl li").each(function () {
+                var code = $(this).find("a").attr("code");
+                if (code == click) {
+                    $("#menu_event_dropdown .selected").text($(this).find("a").text());
+                }
+            })
+            if(result!=null){
+                $("#menuName").val(result.menu_name);
+                if("link"==click){
+                    $("#url").val(result.operate_info);
+                }else if("picture"==click){
+                    $("input[name='tuwen']").each(function(){
+                        if($(this).val()==result.operate_info){
+//                            $(this).attr("checked","checked");
+                            this.checked=true;
+                        }
+                    })
+                }else if("sub_menu"==click){
+                    //result.subMenu
+                    $("input[name='sub_menu']").each(function(i){
+                        if(result.submenu[i] == undefined) {
+                            $(this).val("");
+                        }else{
+                            $(this).val(result.submenu[i].menu_name);
+                        }
+                    })
+                    $("input[name='sub_menuId']").each(function(i){
+                        if(result.submenu[i] == undefined) {
+                            $(this).val("");
+                        }else {
+                            $(this).val(result.submenu[i].id);
+                        }
+                    })
+                }
+                //赋值ID
+                $("#menuId").val(result.id);
+            }
+
+
+        }
+    }
+</script>

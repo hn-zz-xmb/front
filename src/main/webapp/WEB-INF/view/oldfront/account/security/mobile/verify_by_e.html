@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 绑定手机号码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/modify.css" />
+
+<style type="text/css">
+.modi_pic_m {
+	width: 932px;
+	height: 94px;
+	margin-top: 10px;
+	background: url(${ctxPath}/static/front/images/yiyanzheng.png) no-repeat
+		0 0px;
+}
+</style>
+</head>
+
+<body>
+	<%include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="modify">
+		<p class="xgmm">修改已验证手机</p>
+		<div class="modi_pic_m"></div>
+		<!--modi_up start-->
+		<div class="modi_up">
+			<p>
+				邮件已发送${strutil.subStringTo(member.email,0,3)}****${strutil.subString(member.email,strutil.getIndex(member.email,'@'))}
+			</p>
+		</div>
+		<!--modi_up end-->
+
+	</div>
+	<%include("/common/foot.html"){}%>
+	<input type="hidden" name="CSRFToken" value="${csrf!}" id="CSRFToken" />
+</body>
+</html>

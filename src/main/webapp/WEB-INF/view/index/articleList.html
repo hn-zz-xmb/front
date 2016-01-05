@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>37美食-${articleType.name !}</title>
+<link type="text/css" rel="stylesheet"
+	href="${ctxPath}/static/custom/css/pagination.css" />
+<link href="${ctxPath}/static/custom/css/list.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<% include("../common/head.html"){}%>
+	<div class="position1">
+		当前位置：<a href="${ctxPath}/">首页</a>&nbsp;&gt;&nbsp;<a href="${ctxPath}/article/articleList?typeId=${articleType.id!}">${articleType.name !}</a>
+	</div>
+	<div class="content">
+		<div class="content_left">
+			<div
+				style="line-height: 60px; height: 60px; padding-left: 15px; width: 912px; border-bottom: 3px solid #81c12f;">
+				<h1>春节话美食</h1>
+			</div>
+			<ul>
+			<%for(article in page.list){%>
+				<li>
+					<div class="lb">
+						<div class="fl tp">
+						<% if(article.image!''=="" || article.image!'' == null){ %>
+							<img style="width: 87px; height: 67px;" src="${ctxPath}/static/custom/images/IMAGES_20141216093729_5106.jpg" />
+						 <% }else{ %> 
+							 <img style="width: 87px; height: 67px;" src="/img${article.image !}" />
+						 <% } %>
+						</div>
+						<div class="fl title2">
+							<a href="${ctxPath}/article/articleDetail?articleId=${article.id !}&typeId=${article.type_id}">${article.title !}</a><br />
+							 <span>${date(article.addtime,'yyyyMMddHHmmss'),'yyyy-MM-dd hh:mm'} </span><br /> 
+							 <a href="${ctxPath}/article/articleDetail?articleId=${article.id !}&typeId=${article.type_id}">
+								<h3>${strutil.subStringTo(article.article_info,0,10)}...</h3>
+							</a>
+						</div>
+					</div>
+				</li>
+				<%}%>
+			</ul>
+			<div>
+				<% include("../common/_pagination.html",{page:page}){}%>
+			</div>
+		</div>
+		<div class="content_right">
+			<div class="floor_right1">
+				<div class="bellows single">
+				<%for(articleType in articleTypes !){%>
+					<div <%if(articleType.id!''==typeId!''){%> class="bellows__item active" <%} else {%> class="bellows__item" <%}%>>
+						<div class="bellows__header">
+							<h3>
+								<a href="${ctxPath}/article/articleList?typeId=${articleType.id!}">${articleType.name!}</a>
+							</h3>
+						</div>
+						<div class="bellows__content">
+							<div class="floor_right_content">
+								<div class="floor_right_content_t">
+									<%var count=0;%>
+										<% for(a in top!){
+										if(count==2){
+											 break;
+											}
+										count++;
+										%>
+									<div class="item">
+										<div class="item_l">
+											<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id}&typeId=${a.type_id}"><img style="width: 87px; height: 67px;"  src="/img${a.image!}"/></a>
+										</div>
+										<div class="item_r">
+											<div class="title">
+										<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id}&typeId=${a.type_id}">${a.title}</a>
+									</div>
+									<div class="item_content">
+										${strutil.subStringTo(a.article_info,0,10)}...
+										<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id}&typeId=${a.type_id}">[详细]</a>
+									</div>
+										</div>
+									</div>
+									<%}elsefor{%>
+										<div class="item">
+										<div class="item_l">
+											<a href="" target="_blank"> <img
+												style="width: 87px; height: 67px;"
+												src="${ctxPath}/static/custom/images/IMAGES_20141216093729_5106.jpg"></a>
+										</div>
+										<div class="item_r">
+											<div class="title">
+												<a target="_blank" href="">提升小餐饮服务水平为百姓饮食安全助力</a>
+											</div>
+											<div class="item_content">
+												为解决在小餐饮经营户管理制度不健... <a target="_blank" href="">[详细]</a>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="item_l">
+											<a href="" target="_blank"> <img
+												style="width: 87px; height: 67px;"
+												src="${ctxPath}/static/custom/images/IMAGES_20141216092932_4283.jpg"></a>
+										</div>
+										<div class="item_r">
+											<div class="title">
+												<a target="_blank" href="">中国不同定位的餐饮企业如何寻找出路</a>
+											</div>
+											<div class="item_content">
+												<p>
+													目前中国的餐饮行业大... <a target="_blank" href="">[详细]</a>
+												</p>
+											</div>
+										</div>
+									</div>				
+									<%}%>
+								</div>
+								<div class="floor_right_content_b">
+									<ul>
+									<%var count2=0;%>
+										<% for(a in top){%>
+											<%count2=count2+1;%>
+										<li><a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id}&typeId=${a.type_id}">${a.title}</a></li>
+									<%}%>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<%}%>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<!--侧边浮动开始---------------------------------------------------------------->
+	<div class="floatRight">
+		<div class="floatRight01">
+			<a href=""></a>
+		</div>
+		<div class="floatRight02">
+			<a href=""></a>
+		</div>
+		<div class="floatRight03">
+			<a href=""></a>
+		</div>
+	</div>
+	<div id="hm_t_undefined" class="hm-t-container">
+		<div class="hm-t-go-top" style="display: none;"></div>
+	</div>
+		<script type="text/javascript"
+	src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/common.js"></script>
+	<!-- Include dependencies -->
+	<script src="${ctxPath}/static/custom/js/nav_fixed.js"></script>
+	<script>
+		$(function() {
+			$(".bellows__header").click(function() {
+				$(".bellows__item").removeClass("active");
+				$(this).parent().addClass("active");
+			});
+		});
+	</script>
+	<% include("../common/foot.html"){}%>
+</body>
+</html>

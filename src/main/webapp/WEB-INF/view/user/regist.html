@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>注册</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/regist.css">
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/public.css">
+
+</head>
+
+<body>
+	<div class="header_bg">
+		<div class="header">
+			<!--logo start------------------->
+			<div class="logo clearfix">
+				<div class="logocon">
+					<a href="${ctxPath}"><img src="${ctxPath}/static/custom/images/logo.jpg" width="224"
+						height="140" /></a>
+				</div>
+				<p class="head_tip">欢迎注册</p>
+				<div class="logo_right">
+					已有账号了? <a href="${ctxPath}/login">登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--header_bg end-------------------->
+	<div class="wrapper">
+		<div class="a_title">
+			<ul>
+				<li class="page_phone" id="phone_reg_field">手机注册</li>
+				<li class="page_email  this" id="email_reg_field">邮箱注册</li>
+				<li style="clear: both"></li>
+			</ul>
+		</div>
+		<div class="user_reg">
+			<!--     email_reg-field-------------------->
+			<div class="email_reg-field" id="email_reg">
+				<form class="from" id="emailForm">
+					<input type="hidden" value="2" name="registerType">
+					<input type="hidden" value="${referee_no}" name="referee_no">
+					<dl>
+						<dt>
+							<span class="regist_name">邮箱号</span><span class="txt_a"><input
+								name="email" id="email" type="text"></span>
+								<p class="error"></p>
+						</dt>
+						<dt>
+							<span class="regist_name">设置昵称</span><span class="txt_a"><input
+								name="username" id="username" type="text"></span>
+						</dt>
+						<dt>
+							<span class="regist_name">创建密码</span><span class="txt_a"><input
+								name="password" id="password" type="password" onkeyup="changepass(this.id)" maxlength="20"></span>
+						</dt>
+						<dt class="psw_long">
+							<span class="txt_a"><span class="pass_long" id="password1">弱</span><span
+								class="pass_long" id="password2">中</span><span class="pass_long" id="password3">强</span></span>
+						</dt> 
+						<dt>
+							<span class="regist_name">确认密码</span><span class="txt_a"><input
+								name="password1" id="password1" type="password" maxlength="20"></span>
+						</dt>
+						<dt>
+							<span class="regist_name">验证码</span><span class="txt_a"><input
+								name="email_code" type="text"></span>
+						</dt>
+						<dt>
+							<span class="regist_name"></span><span class="txt_b"><img id="captcha" src="${ctxPath}/captcha"
+								style="position: relative; top: 10px;"
+								width="159" height="42" /><a id="repeatImg"
+								style="cursor: pointer;"> 看不清楚?换一张</a></span>
+						</dt>
+						<p> 
+							<span class="regist_name"></span><span class="agree"><input
+								name="agree" type="checkbox" value="">我已阅读并同意<a
+								href="#"><<37美食网服务协议>></a></span>
+						</p>
+						<p class="sub_btn">
+							<span class="regist_name"></span><span><input name=""
+								type="submit" class="submit" value=""></span>
+						</p>
+					</dl>
+				</form>
+			</div>
+			<!--email_reg-field end------------------->
+			<div class="phone_reg_field email_reg-field" id="phone_reg"
+				hidden="hidden">
+				<form class="from" id="phoneForm">
+					<input type="hidden" value="1" name="registerType">
+					<input type="hidden" value="${referee_no}" name="referee_no">
+					<dl>
+						<dt>
+							<span class="regist_name">手机号</span><span class="txt_a"><input
+								name="tel" id="phone" type="text" ></span>
+						</dt>
+						<dt>
+							<span class="regist_name">短信校验码</span><span class="txt_c"><input
+								name="phoneCode" type="text" class="input_a"><input id="btnSendCode" style="background-image: linear-gradient(to bottom, #FFF, #E9E9E9);"
+								type="button" value="免费获取短信验证码" onclick="openDialog()" /> <span
+								id="code_msg"></span></span>
+						</dt>
+						<dt>
+							<span class="regist_name">创建密码</span><span class="txt_a"><input maxlength="20"
+								name="phonepassword" id="phonepassword" type="password" onkeyup="changepass(this.id)"></span>
+						</dt>
+						
+						<dt class="psw_long">
+							<span class="txt_a"><span class="pass_long" id="phonepassword1" >弱</span><span
+								class="pass_long" id="phonepassword2">中</span><span class="pass_long" id="phonepassword3">强</span></span>
+						</dt> 
+						<dt>
+							<span class="regist_name">确认密码</span><span class="txt_a"><input
+								name="password1" type="password" maxlength="20"></span><span>
+						</dt>
+						<p>
+							<span class="regist_name"></span><span class="agree"><input name="agree"
+								type="checkbox" value="">我已阅读并同意<<37美食网服务协议>></span>
+						</p>
+						<p class="sub_btn">
+							<span class="regist_name"></span><span><input name=""
+								type="submit" class="submit" value=""></span>
+						</p>
+					</dl>
+				</form>
+			</div>
+			<!--phone_reg_field end------------------------>
+		</div>
+	</div>
+	<div class="bottom"></div>
+	<% include("../common/foot.html"){}%>
+	<script type="text/javascript"src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/jquery/validator/lang/additional-methods.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+	var isPhoneExist=false;
+		$().ready(function() {
+			$("#emailForm").validate({
+				errorPlacement: function(error, element) {  
+					layer.tips(error.text(), element, {guide: 1, time: 5,more:true});
+				},
+				rules : {
+					email : {
+						required : true,
+						email : true,
+						remote:{
+							type:"post",
+							url:"${ctxPath}/register/ajaxEmail",
+							dataType: "json",
+							 dataFilter: function(data, type) {
+			                        if (data == "false"){
+			                            return true;
+			                        }else{
+			                            return false;
+			                        }
+			              }
+						}
+					},
+					username : {
+						required:true,
+						remote:{
+							type:"post",
+							url:"${ctxPath}/register/ajaxName",
+							dataType: "json",
+							 dataFilter: function(data, type) {
+			                        if (data == "false"){
+			                            return true;
+			                        }else{
+			                            return false;
+			                        }
+			              }
+						}
+					},
+					password : {
+						required : true,
+						rangelength : [ 6, 20 ]
+					},
+					password1 : {
+						required : true,
+						rangelength : [ 6, 20 ],
+						equalTo : "#password"
+					},
+					email_code :{
+						required:true,
+						remote:{
+							type:"post",
+							url:"${ctxPath}/register/checkDialgCode",
+							dataType: "json",
+							 dataFilter: function(data, type) {
+			                        if (data == "true"){
+			                            return true;
+			                        }else{
+			                            return false;
+			                        }
+			              }
+						}
+					} ,
+					agree : "required"
+
+				},
+				messages : {
+					email : {
+						required : "请输入Email地址",
+						email : "请输入正确的Email地址",
+						remote:"该邮箱已被注册"
+					},
+					username : {
+						required:"请输入昵称",
+						remote:"该昵称已被注册"
+					},
+					password : {
+						required : "请输入密码",
+						rangelength : jQuery.validator.format("密码在6-20位之间")
+					},
+					password1 : {
+						required : "请再次输入密码",
+						rangelength : jQuery.validator.format("密码在6-20位之间"),
+						equalTo : "两次输入的密码不一样"
+					},
+					email_code :{
+						required: "验证码不能为空",
+						remote:"验证码不正确"
+					},
+					agree : "请接受网络协议"
+				},
+				submitHandler : function(form) {
+					$(form).ajaxSubmit({
+						type : "post",
+						url : "${ctxPath}/register/registerdo",
+						dataType : "json",
+						success : function(result) {
+							if(result.status=="y"){
+								window.location.href = "${ctxPath}/" + result.url;
+							}else{
+								$(".error").html(result.info);
+							}
+						}
+					});
+				}
+				
+			});
+			
+			
+			
+				$("#phoneForm").validate({
+					errorPlacement: function(error, element) {  
+						layer.tips(error.text(), element, {guide: 1, time: 5,more:true});
+					},
+					rules:{
+						tel:{
+							required:true,
+							phone:true,
+							remote:{
+								type:"post",
+								url:"${ctxPath}/register/ajaxPhone",
+								dataType: "json",
+								 dataFilter: function(data, type) {
+				                        if (data == "false"){
+				                        	isPhoneExist=true;
+				                            return true;
+				                        }else{
+				                        	isPhoneExist=false;
+				                            return false;
+				                        }
+				              }
+							}
+						},
+						phoneCode:"required",
+						phonepassword:{
+							required:true,
+							rangelength:[6,20]
+						},
+						password1:{
+							required:true,
+							rangelength:[6,20],
+							equalTo:"#phonepassword"
+						},
+						agree:"required"
+					},
+					messages:{
+						tel:{
+							required:"号码不能为空",
+							phone:"请输入正确的手机号码",
+							remote:"该手机号已经注册过"
+						},
+						phoneCode:"请输入短信校验码",
+						phonepassword:{
+							required:"密码不能为空",
+							rangelength:"密码在6-20位之间"
+						},
+						password1 : {
+							required : "请再次输入密码",
+							rangelength : jQuery.validator.format("密码在6-20位之间"),
+							equalTo : "两次输入的密码不一样"
+						},
+						agree:"请接受网络协议"
+					},
+					
+					submitHandler : function(form) {
+						$(form).ajaxSubmit({
+							type : "post",
+							url : "${ctxPath}/register/registerdo",
+							dataType : "json",
+							success : function(result) {
+								if(result.status=="y"){
+									window.location.href = "${ctxPath}/login" ;
+								}else{
+									$(".error").html(result.info);
+								}
+							}
+						});
+					}
+					
+				});
+
+		});
+		
+		
+		
+		$('#repeatImg').click(
+				function() {//生成验证码  
+					$("#captcha").hide().attr(
+							'src',
+							'${ctxPath}/captcha?aa'
+									+ Math.floor(Math.random() * 100))
+							.fadeIn();
+					event.cancelBubble = true;
+				});
+		
+		var InterValObj; //timer变量，控制时间
+		var count = 60; //间隔函数，1秒执行
+		var curCount;//当前剩余秒数
+		var dialog;
+		function openDialog() {
+			curCount = count;
+			var phone = $("#phone").val();
+			if(phone==""||phone==null){
+				layer.alert("请输入手机号");
+				return;
+			}else{
+				var reg=/^[1][3578][0-9]{9}$/;
+				if(!reg.test(phone)){
+					layer.alert("手机号不正确");
+					return;
+				}
+			}
+			if(isPhoneExist==false){
+				layer.alert("该手机号已经被注册过");
+				return;
+			}
+			//设置button效果，开始计时
+			$("#btnSendCode").attr("disabled", "true");
+			$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+			InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+			var url = "${ctxPath}/msg/send";
+			var params = {
+				"msgType" : "regist",
+				"phone" : $("#phone").val()
+			};
+			var result = callJson(url, params, false);
+			if (result.isMsg) {
+				alert("验证码发送成功");
+			} else {
+				alert(result.error);
+			}
+		}
+		//timer处理函数
+		function SetRemainTime() {
+			if (curCount == 0) {
+				window.clearInterval(InterValObj);//停止计时器
+				$("#btnSendCode").removeAttr("disabled");//启用按钮
+				$("#btnSendCode").val("重新发送验证码");
+				//code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效    
+			} else {
+				curCount--;
+				$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+			}
+		}
+		$(function() {
+			$("#email_reg").show();
+			$("#phone_reg").hide();
+			$("#email_reg_field").click(function() {
+				$(this).addClass("this");
+				$("#phone_reg_field").removeClass("this");
+				$("#email_reg").show();
+				$("#phone_reg").hide();
+			})
+			$("#phone_reg_field").click(function() {
+				$(this).addClass("this");
+				$("#email_reg_field").removeClass("this");
+				$("#phone_reg").show();
+				$("#email_reg").hide();
+			})
+		})
+		function changepass(a){
+			var y=document.getElementById(a).value
+			if(y.length>5){
+				document.getElementById(a+"1").style.background="#83c132";
+			}else{
+				document.getElementById(a+"1").style.background="#cecece";
+			}
+			if(y.length>10){
+				document.getElementById(a+"2").style.background="#83c132";
+			}else{
+				document.getElementById(a+"2").style.background="#cecece";
+			}
+			if(y.length>15){
+				document.getElementById(a+"3").style.background="#83c132";
+			}else{
+				document.getElementById(a+"3").style.background="#cecece";
+			}
+		}
+	</script>
+</body>
+</html>

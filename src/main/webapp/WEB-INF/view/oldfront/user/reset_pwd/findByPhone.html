@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 找回密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/modify.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/validform/5.3.2/css/style.css" />
+
+</head>
+
+<body>
+	<%include("/common/head.html"){}%>
+	<div class="modify">
+		<p class="xgmm">找回登录密码</p>
+		<div class="modi_pic"></div>
+		<!--modi_up start-->
+		<div class="modi_up">
+			<p>
+				短信验证码已发送到你的手机:${strutil.subStringTo(session.tel,0,3)}****${strutil.subString(session.tel,strutil.length(session.tel)-4)}
+				<span></span>
+			</p>
+			<p>
+				请输入短信中的验证码 <a href="${ctxPath}/member/sendForgetPwdMsg">没收到验证码</a>
+			</p>
+		</div>
+		<!--modi_up end-->
+		<div class="modi_down">
+			<form action="${ctxPath}/member/resetPwdCheck" method="post"
+				id="checkResetPwd">
+				<input name="phone" type="hidden" value="${phone}"/>
+				<table height="100px">
+					<tr>
+						<th>请填写短信验证码:</th>
+						<td><input name="phoneCode" type="text" id="phoneCode"
+							datatype="n6-6" nullmsg="请输入短信验证码" errormsg="短信验证码格式不正确"
+							sucmsg=" " /><label class="Validform_checktip"></label></td>
+					</tr>
+				</table>
+				<p>
+					<span id="error_msg" style="display: none"></span> <br /> <input
+						name="" type="submit" class="btne" value="提交" />
+				</p>
+			</form>
+		</div>
+		<!--modi_down end-->
+	</div>
+	<%include("/common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath}/static/old/custom/js/ajax.common.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath }/static/old/validform/5.3.2/js/Validform_v5.3.2.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#checkResetPwd").Validform({
+				postonce : true,
+				tiptype : function(msg, o, cssctl) {
+					//msg：提示信息;
+					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+					if (!o.obj.is("form")) {//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
+						var objtip = o.obj.siblings(".Validform_checktip");
+						cssctl(objtip, o.type);
+						objtip.text(msg);
+					} else {
+						var objtip = o.obj.find("#msgdemo");
+						cssctl(objtip, o.type);
+						objtip.text(msg);
+					}
+				},
+				ajaxPost : true,
+				callback : function(data) {
+					if (data.status == "y") {
+						//跳转到下一步
+						window.location.href = "${ctxPath}" + data.url;
+					} else {
+						if (data.isRe) {
+							window.location.href = "${ctxPath}" + data.re_url;
+						} else {
+							$("#error_msg").html(data.info);
+							$("#error_msg").show();
+						}
+					}
+				}
+			});
+		});
+
+		function sendMsg() {
+			var url = "${ctxPath}/security/sendMsg";
+			var result = callJson(url, {}, false);
+			if (result.status == "fail") {
+				alert("短信发送失败！");
+			}
+		}
+	</script>
+</body>
+</html>

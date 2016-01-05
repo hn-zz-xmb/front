@@ -1,0 +1,61 @@
+/* CSS Document */
+@import url("base.css");
+.xinzeng_all{
+	float:right;
+	width:765px;}
+.xinzengfl{
+	}
+.xinzengfl select{
+	width:100px;}
+.xinzengfl ul{
+	height:100px;}
+.xinzengfl ul li{
+	padding-top:20px;}
+.xinzengfl span{
+	width:84px;
+	height:29px;
+	line-height:29px;
+	text-align:center;
+	color:#FFF;
+	display:block;
+    background:url(../images/daijinquan.png) no-repeat;
+	}
+.xinzengfl p{
+ border-bottom:2px solid #87c336;}
+ .hongse{
+	 margin:0 0 0 10px;
+	 color:#da1717;}
+ .huise{
+	 color:#808080;}
+.zidingyi{
+	margin-top:20px;}
+.zidingyi p{
+	border-bottom:2px solid #87c336;
+	}
+.zidingyi span{
+	width:84px;
+	height:29px;
+	line-height:29px;
+	text-align:center;
+	color:#FFF;
+	display:block;
+    background:url(../images/daijinquan.png) no-repeat;}
+.zidingyi ul{
+	height:220px;}
+.zidingyi ul li{
+	line-height:60px;}
+.zidingyi input{
+	width:200px;
+	height:25px;}
+.zidingyi textarea{
+	width:190px;
+	height:60px;}
+.describle{
+	position:relative;
+	top:-40px;}
+.tianjia{
+	width:107px;
+	height:29px;
+	display:block;
+	border:0 none;
+	background:url(../images/tianjia.png) no-repeat;}

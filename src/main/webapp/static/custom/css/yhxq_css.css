@@ -1,0 +1,149 @@
+@charset "utf-8";
+/* CSS Document */
+
+.clear {
+	font: 0px/0px serif;
+	display: block;
+	clear: both;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+
+/*主题*/
+.title {
+	width: 1180px;
+	margin: 0 auto;
+}
+.title p {
+	font-size: 14px;
+	color: #333;
+	text-indent: 5px;
+}
+.title span {
+	font-size: 14px;
+	color: #459512
+}
+.main {
+	width: 1180px;
+	margin: 0 auto;
+	padding-top: 15px;
+	padding-left: 15px;
+}
+.mainleft {
+	width: 905px;
+	margin-right: 15px;
+	overflow: hidden;
+}
+.mainright {
+	width: 258px;
+	border: 1px solid #ddd;
+	overflow: hidden;
+}
+.content li {
+	height: 42px;
+	line-height: 42px;
+}
+.content li span {
+	color: red;
+	font-weight: bold;
+	font-size: 12px;
+	margin: 0 10px;
+}
+.content li b {
+	text-decoration: line-through;
+}
+.jia {
+	width: 23px;
+	height: 32px;
+	border: 1px solid #ddd;
+	float: left
+}
+.jian {
+	width: 23px;
+	height: 32px;
+	border: 1px solid #ddd;
+	float: left
+}
+.shuzi {
+	width: 40px;
+	height: 32px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	color: #333;
+	float: left;
+}
+.content li strong {
+	font-size: 16px;
+	font-weight: bold;
+}
+.anniu {
+	width: 170px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+	font-family: "微软雅黑";
+	background-color: #459512;
+	margin-top: 10px;
+	font-size: 16px;
+}
+.mainlist thead {
+	height: 38px;
+	background-color: #ddd;
+}
+.mainlist tr th {
+	width: 140px;
+	line-height: 38px;
+	height: 38px;
+	text-align: center;
+}
+.mainlist {
+	border: 1px solid #ededed;
+	margin-top: 15px;
+}
+.titletop th {
+	color: #333;
+	font-weight: bold;
+}
+.kg {
+	width: 258px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background-color: #8cc842;
+}
+.kg b {
+	color: #fff;
+	font-size: 18px;
+}
+.cp {
+	padding: 16px;
+}
+.jg {
+	color: red;
+	font-size: 18px;
+	font-weight: bold;
+}
+.qq {
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	color: #fff;
+	background-color: #84c133;
+	font-weight: bold;
+}
+.jj {
+	margin-top: 10px;
+}
+.jz {
+	margin-top: 15px;
+}
+.jz span {
+	color: red;
+	font-weight: bold;
+}

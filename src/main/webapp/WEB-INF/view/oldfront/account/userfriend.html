@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 我的好友</title>
+<link href="${ctxPath }/static/front/css/user_ms.css" rel="stylesheet"
+	type="text/css">
+<script type="text/javascript"
+	src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script data-main="${ctxPath}/static/custom/js/userfriend"
+	src="${ctxPath}/static/require.js"></script>
+<style type="text/css">
+.user_name {
+	position: relative;
+	bottom: 18px;
+	margin-left: 5px;
+}
+</style>
+</head>
+<body>
+	<%include("../common/userhead.html"){}%>
+	<div id="right">
+		<ul class="tab">
+			<li class="active">好友列表</li>
+		</ul>
+		<div class="wrap">
+			<div class="eject_btn" title="添加好友">
+				<a href="${ctxPath }/account/friend/add"><b class="ico3">添加好友</b></a>
+			</div>
+			<div class="public table">
+				<div class="my_friend">
+					<div class="all_btn all_bg_up"></div>
+
+					<ul class="list">
+						<% for(f in friendList){ %>
+						<li>
+							<p>
+								<% if(f.friend.headImage!=null){ %> <img
+									src="${f.friend.headImage }" width="50" height="50" alt="">
+								<% }else{ %> <img
+									src="${ctxPath}/static/front/images/noavatar_big.gif"
+									width="50" height="50" alt=""> <% } %>
+							</p>
+							<h3>
+								<b><label> ${f.friend.username !} </label> </b> <span> <a
+									href="${ctxPath}/account/mail/write?receiver=${f.friend.username!}"
+									class="note">短消息</a> <a
+									href="${ctxPath }/account/friend/delete/${f.id !}"
+									onclick="return confirm('确定要删除吗？');" class="delete">删除</a>
+								</span>
+							</h3>
+						</li> <% } %>
+						<div class="clear"></div>
+					</ul>
+					<div class="all_btn all_bg_down"></div>
+					<div class="pages"></div>
+				</div>
+			</div>
+			<div class="wrap_bottom"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+	<%include("../common/foot1.html"){}%>
+
+	<div id="dialogContent" style="display: none;">
+		用户名：<input type="text">
+		<p>多个用户名请用逗号隔开</p>
+	</div>
+</body>
+</html>

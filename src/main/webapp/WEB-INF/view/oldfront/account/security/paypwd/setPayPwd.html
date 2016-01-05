@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 修改支付密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/modify_mima.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/validform/5.3.2/css/style.css" />
+<script type="text/javascript"
+	src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript"
+	src="${ctxPath }/static/old/validform/5.3.2/js/Validform_v5.3.2.js"></script>
+<script type="text/javascript"
+	src="${ctxPath}/static/old/custom/js/ajax.common.js"></script>
+
+</head>
+
+<body>
+	<%include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="modify_mima">
+		<p class="xgmm">设置支付密码</p>
+		<div class="modi_pay"></div>
+		<!--modi_mima start-->
+		<div class="modi_mima">
+			<form id="modify_payPwd">
+				<input type="hidden" id="CSRFToken" name="CSRFToken" value="" />
+				<table width="900px" height="80px">
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;设置支付密码:</th> 
+						<td class="text_ne"><input name="password" type="password" id="password"
+							class="new_logn"  /><label class="Validform_checktip" style="width: 100px;"></label>
+							</td>
+					</tr>
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;确认支付密码:</th>
+						<td class="text_ne"><input name="repeatPwd" type="password"
+							class="new_logn" ><label class="Validform_checktip" style="width: 100px;"></label>
+							</td>
+					</tr>
+
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;已绑定的手机:</th>
+						<td class="text_ne">${strutil.subStringTo(user.tel,0,3)}****${strutil.subString(user.tel,strutil.length(user.tel)-4)}
+							<input id="btnSendCode" type="button" value="获取验证码" onclick="openDialog()" />
+							<input hidden="hidden" name="phone" id="phone" value="${user.tel}" />
+						</td><p class="error"></p>
+					</tr>
+
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;验证码:</th>
+						<td class="text_ne"><input name="phoneCode" type="text"
+							class="new_logn"  /> <label class="Validform_checktip"
+							style="width: 100px;color: red;"></label></td>
+					</tr>
+				</table>
+				<p>
+					<span id="error_msg" style="display: none"></span> <br /> <input
+						name="" type="submit" class="btne" value="提交" />
+				</p>
+			</form>
+		</div>
+		<!--modi_mima end-->
+	</div>
+	<%include("/common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath }/static/old/validform/5.3.2/js/Validform_v5.3.2.js"></script>
+		<script type="text/javascript" src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script	src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script type="text/javascript"	src="${ctxPath}/static/jquery/validator/lang/additional-methods.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+	$().ready(function() {
+		$("#modify_payPwd").validate({
+			errorPlacement: function(error, element) {  
+				layer.tips(error.text(), element, {guide: 1, time: 3,more:true});
+			},
+			rules:{
+				password:{
+					required:true,
+					rangelength:[6,20]
+				},
+				repeatPwd:{
+					required:true,
+					rangelength:[6,20],
+					equalTo:"#password"
+				},
+				phoneCode:"required"
+			},
+			messages:{
+				password:{
+					required:"请输入新密码",
+					rangelength:"密码在6-20位之间"
+				},
+				repeatPwd:{
+					required:"请再次输入新密码",
+					rangelength:"密码在6-20位之间",
+					equalTo:"两次密码输入不一样"
+				},
+				phoneCode:"请输入验证码 "
+			},
+			submitHandler : function(form) {
+				$(form).ajaxSubmit({
+					type : "post",
+					url : "${ctxPath}/safecenter/paypwd/savePayPwd",
+					dataType : "json",
+					success : function(result) {
+						if(result.status=="y"){
+							window.location.href = "${ctxPath}/safecenter/paypwd/success" ;
+						}else{
+							$(".error").html(result.info);
+						}
+					}
+				});
+			}
+		});
+	});
+	var InterValObj; //timer变量，控制时间
+	var count = 60; //间隔函数，1秒执行
+	var curCount;//当前剩余秒数
+	var dialog;
+	function openDialog() {
+		curCount = count;
+		var phone = $("#phone").val();
+		if(phone==""||phone==null){
+			layer.alert("请输入手机号");
+			return;
+		}else{
+			var reg=/^[1][3578][0-9]{9}$/;
+			if(!reg.test(phone)){
+				layer.alert("手机号不正确");
+				return;
+			}
+		}
+		//设置button效果，开始计时
+		$("#btnSendCode").attr("disabled", "true");
+		$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+		InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+		var url = "${ctxPath}/msg/send";
+		var params = {
+			"msgType" : "pay",
+			"phone" : $("#phone").val()
+		};
+		var result = callJson(url, params, false);
+		if (result.isMsg) {
+			alert("验证码发送成功");
+		} else {
+			alert(result.error);
+		}
+	}
+	//timer处理函数
+	function SetRemainTime() {
+		if (curCount == 0) {
+			window.clearInterval(InterValObj);//停止计时器
+			$("#btnSendCode").removeAttr("disabled");//启用按钮
+			$("#btnSendCode").val("重新发送验证码");
+			//code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效    
+		} else {
+			curCount--;
+			$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+		}
+	}
+	</script>
+</body>
+</html>

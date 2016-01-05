@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">ype" content="text/html; charset=utf-8" />
+<title>37美食 - 修改支付密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/front/css/modify.css" />
+<script type="text/javascript"
+	src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript"
+	src="${ctxPath}/static/custom/js/ajax.common.js"></script>
+<script type="text/javascript">
+	function sendMsg() {
+		var url = "${ctxPath}/common/msg/send";
+		var params = {
+			"msgType" : "pay",
+			"phone" : "${user.tel}"
+		};
+		var result = callJson(url, params, false);
+		if (result.isMsg) {
+			alert("验证码发送成功");
+		} else {
+			alert(result.error);
+		}
+	}
+	function post() {
+		var url = "${ctxPath}/account/security/checkPayPwdByM";
+		var params = {
+			"phoneCode" : $("#phoneCode").val()
+		}
+		var result = callJson(url, params, true);
+		if (result.isVerify) {
+			window.location.href = "${ctxPath}/account/security/paypwd";
+		} else {
+			alert(result.error);
+		}
+	}
+</script>
+<style type="text/css">
+.modi_pic_p {
+	width: 932px;
+	height: 94px;
+	margin-top: 10px;
+	background: url(${ctxPath}/static/front/images/pay_mima.png) no-repeat 0
+		0px;
+}
+</style>
+</head>
+
+<body>
+	<%include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="modify">
+		<p class="xgmm">修改支付密码</p>
+		<div class="modi_pic_p"></div>
+		<!--modi_up start-->
+		<div class="modi_up">
+			<p>已验证手机:${user.tel!""}</p>
+			<p>
+				<input name="" type="button" class="btny" value="获取短信效验码"
+					onclick="sendMsg()" />
+			</p>
+		</div>
+		<!--modi_up end-->
+		<div class="modi_down">
+			<form action="${ctxPath}/account/security/verify" method="post">
+				<input type="hidden" name="CSRFToken" value="${csrf}" id="CSRFToken" />
+				<table height="100px">
+					<tr>
+						<th>请填写手机验证码:</th>
+						<td><input name="phoneCode" type="text" id="phoneCode" /></td>
+					</tr>
+					<!--  
+					<tr>
+						<th>验证码:</th>
+						<td><input name="" type="text" /></td>
+						<td>看不清?换一张</td>
+					</tr>-->
+				</table>
+				<p>
+					<input name="" type="button" class="btne" value="提交"
+						onclick="post()" />
+				</p>
+			</form>
+		</div>
+		<!--modi_down end-->
+	</div>
+	<%include("/common/foot.html"){}%>
+</body>
+</html>

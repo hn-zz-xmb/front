@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/open_shop.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/public_.css" />
+<link href="${ctxPath}/static/webuploader/webuploader.css"
+		  rel="stylesheet" type="text/css">
+<style type="text/css">
+	.error{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[2].className="active";
+	</script>
+	<div class="content">
+		<div class="shop_title">
+			<div class="title_left">
+				<p>
+				<h2>
+					<span>SHOP REGISTRATION </span>申请开店
+				</h2>
+				</p>
+			</div>
+			<div class="title_right"></div>
+		</div>
+		<!--content_nr start------------>
+		<form action="" method="post" id="openstoreform">
+		<input type="hidden" name="store.store_type_id" value="${type}" /> 
+		<input type="hidden" name="store.store_level_id" value="${level}" />
+		<div class="content_nr">
+			<div class="shop_buzou third"></div>
+			<div class="write_openstoreinfo">
+				<p>请您填写开店信息</p>
+				<div class="openstore_info">
+					<dl>
+						<dt>
+							店主姓名<input name="store.own_name" type="text"
+								class="write_info_box">
+								<label class="error"></label>
+							<span>请填写真实姓名</span>
+						</dt>
+						<dt>
+							身份证号<input name="store.own_card" type="text"
+								class="write_info_box">
+								<label class="error"></label>
+								<span>请填写真实准确的身份证号</span>
+						</dt>
+						<dt>
+							店铺名称<input name="store.name" type="text" class="write_info_box">
+							<label class="error"></label>
+							<span>请控制在20个字内</span>
+						</dt>
+						<% if(type=='normal'){%>
+						<dt>
+							所属分类<select name="store.business_id" class="city">
+								<option selected value="">请选择</option> <% for(business in
+								businessList){ %>
+								<option value="${business.id !}">${business.name !}</option>
+								<%}%>
+							</select>
+							<label class="error"></label>
+						</dt>
+						<%} else{%>
+						<input type="hidden" name="store.business_id" value="" />
+					    <%}%>
+						<dt>
+							所在地区 <select onchange="findCitys(this)" class="city_choice">
+								<option selected value="">请选择....</option> <% for(province in
+								provinceList){ %>
+								<option value="${province.id !}">${province.name!}</option>
+								<%}%>
+							</select> <select onchange="findAreas(this)" class="city_choice">
+								<option selected value="">请选择....</option>
+							</select>  <select name="store.area_id" onchange="findStreets(this)" class="city_choice">
+								<option selected value="">请选择....</option>
+							</select>  <select name="store.region_id" class="city_choice">
+								<option selected value="">请选择....</option>
+							</select>
+							<label class="error"></label>
+						</dt>
+						<dt>
+							详细地址<input name="store.address" type="text"
+								class="write_info_box">
+								<label class="error"></label>
+								<span>请填写准确的详细地址</span>
+						</dt>
+						<dt>
+							邮政编码<input name="store.zipcode" type="text"
+								class="write_info_box">
+								<label class="error"></label>
+								<span>请输入邮政编码</span>
+						</dt>
+						<dt>
+							联系电话<input id="phone" name="store.phone" type="text" class="write_info_box">
+							<label class="error"></label>
+						</dt>
+						<dt>
+							<input id="btnSendCode" name="" onclick="sendMsg()" type="button" value="获取短信验证码"
+								class="open_store_btn">
+						</dt>
+						<dt>
+							动态码&nbsp;&nbsp;<input name="phoneCode" type="text"
+								class="write_info_box">
+								<label class="error"></label>
+						</dt>
+					</dl>
+				</div>
+			</div>
+			<!--write_openstoreinfo end------------------>
+			<div class="writestore_pic">
+				<p class="writestore_title">请您填上传证件照片</p>
+				<!--writestore_nr start--------------------------------->
+				<div class="writestore_nr">
+					<div class="ID_card">
+						<div class="ID_card_title">手持身份证半身照</div>
+						<div class="store_pic">
+							<img
+								src="${ctxPath}/static/custom/images/writestore_info_pic.png"
+								width="212" height="212" id="uploadFile1">
+							<input type="hidden" name="store.card_image" id="cardImage" />
+							<label class="error"></label>
+						</div>
+						<div class="writestore_right">
+							<p>
+								<div id="upload1">选择文件</div> 
+							</p>
+							<span>支持格式.jpg .jpeg .png .gif格式 请保证图片清晰且文件大小不得超过400KB</span>
+						</div>
+						<!--writestore_right end-------------------->
+					</div>
+					<!--ID_card end-------------------->
+					<div class="work_card">
+						<div class="work_card_title">营业执照</div>
+						<div class="work_card_pic">
+							<img
+								src="${ctxPath}/static/custom/images/writestore_info_pic.png"
+								width="212" height="212" id="uploadFile2" >
+							<input type="hidden" name="store.licence_image" id="licenceImage">
+							<label class="error"></label>
+						</div>
+						<div class="work_card_right">
+							<p>
+								<div id="upload2">选择文件</div>
+							</p>
+							<span>支持格式.jpg .jpeg .png .gif格式 请保证图片清晰且文件大小不得超过400KB</span>
+						</div>
+						<!--work_card end-------------------->
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+				<!--writestore_nr end----------------------------->
+				<div class="writeinfo_btn">
+					<p>
+						<input name="" type="submit" value="" class="openstore_btn">
+					</p>
+					<p class="openstore_btn_fuxuan">
+						<input name="agree" type="checkbox" value="agree">我已认真阅读并完全同意<
+						<开店协议>>中的所有条款 
+						<label class="error"></label>
+					</p>
+				</div>
+				<!--writestore_pic---------------------------->
+			</div>
+		</div>
+			</form>
+			</div>
+			<script type="text/javascript"src="${ctxPath}/static/custom/js/common.js"></script>
+			<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+			<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+			<script src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+			<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+			<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+			<script type="text/javascript"src="${ctxPath}/static/custom/js/city.js"></script>
+			<script type="text/javascript"src="${ctxPath}/static/old/layer/layer.min.js"></script>
+			<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+			<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+			<script type="text/javascript">
+			 //手机号码动态码
+		    jQuery.validator.addMethod("isPhone", function(value, element) {
+		        var tel = /^[1][3578][0-9]{9}$/;
+		        return this.optional(element) || (tel.test(value));
+		    }, "请输入正确的手机号码");
+		    jQuery.validator.addMethod("isCard", function(value, element) {
+		        var tel = /^\d{15}|\d{}18$/;
+		        return this.optional(element) || (tel.test(value));
+		    }, "请输入正确的身份证号");
+		    jQuery.validator.addMethod("isPost", function(value, element) {
+		        var tel = /^[0-9]{6}$/;
+		        return this.optional(element) || (tel.test(value));
+		    }, "请输入正确的邮政编码");
+		    $("#openstoreform").validate({
+		        errorPlacement : function(error, element) {
+		        	layer.tips(error.text(), element, {guide: 1, time: 5,more:true});
+		        },
+		        rules : {
+		        	"store.own_name":"required",
+		        	"store.own_card":{
+		        		required:true,
+		        		isCard:true
+		        		
+		        	},
+		            "store.name" : "required",
+		            "store.business_id":"required",
+		            //"store.area_id":"required",
+		            "store.address":"required",
+		            "store.zipcode":{
+		            	required:true,
+		            	isPost:true
+		            },
+		            "store.phone":{
+		            	required:true,
+		            	isPhone:true
+		            },
+		            "phoneCode":"required",
+		            "agree":{
+		            	required:true,
+		            	minlength:1
+		            },
+		            "store.card_image":"required",
+		            "store.licence_image":"required"
+		        },
+		        messages : {
+		            "store.own_name":"请输入店主姓名",
+		            "store.own_card":{
+		            	required:"请输入店主身份证号",
+		            	isCard:"请输入正确的身份证号码"
+		            },
+		            "store.name" :"请输入店铺名称",
+		            "store.business_id":"请选择店铺分类",
+		            "store.area_id":"请选择区域",
+		            "store.address":"请输入店铺详细地址",
+		            "store.zipcode":{
+		            	required:"请输入邮政编码",
+		            	isPost:"邮政编码格式错误"
+		            },
+		            "store.phone":{
+		            	required:"请输入手机号码",
+		            	isPhone:"手机号码格式错误",
+		            },
+		            "phoneCode":"请输入手机校验码",
+		            "agree":{
+		            	required:"您还未同意开店协议",
+		            	minlength:"您还未同意开店协议"
+		            },
+		            "store.card_image":"请上传图片",
+		            "store.licence_image":"请上传图片"
+		        },
+		        submitHandler : function(form) {
+		            $(form).ajaxSubmit({
+		                type : "post",
+		                url : MSConfig.BaseURL+"/openstore/saveStore",
+		                dataType : "json",
+		                success : function(result) {
+		                    if(result.status=="y"){
+		                    	window.location.href ="${ctxPath}/storeManage";
+		                    }else{
+		                        alert(result.info);
+		                    }
+		                }
+		            });
+		        }
+		    });
+			</script>	
+			<script type="text/javascript">
+			
+				function sendMsg() {
+					var phone = $("#phone").val();
+					if(phone==""||phone==null){
+						layer.alert("请输入手机号");
+						return;
+					}else{
+						var reg=/^[1][3578][0-9]{9}$/;
+						if(!reg.test(phone)){
+							layer.alert("手机号不正确");
+							return;
+						}
+					}
+					var url = "${ctxPath}/msg/send";
+					var params = {
+						"msgType" : "regist_store",
+						"phone" : phone
+					};
+
+					var result = callJson(url, params, false);
+					if (!result.isMsg) {
+						layer.alert(result.error);
+						return;
+					}
+					startTiming();
+				}
+				var InterValObj; //timer变量，控制时间
+				var count = 60; //间隔函数，1秒执行
+				var curCount;//当前剩余秒数
+				function startTiming() {
+					curCount = count;
+					//设置button效果，开始计时
+					$("#btnSendCode").attr("disabled", "true");
+					$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+					InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+				}
+				//timer处理函数
+				function SetRemainTime() {
+					if (curCount == 0) {
+						window.clearInterval(InterValObj);//停止计时器
+						$("#btnSendCode").removeAttr("disabled");//启用按钮
+						$("#btnSendCode").val("重新发送验证码");
+						//code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效    
+					} else {
+						curCount--;
+						$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+					}
+				}
+
+				// 初始化Web Uploader
+				var uploader = WebUploader
+						.create({
+
+							// 选完文件后，是否自动上传。
+							auto : true,
+
+							// swf文件路径
+							swf : MSConfig.BaseURL
+									+ '/static/webuploader/Uploader.swf',
+
+							// 文件接收服务端。
+							server : MSConfig.BaseURL + '/upload/img',
+
+							// 选择文件的按钮。可选。
+							// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+							pick : {
+								id : "#upload1",
+								multiple : false
+							},
+
+							// 只允许选择图片文件。
+							accept : {
+								title : 'Images',
+								extensions : 'gif,jpg,jpeg,bmp,png',
+								mimeTypes : 'image/*'
+							},
+							auto : true
+						});
+
+				// 当有文件添加进来的时候
+				uploader.on('fileQueued', function(file) {
+					//var $li = $("#uploadFile1"), $img = $li.find('img');
+						var $img = $("#uploadFile1");
+					// $list为容器jQuery实例
+					//			$list.append( $li );
+
+					// 创建缩略图
+					// 如果为非图片文件，可以不用调用此方法。
+					// thumbnailWidth x thumbnailHeight 为 100 x 100
+					var thumbnailWidth = 100, thumbnailHeight = 100;
+					uploader.makeThumb(file, function(error, src) {
+						if (error) {
+							$img.replaceWith('<span>不能预览</span>');
+							return;
+						}
+
+						$img.attr('src', src);
+					}, thumbnailWidth, thumbnailHeight);
+				});
+				var loadi;
+				// 文件上传过程中创建进度条实时显示。
+				uploader.on('uploadProgress', function(file, percentage) {
+					//			var $li = $( '#'+file.id ),
+				//	var $li = $("#upload1"), $percent = $li
+					//		.find('.progress span');
+
+					// 避免重复创建
+				//	if (!$percent.length) {
+					//	$percent = $('<p class="progress"><span></span></p>')
+					//			.appendTo($li).find('span');
+				//	}
+					loadi = layer.load('上传中…');
+					//$percent.css('width', percentage * 100 + '%');
+				});
+
+				uploader.on('uploadAccept', function(file, response) {
+					if (response.status != "SUCCESS") {
+						// 通过return false来告诉组件，此文件上传有错。
+						return false;
+					}
+
+					$("#cardImage").val(response.url);
+				});
+
+				// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+				uploader.on('uploadSuccess', function(file) {
+					//			$( '#'+file.id ).addClass('upload-state-done');
+					$("#upload1").addClass('upload-state-done').addClass(
+							'upload-state-done');
+				});
+
+				// 文件上传失败，显示上传出错。
+				uploader.on('uploadError', function(file) {
+					//			var $li = $( '#'+file.id ),
+					var $li = $("#upload1"), $error = $li.find('div.error');
+
+					// 避免重复创建
+					if (!$error.length) {
+						$error = $('<div class="error"></div>').appendTo($li);
+					}
+
+					$error.text('上传失败');
+				});
+
+				// 完成上传完了，成功或者失败，先删除进度条。
+				uploader.on('uploadComplete', function(file) {
+					//			$( '#'+file.id ).find('.progress').remove();
+					//$("#upload1").find('.progress').remove();
+					layer.close(loadi);
+				});
+
+				// 初始化Web Uploader
+				var uploader1 = WebUploader
+						.create({
+
+							// 选完文件后，是否自动上传。
+							auto : true,
+
+							// swf文件路径
+							swf : MSConfig.BaseURL
+									+ '/static/webuploader/Uploader.swf',
+
+							// 文件接收服务端。
+							server : MSConfig.BaseURL + '/upload/img',
+
+							// 选择文件的按钮。可选。
+							// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+							pick : {
+								id : "#upload2",
+								multiple : false
+							},
+
+							// 只允许选择图片文件。
+							accept : {
+								title : 'Images',
+								extensions : 'gif,jpg,jpeg,bmp,png',
+								mimeTypes : 'image/*'
+							},
+							auto : true
+						});
+
+				// 当有文件添加进来的时候
+				uploader1.on('fileQueued', function(file) {
+					//var $li = $("#uploadFile2"), $img = $li.find('img');
+						var $img = $("#uploadFile2");
+					// $list为容器jQuery实例
+					//			$list.append( $li );
+
+					// 创建缩略图
+					// 如果为非图片文件，可以不用调用此方法。
+					// thumbnailWidth x thumbnailHeight 为 100 x 100
+					var thumbnailWidth = 100, thumbnailHeight = 100;
+					uploader1.makeThumb(file, function(error, src) {
+						if (error) {
+							$img.replaceWith('<span>不能预览</span>');
+							return;
+						}
+
+						$img.attr('src', src);
+					}, thumbnailWidth, thumbnailHeight);
+				});
+				var loadi;
+				// 文件上传过程中创建进度条实时显示。
+				uploader1.on('uploadProgress', function(file, percentage) {
+					//			var $li = $( '#'+file.id ),
+					//var $li = $("#upload2"), $percent = $li
+					//		.find('.progress span');
+
+					// 避免重复创建
+					//if (!$percent.length) {
+					//	$percent = $('<p class="progress"><span></span></p>')
+					//			.appendTo($li).find('span');
+					//}
+						loadi = layer.load('上传中…');
+					//$percent.css('width', percentage * 100 + '%');
+				});
+
+				// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+				uploader1.on('uploadSuccess', function(file) {
+					$("#upload2").addClass('upload-state-done');
+				});
+
+				uploader1.on('uploadAccept', function(file, response) {
+
+					if (response.status != "SUCCESS") {
+						// 通过return false来告诉组件，此文件上传有错。
+						return false;
+					}
+
+					$("#licenceImage").val(response.url);
+				});
+
+				// 文件上传失败，显示上传出错。
+				uploader1.on('uploadError', function(file) {
+					var $li = $("#upload2"), $error = $li.find('div.error');
+
+					// 避免重复创建
+					if (!$error.length) {
+						$error = $('<div class="error"></div>').appendTo($li);
+					}
+
+					$error.text('上传失败');
+				});
+
+				// 完成上传完了，成功或者失败，先删除进度条。
+				uploader1.on('uploadComplete', function(file) {
+				//	$("#upload2").find('.progress').remove();
+					layer.close(loadi);
+				});
+			</script>
+			<% include("/common/foot.html"){}%>
+</body>
+</html>

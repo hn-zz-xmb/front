@@ -1,0 +1,123 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.page{
+	width:1180px;
+	margin:0 auto;
+}
+.page_head{
+	background-color:#f3f3f3;
+	height:100px;
+	border-bottom:1px solid #e4e5e5;
+	padding-left:20px;
+}
+.green_tip h2{
+	background: none repeat scroll 0 0 #82c230;
+    border-radius: 0;
+    color: #fff;
+    display: inline-block;
+    height: 32px;
+    line-height: 30px;
+    margin: 20px 20px 12px;
+    padding: 0 14px;
+    position: relative;
+    font-size:12px;
+}
+.green_tip .arrow{
+	border-color: #82c230 #fff #fff;
+    border-style: solid;
+    border-width: 6px;
+    display: block;
+    float: none;
+    font-size: 0;
+    height: 0;
+    left: 20px;
+    line-height: 0;
+    position: absolute;
+    top: 32px;
+    width: 0;
+}
+.province{
+	padding-left:20px;
+}
+.btn_green{
+	background-color:#82c230;
+	border:1px solid #409300;
+	color:#fff;
+	padding:2px 5px;
+}
+.marginL{
+	margin-left:50px;
+}
+.page_content{
+	background-color:#fff;
+	padding-left:20px;
+	min-height:600px;
+	padding-right:20px;
+}
+.city_list{
+	margin-left:30px;
+}
+.city_list li{
+	padding:6px 0;
+}
+.city_list .label{
+	border: 1px solid #ddd;
+    border-radius: 0;
+    color: #666;
+    display: inline-block;
+    height: 30px;
+    line-height: 24px;
+    margin-right: 5px;
+    vertical-align: top;
+    width: 30px;
+}
+.city_list .label strong{
+	background: none repeat scroll 0 0 #f1f1f1;
+    border: 1px solid #f7f7f7;
+    border-radius: 0;
+    display: block;
+    font-family: Tahoma;
+    font-size: 16px;
+    height: 28px;
+    text-align: center;
+    width: 28px;
+}
+.city_list .citys a{
+	color:#565656;
+	line-height:30px;
+	font-size:14px;
+	margin-left:20px;
+}
+.city_list .citys a:hover{
+	background-color:#82c230;
+	color:#fff;
+}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 编辑商品</title>
+<link href="${ctxPath }/static/old/front/css/user_37.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath }/static/old/kindeditor/themes/default/default.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath }/static/old/validform/5.3.2/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${ctxPath }/static/old/kindeditor/kindeditor.js"></script>
+<script type="text/javascript" src="${ctxPath }/static/old/validform/5.3.2/js/Validform_v5.3.2.js"></script>
+</head>
+<body>
+	<style>
+.box_arr .table_btn {
+	width: 222px;
+}
+
+.box_arr .table_btn a {
+	float: left;
+}
+.box_arr .table_btn a.disable_spec {
+	background:
+		url(${ctxPath}/static/old/front/images/member/btn.gif)
+		repeat 0 -1018px;
+	float: right;
+}
+
+.dialog_body {
+	border: 0px;
+}
+
+.add_spec .add_link {
+	color: #919191;
+}
+
+.add_spec .add_link:hover {
+	color: red;
+}
+
+add_spec h2 {
+	padding-left: 10px;
+}
+
+.width7 {
+	width: 250px;
+}
+
+.f_l {
+	float: left;
+}
+
+.mls_id {
+	width: 0;
+	filter: alpha(opacity =   0);
+	opacity: 0;
+}
+</style>
+
+
+<% layout("../../saler/member.html"){ %>
+	<div id="right">
+		<ul class="tab">
+			<li class="normal"><a
+				href="${ctxPath}/salerManage/materialgoodsmanage">商品列表</a></li>
+			<li class="active">编辑商品</li>
+		</ul>
+		<div class="wrap">
+			<div class="public">
+			<form action="${ctxPath }/salerManage/materialgoodsmanage/updateProduct" method="post" id="goods_form">
+					<div class="information_index">
+					<input type="hidden" name="material.id" value="${material.id}">
+						<h4>商品分类</h4>
+						<div class="add_wrap">
+							<div class="assort">
+								<p class="txt">本店分类:</p>
+								<p class="select">
+									<select name="materialtype" class="sgcategory" datatype="*" nullmsg="请选择" sucmsg=" ">
+										<option selected="selected" value=" ">请选择...</option>
+										<%	for(typeList in materialtypeList!){
+									if(material.material_type_id3!''==typeList.id){
+							%>
+							<option selected="selected" value="${typeList.id}">${typeList.name}</option>
+							<%		}else{%>
+							<option  value="${typeList.id}">${typeList.name}</option>
+								<%	}
+								}
+							%>
+									</select><label class="Validform_checktip"></label>
+								</p>
+								<p class="new_add">
+									<a href="${ctxPath}/salermanage/category/storecatagory" id="add_sgcategory" class="btn">新增分类</a>
+									<span></span>
+								</p>
+							</div>
+						</div>
+
+						<h4>商品基本信息</h4>
+						<div class="add_wrap">
+
+							<div class="pic_list">
+								<div class="big_pic" style="border:none;width:300px;height:300px;">
+									<img id="big_material_image"
+										src="" alt="" height="300"
+										width="300" />
+										<input type="hidden" name="material.material_image" id="materialImage">
+								</div>
+								<div id="small_img" class="small_pic" style="height: 60px;">
+									<ul id="goods_images">
+										<%for(img_ in goodsImgs!){%>
+											<li>
+												<img width="53" height="53" src="/img${img_.img_url}">
+													<div class="operation" style="display: none;">
+														<div class="cut_in"></div>
+														<div class="delete"></div>
+													</div>
+												<input type="hidden" name="images" value="${img_.img_url}">
+											</li>
+										<%}%>
+									</ul>
+									<div class="clear"></div>
+								</div>
+								<div id="upload1">上传商品图片</div>
+								
+							</div>
+
+							<div class="products">
+								<ul>
+									<li>
+										<h2>商品名称:</h2>
+										<div class="arrange">
+											<input title="" name="material_name" class="text width_normal" value="${material.name !}"
+												type="text" datatype="*" nullmsg="请输入商品名称" sucmsg=" "/><label class="Validform_checktip"></label>
+										</div>
+									</li>
+									<li>
+										<h2 ectype="no_spec">价格:</h2>
+										<div class="arrange" ectype="no_spec">
+											<input name="spec_id" value="" type="hidden" /> <input
+												name="material.sales_price" class="text width_short" type="text" value="${material.sales_price !}"
+												datatype="*" nullmsg="请输入价格" errormsg="请输入数字" sucmsg=" "/>元/
+												<select name="material.unit">
+												<% for(u in units!){ %>
+										<option value="${u.unit_name}">${u.unit_name }</option>
+										<% } %>
+											</select>
+												<label class="Validform_checktip"></label>
+										</div>
+									</li>
+									<li ectype="no_spec">
+										<h2>编号:</h2>
+										<div class="arrange">
+											<input name="sku" class="text width_normal" type="text" />
+										</div>
+									</li>
+									
+									<li>
+										<h2>上架:</h2>
+										<div class="arrange">
+											<span class="distance"> <label> 
+											<% if(material.is_show == 1){ %>
+											<input name="material.is_show" value="1" checked="checked" type="radio">
+											<% }else{ %>
+											<input name="material.is_show" value="1"  type="radio">
+											<% } %>
+													是
+											</label> <label> 
+											<% if(material.is_show == 0){ %>
+											<input name="material.is_show" value="0" checked="checked" type="radio">
+											<% }else{ %>
+											<input name="material.is_show" value="0" type="radio">
+											<% } %>
+													否
+											</label>
+											</span>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="add_bewrite">
+							<h5>商品描述</h5>
+							<div class="add_wrap">
+								<textarea id="editor" name="material.description">${material.description !}</textarea>
+								<span class="word_surplus"></span>
+								<div class="issuance">
+									<input class="btn" value="保存" type="submit" />
+									<input type="hidden" name="CSRFToken" id="CSRFToken" value="" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="wrap_bottom"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="adorn_right1"></div>
+		<div class="adorn_right2"></div>
+		<div class="adorn_right3"></div>
+		<div class="adorn_right4"></div>
+	</div>
+	<div class="clear"></div>
+	<% } %>
+	<link href="${ctxPath}/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript"
+	src="${ctxPath}/static/old/datePicker/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript"
+	src="${ctxPath }/static/old/custom/js/ajax.common.js"></script>	
+<script type="text/javascript" charset="utf-8"
+	src="http://map.qq.com/api/js?v=2.exp&key=TB5BZ-RRLWP-7Z2DL-VDY7Y-SKQUE-BMBIS"></script>
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+<script type="text/javascript">
+KindEditor.ready(function(K) {
+	K.create("#editor",{
+		uploadJson : '${ctxPath }/kindeditor/file_upload',
+		resizeType : 0,
+		minWidth : '685',
+		height : '300',
+		lineheight : 1.0,
+		afterChange : function() {
+			//限制字数
+			var limitNum = 5000; //设定限制字数
+			var pattern = '还可以输入' + limitNum + '字';
+			$('.word_surplus').html(pattern); //输入显示
+			if (this.count('text') > limitNum) {
+				pattern = ('字数超过限制，请适当删除部分内容');
+				//超过字数限制自动截取
+				var strValue = this.text();
+				strValue = strValue.substring(0, limitNum);
+				this.text(strValue);
+			} else {
+				//计算剩余字数
+				var result = limitNum - this.count('text');
+				pattern = '还可以输入' + result + '字';
+			}
+				$('.word_surplus').html(pattern); //输入显示
+		},
+		items:[
+				'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+				'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+				'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 
+				'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+				'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+				'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+				'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+				'anchor', '|', 'about'
+		      ]
+	});
+});
+</script>
+<script type="text/javascript">
+
+//初始化Web Uploader
+var uploader = WebUploader.create({
+
+	// 选完文件后，是否自动上传。
+	auto: true,
+
+	// swf文件路径
+	swf: MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+	// 文件接收服务端。
+	server: MSConfig.BaseURL+'/upload/img',
+
+	// 选择文件的按钮。可选。
+	// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+	pick:{
+		id:"#upload1",
+		multiple:false
+	},
+
+	// 只允许选择图片文件。
+	accept: {
+		title: 'Images',
+		extensions: 'gif,jpg,jpeg,bmp,png',
+		mimeTypes: 'image/*'
+	},
+	auto:true
+});
+
+//当有文件添加进来的时候
+uploader.on( 'fileQueued', function( file ) {
+//	var $li = $(
+//					'<div id="' + file.id + '" class="file-item thumbnail">' +
+//					'<img>' +
+//					'<div class="info">' + file.name + '</div>' +
+//					'</div>'
+//			),
+	//var $li=$("#store_logo"),
+		//	$img = $li.find('img');
+		var $li=$('<ul id="'+file.id+'" class="file-item thumbnail">'+ 
+						'<img height="53" width="53" onclick="changeImg(\''+file.id+'\')">'+
+						'<input id="'+file.id+'_input" name="images" type="hidden">'+
+						'</ul>');
+			var $img = $("#big_material_image");
+			
+			var $sImg = $li.find('img');
+
+			// $list为容器jQuery实例
+			var $list=$("#small_img");
+			$list.append( $li );
+
+
+	// $list为容器jQuery实例
+//	$list.append( $li );
+
+	// 创建缩略图
+	// 如果为非图片文件，可以不用调用此方法。
+	// thumbnailWidth x thumbnailHeight 为 100 x 100
+	var thumbnailWidth=100,thumbnailHeight=100;
+	uploader.makeThumb( file, function( error, src ) {
+		if ( error ) {
+			$img.replaceWith('<span>不能预览</span>');
+			return;
+		}
+
+		$img.attr( 'src', src );
+	}, thumbnailWidth, thumbnailHeight );
+});
+
+//文件上传过程中创建进度条实时显示。
+uploader.on( 'uploadProgress', function( file, percentage ) {
+//	var $li = $( '#'+file.id ),
+	var $li=$("#upload1"),
+			$percent = $li.find('.progress span');
+
+	// 避免重复创建
+	if ( !$percent.length ) {
+		$percent = $('<p class="progress"><span></span></p>')
+				.appendTo( $li )
+				.find('span');
+	}
+
+	$percent.css( 'width', percentage * 100 + '%' );
+});
+
+uploader.on( 'uploadAccept', function( file, response ) {
+	if ( response.status!="SUCCESS" ) {
+		// 通过return false来告诉组件，此文件上传有错。
+		return false;
+	}
+	$("#"+file.file.id+"_input").val(response.url);
+	
+});
+
+//文件上传成功，给item添加成功class, 用样式标记上传成功。
+uploader.on( 'uploadSuccess', function( file ) {
+//	$( '#'+file.id ).addClass('upload-state-done');
+	$("#upload1").addClass('upload-state-done').addClass('upload-state-done');
+});
+
+//文件上传失败，显示上传出错。
+uploader.on( 'uploadError', function( file ) {
+//	var $li = $( '#'+file.id ),
+	var $li=$("#upload1"),
+			$error = $li.find('div.error');
+
+	// 避免重复创建
+	if ( !$error.length ) {
+		$error = $('<div class="error"></div>').appendTo( $li );
+	}
+
+	$error.text('上传失败');
+});
+
+//完成上传完了，成功或者失败，先删除进度条。
+uploader.on( 'uploadComplete', function( file ) {
+//	$( '#'+file.id ).find('.progress').remove();
+	$("#upload1").find('.progress').remove();
+});
+
+function changeImg(fid){
+	var url=$("#"+fid+"_input").val();
+	$("#materialImage").val(url);
+	$("#big_material_image").attr("src","/img"+url);
+}
+
+
+function addImage(url){
+	if($("#big_material_image").attr("src")=="${ctxPath }/static/old/front/images/store/default_goods_image.gif"){
+		$("#big_material_image").attr("src",url);
+		$("#materialImage").val(url);
+	}
+	var htmlStr = "<li><img width='53' height='53' src='"+url
+		+"'/><div class='operation' style='display:none;'><div class='cut_in'></div><div class='delete'></div></div><input type='hidden' name='materialImgs' value='"+url+"'/></li>";
+	$("#material_images").append(htmlStr);
+}
+
+$(function(){
+	$("#material_images").delegate("img", "mouseover", function(){
+		$(this).next(".operation").show();
+	});
+	$("#material_images").delegate(".operation", "mouseout", function(){
+		$(this).hide();
+	});
+	$("#material_images").delegate(".cut_in", "click", function(){
+		var url = $(this).parent().prev("img").attr("src");
+		$("#big_material_image").attr("src",url);
+		$("#materialImage").val(url);
+	});
+	$("#material_images").delegate(".delete", "click", function(){
+		$(this).parents("li").remove();
+	});
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	$("#goods_form").Validform({
+		postonce:true,
+		tiptype:function(msg,o,cssctl){
+			//msg：提示信息;
+			//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+			//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+			if(!o.obj.is("form")){//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
+			var objtip=o.obj.siblings(".Validform_checktip");
+				cssctl(objtip,o.type);
+				objtip.text(msg);
+			}else{
+				var objtip=o.obj.find("#msgdemo");
+				cssctl(objtip,o.type);
+				objtip.text(msg);
+			}
+	},
+		datatype : {
+			"zz" : /^[0-9].*$/
+		}
+
+	});
+	demo.addRule([ {
+		ele : "select",
+		datatype : "*"
+	}, {
+		ele : ":radio:last",
+		datatype : "*"
+	} ]);
+});
+</script>
+	
+</body>
+</html>

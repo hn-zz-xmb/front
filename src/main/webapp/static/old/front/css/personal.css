@@ -1,0 +1,62 @@
+/* CSS Document */
+@import url("base.css");
+.personal{
+	width:932px;
+	height:520px;
+	margin:0 auto;
+	background:#F5F5F5;
+	}
+.personal_nr{
+	width:912px;
+	height:500px;
+	margin-top:10px;
+	margin-left:8px;
+	border:1px solid #f0f1f1;
+	background:#FFF;}
+.grzl{
+	height:30px;
+	line-height:30px;
+	padding-left:40px;
+	font-weight:bold;
+	border-bottom:2px solid #84c233;}
+.per_sonal{
+	}
+.per_sonal table{
+	}
+.per_sonal table span{
+	color:#F00;}
+.hot{
+	color:#ABABAB;
+	}
+.pic_l{
+	color:#ABABAB;
+	
+	line-height:90px;}
+.shangc{
+	width:50px;
+	height:25px;
+	margin-left:30px;}
+.per_sonal table tr{}
+.per_sonal table th{
+width:80px;
+font-weight: normal;
+text-align: right;
+color: #666;
+padding-right: 20px;
+height: 40px;}
+.per_sonal table td{
+	width:380px;}
+.shangc{
+	width:50px;
+	height:25px;
+	}
+.modify{
+border: 0px none;
+width: 120px;
+height: 32px;
+margin:10px 0 0 100px;
+cursor: pointer;
+font-weight: bold;
+color: #3F3D3E;
+background:url(../images/ico/btn1.gif) no-repeat 0px -253px ;
+	}

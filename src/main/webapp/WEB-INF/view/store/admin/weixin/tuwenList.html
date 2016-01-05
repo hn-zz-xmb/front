@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link href="${ctxPath}/static/custom/css/weixin.css" rel="stylesheet"
+	type="text/css">
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"weixin"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/weixin/conn">接入微信</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/menu">菜单管理</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/matter" class="active">素材管理</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/weixin/matter/saveUI" class="btn_add">图文消息</a>
+			</div>
+			<div class="main">
+				<div class="system_tuwen">
+					<%for(m in mattersNotChange){%>
+					<div class="tuwen_box">
+						<div class="tuwen_box_head">${m.title!}</div>
+						<div class="tuwen_box_content">
+							<div class="img_w">
+								<img alt="" style="width:282px;height: 138px;" src="
+								<%if(m.pic_url!'' != ''){%>
+								/img${m.pic_url}
+								<%}else{%>
+								${ctxPath}/static/custom/images/storeManage/tuwen2.jpg
+								<%}%>
+								">
+							</div>
+							<div class="info"></div>
+						</div>
+						<div class="tuwen_box_bottom">
+							<a href="${ctxPath}/salerManage/weixin/matter/updateUI?id=${m.id}">编辑</a>
+							<a href="#" class="fr">设置为关注回复</a>
+						</div>
+					</div>
+					<%}%>
+				</div>
+				<div class="custom_tuwen">
+					<%for(m in matters){%>
+					<%if(m.isSelect!=0){%>
+					<div class="tuwen_box_small">
+						<div class="tuwen_box_small_head">${m.title!}</div>
+						<div class="tuwen_box_small_content">
+							<div class="img_w">
+								<img alt="" style="width:282px;height: 138px;" src="
+								<%if(m.pic_url!'' != ''){%>
+								/img${m.pic_url}
+								<%}else{%>
+								${ctxPath}/static/custom/images/storeManage/tuwen2.jpg
+								<%}%>
+								">
+							</div>
+						</div>
+						<div class="tuwen_box_small_bottom	">
+							<a href="${ctxPath}/salerManage/weixin/matter/updateUI?id=${m.id}">编辑</a>
+							&nbsp;<a href="javascript:void(0)" onclick="deleteMatter('${m.id}')">删除</a>
+							&nbsp;<a href="http://wechat.37meishi.com/saler/matter/detail?matterId=${m.id}">预览</a>
+							<a href="#" class="fr">设置为关注回复</a>
+						</div>
+					</div>
+					<%}}%>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script type="text/javascript">
+		function deleteMatter(matterId){
+			var url="${ctxPath}/salerManage/weixin/matter/delete?id="+matterId;
+			var result=callJson(url,{},true);
+			if(result.isDelete){
+				window.location.reload();
+			}else{
+				alert(result.error);
+			}
+		}
+	</script>
+</body>
+</html>

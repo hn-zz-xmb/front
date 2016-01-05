@@ -1,0 +1,241 @@
+/* CSS Document */
+.security{
+	width:1180px;
+	height:600px;
+	margin:0 auto;
+	border:1px solid #d4d3d3;
+	background-color: #fff;
+	margin-top:10px;
+}
+.security .security_title{
+	height:60px;
+	line-height:60px;
+	padding-left:10px;
+	font-size:16px;
+	font-family:"微软雅黑";
+	padding-left:15px;
+	font-weight:bold;
+	background:url(../images/member/tixian_bg.png) repeat-x;
+	border-bottom:1px solid #d4d3d3;}
+.security_l{
+	width:200px;
+	float:left;
+	}
+.security_l img{
+	margin:20px 0 0 20px;}
+.security_r{
+	width:900px;
+	float:left;
+	margin-left:80px;}
+.mima{
+	width:900px;
+	height:60px;
+	margin:20px 0 ;
+	line-height:80px;
+	border-bottom:1px dashed #e3e2e2;}
+.lognmm{
+	width:120px;
+	padding-left:50px;
+	height:40px;
+	float:left;
+	line-height:40px;
+	background:url(../images/security/duihao.png) no-repeat;}
+.hlw{height:40px;
+line-height:40px;
+	width:600px;
+	padding-left:10px;
+	border-left:1px dashed #e3e2e2;
+	float:left;}
+.xiugai{
+	line-height:40px;
+	width:100px;
+	float:left;}
+.xiugai a{
+	color:#000;
+}
+.xiugai a:hover{
+	color:#409300;
+}
+.out_m{
+display: inline-block;
+position: relative;
+z-index: 2;
+width: 100px;
+height:12px;
+background:#e4e4e3;}
+.inside_m{
+width:50px;	
+position: absolute;
+top: 0px;
+left: 0px;
+display: inline-block;
+height: 12px;
+z-index:99;
+background-color:#d96d6a;
+	}
+/*修改登陆密码*/
+.wrap{
+	width:1180px;
+	margin:0 auto;
+	font-size:14px;
+}
+.pane{
+	border:1px solid #ccc;
+}
+.pane_head{
+	height:30px;
+	line-height:30px;
+	font-size:16px;
+	background-color:#daeec2;
+	padding-left:30px;
+}
+.pane_content{
+	background-color:#fff;
+	min-height:600px;
+}
+.form{
+	padding-top:50px;
+	padding-left:100px;
+}
+.row{
+	margin-bottom:10px;
+}
+.field{
+	width:100px;
+	display:inline-block;
+}
+.input_w{
+	width:300px;
+	display:inline-block;
+}
+.notice{
+	color:#565656;
+}
+.out_bar{
+	display:inline-block;
+	width:150px;
+	background-color:#e4e4e3;
+	height: 12px;
+}
+.inside_bar{
+	display:inline-block;
+	width:50px;
+	background-color:#84c43b;
+	height: 12px;
+	position: absolute;
+}
+.btn_w{
+	margin-top:50px;
+	padding-left:100px;
+}
+.btn_green{
+	color:#fff;
+	background-color:#68a519;
+	width:100px;
+	border:1px solid #68a519;
+}
+/*修改邮箱*/
+.label{
+	float:left;
+	width:100px;
+}
+.label_content{
+	float:left;
+}
+.captcha{
+	margin-top:10px;
+}
+.captcha a{
+	color:#565656;
+}
+.captcha a:hover{
+	color:#409300;
+}
+/*修改支付密码*/
+.bind_phone{
+	padding-left:100px;
+	margin-bottom:10px;
+}
+.btn_w1{
+	padding-left:50px;
+}
+.red{
+	color:red;
+}
+/*选择修改方式*/
+.myPane{
+	border:1px solid #ccc;
+}
+.myPane_head{
+	background: url("../images/member/tixian_bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 61px;
+    line-height: 61px;
+    font-size:18px;
+    padding-left:30px;
+}
+.myPane_content{
+	background-color:#fff;
+	padding-top:10px;
+	min-height:600px;
+}
+.notice_bar{
+	background-color:#aed47d;
+	height:30px;
+	line-height:30px;
+}
+.methods_w{
+	padding-top:20px;
+	padding-left:100px;
+}
+.method{
+	
+}
+.method .img_w{
+	float:left;
+	width:130px;
+}
+.phone_img{
+	background:url(../images/security/phone.png) no-repeat;
+	width:100px;
+	height:100px;
+}
+.email_img{
+	background:url(../images/security/phone.png) no-repeat;
+	width:100px;
+	height:100px;
+	background-position:left -97px;
+}
+.method .info{
+	float:left;
+	width:300px;
+}
+.method .info_t{
+	font-size:16px;
+}
+.green{
+	color:#409300;
+}
+.method .btn_w2{
+	float:left;
+}
+/*验证身份*/
+.field1{
+	width:154px;
+	display:inline-block;
+}
+.main_w{
+	border-bottom:1px solid #ccc;
+	min-height:400px;
+}
+.main{
+	width:400px;
+	margin:0 auto;
+	padding-top:50px;
+}
+.content_bottom{
+	padding-top:20px;
+	padding-left:30px;
+}
+.content_bottom .title{
+	font-weight:bold;
+}

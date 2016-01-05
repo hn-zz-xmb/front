@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>招聘详情</title>
+<link href="${ctxPath}/static/custom/css/jobdetail.css" rel="stylesheet" type="text/css" />
+<link href="${ctxPath}/static/custom/css/zhaopin.css" rel="stylesheet"
+	type="text/css">
+</head>
+<body>
+<% include("../common/storehead.html"){}%>
+<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[1].className="active";
+	</script>
+	<div class="box">
+		<div class="left">
+			<div class="store_info">
+				<div class="store_info_title">${store.name}</div>
+				<div class="store_info_content">
+					<div class="info">
+						<img alt="" style="width: 213px; height: 213px;"
+							 src="/img${store.logo_image!}">
+							<table>
+								<tr>
+									<td width="60px">信&nbsp;&nbsp;用&nbsp;&nbsp;度：</td>
+									<td><img alt=""
+										src="${ctxPath}/static/custom/images/store/heart.jpg"></td>
+								</tr>
+								<tr>
+									<td>认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证：</td>
+									<td><img alt=""
+										src="${ctxPath}/static/custom/images/store/renzheng.jpg"></td>
+								</tr>
+								<tr>
+									<td valign="top">详细地址：</td>
+									<td>${store.address}</td>
+								</tr>
+								<tr>
+									<td>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+									<td>${store.tel}</td>
+								</tr>
+							</table>
+							<div class="btn_w">
+								<a href="javascript:;" onclick="sendUI('${store.id!}')" class="btn_msg">发站内信</a> <a href="javascript:;" onclick="coupon('${store.id}')"
+									class="btn_star">收藏本店</a>
+							</div>
+					</div>
+					<div class="map">
+						<div class="map_t">
+							<div id="container" style="width:230px;height:200px"></div>
+						</div>
+						<div class="map_b">
+							<img alt="" src="${ctxPath}/static/custom/images/search.jpg"><a
+								href="#">查看完整地图</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<div class="title1"
+				style="border-bottom: 2px solid #98cd4b; margin-top: 10px; padding-bottom: 10px;">
+				<p>
+					${info.job!}<span>更新时间：${date(info.date!,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</span><span class="close"><img
+						src="${ctxPath}/static/custom/images/close.png" width="55" height="22" /></span>
+				</p>
+			</div>
+			<div class="hn">
+				<a>${info.storename!}</a><br />
+				<ul>
+					<li><a><span>薪资待遇：</span>${info.money!}元</a> <a><span>学历：</span>${info.education!}</a></li>
+					<li><a><span>招聘岗位：</span>${info.job!}（招${info.number!}人）</a> <a><span>工作年限：</span>${info.work_experience!}</a></li>
+					<li><a><span>工作地址：</span>${info.storeaddress!}</a> <a><span
+							style="color: #8cc73b; background: url(image/map.png); background-repeat: no-repeat;">&nbsp;&nbsp;&nbsp;查看地图</span></a></li>
+					<li><a><span>福利待遇：</span><a class="bz">${info.well_being!}</a></li>
+					<li><a><span>联系电话：</span><i
+							style="color: red; font-weight: bold; font-size: 18px;">${info.storetel!}</i></a></li>
+				</ul>
+			</div>
+			<div class="zw" style="padding: 15px;">
+				<img src="${ctxPath}/static/custom/images/pic04.png" />
+				<ol>
+				${info.description}
+					<!-- <input type="button"
+						style="width: 80px; height: 30px; background-color: #93cb46; color: #fff; line-height: 30px; text-align: center; font-size: 16px; border: 1px solid #ededed;"
+						value="投递简历"> -->
+				</ol>
+			</div>
+		</div>
+	</div>
+	<div style="clear: both;"></div>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="http://map.qq.com/api/js?v=2.exp&callback=init&key=TB5BZ-RRLWP-7Z2DL-VDY7Y-SKQUE-BMBIS"></script>
+<script type="text/javascript">
+	var lat_= new Number('${store.position_lat}');
+	var lng_= new Number('${store.position_lng}');
+	function init() {
+		var center = new qq.maps.LatLng(lat_,lng_);
+		var map = new qq.maps.Map(document.getElementById('container'),{
+			center: center,
+			zoom: 13
+		});
+		var marker = new qq.maps.Marker({
+			position: center,
+			map: map
+		});
+	}
+
+</script>
+	<script type="text/javascript">
+		function coupon(id) {
+			 var result=callJson("${ctxPath}/store/collect/islogin",null,false);
+			 if(result.isLogin){
+				 $.layer({
+						type : 2,
+						shadeClose : true,
+						title : '',
+						closeBtn : [ 0, true ],
+						shade : [ 0.5, '#000' ],
+						border : [ 10, 0.3, '#000' ],
+						offset : [ '', '' ],
+						area : [ '400px', '120px' ],
+						iframe : {
+							src : '${ctxPath}/store/collect/saveCollect?collect_type=collect_store&collect='
+									+ id
+						}
+					});
+			    }else{
+			        $.layer({
+			            type: 2,
+			            shade: [0.5, '#000'],
+			            fix: false,
+			            title: '登录',
+			            maxmin: true,
+			            iframe: {src: MSConfig.BaseURL+'/login/ajaxUI'},
+			            area: ['464px', '543px'],
+			        });
+			    }
+			
+		}
+		function sendUI(id) {
+			$.layer({
+				type : 2,
+				shadeClose : true,
+				title : '',
+				closeBtn : [ 0, true ],
+				shade : [ 0.5, '#000' ],
+				border : [ 10, 0.3, '#000' ],
+				iframe : {
+					src : MSConfig.BaseURL + '/account/message/sendUI?storeId=' + id
+				},
+				area : [ '700px', '500px' ],
+			});
+		}
+	</script>
+		<% include("../common/foot.html"){}%>
+</body>
+</html>

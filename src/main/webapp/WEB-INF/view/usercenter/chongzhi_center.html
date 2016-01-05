@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/custom/css/chongzhi.css" />
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/custom/css/public_.css" />
+<style type="text/css">
+	.errormessage{
+		color:red;
+	}
+</style>
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<div class="wrap">
+		<div class="chongzhi_center">
+			<div class="chongzhi_title">
+				<div class="chongzhi_title_left">
+					<p>充值中心</p>
+				</div>
+				<div class="chongzhi_title_right">
+					<p>
+						充值账户:<span>${member.username}</span> 账户余额:<span>${coin.account_money!0.00}</span>元
+					</p>
+				</div>
+			</div>
+			<form id="chongzhiform" method="post">
+			<div class="chongzhi_info">
+				<div class="chongzhi_money">
+					<span>请输入充值金额:</span><input name="money" type="text" /><label class="errormessage"></label>
+				</div>
+
+			</div>
+			<div class="paychoose_style">
+				<!--choice start-------------->
+				<div class="choice">
+					<div class="choose_title">
+						<ul>
+							<li id="style_two" class="style_a style_b">支付宝</li>
+							<li id="style_three" class="style_a">网银</li>
+						</ul>
+					</div>
+					<div class="choose_nr">
+						<!--支付宝开始------------------------>
+					<div class="alipay" id="alipay">
+						<div class="alipay-pic">
+							<ul class="bank-list bank-list--bank">
+								<li class="item">
+									<input name="choicepayway" type="radio" value="zfb"
+										   class="radio select_radio" id="bank-type-zfb">
+									<label class="bank-logo" title="支付宝" for="bank-type-zfb">
+										<span class="zfb">支付宝</span>
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+						<!-- 支付宝完成-------------->
+						<!-- 银联支付开始----------------------->
+						<div class="bank_pay" id="bank_pay">
+							<ul class="bank-list bank-list--bank">
+								<li class="item"><input name="choicepayway" type="radio" value="ICBC-DEBIT"
+									class="radio select_radio" id="bank-type-ICBCB2C">
+									 <label class="bank-logo" title="中国工商银行" for="bank-type-ICBCB2C">
+									  <span class="bank bank--icbc">中国工商银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="CMB-DEBIT"
+									class="radio select_radio" id="bank-type-CMB"> <label
+										class="bank-logo" title="招商银行" for="bank-type-CMB"> <span
+											class="bank bank--cmb">招商银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="CCB-DEBIT"
+									class="radio select_radio" id="bank-type-CCB"> <label
+										class="bank-logo" title="建设银行" for="bank-type-CCB"> <span
+											class="bank bank--ccb">建设银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="COMM-DEBIT"
+									class="radio select_radio" id="bank-type-COMM"> <label
+										class="bank-logo" title="交通银行" for="bank-type-COMM"> <span
+											class="bank bank--boc">交通银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="BOC-DEBIT"
+									class="radio select_radio" id="bank_type_BOCB2C"> <label
+										class="bank-logo" title="中国银行" for="bank_type_BOCB2C">
+											<span class="bank bank--bofc">中国银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="CEB-DEBIT"
+									class="radio select_radio" id="bank_type_CEB_DEBIT"
+									id="bank_type_CEB_DEBIT"> <label class="bank-logo"
+										title="中国光大银行" for="bank_type_CEB_DEBIT"> <span
+											class="bank bank--cebb">中国光大银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="SPDB-DEBIT"
+									class="radio select_radio" id="bank_type_SPDB"> <label
+										class="bank-logo" title="上海浦东发展银行" for="bank_type_SPDB">
+											<span class="bank bank--spdb">上海浦东发展银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="GDB-DEBIT"
+									class="radio select_radio" id="bank_type_GDB"> <label
+										class="bank-logo" title="广东发展银行" for="bank_type_GDB">
+											<span class="bank bank--gdb">广东发展银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="CMBC"
+									class="radio select_radio" id="bank_type_CMBC"> <label
+										class="bank-logo" title="中国民生银行" for="bank_type_CMBC">
+											<span class="bank bank--cmbc">中国民生银行</span>
+									</label></li>
+								<li class="item"><input name="choicepayway" type="radio" value="TSBC-DEBIT"
+									class="radio select_radio" id="bank_type_PSBC_DEBIT"> <label class="bank-logo"
+										title="中国邮政储蓄银行" for="bank_type_PSBC_DEBIT"> <span
+											class="bank bank--pspc">中国邮政储蓄银行</span>
+									</label></li>
+								<li style="clear: both;"></li>
+							</ul>
+						</div>
+						<p>
+							<input name="" type="submit" value="" class="sure_ok">
+						</p>
+						<!-- 银联支付结束------------------------>
+					</div>
+				</div>
+				<!--chooice end-------------->
+			</div>
+			</form>
+		</div>
+		</div>
+		<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+		<script src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+		<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+		<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+		<script type="text/javascript" src="${ctxPath}/static/custom/js/common.js"></script>
+		<script type="text/javascript">
+		 $("#chongzhiform").validate({
+		        errorPlacement : function(error, element) {
+		        	$(".errormessage").html(error);
+		        },
+		        rules : {
+		        	money:{
+		        		required:true,
+		        		digits:true
+		        	}
+		        },
+		        messages : {
+		        	money:{
+		        		required:"请输入充值金额",
+		        		digits:"输入格式错误"
+		        	}
+		        },
+		        submitHandler : function(form) {
+		            $(form).ajaxSubmit({
+		                type : "post",
+		                url : MSConfig.BaseURL+"/account/recharge/dorecharge",
+		                dataType : "json",
+		                success : function(result) {
+		                    if(result.status=="y"){
+		                    	window.open("${ctxPath}/" + result.url);
+		                    }else{
+		                        alert(result.info);
+		                    }
+		                }
+		            });
+		        }
+		    });
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$(".bank-logo").click(function() {
+					$(".bank-logo,.bank_logo").removeClass("selected");
+					$(this).addClass("selected");
+					$(".radio").attr("checked", false);
+					$(this).prev().attr("checked", true);
+				});
+				$(".bank_logo").click(function() {
+					$(".bank_logo,.bank-logo").removeClass("selected");
+					$(this).addClass("selected");
+					$(".radio").attr("checked", false);
+					$(this).find("input").attr("checked", true);
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$("#style_two").show();
+				$("#bank_pay").hide();
+				$("#style_two").click(function() {
+					$(this).addClass("style_b");
+					$("#style_three").removeClass("style_b");
+					$("#alipay").show();
+					$("#bank_pay").hide();
+
+
+					$(".bank-logo,.bank_logo").removeClass("selected");
+
+					$("#bank-type-zfb").attr("checked",true);
+					$("#bank-type-zfb").next().addClass("selected");
+				})
+
+				$("#style_three").click(function() {
+					$(this).addClass("style_b");
+					$("#style_two").removeClass("style_b");
+					$("#bank_pay").show();
+					$("#alipay").hide();
+
+					$(".bank-logo,.bank_logo").removeClass("selected");
+
+					$("#bank-type-ICBCB2C").attr("checked",true);
+					$("#bank-type-ICBCB2C").next().addClass("selected");
+				})
+			})
+		</script>
+<% include("../common/foot.html"){}%>
+</body>
+</html>

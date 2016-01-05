@@ -1,0 +1,160 @@
+/* ======================================================== PUBLIC ==========================================================*/
+html, body, form, h1, h2, h3, h4, h5, h6, pre, blockquote, ul, ol, dl {
+	margin:0;
+	padding:0;
+	border:0;
+}
+html {
+	overflow-x:hidden
+}
+body {
+	font-size:13px;
+	color:#555;
+	font-family:Arial, 宋体;
+	background:url(../images/bg.gif) left top repeat-x #fff;
+	behavior:url("/content/data/csshover3.htc");
+}
+hr{
+	border-color:#CCC;
+}
+a
+{
+	outline:none;
+     -moz-outline:none;
+    blr:expression(this.onFocus=this.blur())
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+.clear {
+	clear:both;
+}
+img {
+	vertical-align:middle;
+}
+img.user-logo-define{
+	max-width:140px;
+	width:expression(this.width>140?140:true);
+	max-height:80px;
+	width:expression(this.width>80?80:true);
+}
+input, select, textarea {
+	color:#555;
+	vertical-align:middle;
+	margin:0;
+	/*border:1px solid #bbb;*/
+}
+li{
+	list-style:none;
+}
+a img {
+	border:none;
+}
+.centered{
+   text-align:center;
+}
+
+/* ======================================================== COLOR ==========================================================*/
+.Black {
+	color:#000;
+}
+.White{
+	color:#fff;
+}
+.Gray{
+	color:#666;
+}
+.Blue{
+	color:#024772;
+}
+.ThinBlue{
+	color:#1077b5;
+}
+.Red{
+	color:#ff0000;
+}
+.Orange{
+	color:#996600;
+}
+.ThinOrange{
+	color:#ff6000;
+}
+.Yellow{
+	color:#fea900;
+}
+.light-yellow{
+	color:#F8EFBB;
+}
+.Pink{
+	color:#ff00ff;
+}
+.Green{
+	color:#339900;
+}
+.ThinGreen{
+	color:#999900;
+}
+.Red{
+	color:#cc3300;
+}
+.RedBox , .GreenBox , .BlueBox ,.OrangeBox{
+	padding:3px;
+	color:#fff;
+	display:inline-block;
+	line-height:16px;
+	font-size:12px;
+}
+.RedBox{
+	background:#cc3300;
+}
+.GreenBox{
+	background:#339900;
+}
+.OrangeBox{
+	background:#ffa900;
+}
+.BlueBox{
+	background-color:#0066ff;
+}
+.BlueBorder{
+	border:1px solid #b7ddef;
+}
+.BlueBackground{
+	background:#ddedfe;
+	border-bottom:1px solid #fff;
+	border:none;
+}
+.GrayBackground{
+	background:#f6f6f6;
+}
+.GrayBorder{
+	border:1px solid #ccc;
+}
+.BlueBorder_btm{
+	border-bottom:2px solid #d6e1ea;
+	margin-bottom:1px;
+}
+.Border_btm{
+	border-bottom:1px solid #eef4eb;
+}
+/* ======================================================== LINK ==========================================================*/
+a {
+   color:#cdcdcd;
+   text-decoration:none;
+   cursor:pointer;
+}
+a:hover {
+   text-decoration:underline;
+}
+a.Blue{
+	color:#1077b5;
+}
+a.Blue:hover{
+	text-decoration:underline;
+	color:#1077b5;
+}
+
+/* ======================================================== LOGIN REGISTER ==========================================================*/

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 注册成功</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/zhuce.css" />
+</head>
+
+<body>
+	<% include("/common/head.html"){}%>
+	<div class="zhucesucced">
+		<div class="hd20"></div>
+		<div class="reg_list_1">
+			<img src="${ctxPath}/static/old/front/images/login/buzoub.png" alt="">
+		</div>
+		<div class="register">
+			<img src="${ctxPath}/static/old/front/images/rightl.png" width="120"
+				height="97" />
+			<p>恭喜您已注册</p>
+			<div class="reg">
+				<p>
+					我们已将验证信息发送至您的邮箱<span>${strutil.subStringTo(session.email,0,3)}****${strutil.subString(session.email,strutil.getIndex(session.email,'@'))}
+					</span>请注意查收，建议您在40分钟内进行激活，否则需重新注册!
+				</p>
+			</div>
+			<p>
+				<input name="" type="button" class="gobtn" />
+			</p>
+		</div>
+	</div>
+	<!-- <div class="endwz">
+		<p>进入会员中心&nbsp;&nbsp;|&nbsp;&nbsp;返回首页</p>
+	</div> -->
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

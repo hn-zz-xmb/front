@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/goods.css" rel="stylesheet" type="text/css">
+<title>${store.name!}-${setmeal.name!}-${setmeal.keywords!}详情</title>
+</head>
+<body>
+<!--头部----------------------------------------->
+<% include("../common/storehead.html"){}%>
+<!-- 头部结束 -->
+<div class="goods_head_w">
+<div class="goods_head">
+<div class="position"><a href="${ctxPath}/store?storeId=${store.id}">店铺首页</a>&gt;商品详情</div>
+<div class="goods_box">
+<div class="goods_img_box">
+<div class="big_img">
+<% if(setmeal.image!'' != ''){ %> 
+<img src="/img${setmeal.image!}" />
+	<%}else{%>
+	<img src="${ctxPath}/static/custom/imagesPage03/storeSearch_01.jpg" />
+<%}%>
+</div>
+<div class="small_imgs">
+	<% for(img_ in setMealItemList!){%>
+	<img alt="" src="/img${img_.goods_image}">
+	<% }%>
+</div>
+</div>
+<div class="goods_info_box">
+<div class="goods_info_top"><span>${setmeal.name}</span><!-- <a href="#">查看地址/电话</a> --></div>
+<div class="goods_info_description">${setmeal.description_short}</div>
+<div class="goods_info_price">
+<div class="goods_info_price_l"><span>￥</span>${setmeal.price!0.00}</div>
+<div class="goods_info_price_r">
+<div class="discount">${disCount!}折</div>
+<div class="original_price"><s>￥${setmeal.original_price!0.00}</s></div>
+</div>
+<div style="clear:both;"></div>
+</div>
+<div class="goods_info_pane">
+<div class="goods_info_pane_l">26人已购买</div>
+<div class="goods_info_pane_c">
+	<img alt="" src="${ctxPath}/static/custom/images/store/star_red.jpg">
+	<img alt="" src="${ctxPath}/static/custom/images/store/star_red.jpg">
+	<img alt="" src="${ctxPath}/static/custom/images/store/star_red.jpg">
+	<img alt="" src="${ctxPath}/static/custom/images/store/star_red.jpg">
+	<img alt="" src="${ctxPath}/static/custom/images/store/star_red.jpg">5分<br>15条评论</div>
+	<!-- 
+<div class="goods_info_pane_r"><img alt="" src="${ctxPath}/static/custom/images/store/tui.jpg">随便退</div> -->
+<div style="clear:both;"></div>
+</div>
+<div class="goods_info_bottom">
+<p>使用时间：${store.worktime_from!}至${store.worktime_to!}</p>
+<p>有效期：截止到2015.02.12<span>周末/法定节假日通用</span></p>
+</div>
+<div class="goods_info_btn"><a href="javascript:void(0)" onclick="addCart('${store.id}','${setmeal.id}','${isSetMeal!1}',this,$('#flyItem'))">加入菜单</a></div>
+<div id="flyItem" class="fly_item" style="display: none;">
+	<img height="50" width="50" src="/img${setmeal.image}">
+</div>
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+</div>
+<div class="goods_content_w">
+<div class="goods_content">
+<div class="goods_content_left">
+<ul class="my_tab" >
+<li><a href="javascript:;" class="active">本单详情</a></li>
+</ul>
+<div class="tab_content">
+<!-- 
+<div class="detail_title">商家位置</div>
+<div class="address_info">
+<div class="address_info_left">
+<div class="address_info_left_t">
+	<div id="container" style="width:100%;height:300px"></div>
+</div>
+<div class="address_info_left_b"><img alt="" src="${ctxPath}/static/custom/images/search.jpg">查看完整地图</div>
+</div>
+<div class="address_info_right">
+<div class="store_name">${store.name!}</div>
+<table>
+<tr><td width="60px">信&nbsp;&nbsp;用&nbsp;&nbsp;度：</td><td><img alt="" src="${ctxPath}/static/custom/images/store/heart.jpg"></td></tr>
+<tr><td valign="top">详细地址：</td><td>${store.address!}</td></tr>
+<tr><td>营业时间：</td><td>${store.worktime_from!}至${store.worktime_to!}</td></tr>
+<tr><td>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td><td>${store.phone!}</td></tr>
+</table>
+</div>
+<div style="clear:both;"></div>
+</div>
+ -->
+ <div class="detail_title">套餐信息</div>
+<div class="taocan_info">
+<div class="taocan_table">
+<table>
+<tr><th>菜名</th><th>数量</th><th>价格（元）</th></tr>
+<%var totalPrice = 0;%>
+<%for(item in setMealItemList){%>
+<tr><td>${item.name}</td><td>${item.count}份</td><td>${item.sales_price}</td></tr>
+<%totalPrice=totalPrice+item.sales_price*item.count;%>
+<%}%>
+</table>
+<div class="tfoot">
+<span>合计</span>
+<span class="fr">
+<span class="original_price">原价：<span class="red">${totalPrice!}元</span></span>
+<span class="setMeal_price">套餐价：${setmeal.price!}元</span>
+</span>
+</div>
+</div>
+</div>
+<div class="detail_title">详细展示</div>
+${setmeal.description!}
+</div>
+</div>
+<div class="goods_content_right">
+<!-- 
+<div class="welcome_box">
+<img alt="" src="${ctxPath}/static/custom/images/welcome.jpg">
+<div class="welcome_text">
+<b>工作时间</b>
+<p>${store.worktime_from!}至${store.worktime_to!}</p>
+<p>全年无休</p>
+</div>
+<div class="welcome_text">
+<b>联系方式</b>
+<p>联系电话：${store.phone!}</p>
+<p>地址：${store.address!}</p>
+</div>
+</div> -->
+<% include("../store/_welcome.html"){}%>
+<!-- welcome box end -->
+<div class="goods_list_pane">
+<div class="title">看过本产品的用户还看了</div>
+<div class="content">
+<%var count=0;%>	
+<% for(b in advertAd){%>
+<%count=count+1;%>
+<div class="goods_item">
+<div class="goods_item_t"><a target="_blank" href="${b.ad_url!}">
+<img alt="" src="/img${b.ad.pic!}"></a></div>
+<div class="goods_item_b">
+<div class="goods_name">${b.ad.text!}</div>
+<div class="price"><span>￥</span>${b.ad_price!}<a href="#" class="qianggou">抢购</a></div>
+</div>
+</div>
+<%}%>
+<%for(var a=0; a<5-count;a++){%>
+<!-- goods item end -->
+<div class="goods_item">
+<div class="goods_item_t"><a href="#"><img alt="" src="${ctxPath}/static/custom/images/store/goods04.jpg"></a></div>
+<div class="goods_item_b">
+<div class="goods_name">农夫大盘鸡</div>
+<div class="price"><span>￥</span>78<a href="#" class="qianggou">抢购</a></div>
+</div>
+</div>
+<%}%>
+</div>
+</div>
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+<% include("../common/foot.html"){}%>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/common.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/goods.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<script type="text/javascript" src="http://map.qq.com/api/js?v=2.exp&callback=init"></script>
+<script type="text/javascript">
+	var lat_= new Number('${store.position_lat}');
+	var lng_= new Number('${store.position_lng}');
+	function init() {
+		var center = new qq.maps.LatLng(lat_,lng_);
+		var map = new qq.maps.Map(document.getElementById('container'),{
+			center: center,
+			zoom: 13
+		});
+		var marker = new qq.maps.Marker({
+			position: center,
+			map: map
+		});
+	}
+
+</script>
+</body>
+</html>

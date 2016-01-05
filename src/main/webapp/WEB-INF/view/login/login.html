@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0">
+		<meta name="keywords"
+			content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+			<meta name="description"
+				content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+				<link href="${ctxPath}/static/custom/css/login.css" rel="stylesheet"
+					type="text/css">
+					<title>37美食网_一站式高品质餐饮美食服务网站</title>
+					<style>
+.errormessage {
+	color: red;
+}
+.error{
+	color: red;
+}
+</style>
+</head>
+<body>
+	<div class="header_bg">
+		<div class="header">
+			<!--logo start-->
+			<div class="logo clearfix">
+				<div class="logocon">
+					<a href="${ctxPath}/"><img src="${ctxPath}/static/custom/images/logo.jpg" width="224"
+						height="140" /></a>
+				</div>
+				<p class="head_tip">欢迎登录</p>
+				<div class="logo_right">
+					您是新用户? <a href="${ctxPath}/register">注册</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--header_bg end-------------------->
+	<div class="content">
+		<!--login start--------------------->
+		<div class="login">
+			<div class="login_l">
+				<img src="${ctxPath}/static/custom/images/login_l.png" width="658"
+					height="421">
+			</div>
+			<div class="login_r">
+				<p class="login_title">用户登录</p>
+				<ul class="login_style">
+					<li class="normal login_hover" id="normal_login">普通方式登录</li>
+					<li class="phone" id="phone_login">手机动态码登录</li>
+				</ul>
+				<input type="hidden" id="return_url" value="${ret_url!'/'}"/>
+				<input type="hidden" id="ajax" value="1"/>
+				<form class="form" id="normal_form">
+					<div class="input_container">
+						<span class="phone"><input id="username" name="username"
+							type="text" class="input_nr" placeholder="用户名/手机号/邮箱"></span>
+					</div>
+					<div class="input_container">
+						<span class="lock"><input id="password" name="password"
+							type="password" class="input_nr" placeholder="密码"></span>
+						<p class="errormessage"></p>
+					</div>
+					<div class="forget">
+						<a href="${ctxPath}/member/forgetPwd">忘记密码?</a>
+					</div>
+					<div class="login_btn_w">
+						<input name="" type="submit" value="" class="login_btn">
+					</div>
+				</form>
+				<!--手机动态码登录------------------->
+
+				<form class="form" style="display: none;" id="phone_form">
+					<div class="input_container">
+						<span class="phone"><input id="phone" name="phone"
+							type="text" class="input_nr" placeholder="手机号"></span>
+					</div>
+					<div class="input_container">
+						<span class="lock"><input id="dynamicCode" name="dynamicCode"
+							type="text" class="input_nr" placeholder="短信校验码"></span>
+						<p class="error"></p>
+					</div>
+					<div class="send_btn_w">
+						<input onclick="sendMessage()" id="btnSendCode" type="button" value="发送验证码" class="yanzheng">
+					</div>
+					<div class="login_btn_w">
+						<input name="" type="submit" value="" class="login_btn">
+					</div>
+				</form>
+				<!--手机动态码登录end-------->
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<!--login end--------------->
+	</div>
+	<% include("../common/foot.html"){}%>
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script
+		src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajaxLogin.js"></script>
+</body>
+</html>

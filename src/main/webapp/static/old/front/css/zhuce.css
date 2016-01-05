@@ -1,0 +1,203 @@
+/* CSS Document */
+@import url("base.css");
+
+.zhuce {
+	width: 932px;
+	margin: 0 auto;
+}
+
+.phone {
+	margin-bottom: 20px;
+}
+
+.phone p {
+	margin: 0 auto;
+}
+
+.zhuce_left {
+	float: left;
+	width: 632px;
+	border: 1px solid #edecec;
+}
+
+.zhuce_left ul {
+	border-bottom: 1px solid #edecec;
+	height: 40px;
+}
+
+.zhuce_left ul li {
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	width: 80px;
+	padding: 0px 25px;
+	margin-left: -1px;
+	position: relative;
+	font-size: 14px;
+}
+
+.zhuce_left ul li.new {
+	cursor: pointer;
+	border-bottom: 1px solid #E0E0E0;
+	background-color: #FFF;
+	padding: 0px 20px;
+	border-left: 1px solid #E0E0E0;
+	border-right: 1px solid #E0E0E0;
+}
+
+.zhuce_left ul li.this {
+	border-top: 3px solid #76b02a;
+	border-bottom: 1px solid #FFF;
+	margin-top: -1px;
+	height: 38px;
+}
+
+.biaodan {
+	
+}
+
+.biaodan dt {
+	line-height: 50px;
+}
+
+.biaodan {
+	margin: 20px 0 0 20px;
+}
+
+.biaodan p {
+	text-align: left;
+	padding-left: 100px;
+}
+
+.text_a {
+	margin: 0 10px;
+}
+
+.text_a input {
+	height: 25px;
+	width: 250px;
+}
+
+.zhm {
+	width: 90px;
+	display: inline-block;
+	line-height: 34px;
+	text-align: right;
+}
+
+.email {
+	
+}
+
+.huoqu {
+	width: 150px;
+}
+
+.text_b {
+	height: 25px;
+	margin: 0 10px;
+}
+
+.yanz {
+	padding-left: 53px;
+}
+
+.submit {
+	height: 31px;
+	width: 122px;
+	border: 0 none;
+	margin: 10px 0;
+	background: url(../images/ico/18.jpg) no-repeat;
+}
+/*	zhuce_right start----------------------------*/
+.zhuce_right {
+	width: 280px;
+	margin-top: 40px;
+	float: right;
+}
+
+.zhuce_right span {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.clink_btn {
+	margin-top: 20px;
+	width: 100px;
+}
+
+.clink_btn img {
+	margin: 10px 0;
+}
+
+/*���伤��*/
+.zhucesucced {
+	margin: 0 auto;
+	width: 932px;
+	border-bottom: 2px solid #84c225;
+}
+
+.hd20 {
+	height: 20px;
+	line-height: 20px;
+}
+
+.reg_list_1 {
+	border: 1px solid #efefef;
+	background: #f8f8f8;
+	display: block;
+	overflow: hidden;
+	padding: 20px 10px;
+	text-align: center;
+}
+
+.register {
+	width: 382px;
+	height: 220px;
+	margin: 0 auto;
+}
+
+.register img {
+	float: left;
+}
+
+.register p {
+	float: left;
+	line-height: 120px;
+	font-weight: 600;
+	font-size: 26px;
+	padding-left: 20px;
+}
+
+.gobtn {
+	height: 30px;
+	width: 141px;
+	border: 0 none;
+	margin: 10px 0 10px 100px;
+	background: url(../images/goemail.png) no-repeat;
+	cursor: pointer;
+}
+
+.reg {
+	
+}
+
+.reg span {
+	color: #e10d0d;
+}
+
+.reg p {
+	font-size: 12px;
+	color: #bdbbbb;
+	line-height: 20px;
+}
+
+.endwz {
+	margin: 0 auto;
+	width: 932px;
+}
+
+.endwz p {
+	margin-top: 10px;
+	text-align: center;
+}

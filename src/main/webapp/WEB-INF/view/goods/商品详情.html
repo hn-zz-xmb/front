@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/goods.css" rel="stylesheet" type="text/css">
+<title>商品详情</title>
+</head>
+<body>
+<!--头部----------------------------------------->
+<% include("../common/storehead.html"){}%>
+<!--头部over----------------------------------------->
+<div class="goods_head_w">
+  <div class="goods_head">
+    <div class="position"><a href="${ctxPath}/store?storeId=${store.id!}">店铺首页</a>&gt;商品详情</div>
+    <div class="goods_box">
+      <div class="goods_img_box">
+        <div class="big_img"><img  src="/img${food.image!}" id="big_img" onerror="javascript:this.src='${ctxPath}/static/custom/images/defaultgoods.jpg';">
+        </div>
+        <div class="small_imgs">
+            <% for(img_ in goodsImgs!){%>
+               <img  onclick="changeImg(this)" src="/img${img_.small_image}" data-url="${img_.large_image}" onerror="javascript:this.src='${ctxPath}/static/custom/images/defaultgoods.jpg';">
+            <% }%>
+        </div>
+      </div>
+      <div class="goods_info_box">
+        <div class="goods_info_top"><span>${food.name!}</span></div>
+        <div class="goods_info_description">${food.description_short!}</div>
+        <div class="goods_info_price">
+          <div class="goods_info_price_l"><span>￥</span>${food.price!0.00}<span style="font-size:22px;">/份</span></div>
+          <div style="clear:both;"></div>
+        </div>
+        <div class="goods_info_pane">
+          <div class="goods_info_pane_l"><span style=" font-weight:bold;">售量:</span><span style="color:red; margin-left:10px;">${goodsStatistics.sale_num!0}</span></div>
+          <div style="clear:both;"></div>
+        </div>
+        <div class="goods_info_bottom"> <span style="float:left; margin-right:30px; margin-top:5px;">数量：</span><span class="jiahao"><a href="#">-</a></span><span class="jiahao1"><a href="#">0</a></span><span class="jiahao"><a href="#">+</a></span> </div>
+        <div  style="clear:both"></div>
+        <div class="goods_info_btn"><a href="javascript:void(0)"  onclick="addCart('${store.id}','${food.id}','${isSetMeal!0}',this,$('#flyItem'))">加入餐车</a></div>
+         <div id="flyItem" class="fly_item" style="display: none;">
+              <img height="50" width="50" src="/img${food.image}">
+         </div>
+          <!--<div class="goods-sc">收藏（86）</div>-->
+        <div class="goods-fx">分享到</div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div class="goods_content_w">
+  <div class="goods_content">
+    <div class="goods_content_left">
+      <ul class="my_tab" id="goodsxq_tab" >
+        <li><a href="javascript:;" class="active" onclick="showTab(1)">本单详情</a></li>
+        <li><a href="javascript:;" onclick="showTab(2)">用户评价</a></li>
+        <li><a href="javascript:;" onclick="showTab(3)">购买记录</a></li>
+      </ul>
+      <!--商家位置-->
+      <div class="tab_content" >
+        <div class="tab" id="tab1">
+          <div class="detail_title">商家位置</div>
+          <div class="address_info">
+            <div class="address_info_left">
+              <div class="address_info_left_t"><div id="container" style="width:100%;height:300px"></div></div>
+              <div class="address_info_left_b"><img alt="" src="${ctxPath}/static/custom/images/search.jpg">查看完整地图</div>
+            </div>
+            <div class="address_info_right">
+              <div class="store_name">${store.name!}</div>
+              <table>
+                <tr>
+                  <td width="60px">信&nbsp;&nbsp;用&nbsp;&nbsp;度：</td>
+                  <td><img alt="" src="${ctxPath}/static/custom/images/store/heart.jpg">&nbsp;<img alt="" src="${ctxPath}/static/custom/images/store/heart.jpg">&nbsp;<img alt="" src="${ctxPath}/static/custom/images/store/heart.jpg">&nbsp;<img alt="" src="${ctxPath}/static/custom/images/store/heart.jpg"></td>
+                </tr>
+                <tr>
+                  <td valign="top">详细地址：</td>
+                  <td>${store.address!}</td>
+                </tr>
+                <tr>
+                  <td>营业时间：</td>
+                  <td>${store.worktime_from!}至${store.worktime_to!}</td>
+                </tr>
+                <tr>
+                  <td>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+                  <td>${store.phone!}</td>
+                </tr>
+              </table>
+            </div>
+            <div style="clear:both;"></div>
+          </div>
+          <div class="detail_title">详细展示</div>
+          <div class="img_info">
+              ${food.description!}
+          </div>
+        </div>
+        <!--商家位置结束--> 
+        <!--评价列表开始-->
+        <div class="tab" id="tab2" style="display:none;">
+
+        </div>
+        <!--评价列表结束--> 
+        <!--购买记录开始-->
+        <div class="tab" id="tab3" style="display:none;">
+
+        </div>
+        <!--购买记录结束--> 
+      </div>
+    </div>
+    <!--用户评价-->
+    <div class="goods_content_right">
+      <div class="menu">
+        <div class="menu_content">
+          <div class="welcome_box"> <img alt="" src="${ctxPath}/static/custom/images/welcome.jpg">
+            <div class="welcome_text"> <b>工作时间</b>
+              <p>${store.worktime_from!}至${store.worktime_to!}</p>
+              <p>${store.worktime_from!}至${store.worktime_to!}</p>
+            </div>
+            <div class="welcome_text"> <b>联系方式</b>
+              <p>联系电话：${store.phone!}</p>
+              <p>地址：${store.address!}</p>
+            </div>
+            <div class="welcome_djxq"> <b>店家详情</b>
+              <p>
+                  <img src="/img${store.logo_image!}" width="150" height="150">
+              </p>
+              <p>${store.description!}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+      <!-- menu end -->
+      <div style="width:258px; background-color:#83C130;"> </div>
+    </div>
+  </div>
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+<% include("../common/foot.html"){}%>
+<script src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/custom/js/goods-xp.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/common.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/goods.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<script type="text/javascript" src="http://map.qq.com/api/js?v=2.exp&callback=init&key=TB5BZ-RRLWP-7Z2DL-VDY7Y-SKQUE-BMBIS"></script>
+<script type="text/javascript">
+    var lat_= new Number('${store.position_lat}');
+    var lng_= new Number('${store.position_lng}');
+    function init() {
+        var center = new qq.maps.LatLng(lat_,lng_);
+        var map = new qq.maps.Map(document.getElementById('container'),{
+            center: center,
+            zoom: 13
+        });
+        var marker = new qq.maps.Marker({
+            position: center,
+            map: map
+        });
+    }
+
+</script>
+
+<script>
+    $(function(){
+        $("#tab2").load("${ctxPath}/goods/loadOrderAppraise?storeId=${store.id!}");
+        $("#tab3").load("${ctxPath}/goods/loadGoodsBugHistory?goodsId=${food.id!}");
+    })
+</script>
+<script type="text/javascript">
+	function changeImg(el){
+		var url=$(el).attr("data-url");
+		$("#big_img").attr("src","/img"+url);
+	}
+	</script>
+</body>
+</html>

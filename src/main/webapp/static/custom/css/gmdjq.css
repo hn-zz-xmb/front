@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+/*主题*/
+.main{ width:1180px; margin:0 auto; background-color:#fff; border-bottom:2px solid #84c233;}
+.title{ width:1180px; height:48px; border-bottom:2px solid #84c233;margin:0 auto; line-height:42px; text-align:left; margin-top:15px; color:#333; font-size:24px; font-weight:bold;}
+.mainbox{ margin:0 auto; width:580px; }
+.mainbox ul li{ height:40px; color:#666; font-size:16px; line-height:40px; }
+.mainbox ul li span{ color:#84c233; font-weight:bold; font-size:20px;}
+.anniu{ float:left; width:24px; height:25px; border:1px solid #ddd; color:#333;text-align: center;line-height: 25px;}
+.mainbox ul li b{ margin-right:70px;}

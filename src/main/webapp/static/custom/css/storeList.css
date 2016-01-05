@@ -1,0 +1,67 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.content{
+	font-size:14px;
+	color:#666;
+	width:1180px;
+	margin:0 auto;
+	margin-top:10px;
+}
+.stores_w{
+	border:1px solid #ccc;
+	background-color:#fbfff1;
+	min-height:600px;
+}
+.stores{
+	width:100%;
+	
+	border-collapse:collapse;
+}
+.stores th{
+	background:url(../images/storeManage/bg01.jpg);
+	height:49px;
+	font-size:16px;
+	color:#000;
+	border-bottom:1px solid #ccc;
+}
+.stores td{
+	height:40px;
+	border-bottom:1px dotted #ccc;
+	text-align:center;
+	background-color:#fbfff1;
+}
+.btn_g{
+	background-color:#adda77;
+	border:1px solid #8bc73c;
+	color:#666;
+	padding:5px 10px;
+}

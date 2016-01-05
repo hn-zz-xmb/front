@@ -1,0 +1,22 @@
+<div class="mainbox-pj1" >
+    <table>
+        <tr class="first">
+            <td>昵称</td>
+            <td>订单号</td>
+            <td>价格</td>
+            <td>数量</td>
+            <td>下单时间</td>
+        </tr>
+        <%for(order in goodsBugHistoryPage.list!){%>
+        <tr>
+            <td>${order.username!}</td>
+            <td style="color:#ff4e02;">${order.order_no!}</td>
+            <td style="color:#ff4e02;">￥${order.totalPrice!0.00}</td>
+            <td>${order.counts!}份</td>
+            <td>${date(order.order_time !,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</td>
+        </tr>
+        <%}%>
+    </table>
+</div>
+<% include("/common/_ajaxpagination.html",{page:goodsBugHistoryPage}){}%>
+</div>

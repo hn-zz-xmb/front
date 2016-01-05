@@ -1,0 +1,41 @@
+<div class="goods_table">
+    <table class="table_grey">
+        <tr>
+            <th>商品名称</th>
+            <th>价格（元）</th>
+            <th>商品选择</th>
+        </tr>
+        <%for (g in page.list){%>
+        <tr>
+            <td>${g.name!}</td>
+            <td>${g.price !}</td>
+            <td>
+                <% var isChoose=false;
+                for(item in session.foodPackageItemMap!){
+                if(item.key==g.id && !item.value.isDelete!false){
+                isChoose=true;
+                break;
+                }
+                }
+                %>
+                <a href="javascript:;" id="goods_${g.id}" onclick="chooseGoods('${g.id}')"
+                <%if(isChoose==false){%>
+                tag="1"
+                <%}else{%>
+                tag="2"
+                <%}%>
+                >
+                <% if(isChoose==false){%>
+                <img alt="" src="${ctxPath}/static/custom/images/storeManage/right_grey.png">
+                <%}else{%>
+                <img alt="" src="${ctxPath}/static/custom/images/storeManage/right_green.png">
+                <%}%>
+                </a>
+            </td>
+        </tr>
+        <%}%>
+    </table>
+</div>
+<div class="pagination">
+    <% include("/common/_ajaxpagination.html",{page:page}){}%>
+</div>

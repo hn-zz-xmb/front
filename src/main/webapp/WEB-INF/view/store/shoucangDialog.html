@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/recommendDialog.css" rel="stylesheet" type="text/css">
+<script type="text/javascript"src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<title></title>
+</head>
+<body>
+	<div class="wrap">
+		<form id="coupon" action="" method="post">
+			<div class="form">
+				<div class="row" >
+					<%if(collect_type=='collect_store'){%>
+					收藏店铺<%if(massege!){%>成功<%}else{%>失败<%}}else{%>
+					收藏商品<%if(massege!){%>成功<%}else{%>失败<%}}%>
+				</div>
+				<div class="notice"></div>
+				<div class="bottom">
+					<button id="cancel" class="btn_cancel" >确定</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+	$('#cancel').on('click', function(){
+		 var index = parent.layer.getFrameIndex(window.name);
+         parent.layer.close(index);
+	});
+	
+</script>
+</body>
+</html>

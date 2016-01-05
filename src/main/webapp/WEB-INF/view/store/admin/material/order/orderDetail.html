@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link href="${ctxPath}/static/custom/css/orderDetail.css"
+	rel="stylesheet" type="text/css">
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		当前位置：<a href="${ctxPath}/salerManage/materialManage/ordermanage">订单列表</a>&gt;订单详情
+	</div>
+	<div class="content">
+		<div class="order_detail_title">订单详情</div>
+		<div class="order_detail_content">
+			<div class="order_detail_content_t">
+				<table class="order_info">
+					<tr>
+						<td>配送方式：<span class="span1">
+						<%if(materialOrder.delivery_method! =="distribution"){%>自取<%}else{%>${materialOrder.deliveryname!}<%}%>
+						</span></td>
+						<td>订单号：<span class="span2">${materialOrder.order_no!}</span></td>
+						<td>下单时间：<span class="span3">${date(materialOrder.order_time!,'yyyyMMddHHmmss'),'yyyy-MM-dd hh:mm'}</span></td>
+						<td><%if(materialOrder.delivery_method! !="distribution"){%>
+						邮政编码：<span class="span3">${materialOrder.zip_code!}</span><%}%></td>
+					</tr>
+					<tr>
+						<td>接收人名称：<span class="span1">${materialOrder.buyer_name!}</span></td>
+						<td>订单状态：<span class="span2">${materialOrder.orderStatus!}</span></td>
+						<td>电话:<span class="span3">${materialOrder.phone!}</span></td>
+					</tr>
+					<tr>
+						<%if(materialOrder.delivery_method! !="distribution"){%><td colspan="4">送货地址：<span class="span4">${materialOrder.region+materialOrder.addressInfo!}</span></td><%}%>
+					</tr>
+				</table>
+			</div>
+			<div class="order_detail_content_b">
+				<div class="saler_info_title">卖家信息</div>
+				<table class="saler_info">
+					<tr>
+						<td>店铺名：<span class="green"><a target="_blank"
+								href="${ctxPath}/store?storeId=${materialOrder.storeId}">${materialOrder.storeName}</a></span></td>
+						<td>电话号码：${materialOrder.storeTel}</td>
+						<td>所在地区：${materialOrder.storeRegion}</td>
+						<td>详细地址：${materialOrder.saddress}</td>
+					</tr>
+				</table>
+				<table class="goods_info">
+					<tr>
+						<th>商品</th>
+						<th>数量</th>
+						<th>单价（元）</th>
+						<th>优惠/折扣</th>
+						<th>商品总价（元）</th>
+					</tr>
+					<%for (o in orderDetails){%>
+					<tr>
+						<td><img style="height: 80px; width: 80px;" alt=""
+							src="/img${o.item_img}"> <span class="green goods_name"><a
+								target="_blank" href="#">${o.item_name}</a></span></td>
+						<td>${o.counts}</td>
+						<td>${o.item_price}</td>
+						<td>- -</td>
+						<td>${o.item_price*o.counts}</td>
+					</tr>
+					<%}%>
+				</table>
+			</div>
+		</div>
+	</div>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

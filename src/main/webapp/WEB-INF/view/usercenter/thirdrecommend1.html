@@ -1,0 +1,18 @@
+<div class="hdScreening">
+            <div class="hdTitle">三级推荐人列表</div>
+            <table id="grid" width="100%" rules="all" cellpadding="10" bordercolor="#d5d5d5" cellspacing="1">
+              <tr class="tableTitle">
+                <td width="200">推荐人昵称</td>
+                <td>总获利</td>
+                <td>当日获利</td>
+              </tr>
+              <%for(a in page.list!){%>
+              <tr class="tableBg">
+                <td>${a.username!}</td>
+                <td>${a.countmoney!0.00}</td>
+                <td>${a.datemoney!0.00}</td>
+              </tr>
+              <%}%>
+              
+            </table>
+          </div>

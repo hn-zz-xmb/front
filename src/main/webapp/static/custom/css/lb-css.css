@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+table {
+	width: 1140px;
+	overflow: hidden;
+}
+tr {
+	height: 55px;
+	line-height: 20px;
+	border-collapse: collapse;
+}
+td {
+	border-top: 1px solid #ddd;
+}
+.main {
+	border-bottom: 1px solid #ddd;
+}
+.mainbox {
+	width: 1140px;
+	margin: 0 auto;
+	overflow: hidden;
+	border: 1px solid #8bc73c;
+	padding: 20px;
+	margin-top: 10px;
+	height: 420px;
+	background-color: #fff;
+}
+.pagination {
+	text-align: center;
+	height: 50px;
+	margin-top: 10px;
+}
+.pagination a {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	border: 1px solid #ccc;
+	background-color: white;
+	font-family: "宋体";
+	font-size: 16px;
+	color: #000;
+	text-align: center;
+	line-height: 36px;
+}

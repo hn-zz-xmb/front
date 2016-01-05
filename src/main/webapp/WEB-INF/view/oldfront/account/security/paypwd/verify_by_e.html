@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 修改支付密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/front/css/modify.css" />
+<script type="text/javascript"
+	src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript"
+	src="${ctxPath}/static/custom/js/ajax.common.js"></script>
+<script type="text/javascript">
+	function sendEmail() {
+		var url = "${ctxPath}/account/security/sendPayPwdEmail";
+		var result = callText(url, {}, true);
+		if (result) {
+			alert("邮件发送成功！");
+		}
+	}
+</script>
+</head>
+
+<body>
+	<%include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="modify">
+		<p class="xgmm">修改支付密码</p>
+		<div class="modi_pay"></div>
+		<!--modi_up start-->
+		<div class="modi_up">
+			<p>
+				已验证邮箱:${user.email!} <span>
+			</p>
+			<p>
+				<input name="" type="button" class="btny" value="发送验证邮件"
+					onclick="sendEmail()" />
+			</p>
+		</div>
+		<!--modi_up end-->
+
+	</div>
+	<%include("/common/foot.html"){}%>
+	<input type="hidden" name="CSRFToken" value="${csrf}" id="CSRFToken" />
+</body>
+</html>

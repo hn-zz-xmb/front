@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>推荐人中心</title>
+<link href="conment-css/css.css" rel="stylesheet" type="text/css" />
+<link href="${ctxPath}/static/custom/css/tj-css.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<div class="title">
+		<div class="leftbox fl">
+			<ul>
+				<li>一级推荐人:<span class="rz">${count1!0}/人</span></li>
+				<li>二级推荐人:<span class="rz">${count2!0}/人</span></li>
+				<li>三级推荐人:<span class="rz">${count3!0}/人</span></li>
+				<li>推荐店铺个数:<span class="rz">${storecount!0}/家</span></li>
+			</ul>
+		</div>
+		<div class="rightbox fr">
+			<div class="rightbox-top">
+				<ul>
+					<li>总获利：<span class="rz" style="margin-right: 30px;">￥${recommendMoney.totalmoney!0.00}</span>
+						当日获利：<span class="rz">￥${recommendMoney.datemoney!0.00}</span></li>
+					<li><button href="javascript:;" onclick="show()" class="anniu">我的获利</button></li>
+				</ul>
+			</div>
+			<div class="rightbox-bottom">
+				<ul>
+					<li>推荐号:<span class="rz">${recommendMember.referee_no!}</span></li>
+					<li>推荐链接:<span class="rz">${recommendMember.referee_url!}</span></li>
+					<li>我的推荐人:<span class="rz">${recommendRelation1.username!}</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="mainbox">
+		<table>
+			<tr>
+				<td style="width: 320px;">推荐人姓名</td>
+				<td style="width: 300px;">获利</td>
+				<td class="rs">人数</td>
+			</tr>
+		</table>
+		<div class="content">
+			<%for(r in firstrecommend){%>
+			<table>
+				<tr>
+					<td class="user01"><span class="anniu01"
+						id="zhankai_${r.referral_id}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						${r.username!}</td>
+					<td style="width: 300px;">${r.countmoney!0.00}</td>
+					<td style="width: 560px; border-right: none;">${r.recommendcount!0}</td>
+				</tr>
+			</table>
+			<div class="content_${r.referral_id}">
+				<%for(map in secondrecommend){%> <%if(map.key==r.referral_id){%>
+				<%for(r1 in map.value){%>
+				<table>
+					<tr>
+						<td class="user02"><span class="anniu01"
+							id="zhankai_${r1.referral_id}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							${r1.username!}</td>
+						<td style="width: 300px;">${r1.countmoney!0.00}</td>
+						<td style="width: 560px; border-right: none;">${r1.recommendcount!0}</td>
+					</tr>
+				</table>
+				<div class="content_${r1.referral_id}">
+					<%for(map1 in thirdrecommend){%> <%if(r1.referral_id==map1.key){%>
+					<%for(r2 in map1.value){%>
+					<table>
+						<tr>
+							<td class="user03">${r2.username!}</td>
+							<td style="width: 300px;">${r2.countmoney!0.00}</td>
+							<td style="width: 560px; border-right: none;">${r2.recommendcount!0}</td>
+						</tr>
+					</table>
+					<%}}}%>
+				</div>
+				<%}}}%>
+			</div>
+			<%}%>
+		</div>
+	</div>
+	<div class="mainbox" style="margin-top: 15px;">
+		<table>
+			<tr>
+				<td style="width: 320px;">店主名称</td>
+				<td style="width: 300px;">总获利</td>
+				<td class="rs">当日获利</td>
+			</tr>
+			<%for (store in recommendStore){%>
+			<tr>
+				<td style="width: 320px;">${store.username!}</td>
+				<td style="width: 300px;">${store.countmoney!0.00}</td>
+				<td class="rs">${store.daymoney!0.00}</td>
+			</tr>
+			<%}%>
+		</table>
+	</div>
+	<% include("../common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript">
+		function show() {
+			$.layer({
+				type : 2,
+				shadeClose : true,
+				title : '获利记录',
+				closeBtn : [ 0, true ],
+				shade : [ 0 ],
+				border : [ 10, 0.3, '#000' ],
+				offset : [ '20px', '' ],
+				area : [ '800px', '720px' ],
+				iframe : {
+					src : '${ctxPath}/recommend/findRecommendMoney'
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			$("#zhankai02").click(function() {
+				if ($(".user01 .anniu01").hasClass("jian")) {
+					$(".user01 .anniu01").removeClass("jian");
+				} else {
+
+					$(".user01 .anniu01").addClass("jian");
+				}
+				$(".content01").toggle();
+			})
+		});
+
+		$(function() {
+			$("#zhankai03").click(function() {
+				if ($(".user02 .anniu01").hasClass("jian")) {
+					$(".user02 .anniu01").removeClass("jian");
+				} else
+					$(".user02 .anniu01").addClass("jian");
+				$(".content02").toggle();
+			})
+		});
+	</script>
+</body>
+</html>

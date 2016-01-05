@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/public.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/security.css" />
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<div class="wrap">
+		<div class="pane">
+			<div class="pane_head">修改登录密码</div>
+			<div class="pane_content">
+				<div class="form">
+					<div class="row">
+						<label class="label">当前密码：</label>
+						<span class="input_w">
+						<input name="oldPwd" type="password">
+						</span>
+						<span class="notice">请输入3-12个字符，支持中文、英文</span>
+					</div>
+					<div class="row">
+						<label class="label">设置新密码：</label>
+						<span class="input_w">
+						<input name="password" type="password">
+						</span>
+						<span class="notice">安全等级&nbsp;
+						<span class="out_bar">
+						<span class="inside_bar">
+						</span>
+						</span>&nbsp;
+						<span>弱</span>
+						</span>
+					</div>
+					<div class="row">
+						<label class="label">确认新密码：</label>
+						<span class="input_w">
+						<input name="repeatPwd" type="text">
+						</span>
+						<span class="notice">两次输入密码必须一致！</span>
+					</div>
+					<div class="btn_w">
+						<button class="btn_green">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% include("../common/foot.html"){}%>
+</body>
+</html>

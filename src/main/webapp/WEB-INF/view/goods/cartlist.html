@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/cart.css" rel="stylesheet" type="text/css">
+<title>购物车列表</title>
+</head>
+<body>
+<!--头部----------------------------------------->
+<%include("/common/head.html"){}%>
+<!--头部结束----------------------------------------->
+<div class="content">
+<div class="table_head">
+<span class="th">店铺</span><span class="th">商品件数</span><span class="th">商家信息</span><span class="th">商品操作</span>
+</div>
+<div class="table_content">
+    <%for(store_ in storeMap_!){%>
+
+        <%var totalCount=0;
+          var totalMoney=0.00;
+        %>
+        <%for(cartItem_ in cartItemList_!){%>
+        <%if(cartItem_.store_id==store_.key){%>
+        <%totalCount=totalCount+cartItem_.item_num;
+          totalMoney=totalMoney+cartItem_.item_num*cartItem_.itemprice;%>
+        <%}}%>
+    <div class="tr" id="store_${store_.key}">
+    <div class="store_info">
+    <div class="td td1">
+    <div class="store_logo">
+     <% if(store_.value.storeimg!''=="" || store_.value.storeimg!'' == null){ %> 
+    <img alt="" src="${ctxPath}/static/custom/images/store_logo1.jpg">
+    <%}else{%>
+    <img   src="/img${store_.value.storeimg}">
+    <%}%>
+    </div>
+    <div class="store_text">
+    <div class="store_name">${store_.value.name}</div>
+    <div class="store_description">${store_.value.storedesc}</div>
+    </div>
+    </div>
+    <div class="td td2">${totalCount!0}</div>
+    <div class="td td3">
+    <span class="tel">订餐电话：<span class="color1">${store_.value.storetel}</span></span><br>
+    <span class="address">${store_.value.storeaddress}</span>
+    </div>
+    <div class="td td4">
+        <a href="javascript:void(0)" class="del" name="deleteByStore_a" id="${store_.key!}">删除</a>
+    </div>
+    <div style="clear:both;"></div>
+    </div>
+    <div class="goods_info">
+    <div class="goods_info_head">
+    <div class="goods_info_head_l"><span class="title1">商品详情</span>&nbsp;&nbsp;<a href="javascript:;" class="arrow_down">点击查看</a></div>
+    <div class="goods_info_head_r"><span class="price" id="totalMoney_top_${store_.key}">￥${totalMoney!0.00}</span>&nbsp;&nbsp;<a href="${ctxPath}/order?storeId=${store_.key}" class="btn_green">去结算</a></div>
+    <div style="clear:both;"></div>
+    </div>
+    <div class="goods_info_content" style="display:none;">
+    <div class="goods_table">
+    <table>
+    <tr>
+        <th>商品</th>
+        <th>数量</th>
+        <th>单价（元）</th>
+        <th>优惠/折扣</th>
+        <th>商品总价（元）</th>
+        <th>操作</th>
+    </tr>
+
+    <%for(cartItem_ in cartItemList_!){%>
+    <%if(cartItem_.store_id==store_.key){%>
+    <tr id="cartItem_${cartItem_.id}">
+        <td>
+         <% if(cartItem_.itemimg!''=="" || cartItem_.itemimg!'' == null){ %> 
+    	 <img alt="" src="${ctxPath}/static/custom/images/member/goods01.jpg" class="goods_img">
+   		 <%}else{%>
+   	 		<img alt="" style="width: 80px;height: 80px;" src="/img${cartItem_.itemimg}" class="goods_img">
+   		 <%}%>
+            <a href="${ctxPath}/goods/view?id=${cartItem_.item_id}" class="goods_name">${cartItem_.itemname}</a>
+        </td>
+        <td><span class="input_qty">
+            <a class="minus" href="javascript:void(0)" name="reduceCartItemNum" storeId="${store_.key}" cartItemId="${cartItem_.id}">-</a>
+            <span id="count_${cartItem_.id}">${cartItem_.item_num}</span>
+            <a class="plus" href="javascript:void(0)" name="addCartItemNum" storeId="${store_.key}" cartItemId="${cartItem_.id}">+</a></span></td>
+        <td id="itemPriceTd_${cartItem_.id}">${cartItem_.itemprice}</td>
+        <td>--</td>
+        <td id="totalMoneyTd_${cartItem_.id}">${cartItem_.itemprice*cartItem_.item_num}</td>
+        <td><a href="javascript:void(0)" name="deleteCartItem" storeId="${store_.key}" cartItemId="${cartItem_.id}">
+            <img src="${ctxPath}/static/custom/images/del.jpg"></a></td>
+    </tr>
+    <%}%>
+    <%}%>
+    </table>
+    </div>
+    <div class="bottom_bar">
+    <div class="fr"><span class="price" id="totalMoney_${store_.key}">￥${totalMoney!0.00}</span>&nbsp;&nbsp;<a href="${ctxPath}/order?storeId=${store_.key}" class="btn_green">去结算</a></div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <%}%>
+</div>
+<div class="table_bottom">
+<div class="fr">
+<a class="btn_triangle_l" href="#"> &nbsp;</a>
+<a class="btn_triangle_r" href="#">下一页</a>
+</div>
+</div>
+</div>
+<%include("/common/foot.html"){}%>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/cartlist.js"></script>
+</body>
+</html>

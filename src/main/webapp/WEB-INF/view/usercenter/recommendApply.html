@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>申请推荐人</title>
+<link href="${ctxPath}/static/custom/css/sp-css.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/webuploader/webuploader.css"  rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="sq">
+  <div class="title">
+    <h1>申 请 推 荐 人</h1>
+  </div>
+  <form  id="recommend">
+  <input type="hidden" name="recommendApply.id" value="${recommendApply.id!}" />
+  <ul class="mainbox">
+    <li><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：&nbsp;</span>
+      <input type="text" placeholder="张三" name="recommendApply.real_name" value="${recommendApply.real_name!}">
+      <h3>(*请填写您的真实姓名)</h3>
+    </li>
+    <li><span>身份证号：</span>
+      <input type="text" placeholder="412721XXXXXXXXXX" name="recommendApply.id_card" value="${recommendApply.id_card!}">
+      <h3>（*请填写您的身份证号）</h3>
+    </li>
+    <li><span>手机号&nbsp;&nbsp;&nbsp;：</span>
+      <input type="text" placeholder="184######" name="recommendApply.phone" value="${recommendApply.phone!}">
+      <h3>（*请填写您的手机号）</h3>
+    </li>
+    <li style="height:220px;"><span style="float:left;">手持证件：</span>
+      <div class="imgbox">
+      <%if(recommendApply.id_card_image!''==null || recommendApply.id_card_image!''== ""){%>
+      <img src="${ctxPath}/static/custom/images/pic.jpg" id="headImg" style="width: 307px; height: 220px;">
+      <%}else{%>
+      <img src="/img${recommendApply.id_card_image !}" id="headImg">
+      <%}%>
+      <input type="hidden" id="cardImage" name="recommendApply.id_card_image" value="${recommendApply.id_card_image!}">
+      </div>
+    </li>
+    <div style="clear:both;" ></div>
+    <li><h4>（*支持格式jpg、jpeg、png、gif，请保证图片清晰且文件大小不超过400KB)</h4></li>
+    <li style="height:35px; width:70px; margin:0 auto;">
+      <div id="upload1" >上传证件</div>
+    </li>
+    <li  class="tj">
+      <button  class="anniu" type="submit">提交申请</button>
+    </li>
+  </ul>
+  </form>
+</div>
+	<script type="text/javascript"	src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript"	src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+	<script type="text/javascript" src="${ctxPath }/static/old/validform/5.3.2/js/Validform_v5.3.2.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+	 jQuery.validator.addMethod("isPhone", function(value, element) {
+	        var tel = /^[1][3578][0-9]{9}$/;
+	        return this.optional(element) || (tel.test(value));
+	    }, "请输入正确的手机号码");
+	 jQuery.validator.addMethod("isCard", function(value, element) {
+	        var tel = /^\d{15}|\d{}18$/;
+	        return this.optional(element) || (tel.test(value));
+	    }, "请输入正确的身份证号");
+	$().ready(function() {
+		$("#recommend").validate({
+			errorPlacement: function(error, element) {  
+				layer.tips(error.text(), element, {guide: 1, time: 3,more:true});
+			},
+			rules : {
+				"recommendApply.id_card_image":"required",
+				"recommendApply.real_name":"required",
+				"recommendApply.id_card":{
+					required:true,
+					isCard:true
+				},
+				"recommendApply.phone":{
+					required:true,
+					isPhone:true
+				},
+				
+			},
+			messages : {
+				"recommendApply.id_card_image":"请上传证件",
+				"recommendApply.real_name":"请输入真实姓名",
+				"recommendApply.id_card":{
+					required:"请输入身份证号",
+					isCard:"请输入正确的身份证号码"
+				},
+				"recommendApply.phone":{
+					required:"请输入手机号",
+					iaPhone:"手机号码格式错误"
+				},
+				
+			},
+			  submitHandler : function(form) {
+				  var card=$('#cardImage').val();
+				  if(card==""){
+					  layer.alert('请上传证件照');
+				  }else{
+		            $(form).ajaxSubmit({
+		                type : "post",
+		                url : MSConfig.BaseURL+"/recommendApply",
+		                dataType : "json",
+		                success : function(result) {
+		                    if(result.isLogin){
+		                            parent.location.reload();
+		                            var index = parent.layer.getFrameIndex(window.name);
+		                            parent.layer.close(index);
+		                    }else{
+		                        $(".errormessage").html(result.error);
+		                    }
+		                }
+		            });
+				  }
+		        }
+		});	
+	});
+	</script>
+<script type="text/javascript">
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto : true,
+
+			// swf文件路径
+			swf : MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server : MSConfig.BaseURL + '/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick : {
+				id : "#upload1",
+				multiple : false
+			},
+
+			// 只允许选择图片文件。
+			accept : {
+				title : 'Images',
+				extensions : 'gif,jpg,jpeg,bmp,png',
+				mimeTypes : 'image/*'
+			},
+			auto : true
+		});
+
+		// 当有文件添加进来的时候
+		uploader.on('fileQueued', function(file) {
+			//			var $li = $(
+			//							'<div id="' + file.id + '" class="file-item thumbnail">' +
+			//							'<img>' +
+			//							'<div class="info">' + file.name + '</div>' +
+			//							'</div>'
+			//					),
+			var $img = $("#headImg");
+
+			// $list为容器jQuery实例
+			//			$list.append( $li );
+
+			// 创建缩略图
+			// 如果为非图片文件，可以不用调用此方法。
+			// thumbnailWidth x thumbnailHeight 为 100 x 100
+			var thumbnailWidth = 100, thumbnailHeight = 100;
+			uploader.makeThumb(file, function(error, src) {
+				if (error) {
+					$img.replaceWith('<span>不能预览</span>');
+					return;
+				}
+
+				$img.attr('src', src);
+			}, thumbnailWidth, thumbnailHeight);
+		});
+		var loadi;
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on('uploadProgress', function(file, percentage) {
+			//			var $li = $( '#'+file.id ),
+			//var $li = $("#upload1"), $percent = $li.find('.progress span');
+			//$percent = $('.progress_bar');
+
+			// 避免重复创建
+			/*if (!$percent.length) {
+				$percent = $('<p class="progress"><span></span></p>').appendTo(
+						$li).find('span');
+			}*/
+			//$percent.show();
+
+			//$percent.css('width', percentage * 100 + '%');
+			loadi = layer.load('上传中…');
+		});
+
+		uploader.on('uploadAccept', function(file, response) {
+			if (response.status != "SUCCESS") {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+			
+			$("#cardImage").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on('uploadSuccess', function(file) {
+			//			$( '#'+file.id ).addClass('upload-state-done');
+			$("#upload1").addClass('upload-state-done').addClass(
+					'upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on('uploadError', function(file) {
+			//			var $li = $( '#'+file.id ),
+			var $li = $("#upload1"), $error = $li.find('div.error');
+
+			// 避免重复创建
+			if (!$error.length) {
+				$error = $('<div class="error"></div>').appendTo($li);
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on('uploadComplete', function(file) {
+			//			$( '#'+file.id ).find('.progress').remove();
+//			$("#upload1").find('.progress').remove();
+			//$('.progress_bar').hide();
+			layer.close(loadi);
+		});
+	</script>
+</body>
+</html>

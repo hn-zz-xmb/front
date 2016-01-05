@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+.main{ width:600px; border:2px solid #ededed; padding:50px 60px; margin:0 auto; box-shadow:2px 2px 2px 2px #ededed;}
+.mainbox {
+	border: 1px solid #ddd;
+	border-bottom: none; border-right:none;
+	margin: 0 auto;
+	overflow: hidden;
+}
+td { width:260px;
+	border-right: 1px solid #ddd;
+	height: 30px;
+	border-bottom: 1px solid #ddd;
+	line-height: 30px;
+	text-align: center;
+	font-family: "微软雅黑";
+}
+
+
+
+

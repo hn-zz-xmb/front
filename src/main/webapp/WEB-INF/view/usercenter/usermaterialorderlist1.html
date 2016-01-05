@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/dingdan.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/custom/css/pagination.css" rel="stylesheet" type="text/css">
+<title>订单列表</title>
+</head>
+<body>
+<% include("../common/userhead.html"){}%>
+	  <!--位置-->
+    <div class="position">当前位置：<a href="#">店铺管理</a>&gt;<a href="#">订单列表</a>&gt;<span class="chooseList">
+    <a href="javascript:;">原料订单</a>
+    <ul style="display:none;">
+    <li><a href="${ctxPath}/buyerOrder/findUserOrder">餐饮订单</a></li>
+    <li><a href="#">原料订单</a></li>
+    </ul>
+    </span></div>
+      <!--筛选-->
+    <div class="search">
+        <div class="searchTitle"> 筛选条件
+            <input class="searchInput" type="search" placeholder='搜索”订单“' value="${params.orderNo}" id="searchInput"/>
+        </div>                
+        <div class="hdS_search"><a href="javascript:;" onclick="findOrder()">确认搜索</a></div>
+        <div class="searchIf" id="orderStatus">
+        	订单状态：<span><a href="javascript:;" data-value="" <%if(params.status!''==''){%>class="on"<%}%>>全部</a></span>
+        	<a href="javascript:;" data-value="submitted" <%if(params.status!''=='submitted'){%>class="on"<%}%>>已提交（未付款）</a>
+        	<a href="javascript:;" data-value="payed" <%if(params.status!''=='payed'){%>class="on"<%}%>>已付款（未发货）</a>
+        	<a href="javascript:;" data-value="shipped" <%if(params.status!''=='shipped'){%>class="on"<%}%>>已发货（未收货）</a>
+        	<a href="javascript:;" data-value="finished" <%if(params.status!''=='finished'){%>class="on"<%}%>>已完成（已收货）</a>
+        	<a href="javascript:;" data-value="closed" <%if(params.status!''=='finished'){%>class="on"<%}%>>已取消</a>
+        </div>
+        <div class="searchIf" id="consumeMethod">
+        	消费类型：<span><a href="javascript:;" data-value="" <%if(params.consume_method !''==''){%> class="on" <%}%>>全部</a></span>
+        	<a href="javascript:;" data-value="distribution" <%if(params.consume_method !''=='distribution'){%> class="on" <%}%>>到店自取</a>
+        	<a href="javascript:;" data-value="invite" <%if(params.consume_method !''=='invite'){%> class="on" <%}%>>外卖</a>
+        </div>
+        <div class="searchIf">
+        	起始时间：<span><a href="#" class="on">全部</a></span>
+            
+            <input type="text" onclick="laydate()" class="hdS_slt" id="startTime" value="${params.startTime !}" placeholder="请选择">&nbsp;-&nbsp;
+            <input type="text" onclick="laydate()" class="hdS_slt" id="endTime" value="${params.endTime !}" placeholder="请选择">
+        </div>
+        <div class="searchIf" id="appraiseStatus">
+        	评价状态：<span><a href="javascript:;" data-value="" <%if(params.apprise!''==''){%> class="on" <%}%>>全部</a></span>
+        	<a href="javascript:;" data-value="1" <%if(params.apprise!''=='1'){%> class="on" <%}%>>已评价</a>
+        	<a href="javascript:;" data-value="2" <%if(params.apprise!''=='2'){%> class="on" <%}%>>未评价</a>
+        	<a href="javascript:;" data-value="3" <%if(params.apprise!''=='3'){%> class="on" <%}%>>未修改</a>
+        	<a href="javascript:;" data-value="4" <%if(params.apprise!''=='4'){%> class="on" <%}%>>已修改</a>
+        </div>
+    </div>
+      <!--表头-->
+    <div class="listTitle"><div class="listTitleSub01">订单信息</div><div class="listTitleSub02">数量</div><div class="listTitleSub03">总价</div><div class="listTitleSub04">订单状态</div><div class="listTitleSub05">消费码</div><div class="listTitleSub06">操作</div></div>
+    <!--表格-->
+    <%for (info in page.list){%>
+    <div class="listBox">
+        <div class="listBoxT"><div class="listBoxTSub01"><input type="checkbox"/></div><div class="listBoxTSub02">订单号：<span>${info.order_no!}</span></div><div class="listBoxTSub03">下单时间：${date(info.order_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</div><div class="listBoxTSub04">取货时间：${date(info.take_time!,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</div>
+        <div class="listBoxTSub05"><a href="javascript:;" onclick="sendUI('${info.storeid!}')">&nbsp;</a></div></div>
+        <div class="listContent">
+        	<div class="listContentSub01">
+        		<div><img src="${ctxPath}/static/custom/images/listContentIcon.png"/></div>
+                <div class="listContentSubT">
+                    <span>${info.storename}</span><br>
+                    <span><%if(info.delivery_method! =="distribution"){%>自取<%}else{%>${info.deliveryName!"店家配送"}<%}%></span><br>
+                    <span><a href="#">查看地图</a></span>
+                </div>
+            </div>
+            <div class="listContentSub02">
+                ${info.goods_count!}份
+            </div>
+            <div class="listContentSub03">
+                ￥${info.order_money !}
+            </div>
+            <div class="listContentSub04">
+                ${info.statusname !}
+            </div>
+            <div class="listContentSub05">
+                
+            </div>
+            <div class="listContentSub06">
+            <%if(info.order_status !""=="submitted"){%>
+                <span><a href="${ctxPath}/order/payUI?orderNo=${info.order_no!}">付款</a></span>
+                <span><a href="${ctxPath}/buyerMaterOrder/cancelOrder?orderId=${info.id!}">取消订单</a></span>
+                <%}else if(info.order_status !""=="payed"){%>
+                <span><a href="${ctxPath}buyerMaterOrder/applyRefund?orderId=${info.id!}">申请退款</a></span>
+                <%}else if(info.order_status !""=="shipped"){
+				if(info.delivery_method!"" !="distribution"){%>
+				<span><a href="${ctxPath}/buyerMaterOrder/applyReturn?orderId=${info.id!}">申请退货</a></span>
+				<span><a href="${ctxPath}/buyerMaterOrder/Receipt?orderId=${info.id!}">确认收货</a></span>
+				<%	}}else if(info.order_status !""=="finished"){%>
+				<%if(info.op_id!''==""){%>
+				<span><a href="javascript:;" onclick="apprise('${info.id!}')">评价</a></span>
+				<%}else{
+					if(info.appraise!''==-1){%>
+				<span><a href="javascript:;" onclick="updateapprise('${info.id!}')">修改评价</a></span>
+				<%}}}else if(info.order_status !""=="closed"){
+				if(info.reason!"" =="cancel" && info.reason_result!"" =="success" ){%>
+				订单已取消
+				<%}else if(info.reason!"" =="applied"){
+					if(info.reason_result!"" =="going"){%>
+					申请退款中
+					<%}else if(info.reason_result!"" =="success"){%>
+					申请退款成功
+					<%}else if(info.reason_result!"" =="faild"){%>
+					申请退款失败
+					<%}%>
+					<%}else if(info.reason!"" =="applyreturn"){
+					if(info.reason_result!"" =="going"){%>
+					申请退货中
+					<%}else if(info.reason_result!"" =="success"){%>
+					申请退货成功
+					<%}else if(info.reason_result!"" =="faild"){%>
+					申请退货失败
+					<%}%>
+					<%}%>	
+					<%}%>
+            </div>
+        </div>
+    </div>
+    <%}%>
+    <% include("../common/_pagination.html",{page:page}){}%>
+    <% include("../common/foot.html"){}%>
+<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<script src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+<script src="${ctxPath}/static/custom/js/usermaterialorderlist1.js"></script>
+</body>
+</html>

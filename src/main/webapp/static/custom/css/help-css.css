@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+.mainnav {
+	width: 1180px;
+	height: 35px;
+	margin: 0 auto;
+}
+.mainnav b {
+	color: #666;
+	font-size: 14px;
+	font-family: "宋体";
+	line-height: 35px;
+	font-weight: normal;
+}
+.mainbox {
+	width: 1180px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.mainboxleft {
+	width: 215px;
+	float: left;
+	margin-right: 5px;
+	border: 1px solid #d1d1d1;
+	border-top: 2px solid #83c130;
+	background-color: #f8f8f8;
+}
+.mainboxleft ul li {
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 1px solid #ededed;
+	font-family: "宋体";
+}
+.mainboxleft ul li a {
+	color: #333;
+	font-size: 16px;
+	font-family: "微软雅黑";
+}
+.rn {
+	font-size: 14px;
+	color: #666;
+}
+.title {
+	border-top: 1px solid #ededed;
+	padding: 5px 0px 5px 15px; 
+	overflow: hidden;
+}
+.title span {
+	display: inline-block;
+	line-height: 30px;width:210px; white-space:nowrap;text-overflow: ellipsis;
+}
+.title span:hover {
+	color: #83c130;
+}
+.mrtitle {
+	background-color: #f7f7f7;
+	height: 35px;
+	line-height: 35px;
+	padding: 5px;
+	border-bottom: 1px solid #ededed;
+}
+.help {
+	font-size: 20px;
+	margin: 0 auto;
+	width: 380px;
+	display: block; font-family:"微软雅黑";
+}
+.mainboxright {
+	width: 956px;
+	border: 1px solid #d3d3d3;
+	float: left;
+}
+.lb {
+	background-color: #fff;
+	border-bottom: 1px solid #ededed;
+	padding:15px 15px 30px 20px;
+}
+.lb p {
+	line-height: 30px;
+	text-indent: 25px; font-size:14px;
+}

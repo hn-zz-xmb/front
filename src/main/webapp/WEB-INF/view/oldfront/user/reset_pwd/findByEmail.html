@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 找回密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/find_pwd.css" />
+</head>
+<body>
+	<%include("/common/head.html"){}%>
+	<div class="email_zhaohui">
+		<p class="xgmm">找回密码</p>
+		<div class="modi_pic"></div>
+		<!--email_nr start-->
+		<div class="email_nr">
+			<p class="tsxx">您正在使用"电子邮箱"验证身份,请完成以下操作:</p>
+			<form action="${ctxPath}/member/">
+				<div class="jieshou_nr">
+					<p class="yuyim">邮箱 :
+						${strutil.subStringTo(session.email,0,3)}****${strutil.subString(session.email,strutil.getIndex(session.email,'@'))}</p>
+				</div>
+			</form>
+			<div class="wtz">
+				<span>一直没有收到邮件?</span>
+				<p>
+					&middot;&nbsp;&nbsp;请先检查是否在垃圾邮件中。如果还未收到,请点击重新发送邮件 <input
+						type="submit" value="重新发送" class="liji" onclick="send()" />
+				</p>
+				<p>&middot;&nbsp;&nbsp;还是收不到?请选择其它检验方式</p>
+			</div>
+			<!--jieshou_nr end-->
+		</div>
+		<!--email_nr end-->
+	</div>
+	<%include("/common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath}/static/old/custom/js/ajax.common.js"></script>
+	<script type="text/javascript">
+		function send() {
+			var url = "${ctxPath}/member/sendAForgetPwdEmail";
+			var result = callJson(url, {}, false);
+			if (result.isSend) {
+				alert("邮件发送成功");
+			} else {
+				alert(result.error);
+			}
+		}
+	</script>
+</body>
+</html>

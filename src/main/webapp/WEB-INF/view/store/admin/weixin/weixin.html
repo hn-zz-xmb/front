@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link href="${ctxPath}/static/custom/css/weixin.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/webuploader/webuploader.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"weixin"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/weixin/conn" class="active">接入微信</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/menu">菜单管理</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/matter">素材管理</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/weixin/matter/saveUI" class="btn_add">图文消息</a>
+			</div>
+			<div class="main">
+				<form action="{ctxPath}/salerManage/weixin/conn/save" id="connectForm" method="post">
+				<input hidden="hidden" name="weixinStoreConn.id" value="${weixinStoreConn.id!}"/>
+				<form action="${ctxPath}/" method="post">
+					<div class="form">
+						<div class="serverConfig">
+							<div class="title">服务器配置</div>
+							<div class="serverConfig_content">
+								<div class="row">
+									<span class="label">URL：</span><span class="span_b">${weixinStoreConn.url!}</span>
+								</div>
+								<div class="row">
+									<span class="label">ToKen：</span><span class="span_b">${weixinStoreConn.token!}</span>
+								</div>
+							</div>
+						</div>
+						<div class="developer">
+							<div class="title">开发者ID</div>
+							<div class="developer_content">
+								<div class="row">
+									<span class="label">APPID：</span><input type="text" style="width: 300px;" name="weixinStoreConn.app_id" value="${weixinStoreConn.app_id!}">
+								</div>
+								<div class="row">
+									<span class="label">APPSecret：</span><input type="text" style="width: 300px;" name="weixinStoreConn.app_secret" value="${weixinStoreConn.app_secret!}">
+								</div>
+							</div>
+						</div>
+						<div class="weixinStore">
+							<div class="title">微信商铺图片</div>
+							<div class="weixinStore_content">
+								<div class="weixinStore_content_t">
+									<div class="weixinStore_logo">
+									<%if(weixinStoreConn.wechat_logo_img!''==""||weixinStoreConn.wechat_logo_img!''==null){%>
+										<img  src="${ctxPath}/static/custom/images/storeManage/weixin_store_logo.jpg"
+											id="store_logo" class="weixinStore_logo_img">
+											<%}else{%>
+											<img  src="/img${weixinStoreConn.wechat_logo_img!}"
+											id="store_logo" class="weixinStore_logo_img">
+											<%}%>
+											<input type="hidden" id="s_logo" name="weixinStoreConn.wechat_logo_img" value="${weixinStoreConn.wechat_logo_img!}"/>
+										<p>*上传微信商铺的logo规格为720*286</p>
+										<div >
+											<a id="upload1">上传</a>
+										</div>
+									</div>
+									<div class="weixinStore_ervm">
+									<%if(weixinStoreConn.code_image!''==""||weixinStoreConn.code_image!''==null){%>
+									<img src="${ctxPath}/static/custom/images/storeManage/weixindefault.jpg"
+											id="store_weixin" class="weixinStore_ervm_img">
+									<%}else{%>
+									<img  src="/img${weixinStoreConn.code_image}"
+											id="store_weixin" class="weixinStore_ervm_img">
+									<%}%>
+											<input type="hidden" id="s_weixin" name="weixinStoreConn.code_image" value="${weixinStoreConn.code_image!}"/>
+										<p>*上传微信商铺的二维码规格为200*200</p>
+										<div >
+											<a id="upload2">上传</a>
+										</div>
+									</div>
+									<div style="clear: both;"></div>
+								</div>
+								<div class="weixinStore_content_b">
+									<p class="green">注：支持格式jpg,png,jpeg,gif,请保证图片清晰且文件大小不超过400k</p>
+								</div>
+
+							</div>
+						</div>
+						<div class="btn_w">
+							<button class="btn_g_l">保存</button>
+							<p Class="error"></p>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+		<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+		$().ready(function() {
+			$("#connectForm").validate({
+				errorPlacement: function(error, element) {  
+					layer.tips(error.text(), element, {guide: 1, time: 5,more:true});
+				},
+				rules : {
+					"weixinStoreConn.app_id":"required",
+					"weixinStoreConn.app_secret":"required"
+				},
+				messages : {
+					"weixinStoreConn.app_id":"请输入APPID",
+					"weixinStoreConn.app_secret":"请输入APPSecret"
+				},
+				submitHandler : function(form) {
+					$(form).ajaxSubmit({
+						type : "post",
+						url : "${ctxPath}/salerManage/weixin/conn/save",
+						dataType : "json",
+						success : function(result) {
+							if(result.status=="y"){
+								window.location.href = "${ctxPath}/salerManage/weixin/menu" 
+							}else{
+								$(".error").html(result.error);
+							}
+						}
+					});
+				}
+			});
+		});
+		</script>
+		<script type="text/javascript">
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto: true,
+
+			// swf文件路径
+			swf: MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server: MSConfig.BaseURL+'/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick:{
+				id:"#upload1",
+				multiple:false
+			},
+
+			// 只允许选择图片文件。
+			accept: {
+				title: 'Images',
+				extensions: 'gif,jpg,jpeg,bmp,png',
+				mimeTypes: 'image/*'
+			},
+			auto:true
+		});
+
+		// 当有文件添加进来的时候
+		uploader.on( 'fileQueued', function( file ) {
+				var $img=$("#store_logo");
+
+			// 创建缩略图
+			// 如果为非图片文件，可以不用调用此方法。
+			// thumbnailWidth x thumbnailHeight 为 100 x 100
+			var thumbnailWidth=100,thumbnailHeight=100;
+			uploader.makeThumb( file, function( error, src ) {
+				if ( error ) {
+					$img.replaceWith('<span>不能预览</span>');
+					return;
+				}
+
+				$img.attr( 'src', src );
+			}, thumbnailWidth, thumbnailHeight );
+		});
+
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on( 'uploadProgress', function( file, percentage ) {
+			var $li=$("#upload1"),
+					$percent = $li.find('.progress span');
+
+			// 避免重复创建
+			if ( !$percent.length ) {
+				$percent = $('<p class="progress"><span></span></p>')
+						.appendTo( $li )
+						.find('span');
+			}
+
+			$percent.css( 'width', percentage * 100 + '%' );
+		});
+
+		uploader.on( 'uploadAccept', function( file, response ) {
+			if ( response.status!="SUCCESS" ) {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+
+			$("#s_logo").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on( 'uploadSuccess', function( file ) {
+			$("#upload1").addClass('upload-state-done').addClass('upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on( 'uploadError', function( file ) {
+			var $li=$("#upload1"),
+					$error = $li.find('div.error');
+
+			// 避免重复创建
+			if ( !$error.length ) {
+				$error = $('<div class="error"></div>').appendTo( $li );
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on( 'uploadComplete', function( file ) {
+			$("#upload1").find('.progress').remove();
+		});
+
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto: true,
+
+			// swf文件路径
+			swf: MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server: MSConfig.BaseURL+'/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick:{
+				id:"#upload2",
+				multiple:false
+			},
+
+			// 只允许选择图片文件。
+			accept: {
+				title: 'Images',
+				extensions: 'gif,jpg,jpeg,bmp,png',
+				mimeTypes: 'image/*'
+			},
+			auto:true
+		});
+
+		// 当有文件添加进来的时候
+		uploader.on( 'fileQueued', function( file ) {
+				var $img=$("#store_weixin");
+
+			// 创建缩略图
+			// 如果为非图片文件，可以不用调用此方法。
+			// thumbnailWidth x thumbnailHeight 为 100 x 100
+			var thumbnailWidth=100,thumbnailHeight=100;
+			uploader.makeThumb( file, function( error, src ) {
+				if ( error ) {
+					$img.replaceWith('<span>不能预览</span>');
+					return;
+				}
+
+				$img.attr( 'src', src );
+			}, thumbnailWidth, thumbnailHeight );
+		});
+
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on( 'uploadProgress', function( file, percentage ) {
+			var $li=$("#upload2"),
+					$percent = $li.find('.progress span');
+
+			// 避免重复创建
+			if ( !$percent.length ) {
+				$percent = $('<p class="progress"><span></span></p>')
+						.appendTo( $li )
+						.find('span');
+			}
+
+			$percent.css( 'width', percentage * 100 + '%' );
+		});
+
+		uploader.on( 'uploadAccept', function( file, response ) {
+			if ( response.status!="SUCCESS" ) {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+
+			$("#s_weixin").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on( 'uploadSuccess', function( file ) {
+			$("#upload2").addClass('upload-state-done').addClass('upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on( 'uploadError', function( file ) {
+			var $li=$("#upload2"),
+					$error = $li.find('div.error');
+
+			// 避免重复创建
+			if ( !$error.length ) {
+				$error = $('<div class="error"></div>').appendTo( $li );
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on( 'uploadComplete', function( file ) {
+			$("#upload2").find('.progress').remove();
+		});
+
+		
+		</script>
+</body>
+</html>

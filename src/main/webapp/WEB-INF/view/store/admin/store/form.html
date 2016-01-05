@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/storeInfo.css" rel="stylesheet"
+	type="text/css">
+<link href="${ctxPath}/static/umeditor/themes/default/css/umeditor.css"
+	type="text/css" rel="stylesheet">
+<link href="${ctxPath}/static/webuploader/webuploader.css" type="text/css" rel="stylesheet"/> 	
+<title>修改店铺信息</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"store"}){}%>
+		<div class="content_right">
+		<form action="${ctxPath}/salerManage/update" id="store_form" method="post">
+		<input type="hidden" name="store.id" value="${store.id !}">
+			<div class="main">
+				<div class="row">
+					店铺名称：<input type="text" disabled value="${store.name}">&nbsp;&nbsp;&nbsp;&nbsp;
+					<a target="_blank" href="${ctxPath}/store?storeId=${store.id}" class="btn_g">店铺预览</a>
+				</div>
+				<div class="store_logo">
+					<div class="fl">店铺店标：</div>
+					<div class="fl">
+						<div class="store_logo_img">
+						<% if(store.logo_image!''==null || store.logo_image!''==""){ %><img alt="" id="store_logo"
+								src="${ctxPath}/static/custom/images/storeManage/store_logo.png"><% }else{ %> <img
+								src="/img${store.logo_image !}"  id="store_logo"> <% } %> 
+						<input type="hidden" value="${store.logo_image !}" id="s_logo" name="store.logo_image">
+						</div>
+						<div>
+						<a id="upload1">上传店标</a>
+						<span class="advise">文件格式JPG、JPEG、PNG文件大小150K以内，建议尺寸150PX*150PX</span>
+						</div>
+					</div>
+				</div>
+				<div class="store_banner">
+					<div class="fl">店铺条幅：</div>
+					<div class="fl">
+						<div class="store_banner_img">
+						<% if(store.banner_image!''==null || store.banner_image!''== ""){ %> 
+							<img alt="" src="${ctxPath}/static/custom/images/storeManage/banner01.png" id="store_banner"> 
+						<% }else{ %>
+							<img src="/img${store.banner_image !}" id="store_banner">
+						 <% } %> 
+						    <input type="hidden" value="${store.banner_image !}" id="s_banner" name="store.banner_image">
+						</div>
+						<div>
+						<a id="upload2">更换店铺条幅</a>
+						<span class="advise">文件格式JPG、JPEG、PNG文件大小150K以内，建议尺寸1180PX*150PX</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					所在地区：<input type="text" disabled value="${store.areaName!}">
+				</div>
+				<div class="address">
+					<div class="fl">详细地址：</div>
+					<div class="fl">
+						<div>
+							<input id="address" type="text" name="store.address" value="${store.address}" class="input_l">
+						</div>
+						<div class="address_map">
+							<div style="width:100%;height:300px" id="container"></div>
+						</div>
+						<div class="grey">地图定位：（注：拖拽标注，点击标注保存地理位置）</div>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="row">
+					营业时间：<input id="worktimefrom" type="text" name="store.worktime_from" value="${store.worktime_from}" class="input_s">&nbsp;到&nbsp;<input type="text"
+					 id="worktimeto" value="${store.worktime_to}" name="store.worktime_to"	class="input_s">
+				</div>
+				<div class="row">
+					联系电话：<input id="tel" name="store.tel" type="text" value="${store.tel}">&nbsp;&nbsp;&nbsp;&nbsp;<span
+						class="grey">*店铺固定电话格式如:xxxx-xxxxxxx</span>
+				</div>
+				<div class="row">
+					手机号码：<input type="text" name="store.phone" value="${store.phone}" disabled id="phone">&nbsp;&nbsp;&nbsp;&nbsp;<a
+						href="javascript:;" onclick="updatemobie('${store.id}')" class="modify" id="modify">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
+						class="grey">*注册店铺所使用的手机号</span>
+				</div>
+				<div class="row1">
+					<%if(store.store_type_id!''=='normal'){%>开启外卖：<%}else{%>开启配送：<%}%>
+					<%if(store.is_take_out!0==1){ %> 
+					<label><input type="radio" id="waimai_y" value="1" checked="checked" name="store.is_take_out">是</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<label><input type="radio" id="waimai_n" value="0" name="store.is_take_out">否</label>
+					<% }else{ %> 
+					<label><input type="radio" id="waimai_y" value="1" name="store.is_take_out">是</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<label><input type="radio" id="waimai_n" value="0" checked="checked" name="store.is_take_out">否</label>
+					<%}%>
+				</div>
+				<div class="waimai_box" id="waimai_box" <%if(store.is_take_out!0!=1){ %> style="display:none;"<%}%> >
+					<div class="row">
+						配送费用：<input type="text" name="store.take_out_fee" value="${store.take_out_fee !}" class="input_s" value="20.00">元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消费满：<input
+						 name="store.full_money" value="${store.full_money !}" type="text" class="input_s" value="20.00">元免配送费
+					</div>
+					<div class="delivery_scope">
+						<div class="fl">配送范围：</div>
+						<div class="fl">
+							<textarea name="store.delivery_scope" rows="" cols="">${store.delivery_scope !}</textarea>
+							<br><span class="grey">注：如果输入多个配送地区请换行！</span>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+				<div class="store_description">
+					<div class="fl">店铺简介：</div>
+					<div class="fl">
+                        <textarea name="store.description" style="height: 121px;">${store.description !}</textarea>
+						<br> <span class="grey">200个字符以内,不能包含空格
+						</span>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="btn_w">
+					<input type="submit" class="btn_g_l" value="保存"/>
+				</div>
+			</div>
+			</form>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script
+		src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+	<script type="text/javascript" src="http://map.qq.com/api/js?v=2.exp&callback=init&key=TB5BZ-RRLWP-7Z2DL-VDY7Y-SKQUE-BMBIS"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/storeInfo.js"></script>
+		<script type="text/javascript">
+		var lat_= new Number('${store.position_lat}');
+		var lng_= new Number('${store.position_lng}');
+
+		function init() {
+     		var center = new qq.maps.LatLng(lat_,lng_);
+		    var map = new qq.maps.Map(document.getElementById('container'),{
+		        center: center,
+		        zoom: 13
+		    });
+		    
+		     var marker = new qq.maps.Marker({
+		        position: center,
+				draggable: true,
+		        map: map
+		    });
+		    
+		
+		    var info = new qq.maps.InfoWindow({
+		        map: map
+		    });
+		
+			
+		    qq.maps.event.addListener(marker, 'click', function(event) {
+		    	var params={
+		    		"store.id":"${store.id !}",
+		    		"store.position_lat":event.latLng.getLat(),
+		    		"store.position_lng":event.latLng.getLng()
+		    	};
+		    	var result=callJson("${ctxPath}/salerManage/updatePosition",params,true);
+		    	
+		    	if(result.isFlag){
+			    	info.open(); 
+			        info.setContent('<div style="text-align:center;white-space:nowrap;'+
+			        'margin:10px;">位置保存成功!</div>');
+			        info.setPosition(event.latLng); 
+		    	}else{
+		    		info.open(); 
+			        info.setContent('<div style="text-align:center;white-space:nowrap;'+
+			        'margin:10px;">'+result.error+'</div>');
+			        info.setPosition(event.latLng); 
+		    	}
+		    });
+
+		}
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto: true,
+
+			// swf文件路径
+			swf: MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server: MSConfig.BaseURL+'/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick:{
+				id:"#upload1",
+				multiple:false
+			},
+
+			// 只允许选择图片文件。
+			accept: {
+				title: 'Images',
+				extensions: 'gif,jpg,jpeg,bmp,png',
+				mimeTypes: 'image/*'
+			},
+			auto:true
+		});
+
+		// 当有文件添加进来的时候
+		uploader.on( 'fileQueued', function( file ) {
+				var $img=$("#store_logo");
+
+			// 创建缩略图
+			// 如果为非图片文件，可以不用调用此方法。
+			// thumbnailWidth x thumbnailHeight 为 100 x 100
+			var thumbnailWidth=100,thumbnailHeight=100;
+			uploader.makeThumb( file, function( error, src ) {
+				if ( error ) {
+					$img.replaceWith('<span>不能预览</span>');
+					return;
+				}
+
+				$img.attr( 'src', src );
+			}, thumbnailWidth, thumbnailHeight );
+		});
+		var loadi;
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on( 'uploadProgress', function( file, percentage ) {
+			//var $li=$("#upload1"),
+			//		$percent = $li.find('.progress span');
+
+			// 避免重复创建
+			//if ( !$percent.length ) {
+			//	$percent = $('<p class="progress"><span></span></p>')
+			//			.appendTo( $li )
+			//			.find('span');
+			//}
+			loadi = layer.load('上传中…');
+			//$percent.css( 'width', percentage * 100 + '%' );
+		});
+
+		uploader.on( 'uploadAccept', function( file, response ) {
+			if ( response.status!="SUCCESS" ) {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+
+			$("#s_logo").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on( 'uploadSuccess', function( file ) {
+			$("#upload1").addClass('upload-state-done').addClass('upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on( 'uploadError', function( file ) {
+			var $li=$("#upload1"),
+					$error = $li.find('div.error');
+
+			// 避免重复创建
+			if ( !$error.length ) {
+				$error = $('<div class="error"></div>').appendTo( $li );
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on( 'uploadComplete', function( file ) {
+			//$("#upload1").find('.progress').remove();
+			layer.close(loadi);
+		});
+
+
+		// 初始化Web Uploader
+		var uploader1 = WebUploader.create({
+			// 选完文件后，是否自动上传。
+			auto: true,
+			// swf文件路径
+			swf: MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+			// 文件接收服务端。
+			server: MSConfig.BaseURL+'/upload/img',
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick:{
+				id:"#upload2",
+				multiple:false
+			},
+			// 只允许选择图片文件。
+			accept: {
+				title: 'Images',
+				extensions: 'gif,jpg,jpeg,bmp,png',
+				mimeTypes: 'image/*'
+			},
+			auto:true
+		});
+
+		// 当有文件添加进来的时候
+		uploader1.on( 'fileQueued', function( file ) {
+			var $img=$("#store_banner");
+			// 创建缩略图
+			// 如果为非图片文件，可以不用调用此方法。
+			// thumbnailWidth x thumbnailHeight 为 100 x 100
+			var thumbnailWidth=100,thumbnailHeight=100;
+			uploader1.makeThumb( file, function( error, src ) {
+				if ( error ) {
+					$img.replaceWith('<span>不能预览</span>');
+					return;
+				}
+
+				$img.attr( 'src', src );
+			}, thumbnailWidth, thumbnailHeight );
+		});
+		var loadi;
+		// 文件上传过程中创建进度条实时显示。
+		uploader1.on( 'uploadProgress', function( file, percentage ) {
+			//var $li=$("#upload2"),
+				//	$percent = $li.find('.progress span');
+			// 避免重复创建
+			//if ( !$percent.length ) {
+			//	$percent = $('<p class="progress"><span></span></p>').appendTo($li).find('span');
+			//}
+			//$percent.css( 'width', percentage * 100 + '%' );
+			loadi = layer.load('上传中…');
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader1.on( 'uploadSuccess', function( file ) {
+			$("#upload2").addClass('upload-state-done');
+		});
+
+		uploader1.on( 'uploadAccept', function( file, response ) {
+			if ( response.status!="SUCCESS" ) {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+			$("#s_banner").val(response.url);
+		});
+		// 文件上传失败，显示上传出错。
+		uploader1.on( 'uploadError', function( file ) {
+			var $li = $("#upload2"),
+					$error = $li.find('div.error');
+			// 避免重复创建
+			if ( !$error.length ) {
+				$error = $('<div class="error"></div>').appendTo( $li );
+			}
+
+			$error.text('上传失败');
+		});
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader1.on( 'uploadComplete', function( file ) {
+			//$("#upload2").find('.progress').remove();
+			layer.close(loadi);
+		});
+		</script>
+		
+		<script type="text/javascript">
+		//表单验证
+		$().ready(function() {
+				jQuery.validator.addMethod("isTel", function(value, element) {   
+				    var tel = /^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$/;
+				    return this.optional(element) || (tel.test(value));
+				}, "请输入正确的电话号码");
+				jQuery.validator.addMethod("isPhone", function(value, element) {   
+				    var tel = /^[1][3578][0-9]{9}$/;
+				    return this.optional(element) || (tel.test(value));
+				}, "请输入正确的手机号码");
+                jQuery.validator.addMethod("isDescription", function(value, element) {
+                    var description = /^[\s\S]{0,200}$/;
+                    return this.optional(element) || (description.test(value));
+                }, "描述格式不正确");
+			$("#store_form").validate({
+				rules : {
+					"store.address" : "required",
+					"store.worktimefrom":"required",
+					"store.worktimeto":"required",
+					"store.tel": {
+                        required: true,
+                        isTel: true
+                    },
+                    "store.description":{
+                        isDescription:true
+                    }
+				},
+				messages : {
+					"store.address" : "请输入地址",
+					"store.worktimefrom" :"请输入起始时间",
+					"store.worktimeto":"请输入截止时间",
+					"store.tel":{
+						required:"请输入联系方式",
+						isTel:"请输入正确的电话号码"
+					},
+                    "store.description":{
+                        isDescription:"描述200个字符以内"
+                    }
+				}
+			});
+		});
+		</script>
+		<script type="text/javascript">
+		function updatemobie(id) {
+			$.layer({
+			    type: 2,
+			    shadeClose: true,
+			    title: '修改手机号码',
+			    closeBtn: [0, true],
+			    shade: [0.5,'#000'],
+			    border: [10, 0.3, '#000'],
+			    offset: ['',''],
+			    area: ['400px', '275px'],
+			    iframe: {src : './toupdatemobie?storeId=' + id}
+			}); 
+		}
+		</script>
+</body>
+</html>

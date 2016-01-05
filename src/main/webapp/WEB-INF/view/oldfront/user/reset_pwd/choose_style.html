@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 找回密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/find_pwd.css" />
+<script type="text/javascript"
+	src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+</head>
+
+<body>
+	<% include("/common/head.html"){}%>
+	<div class="choose_style">
+		<div class="choose_up">
+			<p>您正在为账户&nbsp;${session.loginName} 修改登录密码,请选择修改方式:</p>
+		</div>
+		<%if(session.loginUser.tel!=null && session.loginUser.tel!=""){%>
+		<!--choose_center start-->
+		<div class="choose_centerl">
+			<div class="choose_center"></div>
+			<!--choose_center end-->
+			<div class="choose_er">
+				<p>通过手机短信找回密码</p>
+				<span>需要您绑定的手机可进行短信验证</span>
+			</div>
+			<div class="choose_bt">
+				<form action="${ctxPath}/member/sendForgetPwdMsg" method="post">
+					<input type="submit" value="立即修改" class="zhaohui" />
+				</form>
+			</div>
+			<!--choose_bt end-->
+		</div>
+		<%}%>
+		<%if(session.loginUser.email!=null && session.loginUser.email!=""){%>
+		<div class="choose_centerl">
+			<div class="choose_centere"></div>
+			<!--choose_center end-->
+			<div class="choose_er">
+				<p>通过邮箱找回密码</p>
+				<span>安全链接将发送到您绑定的邮箱</span>
+			</div>
+			<div class="choose_bt">
+				<form action="${ctxPath}/member/sendForgetPwdEmail" method="post">
+					<input type="submit" value="立即修改" class="zhaohui" />
+				</form>
+			</div>
+			<!--choose_bt end-->
+		</div>
+		<!--chooose_centerl end--------------------->
+		<%}%>
+	</div>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

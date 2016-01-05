@@ -1,0 +1,9 @@
+$(function(){
+	//商品分类
+	$("#category").click(function(){
+		$("#category_box").show();
+	});
+	$("body").on("mouseleave","#category_box",function(){
+		$("#category_box").hide();
+	});
+});

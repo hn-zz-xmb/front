@@ -1,0 +1,271 @@
+/* CSS Document */
+.content{
+	width:1180px;
+	margin:0 auto;
+	background:#f7f7f7;}
+.shop_title{
+	height:30px;
+	margin-bottom: 10px;
+	}
+.title_left{
+float:left;
+height:30px;
+width:280px;}
+.title_left p{
+	margin-bottom:10px;
+	}
+.title_left span{
+	color:#F60;}
+.title_right{
+	float:right;
+	height:30px;
+	width:900px;
+	background:url(../images/module_common_h2.gif) repeat-x;
+	display:inline;
+	display: none;}
+.content_nr{
+	min-height:400px;
+
+	}
+.shop_buzou{
+	width:1180px;
+	height:50px;
+	margin-bottom:20px;
+	background:url(../images/shop_buzou.png) 0 0 no-repeat;}
+.normal_shop,.yuanliao_shop{
+	width:579px;
+	height:385px;
+	float:left;
+	display:block;
+	font-family:"微软雅黑";
+	text-align:center;
+		color:#FFF;
+	background:#6cab05;
+	background:#9acf4d;
+	}
+.yuanliao_shop{
+	float:left;
+	margin-left:22px;
+	background:#f8c558;}
+.normal_shop_title,.yuanliao_shop_title{
+	height:119px;
+	line-height:119px;
+	font-size:36px;
+	background:#6cab05;
+	}
+.yuanliao_shop_title{
+	background:#ffaf02;}
+.shop_nr,.open_shop_nr
+{
+	margin-top:20px;
+	height:160px;
+	font-size:24px;
+	line-height:160px;
+	text-align:center;}
+.shop_btn{
+	text-align:center;}
+.open_shop_btn{
+	background:url(../images/shop_btn.png) no-repeat;
+	width:371px;
+	height:53px;
+	border:0 none;}
+.open_btn{
+	width:371px;
+	height:53px;
+	border:0 none;
+	background:url(../images/open_shop_btn.png) no-repeat;}
+/*申请开店第二步开始--------------------------------*/
+.second{
+    height:50px;
+	background:url(../images/shop_buzou.png) 0 -58px no-repeat;
+	}
+.taocan_title{
+	height:36px;
+	width:1180px;
+	margin-bottom:30px;
+	background:#fbfff1;
+	border:1px solid #6cab05;}
+.taocan_title p{
+	font-family:"微软雅黑";
+	font-size:14px;
+	font-weight:bold;
+    line-height:36px;
+	padding-left:25px;
+	}
+.taocanbox{
+}
+.table_box{
+	vertical-align:middle;
+	background:#FFF;
+	margin:0 auto;
+	border:1px solid #6CAB05;}
+.taocanbox .taocanbox_title{
+	height:42px;
+	font-size:14px;
+	font-weight:bold;
+	font-family:"微软雅黑";
+	border-bottom:1px solid #6CAB05;
+	background:#DBEDC3;}
+.table_box td{
+	border-bottom:1px  solid #6CAB05;
+	border-left:1px  solid #6CAB05;
+	text-align:center;
+	height:97px;
+	}
+.table_box td input{
+	display:none;}
+.table_box td .bank-logo{
+	width:14px;
+	height:14px;
+	padding-bottom: 5px;
+	padding-left:20px;
+	background:url(../images/lable.png) no-repeat;
+	}
+.table_box td .bank-logo:hover{
+	background:url(../images/lable_hover.png) no-repeat;}
+.table_box td .bank-logo.selected{
+		background:url(../images/lable_down.png) no-repeat;
+		width:14px;
+		height:14px;
+		border:0 none;}
+.table_box .taocan_serve{
+	background:#dbedc3;}
+.taocan_serve p{
+	line-height:10px;}
+.taocan_next{
+	width:1180px;
+	height:100px;
+	margin-top:30px;
+	text-align:center;}
+.taocan_pre_btn{
+	width:272px;
+	height:39px;
+	background-color:#bfbfbf;
+	border:0 none;
+	font-size:26px;
+}
+.taocan_next_btn{
+	background:url(../images/next.png) no-repeat;
+	width:272px;
+	height:39px;
+	border:0 none;
+	font-size:26px;
+	}
+/*申请开店第二步完成---------------*/
+.third{
+	width:1180px;
+	height:50px;
+	background:url(../images/shop_buzou.png) 0 -116px no-repeat;}
+.write_openstoreinfo{
+	height:563px;
+	width:1180px;
+	margin-bottom:20px;
+	border:1px solid #b8b4b5;}
+.write_openstoreinfo p,.writestore_title{
+	font-weight:bold;
+	font-family:"微软雅黑";
+	font-size:14px;
+	height:35px;
+	line-height:35px;
+	padding-left:25px;
+	background:#dbedc3;}
+.openstore_info{
+	margin:15px 0 0 123px;}
+.openstore_info dl{
+	}
+.openstore_info dl dt{
+	line-height:50px;}
+.openstore_info dt .write_info_box{
+	width:360px;
+	height:30px;
+	margin:0 40px 0 20px;
+	padding-left:15px;
+	border:1px solid #e1e1e1;
+	}
+.openstore_info dt span,.writestore_right span,.work_card_right span{
+	color:#747371;}
+ .openstore_info .city{
+	width:200px;
+	height:20px;
+	margin-left:20px;}
+.openstore_info .city_choice{
+	
+	height:20px;
+	margin-left:20px;}
+.openstore_info .open_store_btn{
+	margin-left:80px;}
+.writestore_pic{
+	width:1180px;
+	border:1px solid #b8b4b5;}
+.writestore_pic .writestore_nr{
+	height:310px;}
+.writestore_pic .ID_card{
+	float:left;
+	width:590px;
+	margin:30px 0 0 20px;}
+.ID_card .ID_card_title,.work_card .work_card_title{
+	float:left;}
+.ID_card .store_pic,.work_card .work_card_pic{
+	float:left;
+	width:212px;
+	margin:0 10px;}
+.writestore_right,.work_card_right{
+	width:213px;
+	float:left;
+	margin-top:30px;} 
+.ID_card .writestore_right p,.work_card_right p{
+	margin-bottom:20px;}
+.ID_card .writestore_right p input,.work_card_right p input{
+	width:76px;
+	height:28px;}
+.work_card{
+	float:left;
+	width:560px;
+	margin:30px 0 0 0px;}
+.writeinfo_btn{
+	width:1180px;
+	height:100px;
+	text-align:center;}
+.writeinfo_btn .openstore_btn{
+	width:306px;
+	height:40px;
+	border:0 none;
+	background:url(../images/openstore_btn.png) no-repeat;}
+.writeinfo_btn .openstore_btn_fuxuan{
+	margin-top:15px;}
+.openstore_btn_fuxuan input{
+	position:relative;
+	top:3px;
+	margin-right:5px;}
+                /*---------------完成页面-------------------------*/
+.succeed{
+	width:1180px;
+	height:50px;
+	background:url(../images/shop_buzou.png) 0 -175px no-repeat;}
+.succeed_nr{
+	width:1180px;
+	height:500px;
+	background:#FFF;
+	border:1px solid #b8b4b5;}
+.succeed_nr .succeed_title{
+	height:40px;
+	margin-bottom:70px;
+	background:#dbedc3;}
+.succeed_tuwen{
+	width:900px;
+	height:560px;
+	text-align:center;
+	margin:0 auto;}
+.succeed_top{
+	width:900px;
+	height:150px;
+	margin-bottom:15px;
+	border-bottom:2px solid #69a51c;}
+.succeed_top_sub{ width:400px; height:150px;margin:0 auto;}
+.succeed_top_left{
+	float:left;}
+.succeed_top_right{
+	float:left;
+	padding-left:15px;
+	font-family:"微软雅黑";
+	line-height:150px;}

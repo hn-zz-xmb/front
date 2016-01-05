@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加商品</title>
+<link href="${ctxPath}/static/custom/css/tjsp.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<% include("/common/userhead.html"){}%>
+<div class="position">
+    <div class="fl">
+        当前位置：<a href="#">店铺管理</a>&gt;
+    </div>
+    <% include("../store_change.html"){}%>
+</div>
+<div class="content">
+    <% include("../common.html",{left_:"appraise"}){}%>
+  <div class="content_right">
+    <div class="tab">
+      <ul>
+        <li><a href="" class="active">评价列表</a></li>
+      </ul>
+    </div>
+    
+<div class="mainbox-pj">
+  <ul>
+      <%for(orderAppraise in orderAppraiseList.list!){%>
+    <li>
+      <div class="pj-fl">
+        <div>${orderAppraise.appraise_desc}</div>
+        <div>
+          <h3 style="color:#666; font-size:12px;">今天</h3>
+        </div>
+          <%if(orderAppraise.storeBackAppraiseId!''!='' ){%>
+        <div style="margin-top:10px;">
+          <h4 style="float:left;">店家回复:</h4>
+          <div style="float:left;">${orderAppraise.storeBackAppraiseDesc}</div>
+        </div>
+          <%}%>
+      </div>
+      <div class="pj-fr">
+        <ul>
+          <li>订单号：${orderAppraise.order_no}</li>
+          <li >服务级别：
+              <%
+              for(var i=0;i<orderAppraise.server_points;i++){
+              print("<span></span>");
+              }
+              %>
+              吃货专享（匿名）</li>
+          <li>餐厅环境：<%
+              for(var i=0;i<orderAppraise.env_points;i++){
+              print("<span></span>");
+              }
+              %>
+            </li>
+          <li>饭菜口味：<%
+            for(var i=0;i<orderAppraise.taste_points;i++){
+            print("<span></span>");
+            }
+            %>
+          </li>
+            <%if(orderAppraise.storeBackAppraiseId!''=='' ){%>
+          <li><a class="anniu"href="javascript:void(0)" onclick="backAppraiseUI('${orderAppraise.id}')">回复</a></li>
+            <%}%>
+        </ul>
+      </div>
+    </li>
+   <%}elsefor{%>
+      暂无相关信息
+      <%}%>
+</div>
+    
+  </div>
+  <div style="clear: both;"></div>
+</div>
+
+<script src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<script>
+    function backAppraiseUI(id){
+        var url="${ctxPath}/salerManage/backAppraise?id="+id;
+        $.layer({
+            type : 2,
+            shadeClose : true,
+            title : '回复评价',
+            closeBtn : [ 0, true ],
+            shade : [ 0.5, '#000' ],
+            border : [ 10, 0.3, '#000' ],
+            offset : [ '20px', '' ],
+            area : [ '820px', '690px' ],
+            iframe : {
+                src :url
+            }
+        });
+    }
+</script>
+</body>
+</html>

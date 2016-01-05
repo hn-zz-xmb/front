@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 订单详情</title>
+<script type="text/javascript" src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+<link href="${ctxPath }/static/old/front/css/user_37.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<% include ("/common/head.html"){}%>
+		<div class="content">
+			<div class="particular">
+				<div class="particular_wrap">
+					<h3>
+						订单详情
+					</h3>
+					<div class="box">
+						<div class="state">
+							订单状态&nbsp;:&nbsp;
+							<%	for(dataDic in dataDics){
+									if(materialOrder.order_status==dataDic.code){
+							%>
+							<strong>${dataDic.code_name!}</strong>
+							<%		}
+								}
+							%>
+						</div>
+						<div class="state">
+							订单号&nbsp;:&nbsp;${materialOrder.order_no!}
+						</div>
+						<div class="state">
+							下单时间&nbsp;:&nbsp;
+							${strutil.formatDate(date(materialOrder.order_time,'yyyyMMddHHmmss'),'yyyy-MM-dd HH:mm:ss')}
+						</div>
+						<div class="state">
+							收货人姓名&nbsp;:&nbsp;&nbsp;${address.receiver_name!}
+						</div>
+						<div class="state">
+							收货地址&nbsp;:&nbsp;&nbsp;${address.address_info!}
+						</div>
+						<div class="state">
+							联系电话&nbsp;:&nbsp;&nbsp;${address.phone !}
+						</div>
+						<div style="padding-top: 10px;width: 550px;">
+							付款时间&nbsp;:&nbsp;
+							${materialOrder.pay_time}
+						</div>
+					</div>
+					<h3>
+						卖家信息
+					</h3>
+					<dl class="info">
+						<dd style="width: 0 auto;">
+							店铺名:${store.name !}
+						</dd>
+						<dd style="width: 140px;">
+							电话号码:${store.tel !}
+						</dd>
+						<dd style="width: 300px;">
+							所在地区 :${store.address !}
+						</dd>
+						<dd>
+							详细地址:${store.address !}
+						</dd>
+					</dl>
+					<div class="ware_line">
+						<div class="ware">
+						<% for(orderDetail in orderDetails){ %>
+							<div class="ware_list">
+								<div class="ware_pic">
+									<img src="${orderDetail.item_img !}" height="50" width="50" />
+								</div>
+								<div class="ware_text">
+									<div class="ware_text1">
+										<a href="${ctxPath}/goods/${orderDetail.item_id !}">${orderDetail.item_name !}</a><br/>
+										<span></span>
+									</div>
+									<div class="ware_text2">
+										<span>数量&nbsp;:&nbsp;<strong>${orderDetail.counts !}</strong></span>
+										<span>价格&nbsp;:&nbsp;<strong>¥${orderDetail.item_price !}</strong></span>
+									</div>
+								</div>
+							</div>
+							<% } %>
+								实收金额&nbsp;:
+								<% if(materialOrder.delivery_money!=null){ %>
+								<span>¥ ${materialOrder.order_money+materialOrder.delivery_money !}</span> 
+								<% } %>
+								&nbsp;&nbsp;
+								总价&nbsp;:
+								<b>¥ ${materialOrder.order_money !}</b>
+								&nbsp;&nbsp;
+								手续费&nbsp;:<span>¥ ${materialOrder.delivery_money !}</span>
+							</div>
+						</div>
+						<!-- 
+						<h3>
+							物流信息
+						</h3>
+					<div class="goods">
+						收货地址&nbsp;:&nbsp;${order.buyerAddress !}, 收件人姓名：${order.buyerName !},联系电话：${order.phone !},
+						&nbsp; &nbsp; 邮政编码:${order.zipcode !} 
+						配送方式&nbsp; :&nbsp;${delivery.name !}
+					</div>
+					</div> -->
+					
+					<div class="particular_bottom"></div>
+				</div>
+				<div class="clear"></div>
+				<div class="adorn_right1"></div>
+				<div class="adorn_right2"></div>
+				<div class="adorn_right3"></div>
+				<div class="adorn_right4"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<% include ("/common/foot.html"){}%>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 修改登录密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/find_pwd.css" />
+</head>
+
+<body>
+	<% include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="choose_style">
+		<div class="choose_up">
+			<p>您正在修改绑定的手机
+				${strutil.subStringTo(member.tel,0,3)}****${strutil.subString(member.tel,strutil.length(member.tel)-4)}，请选择修改方式：</p>
+		</div>
+		<!--choose_center start-->
+		<%if(member.email!=null && member.email!=""){%>
+		<div class="choose_centerl">
+			<div class="choose_centere"></div>
+			<!--choose_center end-->
+			<div class="choose_er">
+				<p>通过邮箱修改绑定的手机号</p>
+				<span>安全链接将发送到你绑定的邮箱</span>
+			</div>
+			<div class="choose_bt">
+				<span> <a href="${ctxPath}/safecenter/phone/updateByEmailUI">
+						<input name="" type="submit" value="去修改" class="zhaohui" />
+				</a>
+				</span>
+			</div>
+			<!--choose_bt end-->
+		</div>
+		<%}%>
+		<div class="choose_centerl">
+			<div class="choose_center"></div>
+			<!--choose_center end-->
+			<div class="choose_er">
+				<p>通过手机号</p>
+				<span>只需填写已经绑定的手机号</span>
+			</div>
+			<div class="choose_bt">
+				<span> <a href="${ctxPath}/safecenter/phone/updateByNewPhoneUI">
+						<input type="button" value="去修改" class="zhaohui" />
+				</a>
+				</span>
+			</div>
+			<!--choose_bt end-->
+		</div>
+		<div class="choose_centerl">
+			<div class="choose_center"></div>
+			<!--choose_center end-->
+			<div class="choose_er">
+				<p>通过绑定的手机</p>
+				<span>需要你绑定的手机可进行短信验证</span>
+			</div>
+			<div class="choose_bt">
+				<span> <a href="${ctxPath}/safecenter/phone/updateByPhoneUI">
+						<input type="button" value="去修改" class="zhaohui" />
+				</a>
+				</span>
+			</div>
+			<!--choose_bt end-->
+		</div>
+		<!--chooose_centerl end--------------------->
+
+	</div>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

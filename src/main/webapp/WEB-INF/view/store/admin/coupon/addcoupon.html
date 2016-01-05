@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/addcoupon.css" rel="stylesheet"
+	type="text/css">
+<link href="${ctxPath}/static/custom/css/store_manage_public.css"
+	rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/umeditor/themes/default/css/umeditor.css"
+	type="text/css" rel="stylesheet">
+<link href="${ctxPath}/static/webuploader/webuploader.css" type="text/css" rel="stylesheet"/> 	
+		<style>
+.error{
+	color: red;
+}
+.jg{margin-top:15px; margin-left:100px; margin-bottom:15px;}
+.jg b{ color:red;}
+.jg input{ width:50px;}
+</style>
+<title>店铺管理-代金券管理</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"coupon"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/coupon">代金券列表</a></li>
+					<li><a href="#" class="active">编辑代金券</a></li>
+				</ul>
+			</div>
+			<div class="main">
+			<form action="${ctxPath}/salerManage/coupon/saveorupdate" id="couponform" method="post" onsubmit="preSubmit()">
+					<input name="coupon.id" value="${coupon.id !}" type="hidden" />
+					<div class="form">
+						<div class="category">
+							<div class="goods_info">
+								<div class="title">编辑代金券</div>
+								<div class="goods_info_content">
+									<div class="goods_imgs">
+										<div class="goods_imgs_t">
+										<%if (coupon.coupon_img !''==""){%>
+											<img id="couponImg" alt="" src="${ctxPath}/static/custom/images/storeManage/goods01.jpg">
+											<input type="hidden" name="coupon.coupon_img" id="couponImage">
+										<%}else{%>
+										<img id="couponImg" src="/img${coupon.coupon_img !}">
+										<input type="hidden" value="${coupon.coupon_img!}" name="coupon.coupon_img" id="couponImage">
+										<%}%>
+										</div>
+										<div
+											style="width: 230px; height: 35px; background-color: #d0dec5;"></div>
+										<div id="small_img" class="goods_imgs_b"></div>
+									</div>
+									<div class="info">
+										<div style="float: left; margin-left: 20px;">
+											<div class="row">
+												代金券名称： <input id="name" name="coupon.name" type="text" value="${coupon.name !}">
+											</div>
+											<div class="row">
+												抵扣金额: <input id="couponmoney" name="coupon.coupon_money" type="text" value="${coupon.coupon_money !}">元 
+											</div>
+											<div class="row">
+												销售金额：<input id="saleprice" name="coupon.sale_price" type="text" value="${coupon.sale_price !}">元 
+											</div>
+											<div class="row" style="padding-left: 0px;">
+												使用期限： <input id="beginTime" name="coupon.begin_time" value="${coupon.begin_time!}" type="text"
+													style="width: 200px; height: 20px; margin-right: 2px;">
+													— <input id="endTime" name="coupon.end_time" value="${coupon.end_time!}" type="text" style="width: 200px; height: 20px;">
+											</div>
+										</div>
+										<div style="clear: both"></div>
+										<div class="row1">
+											使用条件： 一次购物满&nbsp;&nbsp; <input id="limitmoney" name="coupon.limit_money" type="text" value="${coupon.limit_money !}"
+												style="width: 110px; height: 25px; margin-bottom: 10px; vertical-align: middle;">
+												&nbsp;&nbsp;元才可以使用 
+										</div>
+										<div class="row2">
+											<span style="float: left">描述：</span>
+											<textarea name="coupon.description" style="width: 510px; height: 80px; float: left; margin-bottom: 10px;">${coupon.description!}</textarea>
+											<div style="clear: both;"></div>
+											<span style="margin-left: 35px;">（请输入代金券简单描述以便消费者快速了解信息）</span>
+										</div>
+									</div>
+									<div>
+										<div class="sf">
+											是否销售：&nbsp; 
+											<%if(coupon.is_sale !''==0){%>
+											 <input type="radio" id="tab_3" name="coupon.is_sale" value="1">是 
+											 <input type="radio" id="tab_4" name="coupon.is_sale" value="0" checked="checked">否
+											 <%}else{%> 
+				  							 <input type="radio" id="tab_3" name="coupon.is_sale" value="1" checked="checked">
+       											   是
+         					 				<input type="radio" id="tab_4" name="coupon.is_sale" value="0">
+    											   否
+											<%}%>
+											 &nbsp;&nbsp;&nbsp;&nbsp;(是否允许代金券做为商品销售)
+										</div>
+									</div>
+									<div style="clear: both;"></div>
+								</div>
+								<div class="goods_info_b">
+									 <div id="upload1" >上传商品图片</div>
+			 						 <span class="advise">文件格式JPG、JPEG、PNG文件大小150K以内，建议尺寸230PX*230PX</span>
+								</div>
+							</div>
+							<div class="goods_description">
+								<div class="title">代金券详情</div>
+								<div class="goods_description_content">
+									<script type="text/plain" id="myEditor" name="coupon.coupondetail" style="width:860px; height: 360px;">
+									${coupon.coupondetail!}
+			   						</script>
+									<p style="margin-left: 20px; font-size: 14px; color: #333;">
+										(查看代金券详情，让消费者更好的了解信息)</p>
+								</div>
+							</div>
+							<div class="btn_w">
+								<button class="btn_g_l">发布</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="btn_g_l">预览</button>
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
+		<div style="clear: both;"></div>
+	<script>
+		$(function() {
+			$("#tab_3").click(function() {
+				$(".active1").slideDown();
+
+			})
+		});
+	</script>
+	<script>
+		$(function() {
+			$("#tab_4").click(function() {
+				$(".active1").slideUp();
+			})
+		});
+	</script>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="${ctxPath}/static/umeditor/umeditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="${ctxPath}/static/umeditor/umeditor.min.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+		<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+		<script type="text/javascript">
+		var um = UM.getEditor('myEditor');
+		</script>
+		<script type="text/javascript">
+		//表单验证
+		$().ready(function() {
+			$("#couponform").validate({
+				errorPlacement : function(error, element) {
+					layer.tips(error.text(), element, {guide: 1, time: 3,more:true});
+				},
+				rules : {
+					"coupon.name" : "required",
+					"coupon.coupon_money":{
+						required:true,
+						digits:true
+					},
+					"coupon.begin_time":"required",
+					"coupon.end_time":"required",
+					"coupon.limit_money":{
+						required:true,
+						digits:true
+					},
+					"coupon.sale_price":{
+						required:true,
+						digits:true
+					}
+				},
+				messages : {
+					"coupon.name" : "请输入代金券名称",
+					"coupon.coupon_money" :{
+						required:"请输入代金券金额",
+						digits:"格式输入错误"
+					},
+					"coupon.begin_time":"请输入开始时间",
+					"coupon.end_time":"请输入截止时间",
+					"coupon.limit_money":{
+						required:"请输入限制金额",
+						digits:"格式输入错误"
+					},
+					"coupon.sale_price":{
+						required:"请输入限制金额",
+						digits:"格式输入错误"
+					}
+				},
+				submitHandler:function(form){
+					if(confirm("确定要发布,发布成功后,代金券信息将不可更改")){
+						form.submit();
+					}
+				}
+			});
+		});
+		</script>
+		<script>
+var start = {
+    elem: '#beginTime',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(), //设定最小日期为当前日期
+    max: '2099-06-16 23:59:59', //最大日期
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+         end.min = datas; //开始日选好后，重置结束日的最小日期
+         end.start = datas //将结束日的初始值设定为开始日
+    }
+};
+var end = {
+    elem: '#endTime',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(),
+    max: '2099-06-16 23:59:59',
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+        start.max = datas; //结束日选好后，重置开始日的最大日期
+    }
+};
+laydate(start);
+laydate(end);
+</script>
+	<script type="text/javascript">
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto : true,
+
+			// swf文件路径
+			swf : MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server : MSConfig.BaseURL + '/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick : {
+				id : "#upload1",
+				multiple : false
+			},
+
+			// 只允许选择图片文件。
+			accept : {
+				title : 'Images',
+				extensions : 'gif,jpg,jpeg,bmp,png',
+				mimeTypes : 'image/*'
+			},
+			auto : true
+		});
+
+		// 当有文件添加进来的时候
+		uploader.on('fileQueued', function(file) {
+			//			var $li = $(
+			//							'<div id="' + file.id + '" class="file-item thumbnail">' +
+			//							'<img>' +
+			//							'<div class="info">' + file.name + '</div>' +
+			//							'</div>'
+			//					),
+			var $img = $("#couponImg");
+
+			// $list为容器jQuery实例
+			//			$list.append( $li );
+
+			// 创建缩略图
+			// 如果为非图片文件，可以不用调用此方法。
+			// thumbnailWidth x thumbnailHeight 为 100 x 100
+			var thumbnailWidth = 100, thumbnailHeight = 100;
+			uploader.makeThumb(file, function(error, src) {
+				if (error) {
+					$img.replaceWith('<span>不能预览</span>');
+					return;
+				}
+
+				$img.attr('src', src);
+			}, thumbnailWidth, thumbnailHeight);
+		});
+		var loadi;
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on('uploadProgress', function(file, percentage) {
+			//			var $li = $( '#'+file.id ),
+			//var $li = $("#upload1"), $percent = $li.find('.progress span');
+
+			// 避免重复创建
+			//if (!$percent.length) {
+				//$percent = $('<p class="progress"><span></span></p>').appendTo(
+				//		$li).find('span');
+			//}
+			loadi = layer.load('上传中…');
+			//$percent.css('width', percentage * 100 + '%');
+		});
+
+		uploader.on('uploadAccept', function(file, response) {
+			if (response.status != "SUCCESS") {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+			
+			$("#couponImage").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on('uploadSuccess', function(file) {
+			//			$( '#'+file.id ).addClass('upload-state-done');
+			$("#upload1").addClass('upload-state-done').addClass(
+					'upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on('uploadError', function(file) {
+			//			var $li = $( '#'+file.id ),
+			var $li = $("#upload1"), $error = $li.find('div.error');
+
+			// 避免重复创建
+			if (!$error.length) {
+				$error = $('<div class="error"></div>').appendTo($li);
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on('uploadComplete', function(file) {
+			//			$( '#'+file.id ).find('.progress').remove();
+			//$("#upload1").find('.progress').remove();
+			layer.close(loadi);
+		});
+	</script>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

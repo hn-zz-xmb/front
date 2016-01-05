@@ -1,0 +1,7 @@
+
+<li><a href="${ctxPath}/store/searcheSetMeal?storeId=${store.id}&nav=0" >优惠套餐</a></li>
+<% for(c_ in category){%>
+<li><a
+	href="${ctxPath}/store?storeId=${store.id}&foodTypeId=${c_.id}">${c_.name}</a></li>
+<%}%>
+

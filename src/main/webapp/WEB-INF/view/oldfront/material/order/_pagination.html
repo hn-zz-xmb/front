@@ -1,0 +1,37 @@
+<%
+var current=page.pageNumber;
+var begin=@java.lang.Math.max(1, current - page.pageSize/2);
+var end=@java.lang.Math.min(begin + (page.pageSize - 1), page.totalPage);
+%>
+
+
+
+<div class="pages">
+	<div class="page">
+		<a class="stat">共 ${page.totalRow} 个项目</a>
+		<span class="former_no"></span>
+		<% if (page.pageNumber>0){%>
+			<a href="?pageNum=1"></a>
+			<a href="?pageNum=${current-1}"></a>
+		<% }else{%>
+			
+		<% }%>
+		
+		<% for(var i=begin;i<=end;i++){ %>
+			<% if (i==current){ %>
+				<a class="page_hover" href="?pageNum=${i}">${i}</a>
+			<%}else{%>
+				<a class="page_link" href="?pageNum=${i}">${i}</a>
+			<%}%>
+		<%}%>
+		
+		<a class="nonce">${current} / ${page.totalPage}</a>
+		
+		<% if ((page.pageNumber + 1) * page.pageSize < page.totalRow){%>
+			<a class="down" href="?pageNum=${current+1}">下一页</a>
+		<%}else{%>
+			<a href="?pageNum=${page.totalPage}"></a>
+		<%}%>
+		
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="order_list_container">
+	
+	<%for (info in page.list!){%>
+	<table class="order_item">
+		<tr>
+			<th><input type="checkbox"></th>
+			<th>店家</th>
+			<th>中奖活动</th>
+			<th>奖别</th>
+			<th>有效期</th>
+			<th>状态</th>
+			<th>备注</th>
+			<th><span class="grey">删除中奖记录<img alt=""
+					src="${ctxPath}/static/custom/images/member/del.png"></span></th>
+		</tr>
+		<tr>
+			<td></td>
+			<td>${info.name}</td>
+			<td>${info.prize_item_name}</td>
+			<td>${info.active}</td>
+			<td>${date(info.prize_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}至${date(info.loose_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</td>
+			<%if(info.status==1){%>
+			<td>可兑换</td>
+			<%}else{%>
+			<td>已兑换</td>
+			<%}%>
+			<td></td>
+			<td><a href="javascript:;" onclick="show('${info.id}')" class="btn_g">查看详情</a></td>
+		</tr>
+	</table>
+	<%}%>
+	<div class="order_list_bottom">
+		<input type="checkbox">全选 <a href="#" class="btn_gb">合并付款</a>
+		<a href="#" class="btn_gb">合并评价</a> <a href="#" class="btn_gb">批量删除</a>
+	</div>
+</div>
+
+
+<div class="pagination"><%include("../common/_ajaxpagination.html",{page:page}){}%></div>
+	
+	

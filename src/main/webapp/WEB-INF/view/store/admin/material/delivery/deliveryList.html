@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/manage.css" rel="stylesheet" type="text/css">
+<title>配送方式列表</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("/store/admin/store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("/store/admin/common.html",{left_:"peisong"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="" class="active">配送方式列表</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/materialManage/delivery/toAddDelivery" class="btn_add">新增</a>
+			</div>
+			<div class="main">
+				<div class="top_bar">
+					<div class="fl">
+						<input type="checkbox" id="all" class="checkall"
+							onclick="checkAll(this)">全选&nbsp;<a
+							onclick="delNavigations()" class="btn_grey_b">删除</a>
+					</div>
+					<div class="fr">
+						<a <%if(page.pageNumber>1){%>
+							href="${ctxPath}/salerManage/materialManage/delivery/deliveryList?pageNum=${page.pageNumber-1}"<%}%> 
+							class="btn_triangle_l">&nbsp;</a>&nbsp;<a <%if(page.pageNumber < page.totalPage && page.totalPage!0!=0){%>
+							href="${ctxPath}/salerManage/materialManage/delivery/deliveryList?pageNum=${page.pageNumber+1}"<%}%> 
+							class="btn_triangle_r">下一页</a>
+					</div>
+				</div>
+				<div class="list">
+					<table>
+						<tr>
+							<th width="50px"></th>
+							<th>名称</th>
+							<th width="150px">费用</th>
+							<th width="200px">是否启用</th>
+							<th width="100px">排序</th>
+							<th width="200px">操作</th>
+						</tr>
+						<%for (sto in page.list){%>
+						<tr class="tr_grey">
+							<td><input type="checkbox"  class="checkitem" value="${sto.id}"></td>
+							<td>${sto.name!}</td>
+							<td>${sto.money!}元</td>
+							<td><%if(sto.is_open==1){%>
+							<a href="${ctxPath}/salerManage/materialManage/delivery/updateopen?id=${sto.id}"><img alt="显示"	src="${ctxPath}/static/custom/images/storeManage/right_green.png"></a>
+							<%}else{%>
+							<a href="${ctxPath}/salerManage/materialManage/delivery/updateopen?id=${sto.id}"><img alt="不显示"	src="${ctxPath}/static/custom/images/storeManage/right_grey.png"></a>
+							<%}%></td>
+							<td>${sto.px!}</td>
+							<td><a href="${ctxPath}/salerManage/materialManage/delivery/toupdateDelivery?id=${sto.id!}" class="btn_edit">编辑</a><a href="${ctxPath}/salerManage/materialManage/delivery/deleteDelivery?id=${sto.id!}"
+								class="btn_del">删除</a></td>
+						</tr>
+						<%}%>
+					</table>
+				</div>
+				<div class="bottom_bar">
+					<input type="checkbox" id="all"
+								class="checkall" onclick="checkAll(this)">全选&nbsp;<a onclick="delNavigations()"
+						class="btn_grey_b">删除</a>
+				</div>
+				<div class="pagination">
+					<% include("/common/_pagination.html",{page:page}){}%>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+	<script type="text/javascript" src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/old/custom/js/ajax.common.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/old/front/js/checkAll.js"></script>
+<script type="text/javascript">
+function delNavigations(){
+	if(!confirm("确定要删除吗？"))return;
+	
+	var cbs = $(".checkitem:checked");
+	var ids ="";
+	for(var i=0; i<cbs.length; i++){
+		ids=ids+","+cbs[i].value;
+	}
+	var url = "${ctxPath}/salerManage/materialManage/delivery/deleteAllDelivery";
+	var param={
+			"ids": ids
+	}
+	var result = callText(url, param, true);
+	if(result=="success"){
+		window.location.href="${ctxPath}/salerManage/materialManage/delivery/deliveryList";
+	}
+}
+</script>
+</body>
+</html>

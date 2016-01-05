@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* CSS Document */
+
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2, h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset, input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+body {
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+ol, ul, li {
+	list-style: none;
+}
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+a {
+	text-decoration: none;
+	outline: none
+}
+.mainbox-pj {
+	width: 928px;
+	background-color: #fff;
+	overflow: hidden;
+	border-bottom: 1px dashed #ddd;
+}
+.mainbox-pj ul li {
+	text-align: center;
+}
+.pj-fl {
+	width: 500px;
+	float: left;
+	margin-left: 25px;
+	line-height: 25px;
+	margin-top: 10px;
+	text-align: left;
+	text-overflow: ellipsis;
+}
+.pj-fr {
+	width: 390px;
+	float: left;
+	line-height: 25px;
+	margin-left: 10px;
+	margin-top: 12%;
+	margin-bottom: 20px;
+}
+.re {
+	width: 350px;
+	height: 50px;
+	float: left;
+}
+.pj-fr ul li {
+	height: 20px;
+	border: none;
+	text-align: left;
+	font-size: 14px;
+}
+.star{
+	background-image: url(../images/star.png);
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	}
+.star-no {
+	background-position: -5px -5px;
+}
+.star-yes {
+	background-position: -5px -23px;
+}
+.name {
+	float: left;
+	width: 150px;
+	padding-left: 10px;
+	padding-top: 40px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.anniu {
+	width: 30px;
+	line-height: 10px;
+	text-align: center;
+	display: inline-block;
+	padding: 5px;
+	background-color: #ededed;
+	color: #333;
+	margin-top: 15px;
+	border: 1px solid #ddd;
+}
+.name01 {
+	font-size: 12px;
+	font-weight: bold;
+}

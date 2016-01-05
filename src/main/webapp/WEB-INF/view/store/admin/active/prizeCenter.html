@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/manage.css" rel="stylesheet"
+	type="text/css">
+<title>店铺管理-活动管理</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"active"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/activeCenter">活动中心</a></li>
+					<li><a href="${ctxPath}/salerManage/activeCenter/saveUI">添加活动</a></li>
+					<!--<li><a href="${ctxPath}/salerManage/prizeItem">奖项列表</a></li>-->
+					<li><a href="#" class="active">兑奖中心</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/activeCenter/saveUI" class="btn_add">新增活动</a>
+			</div>
+			<div class="main">
+				<div class="top_bar">
+
+					<div class="fr">
+						<form action="${ctxPath}/salerManage/prizeInfo" method="post">
+							<select name="status">
+							<option value="">状态</option>
+							<option value="1">未兑奖</option>
+							<option value="0">已兑奖</option>
+							</select>&nbsp; <input name="username" type="text"
+						      placeholder="输入用户昵称进行搜索" value="${params.username!''}">
+							<button>搜索</button>
+							&nbsp;<a href="#" class="btn_grey_b">清空结果</a>
+						</form>
+					</div>
+				</div>
+				<div class="list">
+					<table>
+						<tr>
+							<th>用户昵称</th>
+							<th width="200px">活动名称</th>
+							<th width="200px">活动奖励</th>
+							<th width="200px">是否兑奖</th>
+							<th width="200px">操作</th>
+						</tr>
+						<%for(info in page.list){%>
+						<tr
+							<%if(infoLP.index%2==0){%> class="tr_grey" <%}%>>
+							<td>${info.username !}</td>
+							<td>${info.activeName !}</td>
+							<td>${info.prize_item_name !}</td>
+							<td>
+							<%if(info.status==0){%>
+							<a><img alt="" src="${ctxPath}/static/custom/images/storeManage/right_green.png"></a></td>
+							<%}else{%>
+							<a onclick="javascript:if(confirm('确定要兑奖么？')){ return true;}else{return false;};" href="${ctxPath}/salerManage/prizeInfo/sureinfo?infoId=${info.id}"><img alt="" src="${ctxPath}/static/custom/images/storeManage/right_grey.png"></a></td>
+							<%}%>
+							<td><a href="javascript:;" onclick="show('${info.id}')" class="btn_g">查看详情</a></td>
+						</tr>
+						<%}%>
+					</table>
+				</div>
+				<div class="pagination">
+					<%include("/common/_pagination.html",{page:page}){}%></div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+<script type="text/javascript"
+		src="${ctxPath}/static/js/common.js"></script>
+<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript">
+		function show(id) {
+				$.layer({
+					type : 2,
+					shadeClose : true,
+					title : '中奖记录详情',
+					closeBtn : [ 0, true ],
+					shade : [ 0 ],
+					border : [ 10, 0.3, '#000' ],
+					offset : [ '20px', '' ],
+					area : [ '350px', '321px' ],
+					iframe : {
+						src : './prizeInfo/infoDetail?infoId=' + id
+					}
+				});
+		}
+	</script>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

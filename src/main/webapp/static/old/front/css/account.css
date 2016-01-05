@@ -1,0 +1,208 @@
+/* CSS Document */
+/*saler*/
+.saler {
+	font-size: 12px;
+	text-align: left;
+}
+
+.icon {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -330px
+		transparent;
+}
+
+.tg {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -2254px
+		transparent;
+}
+
+.zx {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -1656px
+		transparent;
+}
+
+.gl {
+	padding-left: 25px;
+	display: block;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -357px
+		transparent;
+}
+
+.gla {
+	display: block;
+	padding-left: 25px;
+	height: 26px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -384px
+		transparent;
+}
+
+.ddgl {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -410px
+		transparent;
+}
+
+.dp {
+	display: block;;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -436px
+		transparent;
+}
+
+.szt {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -461px
+		transparent;
+}
+
+.zf {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -488px
+		transparent;
+}
+
+.ps {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -513px
+		transparent;
+}
+
+.dh {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -540px
+		transparent;
+}
+
+.hz {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -1909px
+		transparent;
+}
+
+.yh {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -1613px
+		transparent;
+}
+
+.qi {
+	display: block;
+	padding-left: 25px;
+	background: url(../images/ico/ico.gif) no-repeat scroll 0px -249px
+		transparent;
+}
+
+.content {
+	width: 932px;
+	margin: 0 auto;
+}
+
+#left {
+	width: 150px;
+	float: left;
+	position: relative;
+	background: url(../images/ico/member/left.gif) repeat-y;
+}
+
+#right {
+	width: 765px;
+	float: left;
+	padding: 5px 5px 5px;
+	position: relative;
+	margin-left: 5px;
+}
+
+#rights {
+	width: 765px;
+	float: left;
+	padding: 5px 5px 5px;
+	position: relative;
+	margin-left: 5px;
+}
+
+/* left */
+#left h2 {
+	height: 25px;
+	position: relative;
+	background: url(../images/ico/member/left_h2.gif);
+}
+
+#left strong {
+	display: block;
+	width: 58px;
+	height: 15px;
+	overflow: hidden;
+	position: absolute;
+	top: 5px;
+	left: 12px;
+	background: url(../images/ico/member/left_strong.gif);
+}
+
+#left h2 .adorn1 {
+	width: 3px;
+	height: 25px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url(../images/ico/member/left_h2.gif) no-repeat 0 -35px;
+}
+
+#left h2 .adorn2 {
+	width: 3px;
+	height: 25px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: url(../images/ico/member/left_h2.gif) no-repeat 0 bottom;
+}
+
+#left dl {
+	width: 145px;
+	padding-bottom: 8px;
+}
+
+#left dt {
+	width: 140px;
+	height: 27px;
+	line-height: 25px;
+	padding: 0 0 8px 12px;
+	color: #3e3e3e;
+	font-weight: bold;
+	background: url(../images/ico/member/left_dt.gif) no-repeat;
+}
+
+#left dd {
+	width: 140px;
+	margin: 0 auto;
+}
+
+#left dd a {
+	display: block;
+	width: 140px;
+	height: 26px;
+	line-height: 26px;
+	padding-left: 10px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#left dd .normal {
+	color: #919191;
+}
+
+#left dd .normal:hover {
+	color: #c61a37;
+	background: #f7f7f7 url(../images/ico/ico.gif) no-repeat 140px -572px;
+}

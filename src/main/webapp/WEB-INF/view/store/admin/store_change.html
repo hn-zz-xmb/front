@@ -1,0 +1,27 @@
+<div class="fl">
+	<ul class="dropdown" id="dropdown" style="z-index: 9999">
+		<li><a href="javascript:void(0)" id="dropdown_link">${session.store.name}</a></li>
+		<ul style="display: none;" id="storeChangeUL">
+			<%for(store_c_ in session.storeList!){%>
+			<li><a href="javascript:void(0)" id="${store_c_.id}">${store_c_.name}</a></li>
+			<%}elsefor{%>
+			<li><a href="javascript:void(0)" id="${session.store.id}">${session.store.name}</a></li>
+			<%}%>
+		</ul>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#storeChangeUL li").each(function(){
+			$(this).find("a").click(function(){
+				var url=MSConfig.BaseURL+"/storeManage/changeStore";
+				var params={"storeId":$(this).attr("id")};
+				var result=callJson(url,params,false);
+				if(result.isChange){
+					document.location.reload();
+				}
+			})
+		})
+	})
+</script>

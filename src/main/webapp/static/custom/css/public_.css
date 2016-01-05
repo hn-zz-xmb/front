@@ -1,0 +1,36 @@
+/* CSS Document */
+body{
+font-family:"宋体", Arial;
+font-size:12px;
+margin:0;
+padding:0;
+}
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-style: 100%;
+	font-family: inherit
+}
+div,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dd,dt,img,p,form{
+margin:0;
+padding:0;
+border:0;
+outline: none}
+ul,ol,li{
+list-style:none;}
+table,td,tr,th,input,select{
+font-size:12px;}
+input{
+font-family:Arial;}
+table{
+border-collapse:collapse;}
+.clear{zoom:1;}
+.clear:after{content:'';display:block;
+clear:both;
+height:0px;}
+
+a{text-decoration:none;font-family:Arial;outline: none;}
+a:link{color:#333;text-decoration:none;}
+

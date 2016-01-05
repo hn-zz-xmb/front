@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2, h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset, input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+body {
+	color: #000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+ol, ul, li {
+	list-style-type: none;
+}
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+.clear {
+	font: 0px/0px serif;
+	display: block;
+	clear: both;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+a {
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+}
+.title {
+	width: 1180px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.mainbox {
+	height: 150px;
+	width: 1178px;
+	border: 1px solid #dbdbdb;
+	background-color: #fff;
+}
+.sx {
+	height: 30px;
+	width: 1118px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #d9dadc;
+	line-height: 30px;
+	color: #333;
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 60px;
+}
+.sx1 {
+	padding: 15px 50px;
+	background-color: #fff;
+}
+.main {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 15px;
+	border: 1px solid #e8e8e8;
+}
+.main-list {
+	margin-bottom: 10px;
+}
+.main-list td {
+	color: #333;
+	font-size: 14px;
+	text-align: center;
+	background-color: #f5f5f5;
+	line-height: 40px;
+}
+.main-list th {
+	color: #333;
+	font-size: 14px;
+	text-align: center;
+	background-color: #fff;
+	line-height: 110px;
+	border-right: 1px solid #e8e8e8;
+}

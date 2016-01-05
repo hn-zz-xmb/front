@@ -1,0 +1,146 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.position{
+	width:1170px;
+	height:30px;
+	line-height:30px;
+	background-color:#e5e5e5;
+	font-size:15px;
+	margin:0 auto;
+	color:#565656;
+	padding-left:10px;
+	margin-top:10px;
+}
+.position a{
+	color:#565656;
+}
+.position a:hover{
+	color:#409300;
+}
+.content{
+	width:1158px;
+	margin:10px auto;
+	border:1px solid #8bc73c;
+	background-color:#daeec2;
+	font-size:14px;
+	color:#565656;
+	padding:10px;
+}
+.order_detail_title{
+	font-size:18px;
+	color:#409300;
+	height:30px;
+	line-height:30px;
+	margin-bottom:10px;
+}
+.order_detail_content{
+	background-color:#fff;
+	padding:10px;
+}
+.order_detail_content_t{
+	padding:10px 20px;
+	border-bottom:1px solid #8bc73c;
+}
+.order_info{
+	width:100%;
+}
+.order_info td{
+	height:30px;
+}
+.span1{
+	border:1px solid #ccc;
+	width:100px;
+	text-align:center;
+	display:inline-block;
+	height:20px;
+	line-height:20px;
+}
+.span2{
+	border:1px solid #ccc;
+	width:150px;
+	text-align:center;
+	display:inline-block;
+	height:20px;
+	line-height:20px;
+}
+.span3{
+	border:1px solid #ccc;
+	width:180px;
+	text-align:center;
+	display:inline-block;
+	height:20px;
+	line-height:20px;
+}
+.span4{
+	border:1px solid #ccc;
+	width:600px;
+	display:inline-block;
+	height:20px;
+	line-height:20px;
+}
+.order_detail_content_b{
+	padding:10px;
+}
+.saler_info_title{
+	font-size:18px;
+}
+.saler_info{
+	width:100%;
+	margin-left:30px;
+	margin-bottom:20px;
+}
+.green{
+	color:#409300;
+}
+.goods_info{
+	width:100%;
+	border:1px solid #ccc;
+	border-collapse: collapse;
+}
+.goods_info th{
+	background-color:#d6e9be;
+	height:30px;
+}
+.goods_info td{
+	height:100px;
+	border-top:1px solid #ccc;
+	border-right:1px solid #ccc;
+	text-align:center;
+}
+.goods_info td img{
+	float:left;
+	margin-left:10px;
+}
+.goods_info .goods_name{
+	position:relative;
+	top:30px;
+}

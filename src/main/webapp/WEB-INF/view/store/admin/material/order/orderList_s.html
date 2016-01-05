@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/orderManage.css"
+	rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/custom/css/store_manage_public.css"
+	rel="stylesheet" type="text/css">
+<title>店铺管理-订单管理</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("../../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../../common.html",{left_:"order"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="#" class="active">所有订单</a></li>
+					<li><a href="#"></a></li>
+				</ul>
+			</div>
+			<script type="text/javascript"
+				src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+			<div class="main">
+				<div class="filter">
+					<form action="${ctxPath}/salerManage/materialManage/ordermanage" method="post">
+						<div class="filter_simple">
+							<input name="orderNo" value="${params.orderNo !}" type="text"
+								placeholder="输入订单号进行搜索" class="input_l">
+							<button>订单搜索</button>
+							<a href="javascript:void(0);" class="more down" id="more">更多筛选条件</a>
+						</div>
+						<div class="filter_more" style="display: none;" id="filter_more">
+							<table>
+								<tr>
+								<td>交易状态： <select name="status">
+											<option value="">全部</option> <%if(params.status!''== null){%>
+											<%for(d in dataDics){%>
+											<option value="${d.code}">${d.code_name}</option> <%}%>
+											<%}else{%> <%for(d in dataDics){
+											if(params.status!''==d.code){%>
+											<option selected="selected" value="${d.code}">${d.code_name}</option>
+											<%}else{%>
+											<option value="${d.code}">${d.code_name}</option><%}}%><%}%>
+									</select>
+									</td>
+									<td>下单时间： <input onclick="laydate()" type="text"
+										name="fromTime" value="${params.fromTime !}" class="input_d">到
+										<input onclick="laydate()" type="text" name="toTime"
+										value="${params.toTime !}" class="input_d"></td>
+									<td>买家昵称：<input type="text" name="buyername" value="${params.buyername!}"></td>
+								</tr>
+							</table>
+						</div>
+					</form>
+				</div>
+				<!-- filter end -->
+				<div class="order_list_head">
+					<div class="column">订单类型</div>
+					<div class="column">订单总价（元）</div>
+					<div class="column">
+						<ul class="dropdown1" id="dropdown1">
+							<li><a href="#" class="selected" id="dropdown1_link">订单状态</a></li>
+							<ul style="display: none;">
+								<li><a href="${ctxPath}/salerManage/materialManage/ordermanage?status=ma_finished">已完成（已消费）</a></li>
+								<li><a href="${ctxPath}/salerManage/materialManage/ordermanage?status=ma_cancel">已取消</a></li>
+							</ul>
+						</ul>
+					</div>
+					<div class="column">交易操作</div>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="order_list">
+					<% for (order in page.list){%>
+					<div class="order_item">
+						<div class="order_item_head">
+							<input type="checkbox" class="checkitem" value="${order.id!}">&nbsp;&nbsp;
+							<span class="column1">${date(order.order_time!,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</span>
+							<span class="column2">订单号：${order.order_no!}</span> <span
+								class="column2">买家：${order.member_name!}</span> <span
+								class="column2">和我联系：${order.phone!}</span>
+						</div>
+						<div class="order_item_content">
+							<table>
+								<td> <%if(order.delivery_method!"" =="distribution"){%>自取<%}else{%>${order.deliveryname!}<%}%></td>
+								<td>￥${order.order_money! + order.delivery_money!}元</td>
+								<td><%for(d in dataDics){
+								if(order.order_status!""==d.code){
+								%> ${d.code_name!}<%}}%></td>
+								<td>
+								<%if(order.order_status!"" =="payed"){
+									if(order.delivery_method!"" =="distribution"){%>
+									<a href="${ctxPath}/salerManage/materialManage/ordermanage/completeOrder?id=${order.id!}">确认完单</a>
+									<%}else{%>
+									<a href="${ctxPath}/salerManage/materialManage/ordermanage/shipping?id=${order.id!}">确认发货</a>
+								<%	}
+								}else if(order.order_status!"" =="finished"){%>
+								交易完成
+								<%}else if(order.order_status!"" =="closed"){
+									if(order.reason!""=="cancel" && order.reason_result!"" =="success"){%>
+									买家已取消订单
+									<%}else if(order.reason!""=="applied"){
+										if(info.reason_result!"" =="going"){%>
+										<a href="${ctxPath}/salerManage/materialManage/ordermanage/confirmRefund?id=${order.id!}">确认退款</a>
+										<%}else if(info.reason_result!"" =="success"){%>
+										退款成功
+										<%}else if(info.reason_result!"" =="faild"){%>
+										退款失败
+										<%}%>
+									<%}else if(info.reason!"" =="applyreturn"){
+										if(info.reason_result!"" =="going"){%>
+                                    <a href="${ctxPath}/salerManage/materialManage/ordermanage/confirmReturn?id=${order.id!}">确认退货</a>
+                                    <%}else if(info.reason_result!"" =="success"){%>
+                                    退货成功
+                                    <%}else if(info.reason_result!"" =="faild"){%>
+                                    退货失败
+                                    <%}
+                                    }%>
+                                    <%}%>
+								
+								<a target="_blank"href="${ctxPath}/salerManage/materialManage/ordermanage/findOrder?id=${order.id!}">查看订单</a>
+									<a href="javascript:;" onclick="coupon('${order.id!}')"></a>
+								</td>
+							</table>
+						</div>
+					</div>
+					<%}%>
+					<!-- order item end -->
+				</div>
+				<div class="pagination"><%
+					include("/common/_pagination.html",{page:page}){}%></div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/orderList_s.js"></script>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript">
+		function coupon(id) {
+			$.layer({
+						type : 2,
+						shadeClose : true,
+						title : '返代金券',
+						closeBtn : [ 0, true ],
+						shade : [ 0.5, '#000' ],
+						border : [ 10, 0.3, '#000' ],
+						offset : [ '', '' ],
+						area : [ '400px', '160px' ],
+						iframe : {
+							src : '${ctxPath}/salerManage/materialManage/ordermanage/returncoupon?orderId='
+									+ id
+						}
+					});
+		}
+	</script>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

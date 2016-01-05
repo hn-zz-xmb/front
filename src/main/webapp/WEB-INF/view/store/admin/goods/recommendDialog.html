@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/recommendDialog.css" rel="stylesheet" type="text/css">
+<script type="text/javascript"
+	src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+<script src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+<script src="${ctxPath}/static/custom/js/common.js"></script>
+<script type="text/javascript"
+src="${ctxPath}/static/jquery/validator/lang/additional-methods.js"></script>
+<script type="text/javascript"
+	src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<title>商品推荐</title>
+</head>
+<body>
+	<div class="wrap">
+		<form id="recommend" action="" method="post">
+			<input name="goodsId" value="${goodsId !}" type="hidden" />
+			<div class="form">
+				<div class="row">
+					请选择菜系分类：<select name="goodsType">
+					<%for(type in goodsType !){%>
+						<option value="${type.id !}">${type.name !}</option>
+					<%}%>
+					</select>
+				</div>
+				<div class="notice"></div>
+				<div class="bottom">
+					<button id="cancel" class="btn_cancel" >取消</button>
+					<button class="btn_ok">确定</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+	$('#cancel').on('click', function(){
+		 var index = parent.layer.getFrameIndex(window.name);
+         parent.layer.close(index);
+	});
+	//表单验证
+	$().ready(function() {
+		$("#recommend").validate({
+			submitHandler : function(form) {
+				$(form).ajaxSubmit({
+					type : "post",
+					url : "${ctxPath}/salerManage/goodsmanage/recommend",
+					dataType : "json",
+					success : function(result) {
+						if (result.status) {
+							 form.submit();
+							 parent.location.reload();
+	                         var index = parent.layer.getFrameIndex(window.name);
+	                         parent.layer.close(index);
+						} else { 
+							alert(result.error);
+						}
+					}
+				});
+			}
+		});
+	});
+</script>
+</body>
+</html>

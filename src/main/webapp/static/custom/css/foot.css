@@ -1,0 +1,108 @@
+/*--底部------*/
+.footBox {
+    height: 380px;
+    border-top: 5px solid #84c233;
+    margin-top: 40px;
+    background-color: #FFF;
+}
+
+.foot {
+    width: 1180px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.foot_top_t {
+    margin-bottom: 20px;
+}
+
+.foot_top_b {
+    font-size: 12px;
+    font-family: "宋体";
+    color: #7a7a7a;
+}
+
+.foot_top_b a {
+    font-size: 12px;
+    font-family: "宋体";
+    color: #84c233;
+    margin: 0 10px;
+}
+
+.foot_top_b a:hover {
+    color: #f40;
+}
+
+.footLine {
+    height: 1px;
+    background-color: #e6e6e6;
+    width: 1180px;
+    margin: 10px 0;
+}
+
+.foot_bottom {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.foot_bottom_m {
+    margin-top: 13px;
+    margin-bottom: 20px;
+}
+
+.foot_bottom_t a {
+    color: #000;
+}
+
+.foot_bottom_t a:hover {
+    color: #f40;
+}
+
+.foot_bottom_b a {
+    margin: 0 5px;
+}
+/*--侧边浮动------*/
+.floatRight {
+    height: 122px;
+    width: 40px;
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.floatRight a {
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.floatRight02 {
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+
+.floatRight01 a {
+    background-image: url(../images/floatRight01.jpg)
+}
+
+.floatRight01 a:hover {
+    background-image: url(../images/floatRight01_down.jpg)
+}
+
+.floatRight02 a {
+    background-image: url(../images/floatRight02.jpg)
+}
+
+.floatRight02 a:hover {
+    background-image: url(../images/floatRight02_down.jpg)
+}
+
+.floatRight03 a {
+    background-image: url(../images/floatRight03.jpg)
+}
+
+.floatRight03 a:hover {
+    background-image: url(../images/floatRight03_down.jpg)
+}

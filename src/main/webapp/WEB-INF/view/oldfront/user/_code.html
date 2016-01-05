@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>_code.html</title>
+<script type="text/javascript"
+	src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript"
+	src="${ctxPath}/static/old/custom/js/ajax.common.js"></script>
+<script type="text/javascript"
+	src="${ctxPath}/static/old/custom/js/common.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#repeatImg')
+				.click(
+						function() {//生成验证码  
+							$("#captcha").hide().attr(
+									'src',
+									'${ctxPath}/captcha?aa'
+											+ Math.floor(Math.random() * 100))
+									.fadeIn();
+							event.cancelBubble = true;
+						});
+		$("#phoneCode_").click(function() {
+			sendMsg();
+		});
+	});
+
+	var InterValObj; //timer变量，控制时间
+	var count = 60; //间隔函数，1秒执行
+	var curCount;//当前剩余秒数
+	function sendMessage() {
+		var code = $("#pcode").val();
+		if (trimTxt(code) == "") {
+			$('#repeatImg').click();
+			return false;
+		}
+		curCount = count;
+		//向后台发送处理数据
+		var phone = window.parent.document.getElementById("phone").value;
+
+		var url = "${ctxPath}/register/checkDialgCode";
+		var params = {
+			"code" : code
+		};
+		var result = callJson(url, params, false);
+
+		if (result.ischeck) {
+			var url = "${ctxPath}/msg/send";
+			var params = {
+				"msgType" : "regist",
+				"phone" : phone
+			};
+
+			var result = callJson(url, params, false);
+			if (!result.isMsg) {
+				alert(result.error);
+				return false;
+			}
+			window.parent.startTiming();
+			window.parent.closeDialog();
+		} else {
+			alert(result.error);
+		}
+
+	}
+</script>
+
+</head>
+
+<body>
+	<div class="tanchu">
+		<table>
+			<tr>
+				<td class="yanz">验证码&nbsp;&nbsp;<input id="pcode" type="text"
+					class="text_b" /></td>
+			</tr>
+			<tr>
+				<td><img id="captcha"
+					src="${ctxPath}/captcha"> <a
+					id="repeatImg"
+					style="color:blue; cursor: pointer; font-size: 12px; ">看不清楚换一张</a>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" name="tijiao" value="确定"
+					class="sure_ok" onclick="sendMessage()" /></td>
+			</tr>
+		</table>
+	</div>
+
+	<style type="text/css">
+.tanchu {
+	width: 320px;
+	height: 200px;
+	margin: 0 auto;
+}
+
+.tanchu table {
+	margin: 0 auto;
+}
+
+.tanchu tr {
+	height: 60px;
+	width: 200px;
+}
+
+.text_b {
+	width: 161px;
+	height: 31px;
+}
+
+.sure_ok {
+	width: 142px;
+	height: 42px;
+	border: 0 none;
+	margin-left: 25px;
+	background: url(${ctxPath}/static/old/front/images/suren.jpg) no-repeat;
+}
+</style>
+</body>
+</html>

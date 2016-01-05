@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/zhongjiang.css" rel="stylesheet" type="text/css">
+<title>优惠券列表</title>
+</head>
+<body>
+<% include("../common/userhead.html"){}%>
+	  <!--位置-->
+    <div class="position">当前位置：<a href="#">店铺管理</a>&gt;中奖记录</div>
+      <!--筛选-->
+    <div class="search">
+    <form action="${ctxPath}/active/AllActivePrizeInfo" method="post">
+        <div class="searchTitle"> 筛选条件
+            <input class="searchInput" type="search" value='搜索”订单“'/>
+        </div>                
+        <div class="hdS_search"><a href="javascript:;" onclick="document.forms[0].submit()">确认搜索</a></div>
+        <div class="searchIf">
+        	中奖状态：<span><a href="javascript:;" onclick="setInfoStatus('')" <%if(params.status!''==''){%>class="on"<%}%>>全部</a></span>
+        	<a href="javascript:;" onclick="setInfoStatus('0')" <%if(params.status!''=='0'){%>class="on"<%}%>>已兑换</a>
+        	<a href="javascript:;" onclick="setInfoStatus('1')" <%if(params.status!''=='1'){%>class="on"<%}%>>未兑换</a>
+        </div>
+        <div class="searchIf">
+        	中奖时间：<span><a href="#" class="on">全部</a></span>
+        	<input type="text" class="hdS_slt" onclick="laydate()" name="startTime" value="${params.startTime !}">&nbsp;-&nbsp;
+            <input type="text" class="hdS_slt" onclick="laydate()" name="endTime" value="${params.endTime !}">
+        </div>
+        <input type="hidden" name="Status" id="infoStatus">
+        </form>
+    </div>
+    <%for (info in page.list!){%>
+<div class="listBoxH">
+        <!--表头-->
+        <div class="listTitle">
+          <div class="listTitleSub01"><input type="checkbox"/>
+          店家</div>
+          <div class="listTitleSub02">中奖活动</div>
+          <div class="listTitleSub03">奖别</div>
+          <div class="listTitleSub04">有效期</div>
+          <div class="listTitleSub05">状态</div>
+          <div class="listTitleSub06">备注</div>
+          <div class="listTitleSub07">操作</div></div>
+        <!--表格-->
+        <div class="listBox">
+          <div class="listContent">
+            <div class="listContentSub01">${info.name}
+            </div>
+                <div class="listContentSub02">
+                   ${info.prize_item_name}
+            </div>
+                <div class="listContentSub03">
+                   ${info.active}
+            </div>
+                <div class="listContentSub04"><span class="listContentSub03">${date(info.prize_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}至${date(info.loose_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</span></div>
+                <div class="listContentSub05">
+                    <%if(info.status==1){%>可兑换<%}else{%>已兑换<%}%>
+                    </div>
+                <div class="listContentSub06">无</div>
+                <div class="listContentSub07">
+                    <span><a href="javascript:;" onclick="del('${info.id}')">删除记录</a></span>
+                    <span><a href="javascript:;" onclick="show('${info.id}')">查看详情</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+    
+    <% include("../common/foot.html"){}%>
+<script type="text/javascript"src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<script src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+<script src="${ctxPath}/static/custom/js/common.js"></script>
+<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script type="text/javascript">
+		function show(id) {
+			$.layer({
+				type : 2,
+				shadeClose : true,
+				title : '中奖记录详情',
+				closeBtn : [ 0, true ],
+				shade : [ 0 ],
+				border : [ 10, 0.3, '#000' ],
+				offset : [ '20px', '' ],
+				area : [ '350px', '321px' ],
+				iframe : {
+					src : './prizeInfoDetail?infoId=' + id
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		function del(id) {
+		/*	var msg="您真的确定要删除吗？";if (confirm(msg)==true){
+				src:'./DelprizeInfo?infoId=' + id
+				return true;}
+					else{return false;} */
+			if(!confirm('确认删除吗？'))
+				return;
+			var url =MSConfig.BaseURL + "/active/delete";
+			var param = {
+				"id" : id
+			}
+			var result = callText(url, param, false);
+			if (result == "success") {
+				window.location.reload();
+			} else {
+				alert("出错，请刷新页面");
+			}
+			
+		}
+	</script>
+	<script type="text/javascript">
+		$(".searchIf a").click(function(){
+			$(this).parents(".searchIf").find("a").removeClass("on");
+			$(this).addClass("on");
+		})
+		function setInfoStatus(status){
+			$("#infoStatus").val(status);
+		}
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Expires" content="0">
+    <title>37美食-付款</title>
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  <form action="${ctxPath}/alipay/toAlipayPage" method="post">
+		订单号：<input type="text" name="out_trade_no"/><br/>
+		金　额：<input type="text" name="total_fee"/><br/>
+		选择银行：<br/>
+		<input type="radio" name="defaultbank" value="ICBCB2C"/>工商银行
+		<img src="${ctxPath}/static/custom/bank_img/icbc.bmp" align="middle"/>
+		<input type="radio" name="defaultbank" value="CMB"/>招商银行
+		<img src="${ctxPath}/static/custom/bank_img/cmb.bmp" align="middle"/><br/><br/>
+		<input type="radio" name="defaultbank" value="ABC"/>农业银行
+		<img src="${ctxPath}/static/custom/bank_img/abc.bmp" align="middle"/>
+		<input type="radio" name="defaultbank" value="CCB"/>建设银行
+		<img src="${ctxPath}/static/custom/bank_img/ccb.bmp" align="middle"/><br/><br/>
+		<input type="radio" name="defaultbank" value="COMM"/>交通银行
+		<img src="${ctxPath}/static/custom/bank_img/bcc.bmp" align="middle"/><br/>
+		<input type="submit" value="确认支付"/>
+	</form>
+  
+  </body>
+</html>

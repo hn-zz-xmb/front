@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>评论卖家</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="${ctxPath}/static/custom/css/appraisese.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="mainbox">
+  <div class="title">
+    <div class="wenzi">评价卖家</div>
+  </div>
+  <div class="list">
+    <ul>
+      <li style="float: left;"><span style="color:#b3b3b3">店铺：</span>${order.storename!}</li>
+      <li><span style="color:#b3b3b3">订单号：</span>${order.order_no!}</li>
+    </ul>
+  </div>
+  <div class="list1">
+    <ul>
+      <li><span style="color:#b3b3b3; width:80px; float:left;">分项评分：</span>
+      
+        <div style="float:left;"> <span style="float:left">环境：</span>
+          <div id="xzw_starSys" class="fl">
+            <div id="xzw_starBox">
+              <ul class="star" id="star1">
+                <li><a href="javascript:void(0)" title="1" class="one-star">1</a></li>
+                <li><a href="javascript:void(0)" title="2" class="two-stars">2</a></li>
+                <li><a href="javascript:void(0)" title="3" class="three-stars">3</a></li>
+                <li><a href="javascript:void(0)" title="4" class="four-stars">4</a></li>
+                <li><a href="javascript:void(0)" title="5" class="five-stars">5</a></li>
+              </ul>
+              <div class="current-rating" id="showb1"></div>
+            </div>
+            <!--评价文字-->
+            <div class="description1"></div>
+          </div>
+        </div>
+        
+        <div style="float:left; margin-left:80px;"> <span style="float:left">口味：</span>
+          <div id="xzw_starSys" class="fl">
+            <div id="xzw_starBox">
+              <ul class="star" id="star2">
+                <li><a href="javascript:void(0)" title="1" class="one-star">1</a></li>
+                <li><a href="javascript:void(0)" title="2" class="two-stars">2</a></li>
+                <li><a href="javascript:void(0)" title="3" class="three-stars">3</a></li>
+                <li><a href="javascript:void(0)" title="4" class="four-stars">4</a></li>
+                <li><a href="javascript:void(0)" title="5" class="five-stars">5</a></li>
+              </ul>
+              <div class="current-rating" id="showb2"></div>
+            </div>
+            <!--评价文字-->
+            <div class="description2"></div>
+          </div>
+        </div>
+        
+        <div style="float:left; margin-left:80px;"> <span style="float:left">服务：</span>
+          <div id="xzw_starSys" class="fl">
+            <div id="xzw_starBox">
+              <ul class="star" id="star3">
+                <li><a href="javascript:void(0)" title="1" class="one-star">1</a></li>
+                <li><a href="javascript:void(0)" title="2" class="two-stars">2</a></li>
+                <li><a href="javascript:void(0)" title="3" class="three-stars">3</a></li>
+                <li><a href="javascript:void(0)" title="4" class="four-stars">4</a></li>
+                <li><a href="javascript:void(0)" title="5" class="five-stars">5</a></li>
+              </ul>
+              <div class="current-rating" id="showb3"></div>
+            </div>
+            <!--评价文字-->
+            <div class="description3"></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="list2">
+  <form id="appraise">
+  <input type="hidden" name="orderAppraise.env_points" id="env_points" value="${orderAppraise.env_points!}"/>
+  <input type="hidden" name="orderAppraise.server_points" id="server_points" value="${orderAppraise.server_points!}"/>
+  <input type="hidden" name="orderAppraise.taste_points" id="taste_points" value="${orderAppraise.taste_points!}"/>
+  <input type="hidden" name="orderid" value="${order.id!}"/>
+    <ul>
+      <li><span style="color:#b3b3b3; width:80px; float:left;">评价内容：</span>
+        <div style="float:left; width:500px; height:100px;">
+          <textarea rows="5" name="orderAppraise.appraise_desc"></textarea>
+          <p style="color:#333; font-size:12px;margin-bottom:15px;">支持格式jpg、jpeg、png、gif，请保证图片清晰且文件大小不超过400KB</p>
+          <button type="submit" class="anniu">确定</button>  </div>
+      </li>
+    </ul>
+    </form>
+  </div>
+</div>
+<script type="text/javascript"	src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script  src="${ctxPath}/static/custom/js/appraise.js"></script>
+<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+
+$().ready(function() {
+	$("#appraise").validate({
+		  submitHandler : function(form) {
+	            $(form).ajaxSubmit({
+	                type : "post",
+	                url : MSConfig.BaseURL+"/appraise/saveappraise",
+	                dataType : "json",
+	                success : function(result) {
+	                    if(result.isLogin){
+	                            parent.location.reload();
+	                            var index = parent.layer.getFrameIndex(window.name);
+	                            parent.layer.close(index);
+	                    }else{
+	                        $(".errormessage").html(result.error);
+	                    }
+	                }
+	            });
+			  }
+	});	
+});
+</script>
+</body>
+</html>

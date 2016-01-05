@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/addBankDialog.css"
+	rel="stylesheet" type="text/css">
+<title>绑定银行卡信息</title>
+</head>
+<body>
+	<div class="wrap">
+		<p>
+			<img alt="" src="${ctxPath}/static/custom/images/member/info.png">&nbsp;提现目前仅支持建行。
+		</p>
+		<div class="form">
+			<form id="savebankForm" action=""  method="post">
+				<div class="row">
+					<span class="red">*</span>&nbsp;选择银行： <select
+						name="account.bank_name">
+						<option value="">...请选择银行...</option>
+						<option value="中国建设银行">中国建设银行</option>
+					</select>
+				</div>
+				<div class="row">
+					<span class="red">*</span>&nbsp;银行卡号：<input
+						name="account.bank_card" type="text">
+				</div>
+				<div class="row">
+					<span class="red">*</span>&nbsp;账&nbsp;&nbsp;户&nbsp;&nbsp;名：<input
+						name="account.account_owner" type="text">
+				</div>
+				<div class="row">
+					<span class="red">*</span>&nbsp;开户网点：<input
+						name="account.bank_address" type="text">
+				</div>
+				<div class="row">
+					<span class="red">*</span>&nbsp;手机号码：<input name="account.phone"
+						type="text">
+				</div>
+				<div class="btn_w">
+					<input type="submit" class="btn_green" value="保存账户" />
+				</div>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script
+		src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/jquery/validator/lang/additional-methods.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript">
+		//表单验证
+		jQuery.validator.addMethod("isPhone", function(value, element) {
+			var tel = /^[1][3578][0-9]{9}$/;
+			return this.optional(element) || (tel.test(value));
+		}, "请输入正确的手机号码");
+		jQuery.validator.addMethod("isCard", function(value, element) {
+			var card = /^\d{12}|\d{}19$/;
+			return this.optional(element) || (card.test(value));
+		}, "请输入正确的银行卡号");
+		$("#savebankForm")
+				.validate(
+						{
+							errorPlacement : function(error, element) {
+								layer.tips(error.text(), element, {
+									guide : 1,
+									time : 3,
+									more : true
+								});
+							},
+							rules : {
+								"account.bank_name" : "required",
+								"account.bank_card" : {
+									required : true,
+									isCard : true
+								},
+								"account.account_owner" : "required",
+								"account.bank_address" : "required",
+								"account.phone" : {
+									required : true,
+									isPhone : true
+								}
+							},
+							messages : {
+								"account.bank_name" : "请选择银行",
+								"account.bank_card" : {
+									required : "请输入银行卡号",
+									isCard : "请输入正确的银行卡号"
+								},
+								"account.account_owner" : "请输入开户人姓名",
+								"account.bank_address" : "请输入开户网点",
+								"account.phone" : {
+									required : "请输入手机号码",
+									isPhone : "格式错误"
+								}
+							},
+							submitHandler : function(form) {
+								$(form)
+										.ajaxSubmit(
+												{
+													type : "post",
+													url : "${ctxPath}/account/withdraw/addBankCard",
+													dataType : "json",
+													success : function(result) {
+														if (result.status) {
+															form.submit();
+															parent.location
+																	.reload();
+															var index = parent.layer
+																	.getFrameIndex(window.name);
+															parent.layer
+																	.close(index);
+														} else {
+															alert(result.error);
+														}
+													}
+												});
+							}
+						});
+	</script>
+</body>
+</html>

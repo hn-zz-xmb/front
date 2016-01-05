@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选择代金券</title>
+<link href="${ctxPath}/static/custom/css/coupon.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<script type="text/javascript"
+	src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+<body>
+	<!--列表开始-->
+	<div class="maintable">
+	<form id="coupon" action="" method="post">
+	<input type="hidden" name="id" value="${id!}"/>
+	<input type="hidden" name="type" value="${type!}"/>
+		<ul style="font-size: 14px;">
+			<li><h2 style="text-align: center; font-weight: bold; font-size: 20px;">添加代金券</h2></li>
+			<li>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+			<input name="item_name" type="text" class="required"/></li>
+			<li>折扣金额：<input name="couponmoney" type="text" class="required digits"/></li>
+			<li>使用期限：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;活动结束&nbsp;&nbsp;<input
+			 name="endday" class="required digits" style="width: 50px;" type="text" />&nbsp;&nbsp;天
+			</li>
+			<li>使用期限：&nbsp;&nbsp;一次购物满&nbsp;&nbsp;<input
+			 name="limitmoney" class="required digits" style="width: 50px;" type="text" />&nbsp;&nbsp;元才可以使用
+			</li>
+			<li style="padding-right: 50px;">
+			<button id="close" class="anniu2">关闭</button>
+			<button type="submit" class="anniu2">保存</button></li>
+		</ul>
+	</form>
+	</div>
+	<!--列表结束-->
+	<script type="text/javascript">
+		$('#close').on('click', function() {
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.layer.close(index);
+		});
+	</script>
+	<script type="text/javascript">
+	//表单验证
+	$().ready(function() {
+		var index = parent.layer.getFrameIndex(window.name);
+		
+		$("#coupon").validate({
+			errorPlacement : function(error, element) {
+				layer.tips(error.text(), element, {guide: 1, time: 5,more:true});
+			},
+			submitHandler : function(form) {
+				$(form).ajaxSubmit({
+					type : "post",
+					url : "${ctxPath}/salerManage/activeCenter/test",
+					dataType : "json",
+					success : function(result) {
+						if (result.status) {
+							 parent.$('#itemname_'+result.i).val(result.itemname);
+							 parent.layer.close(index);
+						} 
+					}
+				});
+			}
+		});
+	});
+</script>	
+</body>
+</html>

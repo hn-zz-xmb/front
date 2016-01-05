@@ -1,0 +1,15 @@
+<% var current=page.pageNumber; var
+begin=page.pageNumber-page.pageNumber%5+1; var end=6;
+if(page.totalPage-begin<=5){ end=page.totalPage; }else{ end=begin+5; }
+%>
+<div class="pagination">
+	<%if(current>1){%><a href="?pageNum=${current-1}&${params}" class="btn">&lt;</a><%}%>
+	<%for(var i=begin;i<=end;i++){%><a href="?pageNum=${i}&${params}"
+		class="btn <%if(i==current){%>active<%}%>">${i}</a><%}%>
+	<%if(end!=page.totalPage){%><span>...</span><%}%> <%if(current
+	<page.totalPage){%>
+	<a href="?pageNum=${current+1}" class="btn">&gt;</a><%}%> <span>共${page.totalPage}页</span>
+	<span>去第<input type="text" class="input_ss">页
+	</span>
+	<button>确定</button>
+</div>

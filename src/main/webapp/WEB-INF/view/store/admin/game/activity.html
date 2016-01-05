@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>activityBox</title>
+
+<link type="text/css" rel="stylesheet" href="${ctxPath}/static/custom/css/activity.css" />
+</head>
+<body>
+<div class="activityBox">
+	<div class="activityBoxTitle">大转盘</div>
+    <div class="activityEmpty"></div>
+    <div class="activityMain">
+   	  <div class="activityMainLeft">
+     	<ul>
+     	<%for(active in activeProgramItem!){%>
+        	<li>${active.name}：<br />${active.item_name}。 奖品数量${active.item_count}</li>
+        	<%}%>
+        </ul>
+      </div>
+   	  <div class="activityMainCenter">
+      	<iframe frameborder="0" width="472px" height="472px" src="${ctxPath}/salerManage/joingame/checkActive?activeId=${activeProgram.id}" scrolling="no" marginheight="0" marginwidth="0" allowtransparency="true"></iframe>
+      </div>
+      <div class="Top_Record" style="float:left; margin-top:120px;">
+  <div class="topRec_List">
+    <div class="maquee">
+      <ul>
+      <%for(a in activePrizeInfos!){%>
+        <li> ${a.proi_name}&nbsp;&nbsp;&nbsp;${a.username}&nbsp;&nbsp;&nbsp; ${strutil.subStringTo(a.tel,0,3)}****${strutil.subString(a.tel,strutil.length(a.tel)-4)}<li>
+        <%}%>
+      </ul>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+     <script type="text/javascript"> 
+	  function autoScroll(obj){  
+			$(obj).find("ul").animate({  
+				marginTop : "-39px"  
+			},500,function(){  
+				$(this).css({marginTop : "0px"}).find("li:first").appendTo(this);  
+
+			})  
+
+		}  
+		$(function(){  
+			setInterval('autoScroll(".maquee")',3000);
+			setInterval('autoScroll(".apple")',2000);
+			  
+		}) 
+		
+		
+		
+		
+</script>
+      
+    </div>
+    <div class="activityPublic">
+    	<div class="activityPboeder">
+        	<div class="activityPbg">活动说明：</div>
+            <div class="activityPfont">
+            ${activeProgram.name!}<br />
+            活动时间：${date(activeProgram.start_time !,'yyyyMMddHHmmss'),'yyyy-MM-dd'}-${date(activeProgram.end_time !,'yyyyMMddHHmmss'),'yyyy-MM-dd'}<br />
+            每人每天可抽奖${activeProgram.repeat_prize_count!}次<br />
+            ${activeProgram.description!}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link href="${ctxPath}/static/custom/css/weixin.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"weixin"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/weixin/conn">接入微信</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/menu">菜单管理</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/matter">素材管理</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/matter/saveUI" class="active">图文添加</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/weixin/matter/saveUI" class="btn_add">图文消息</a>
+			</div>
+			<div class="main">
+				<div class="main_left1">
+					<div class="tuwen_pane">
+						<div class="tuwen_pane_head">菜单风采</div>
+						<div class="tuwen_pane_content">
+							<div class="img_w">
+								<img id="uploadFile1" alt="" width="320" height="161" src="
+								<%if(has(matter.pic_url) && matter.pic_url !=''){%>
+								/img${matter.pic_url}
+								<%}else{%>
+								${ctxPath}/static/custom/images/storeManage/tuwen_default.png
+								<%}%>
+								">
+							</div>
+							<div class="info">我们秉承“餐饮管理革命从客户端开始”的理念，在国内首家研发出具有传媒、互动、娱乐等功能的电子菜牌</div>
+						</div>
+					</div>
+				</div>
+				<div class="main_right1">
+					<form id="matterForm" method="post" action="${ctxPath}/salerManage/weixin/matter/${action!save}">
+						<input name="weixinStoreMatter.id" type="hidden" value="${matter.id!}"/>
+						<input type="hidden" name="weixinStoreMatter.pic_url" id="img_url" value="${matter.pic_url !}"/>
+						<div class="form_pane_w">
+							<img alt="" src="${ctxPath}/static/custom/images/storeManage/triangle_l_b.png"
+								class="triangle">
+							<div class="form_pane">
+								<div class="form_control">
+									<div class="form_control_title">
+										标题<span class="fr red"></span>
+									</div>
+									<div>
+										<input type="text" name="weixinStoreMatter.title" value="${matter.title !}">
+									</div>
+								</div>
+								<div class="form_control">
+									<div class="form_control_title">
+										封面<span class="notice fr">大图片建议尺寸：700像素*300像素</span>
+									</div>
+									<div>
+										<div class="btn_upload1" id="upload1">上传</div>
+									</div>
+								</div>
+								<div class="form_control">
+									<div class="form_control_title">
+										摘要<span class="fr red"></span>
+									</div>
+									<div>
+										<input type="text" name="weixinStoreMatter.description" value="${matter.description !}">
+									</div>
+								</div>
+								<div class="zhengwen">
+									<div class="zhengwen_title">
+										正文<span class="fr red"></span>
+									</div>
+									<div>
+										<!--style给定宽度可以影响编辑器的最终宽度-->
+										<script type="text/plain" id="myEditor" name="weixinStoreMatter.text" style="width:550px;height:280px;">
+												<p>${matter.text!''}</p>
+										</script>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="red"></div>
+						<div class="btn_w2">
+							<button type="submit" class="btn_green">保存</button>
+						</div>
+					</form>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+
+	<script type="text/javascript" src="${ctxPath}/static/old/jquery/jquery-1.9.1.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script type="text/javascript" charset="utf-8" src="${ctxPath}/static/umeditor/umeditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="${ctxPath}/static/umeditor/umeditor.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script type="text/javascript">
+	$().ready(function() {
+			$("#matterForm").validate({
+				rules : {
+					"weixinStoreMatter.title":"required",
+					"weixinStoreMatter.description":"required"
+				},
+				messages : {
+					"weixinStoreMatter.title":"请输入标题",
+					"weixinStoreMatter.description":"请输入摘要"
+				}
+			});
+		});
+			
+			</script>
+	<script type="text/javascript">
+		$(function(){
+			$("#matterForm").validate({
+				errorPlacement : function(error, element) {
+					$(".error").html(error);
+				},
+				submitHandler : function(form) {
+					$(form).submit();
+				}
+			});
+
+
+			//实例化编辑器
+			var um = UM.getEditor('myEditor');
+		})
+
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto: true,
+
+			// swf文件路径
+			swf: MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server: MSConfig.BaseURL+'/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick:{
+				id:"#upload1",
+				multiple:false
+			},
+
+			// 只允许选择图片文件。
+			accept: {
+				title: 'Images',
+				extensions: 'gif,jpg,jpeg,bmp,png',
+				mimeTypes: 'image/*'
+			},
+			auto:true
+		});
+
+		// 当有文件添加进来的时候
+		uploader.on( 'fileQueued', function( file ) {
+//			var $li = $(
+//							'<div id="' + file.id + '" class="file-item thumbnail">' +
+//							'<img>' +
+//							'<div class="info">' + file.name + '</div>' +
+//							'</div>'
+//					),
+			var $img=$("#uploadFile1");
+
+
+			// $list为容器jQuery实例
+//			$list.append( $li );
+
+			// 创建缩略图
+			// 如果为非图片文件，可以不用调用此方法。
+			// thumbnailWidth x thumbnailHeight 为 100 x 100
+			var thumbnailWidth=320,thumbnailHeight=161;
+			uploader.makeThumb( file, function( error, src ) {
+				if ( error ) {
+					$img.replaceWith('<span>不能预览</span>');
+					return;
+				}
+
+				$img.attr( 'src', src );
+			}, thumbnailWidth, thumbnailHeight );
+		});
+
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on( 'uploadProgress', function( file, percentage ) {
+//			var $li = $( '#'+file.id ),
+			var $li=$("#upload1"),
+					$percent = $li.find('.progress span');
+
+			// 避免重复创建
+			if ( !$percent.length ) {
+				$percent = $('<p class="progress"><span></span></p>')
+						.appendTo( $li )
+						.find('span');
+			}
+
+			$percent.css( 'width', percentage * 100 + '%' );
+		});
+
+		uploader.on( 'uploadAccept', function( file, response ) {
+			if ( response.status!="SUCCESS" ) {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+
+			$("#img_url").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on( 'uploadSuccess', function( file ) {
+//			$( '#'+file.id ).addClass('upload-state-done');
+			$("#upload1").addClass('upload-state-done').addClass('upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on( 'uploadError', function( file ) {
+//			var $li = $( '#'+file.id ),
+			var $li=$("#upload1"),
+					$error = $li.find('div.error');
+
+			// 避免重复创建
+			if ( !$error.length ) {
+				$error = $('<div class="error"></div>').appendTo( $li );
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on( 'uploadComplete', function( file ) {
+//			$( '#'+file.id ).find('.progress').remove();
+			$("#upload1").find('.progress').remove();
+		});
+
+    </script>
+</body>
+</html>

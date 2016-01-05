@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link href="${ctxPath}/static/custom/css/tixian.css" rel="stylesheet"
+	type="text/css">
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<div class="wrap">
+		<div class="pane">
+			<div class="pane_head">
+				<span class="tixian_title">提取账户余额到银行卡</span> <span>余额：<span
+					class="money">${coin.account_money!0.00}</span>元
+				</span> <span class="right_link"><a href="#" class="add addBankBtn">添加银行卡</a>&nbsp;|&nbsp;<a
+					href="${ctxPath}/account/withdraw/towithdraw">支付宝提现</a>&nbsp;|&nbsp;<a
+					href="${ctxPath}/account/withdraw/findWithdrawRecord">提现记录</a></span>
+			</div>
+			<div class="pane_content">
+				<div class="choose_bank_default" style="display: none;">
+					<div class="label">选择银行卡：</div>
+					<div class="label_content">
+						<a href="#" class="add_big addBankBtn">添加银行卡</a>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="form">
+					<form id="withdrawForm" action="" method="post">
+						<div class="choose_bank">
+							<div class="label">选择银行卡：</div>
+							<div class="label_content">
+								<div class="selected_bank">
+									<%for(a in account !){%>
+									<div class="bank_box">
+										<div class="fl">
+											<input type="radio" name="account_id" value="${a.id !}" <%if(a.is_default==1){%> checked="checked" <%}%>>[备注] <span class="bank_info">
+											<img alt=""
+												src="${ctxPath}/static/custom/images/member/bank_ccb.png">&nbsp;中国建设银行&nbsp;<span
+												class="weihao">尾号：****${strutil.subString(a.bank_card,strutil.length(a.bank_card)-4)}</span></span>
+											<span class="labels"><img alt=""
+												src="${ctxPath}/static/custom/images/member/label_ciri.png">&nbsp;<img
+												alt=""
+												src="${ctxPath}/static/custom/images/member/label_2hour.png"></span>
+											<span class="limit">限额200000元/次</span>
+										</div>
+										<div class="manage">
+											<ul class="dropdown">
+												<li><a href="#" class="trigger">管理</a></li>
+												<ul style="display: none;">
+													<%if(a.is_defalut==0){%>
+													<li><a href="${ctxPath}/account/withdraw/setdefault?accountId=${a.id !}">设为默认</a></li>
+													<%}else{%>
+													<li><a href="${ctxPath}/account/withdraw/cancledefault?accountId=${a.id !}">取消默认</a></li>
+													<%}%>
+													<li><a
+														href="${ctxPath}/account/withdraw/deleteBankCard?accountId=${a.id !}">删除</a></li>
+												</ul>
+											</ul>
+										</div>
+									</div>
+									<%}%>
+									<!-- bank box end -->
+								</div>
+								<div class="choose_other" hidden="true">
+									<div>
+										<a href="#" class="choose_other_link" id="choose_other_link">选择其他银行</a>
+									</div>
+									<div class="other_bank" style="display: none;"
+										id="other_bank_box">
+										<div class="bank_box">
+											<div class="fl">
+												<input type="radio">[备注] <span class="bank_info"><img
+													alt=""
+													src="${ctxPath}/static/custom/images/member/bank_ccb.png">&nbsp;中国建设银行&nbsp;<span
+													class="weihao">尾号：2347</span></span> <span class="labels"><img
+													alt=""
+													src="${ctxPath}/static/custom/images/member/label_ciri.png">&nbsp;<img
+													alt=""
+													src="${ctxPath}/static/custom/images/member/label_2hour.png"></span>
+												<span class="limit">限额200000元/次</span>
+											</div>
+											<div class="manage">
+												<ul class="dropdown">
+													<li><a href="#" class="trigger">管理</a></li>
+													<ul style="display: none;">
+														<li><a href="#">设为默认</a></li>
+														<li><a href="#">删除</a></li>
+													</ul>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tixian_money">
+							<div class="label">提现金额：</div>
+							<div class="label_content">
+								<div class="input_w">
+									<input type="text" name="withdraw_money"
+										placeholder="输入金额" class="input_s">元
+								</div>
+							</div>
+						</div>
+                        <div class="tixian_money">
+                            <div class="label">支付密码：</div>
+                            <div class="label_content">
+                                <div class="input_w">
+                                    <input name="payPwd"  type="password" class="input_s" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="error"></div>
+						<div class="btn_w">
+							<button class="btn_green">申请提现</button>
+						</div>
+					</form>
+				</div>
+			</div>                  
+		</div>
+	</div>
+	<% include("../common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script
+		src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/tixian.js"></script>
+	<script type="text/javascript">
+		$("#withdrawForm").validate({
+			errorPlacement : function(error, element) {
+				layer.tips(error.text(), element, {
+					guide : 1,
+					time : 5,
+					more : true
+				});
+			},
+			rules : {
+				"account_id" : "required",
+				"withdraw_money" : {
+					required : true,
+					digits:true
+				},
+                "payPwd" : "required"
+			},
+			messages : {
+				"account_id" : "请选择银行卡",
+				"withdraw_money" : {
+					required : "请输入提现金额",
+					digits : "请输入正确的金额格式"
+				},
+                "payPwd" : "请输入支付密码"
+			},
+			submitHandler : function(form) {
+				$(form).ajaxSubmit({
+					type : "post",
+					url : MSConfig.BaseURL + "/account/withdraw/withDraw",
+					dataType : "json",
+					success : function(result) {
+						if (result.status == "y") {
+							window.location.href = "${ctxPath}/account/withdraw";
+						} else {
+							alert(result.error);
+						}
+					}
+				});
+			}
+		});
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			$(".addBankBtn").click(function() {
+				$.layer({
+					type : 2,
+					shadeClose : true,
+					title : '绑定银行卡',
+					closeBtn : [ 0, true ],
+					shade : [ 0 ],
+					border : [ 10, 0.3, '#000' ],
+					offset : [ '20px', '' ],
+					area : [ '450px', '335px' ],
+					iframe : {
+						src : '${ctxPath}/account/withdraw/toaddBankCard'
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

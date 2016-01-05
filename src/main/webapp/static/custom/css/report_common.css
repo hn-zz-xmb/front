@@ -1,0 +1,140 @@
+.clear{
+	clear: both;
+}
+.tab select{
+	width:130px;
+	height: 32px;
+	margin: 5px 8px;
+	padding-left: 5px;
+	font-size: 14px;
+	border: none;
+	background:url(../images/storeManage/report_select.png);
+}
+.tab span{
+	font-size: 14px;
+	color: #3f9300;
+	margin-left: 20px;
+}
+.searchTitle{
+	font-size: 14px;
+}
+.searchIf span{
+	display: inline-block;
+	line-height: 40px;
+	color: #5E5E5E;
+	font-size: 13px;
+}
+.searchIf select{
+	margin: 0 10px 0 2px;
+	height: 20px;
+}
+.searchIf input[type=submit]{
+	width: 55px;
+}
+.searchIf .hdS_slt{
+	height: 18px;
+	line-height: 18px;
+	border: 1px solid #A9A9A9;
+}
+.report_content{
+	margin-top: 12px;
+	text-align: center;
+	padding-bottom: 50px;
+}
+.report_content table{
+	width: 100%;
+	border: 1px solid #ccc;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+.report_content table th{
+	background:url(../images/storeManage/table_head_bg.jpg);
+	border: 1px solid #ccc;
+	height: 30px;
+}
+.report_content table td{
+	border: 1px solid #ccc;
+	height: 25px;
+}
+/*
+.report_content table tr:nth-child(even){
+	border: 1px solid #ccc;
+	background-color: #f0f0f0; 
+}*/
+.report_content table tr:hover{
+	background-color: #f5f5f5; 
+}
+.content_right{
+	position: relative;
+}
+.report_page{
+	clear: both;
+	position: absolute;
+	bottom: 10px;
+	right: 30px;
+	text-align: right;
+	width: 90%;
+}
+
+.report_page a{
+	font-size: 14px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	margin: 1px;
+	padding: 6px 10px;
+	color: black;
+}
+.report_page a.selected{
+	font-size: 14px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	margin: 1px;
+	padding: 6px 10px;
+	background-color: #84C133;
+	color: white;
+}
+.report_page input[type=text]{
+	width: 44px;
+	height: 19px;
+	line-height: 19px;
+	margin: 0 2px;
+}
+.report_page button{
+	width: 44px;
+	height: 25px;
+	background-color: #84C133; 
+	color: #fff;
+	border: none;
+}
+.report_page span{
+	margin-left: 15px;
+	margin-right: 5px;
+}
+.warning{
+	color: red;
+}
+.tab_title{
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	margin: 10px 5px;
+}
+.rp_table_content{
+
+}
+.rp_left_table{
+	width: 49%;
+	float: left;
+}
+.rp_right_table{
+	width: 49%;
+	float: right;
+}
+.letter_space{
+	width: 14px;
+	display: inline-block;
+}
+.letter_space_lit{
+	width: 7px;
+	display: inline-block;
+}

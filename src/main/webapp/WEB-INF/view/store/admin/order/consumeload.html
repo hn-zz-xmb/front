@@ -1,0 +1,34 @@
+<script type="text/javascript"
+	src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+<% if(has(orders)){%>
+<div class="order_item">
+	<div class="order_item_head">
+		<input type="checkbox">&nbsp;&nbsp; <span class="column1"><b>${orders.create_time
+				!}</b></span> <span class="column2">订单号：${orders.no !}</span> <span
+			class="column3">买家：${orders.orderUser !}</span> <span class="column4">和我联系：${orders.contacts_type
+			!}</span>
+	</div>
+	<div class="order_item_content">
+		<table>
+			<td>到店消费</td>
+			<td>${orders.total_money !}</td>
+			<td>${orders.orderStatus !}</td>
+			<td><a href="#">查看订单</a><br>
+				<%if(orders.status!''=='payed'){%><a href="javascript:void(0)" onclick="sureOrder('${orders.id !}')">确认消费</a><%}else{%>已消费<%}%></td>
+		</table>
+	</div>
+</div>
+<!-- order item end -->
+<%}%>
+<script type="text/javascript">
+	function sureOrder(orderId) {
+		var url = "${ctxPath}/salerManage/sureOrder/makesureOrder?orderId=" + orderId;
+		var result = callJson(url, {"order_type":"${orders.order_type}"}, true);
+		if (result.isSure) {
+			location.href = "${ctxPath}/salerManage/ordermanage";
+		} else {
+			alert(result.error);
+		}
+	}
+</script>

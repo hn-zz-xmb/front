@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 修改登录密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/front/css/modify_mima.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/old/validform/5.3.2/css/style.css" />
+</head>
+
+<body>
+	<%include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="modify_mima">
+		<p class="xgmm">修改登录密码</p>
+		<div class="modi_pic"></div>
+		<!--modi_mima start-->
+		<div class="modi_mima">
+			<form action="${ctxPath}/account/security/modifyPwd" method="post"
+				id="modify_pwd">
+				<table width="900px" height="80px">
+
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;当前密码:</th>
+						<td class="text_ne"><input name="oldPwd" type="password"
+							class="new_logn" /> <label class="Validform_checktip"
+							style="width: 100px;"></label></td>
+					</tr>
+
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码:</th>
+						<td class="text_ne"><input name="password" type="password" id="password"
+							class="new_logn" /> <label class="Validform_checktip"
+							style="width: 100px; color: red;"></label></td>
+					</tr>
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;确认密码:</th>
+						<td class="text_ne"><input name="repeatPwd" type="password"
+							class="new_logn" /> <label
+							class="Validform_checktip" style="width: 100px;"></label></td>
+					</tr>
+				</table>
+				<p>
+					<span id="error_msg" style="display: none"></span> <br /> <input
+						type="submit" class="btne" value="提交" />
+				</p>
+			</form>
+		</div>
+		<!--modi_mima end-->
+	</div>
+	<%include("/common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath }/static/old/validform/5.3.2/js/Validform_v5.3.2.js"></script>
+		<script type="text/javascript" src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script	src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+	$().ready(function() {
+		$("#modify_pwd").validate({
+			errorPlacement: function(error, element) {  
+				layer.tips(error.text(), element, {guide: 1, time: 3,more:true});
+			},
+			rules:{
+				oldPwd:{
+					required:true,
+					remote:{
+						type:"post",
+						url:"${ctxPath}/safecenter/pwd/ajaxOldpwd",
+						dataType: "json",
+						 dataFilter: function(data, type) {
+		                        if (data == "true"){
+		                            return true;
+		                        }else{
+		                            return false;
+		                        }
+		              }
+					}
+				},
+				password:{
+					required:true,
+					rangelength:[6,20]
+				},
+				repeatPwd:{
+					required:true,
+					rangelength:[6,20],
+					equalTo:"#password"
+				}
+			},
+			messages:{
+				oldPwd:{
+					required:"请输入当前密码",
+					remote:"输入密码不正确"
+				},
+				password:{
+					required:"请输入新密码",
+					rangelength:"密码在6-20位之间"
+				},
+				repeatPwd:{
+					required:"请再次输入新密码",
+					rangelength:"密码在6-20位之间",
+					equalTo:"两次密码输入不一样"
+				}
+			},
+			submitHandler : function(form) {
+				$(form).ajaxSubmit({
+					type : "post",
+					url : "${ctxPath}/safecenter/pwd/update",
+					dataType : "json",
+					success : function(result) {
+						if(result.status=="y"){
+							window.location.href = "${ctxPath}/safecenter/pwd/success";
+						}else{
+							$(".error").html(result.info);
+						}
+					}
+				});
+			}
+		});
+	});
+			
+	</script>
+</body>
+</html>

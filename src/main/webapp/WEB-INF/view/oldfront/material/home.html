@@ -1,0 +1,73 @@
+<link href="${ctxPath }/static/front/css/account.css" rel="stylesheet" type="text/css">
+ <% include ("../common/userhead.html"){}%>
+<div class="content">
+	<div class="saler">
+		<div id="left">
+			<h2>
+				<strong title="用户中心"></strong>
+			</h2>
+			<dl>
+				<dt>我是卖家</dt>
+				<dd>
+					<a href="${ctxPath}/salermanage/storeSetting" class="normal"> <span
+						class="ddgl">店铺信息</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/ordermanage" class="normal"> <span
+						class="gla">订单管理</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/navigate" class="normal"> <span
+						class="ps">导航管理</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/category/storecatagory"
+						class="normal"> <span class="gl">分类管理</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/goodsmanage" class="normal"> <span
+						class="icon">商品管理</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/setmealmanage" class="normal">
+						<span class="tg">套餐管理</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/couponmanage" class="normal"> <span
+						class="hz">代金券管理</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/job" class="normal"> <span
+						class="yh">招聘信息</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/reserve" class="normal"> <span
+						class="qi">预定设置</span>
+					</a>
+				</dd>
+				<dd>
+					<a href="${ctxPath}/salermanage/mattermanage" class="normal"> <span
+						class="qi">微信管理</span>
+					</a>
+				</dd>
+			</dl>
+			<div class="adorn_bottom"></div>
+		</div>
+		${layoutContent }
+		<div class="clear"></div>
+		<div class="adorn_right1"></div>
+		<div class="adorn_right2"></div>
+		<div class="adorn_right3"></div>
+		<div class="adorn_right4"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+<% include ("../common/foot.html"){}%>

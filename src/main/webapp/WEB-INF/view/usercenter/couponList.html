@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+<link href="${ctxPath}/static/custom/css/member.css" rel="stylesheet"
+	type="text/css">
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<div class="position">当前位置：<a href="${ctxPath}/account/accountcenter">我的账户</a>&gt;优惠券</div>
+	<div class="content">
+		<div class="content_top">
+			<span class="title">我的优惠券</span>
+			<div class="notice">
+				<label class="green">买家提醒</label>&nbsp;<img alt=""
+					src="${ctxPath}/static/custom/images/member/volume.png">&nbsp;&nbsp;客户您好！您有<span
+					class="red">${totalCount! 0}</span>个优惠券；<span class="red">${count[0]! 0}</span>个未使用的优惠券；<span
+					class="red">${count[1]! 0}</span>个已付款未消费的订单
+			</div>
+		</div>
+		<div class="content_bottom">
+			<ul class="tab" id="tab">
+				<li><a href="#" onclick="showTab(1)" id="all">全部（<span
+						class="red">${totalCount! 0}</span>）
+				</a></li>
+				<li><a href="#" class="active" onclick="showTab(2)" id="nouse">未使用（<span
+						class="red">${count[0]! 0}</span>）
+				</a></li>
+				<li><a href="#" onclick="showTab(3)" id="use">已使用（<span
+						class="red">${count[1]! 0}</span>）
+				</a></li>
+			</ul>
+			<div class="tab_content" id="tab1" style="display: none;">
+				<div id="allcoupon"></div>
+			</div>
+			<!-- tab content end -->
+			<div class="tab_content" id="tab2">
+				<div id="nousecoupon"></div>
+			</div>
+			<!-- tab content end -->
+			<div class="tab_content" id="tab3" style="display: none;">
+				<div id="usecoupon"></div>
+			</div>
+			<!-- tab content end -->
+		</div>
+	</div>
+	<% include("../common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/member.js"></script>
+	<script type="text/javascript">
+		function show(id) {
+			$.layer({
+				type : 2,
+				shadeClose : true,
+				title : '优惠券详情',
+				closeBtn : [ 0, true ],
+				shade : [ 0 ],
+				border : [ 10, 0.3, '#000' ],
+				offset : [ '20px', '' ],
+				area : [ '350px', '325px' ],
+				iframe : {
+					src : './couponDetail?couponId=' + id
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		$("#nousecoupon").load("./ajaxCoupon", {
+			div : "nousecoupon",
+			url : "buyer/ajaxCoupon",
+			status : 0
+		});
+		$("#nouse").click(function() {
+			$("#nousecoupon").load("./ajaxCoupon", {
+				div : "nousecoupon",
+				url : "buyer/ajaxCoupon",
+				status : 0
+			});
+		});
+		$("#all").click(function() {
+			$("#allcoupon").load("./ajaxCoupon", {
+				url : "buyer/ajaxCoupon",
+				div : "allcoupon"
+			});
+		});
+		$("#use").click(function() {
+			$("#usecoupon").load("./ajaxCoupon", {
+				url : "buyer/ajaxCoupon",
+				div : "usecoupon",
+				status : 1
+			});
+		});
+	</script>
+</body>
+</html>

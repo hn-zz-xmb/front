@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>站内信-发送页</title>
+<link href="${ctxPath}/static/custom/css/lb-css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--头部-----------------------------------------> 
+<% include("../../common/userhead.html"){}%>
+<!--导航栏结束-----------------------------------------> 
+<!--主题部分-->
+<div class="mainbox">
+  <table class="main">
+  <%for(message in page.list!){%>
+    <tr>
+      <td style="width:20px;"><input type="checkbox" /></td>
+      <td style="width:100px;"><img src="${ctxPath}/static/custom/images/011906562.gif" width="16" height="16" /></td>
+      <td  style="width:200px;">${message.username}<br />
+        ${date(message.create_time!,'yyyyMMddHHmmss'),'yyyy-MM-dd'} </td>
+      <td  style="width:300px;"><a href="${ctxPath}/account/message/detail?id=${message.id!}" target="_blank">${message.title}</a></td>
+      <td style="width:100px;"><a href="javascript:;" onclick="sendUI('${message.from_member_id!}')" >回复</a></td>
+      <td style="width:100px; text-align:center; "><img src="${ctxPath}/static/custom/images/de.png" onclick="de('${message.id!}')"/></td>
+    </tr>
+    <%}%>
+  </table>
+  <% include("../../common/_pagination.html",{page:page}){}%>
+</div>
+<!----底部开始-------------------------------------------------------------->
+<% include("../../common/foot.html"){}%>
+<!---底部结束--------------------------------------------------------------->
+<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script src="${ctxPath}/static/custom/js/userorderlist.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<script type="text/javascript">
+function sendUI(id) {
+			$.layer({
+				type : 2,
+				shadeClose : true,
+				title : '',
+				closeBtn : [ 0, true ],
+				shade : [ 0.5, '#000' ],
+				border : [ 10, 0.3, '#000' ],
+				iframe : {
+					src : MSConfig.BaseURL + '/account/message/sendHF?id=' + id
+				},
+				area : [ '700px', '500px' ],
+			});
+		}
+
+function de(id) {
+	if(!confirm('确认删除吗？'))
+		return;
+	var url =MSConfig.BaseURL + "/account/message/delete";
+	var param = {
+		"id" : id
+	}
+	var result = callText(url, param, false);
+	if (result == "success") {
+		window.location.reload();
+	} else {
+		alert("出错，请刷新页面");
+	}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0"/>
+		<meta name="keywords"
+			content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食"/>
+			<meta name="description"
+				content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。"/>
+				<title>37美食网_一站式高品质餐饮美食服务网站</title>
+				<link type="text/css" rel="stylesheet"
+	href="${ctxPath}/static/custom/css/personalCenter.css" />
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<!-- 内容 -->
+	<div class="content">
+		<div class="content_top">
+			<div class="content_top_l">
+				<div class="head_img">
+				<img src="<%if(member.head_image!='' && member.head_image!=null){%>/img${member.head_image}<%}else{%>${ctxPath}/static/custom/images/member/headImg01.jpg<%}%>" style="width: 150px; height: 150px;" />
+				</div>
+				<div class="account_info">
+					<p>
+						账户名：${member.username!}&nbsp;<a href="${ctxPath}/account/userinfo">编辑个人资料</a>
+					</p>
+					<p>
+						您有<span>${countMessage!0}</span>条短消息，<a href="${ctxPath}/account/message/list">点击查看</a>
+					</p>
+					<p>上次登录时间：${member.last_login!,dateFormat='yyyy-MM-dd HH:mm:ss'}</p>
+					<p>上次登录IP：${member.last_ip!}</p>
+					<p><%if(recommendMember! ==null){
+						if(recommendApply! ==null){%>
+						<a href="javascript:;" onclick="coupon()">申请推荐人</a>
+					<%}else{
+					if(recommendApply.audit_status!"" =="going"){%>
+					推荐人申请审核中
+					<%}else if(recommendApply.audit_status!"" =="success"){%>
+						推荐人已申请过
+					<%}else if(recommendApply.audit_status!"" =="faild"){%>
+					推荐人申请失败<a  href="javascript:;" onclick="seeReason('${recommendApply.id!}')">查看原因</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="javascript:;" onclick="Reapply('${recommendApply.id!}')">重新申请</a>
+					<%}else{%>
+					请求出错
+					<%}}}else{%>
+					<a href="${ctxPath}/recommend">推荐中心</a>
+					<%}%></p>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="content_top_r">
+				<div class="account_pane">
+					<div class="account_pane_t">
+						账户余额<br>
+							<div>
+								<span class="money"><span>${coin.account_money!0.00}元</span>
+									<a href="${ctxPath}/account/recharge" class="green">充值</a>
+									<%if(member.has_store!=null && member.has_store!''==1){%>
+									<a href="${ctxPath}/account/withdraw" class="grey">提现</a>
+									<%}%>
+									<a href="#" class="grey">我的账单</a>
+							</div>
+					</div>
+					<div class="account_pane_b">
+						我的美食币：<span class="point">${points.account_points!0.00}</span><a
+							href="#">获取美食币</a>
+					</div>
+				</div>
+				<hr class="hr0 fl">
+					<div class="advertisement"><img src="" alt="" /></div>
+					<div style="clear: both;"></div>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="content_bottom">
+			<div class="content_bottom_l">
+				<div class="green_header_pane">
+					<div class="green_header_pane_title">买家提醒</div>
+					<div class="green_header_pane_content">
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/truck.jpg">&nbsp;您有<span
+								class="orange">${nopayOrder!0}</span>个待付款的订单，请尽快到<span
+								class="orange">”待付款订单“</span>中付款 
+						</p>
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/truck.jpg">&nbsp;您有<span
+								class="orange">${finishedOrder!0}</span>个订单还没有评价，请尽快到<span
+								class="orange">“已完成订单”</span>中确认 
+						</p>
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/truck.jpg">&nbsp;您有<span
+								class="orange">${nouseOrder!0}</span>个<span class="orange">”已付款未消费“</span>订单
+
+
+							
+						</p>
+						<a target="_blank" href="${ctxPath}/buyerOrder/findUserOrder">点击查看详情&gt;&gt;</a>
+					</div>
+				</div>
+				<!-- green header pane end -->
+				<div class="green_header_pane">
+					<div class="green_header_pane_title">我的优惠券</div>
+					<div class="green_header_pane_content">
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/money.jpg">&nbsp;您已使用<span
+								class="orange">${countCoupon!0}</span>张优惠券 
+						</p>
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/money.jpg">&nbsp;您还有<span
+								class="orange">${countCouponNoUse!0}</span>张优惠券未使用 
+						</p>
+						<a target="_blank" href="${ctxPath}/buyer/coupon">点击查看详情&gt;&gt;</a>
+					</div>
+				</div>
+				<!-- green header pane end -->
+				<div class="green_header_pane">
+					<div class="green_header_pane_title">我的中奖记录</div>
+					<div class="green_header_pane_content">
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/prize.jpg">&nbsp;您已中奖<span
+								class="orange">${prizeInfoWin!0}</span>次 
+						</p>
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/prize.jpg">&nbsp;您还有<span
+								class="orange">${prizeInfoNoUse!0}</span>中奖未兑换 
+						</p>
+						<a target="_blank" href="${ctxPath}/active/AllActivePrizeInfo">点击查看详情&gt;&gt;</a>
+					</div>
+				</div>
+				<!-- green header pane end -->
+				<div class="green_header_pane">
+					<div class="green_header_pane_title">推荐中心</div>
+					<div class="green_header_pane_content">
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/recommend.jpg">&nbsp;您的一级推荐人<span
+								class="orange">${count1!0}</span>人&nbsp;您的二级推荐人<span
+								class="orange">${count2!0}</span>人&nbsp;您的三级推荐人<span
+								class="orange">${count3!0}</span>人 
+						</p>
+						<p>
+							<img alt=""
+								src="${ctxPath}/static/custom/images/member/recommend.jpg">&nbsp;您推荐的店铺数<span
+								class="orange">${storecount!0}</span>个 
+						</p>
+						<a target="_blank" href="${ctxPath}/recommend">点击查看详情&gt;&gt;</a>
+					</div>
+				</div>
+				<!-- green header pane end -->
+			</div>
+			<div class="content_bottom_r">
+				<div class="gonggao">
+					<div class="gonggao_title">店家推荐</div>
+					<div class="gonggao_content"></div>
+				</div>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+	<% include("../common/foot.html"){}%>
+	<script type="text/javascript"src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/custom/js/cartlist.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/custom/js/common.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript">
+function coupon() {
+	 $.layer({
+		 type : 2,
+			shadeClose : true,
+			title : '',
+			closeBtn : [ 0, true ],
+			shade : [ 0.5, '#000' ],
+			border : [ 10, 0.3, '#000' ],
+         iframe: {src: MSConfig.BaseURL+'/recommendApply/ajaxapply'},
+         area: ['785px', '650px']
+     });
+}
+
+function seeReason(id) {
+	 $.layer({
+		 type : 2,
+			shadeClose : true,
+			title : '',
+			closeBtn : [ 0, true ],
+			shade : [ 0.5, '#000' ],
+			border : [ 10, 0.3, '#000' ],
+        iframe: {src: MSConfig.BaseURL+'/recommendApply/ajaxreson?id='+id},
+        area: ['400px', '200px']
+    });
+}
+
+function Reapply(id) {
+	 $.layer({
+		 type : 2,
+			shadeClose : true,
+			title : '',
+			closeBtn : [ 0, true ],
+			shade : [ 0.5, '#000' ],
+			border : [ 10, 0.3, '#000' ],
+        iframe: {src: MSConfig.BaseURL+'/recommendApply/ajaxReapply?id='+id},
+        area: ['785px', '650px'],
+    });
+}
+</script>
+</body>
+</html>

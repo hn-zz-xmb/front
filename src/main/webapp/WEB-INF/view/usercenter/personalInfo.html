@@ -1,0 +1,285 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/personalInfo.css"
+	rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/webuploader/webuploader.css"
+	rel="stylesheet" type="text/css">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<div class="wrap">
+		<div class="pane">
+			<div class="pane_head">个人资料</div>
+			<div class="pane_content">
+				<div class="form">
+					<form action="${ctxPath}/account/userinfo/updateuserinfo"
+						method="post" id="user_info">
+						<input type="hidden" value="${member.id }" name="member.id">
+						<div class="row">
+							<label>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label><span
+								class="input_w"><input name="member.username" type="text"
+								value="${member.username !}" disabled="disabled">
+							</span><span
+								class="notice"></span>
+						</div>
+						<div class="row">
+							<label>真实姓名：</label><span class="input_w"><input
+								name="member.realname" value="${member.realname !}" type="text"></span><span
+								class="notice">*请填写您的真实姓名</span>
+						</div>
+						<div class="row">
+							<label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label><span
+								class="input_w"><% if(member.sex == 0 ||
+								member.sex==null){ %> <input name="member.sex" value="0"
+								checked="checked" type="radio" /> <% }else{ %> <input
+								name="member.sex" value="0" type="radio" /> <%}%> 保密 <%
+								if(member.sex == 1){ %> <input name="member.sex" value="1"
+								type="radio" checked="checked" /> <% }else{ %> <input
+								name="member.sex" value="1" type="radio" /> <% } %> 男 <%
+								if(member.sex == 2){ %> <input name="member.sex" value="2"
+								type="radio" checked="checked" /> <% }else{ %> <input
+								name="member.sex" value="2" type="radio" /> <% } %> 女
+							</span><span class="notice"></span>
+						</div>
+						<div class="row">
+							<label>Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q：</label><span
+								class="input_w"><input type="text" name="member.qq"
+								value="${member.qq !}"></span><span class="notice">*请填写您的QQ</span>
+						</div>
+						<div class="row">
+							<label>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</label><span
+								class="input_w"> <input name="member.birth"
+								value="${member.birth!}" onclick="laydate()" type="text"></span><span
+								class="notice">*请填写您的生日</span>
+						</div>
+						<div class="row">
+							<label>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业：</label> <span
+								class="input_w"> 
+								<%for(job in datadics){%>
+								<input type="radio" name="member.job" value="${job.code!}" <%if(job.code==member.job){%> checked="checked" <%}%>>
+								&nbsp;${job.code_name!}&nbsp; 
+								<%}%>
+							</span> <span class="notice">*请选择您的职业</span>
+						</div>
+						<div class="row">
+							<label>个&nbsp;人&nbsp;情&nbsp;况：</label> <span class="input_w">
+							<%for(info in datadic){%>
+								<input type="radio" name="member.self_info" value="${info.code!}" <%if(info.code==member.self_info){%> checked="checked" <%}%>> &nbsp;${info.code_name!}&nbsp; 
+								<%}%>
+							</span> <span class="notice">*请选择您的个人情况</span>
+						</div>
+						<div class="row">
+							<label style="display: block; float: left">兴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;趣：</label>
+							<span class="input_w"> 
+							<%for(h in hobbygroup){%>
+							<input type="checkbox" 
+							<%for(a in hobby1!){%>
+							<%if(a==h.code_name){%>checked="checked"<%}%>
+							<%}%>
+							  name="hobby" value="${h.code_name!}"> &nbsp;${h.code_name!}&nbsp; 
+							<%}%>
+							</span> <span class="notice">*请选择您的个人兴趣</span>
+						</div>
+						<div class="row">
+							<div class="label">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像：</div>
+							<div class="label_content">
+								<input type="hidden" id="cardImage" name="member.head_image"
+									value="${member.head_image !}">
+								<div class="img_w">
+									<img alt=""
+										src="<%if(member.head_image!'' !=''){%>/img${member.head_image}<%}else{%>${ctxPath}/static/custom/images/storeManage/weixin_store_ervm.png<%}%>"
+										id="headImg" style="width: 120px; height: 120px;">
+									<div class="progress_bar" style="display: none"></div>
+								</div>
+								<br>
+								<div id="upload1">上传</div>
+							</div>
+							<div class="label_notice">*支持格式jpg、jpeg、png、gif，请保证图片清晰且文件大小不超过400KB</div>
+							<div style="clear: both;"></div>
+						</div>
+						<div class="btn_w">
+							<button class="btn_green" type="submit">保存</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include("/common/foot.html"){}%>
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath }/static/old/validform/5.3.2/js/Validform_v5.3.2.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script
+		src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+		$().ready(function() {
+			$("#user_info").validate({
+				errorPlacement : function(error, element) {
+					layer.tips(error.text(), element, {
+						guide : 1,
+						time : 5,
+						more : true
+					});
+				},
+				rules : {
+					"member.realname" : "required",
+					"member.qq" : "required"
+				},
+				messages : {
+					"member.realname" : "请输入真实姓名",
+					"member.qq" : "请输入QQ"
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			$("#user_info").Validform({
+				postonce : true,
+				tiptype : function(msg, o, cssctl) {
+					//msg：提示信息;
+					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+					if (!o.obj.is("form")) {//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
+						var objtip = o.obj.siblings(".Validform_checktip");
+						cssctl(objtip, o.type);
+						objtip.text(msg);
+					} else {
+						var objtip = o.obj.find("#msgdemo");
+						cssctl(objtip, o.type);
+						objtip.text(msg);
+					}
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto : true,
+
+			// swf文件路径
+			swf : MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server : MSConfig.BaseURL + '/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick : {
+				id : "#upload1",
+				multiple : false
+			},
+
+			// 只允许选择图片文件。
+			accept : {
+				title : 'Images',
+				extensions : 'gif,jpg,jpeg,bmp,png',
+				mimeTypes : 'image/*'
+			},
+			auto : true
+		});
+
+		// 当有文件添加进来的时候
+		uploader.on('fileQueued', function(file) {
+			//			var $li = $(
+			//							'<div id="' + file.id + '" class="file-item thumbnail">' +
+			//							'<img>' +
+			//							'<div class="info">' + file.name + '</div>' +
+			//							'</div>'
+			//					),
+			var $img = $("#headImg");
+
+			// $list为容器jQuery实例
+			//			$list.append( $li );
+
+			// 创建缩略图
+			// 如果为非图片文件，可以不用调用此方法。
+			// thumbnailWidth x thumbnailHeight 为 100 x 100
+			var thumbnailWidth = 100, thumbnailHeight = 100;
+			uploader.makeThumb(file, function(error, src) {
+				if (error) {
+					$img.replaceWith('<span>不能预览</span>');
+					return;
+				}
+
+				$img.attr('src', src);
+			}, thumbnailWidth, thumbnailHeight);
+		});
+		var loadi;
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on('uploadProgress', function(file, percentage) {
+			//			var $li = $( '#'+file.id ),
+			//var $li = $("#upload1"), $percent = $li.find('.progress span');
+			//$percent = $('.progress_bar');
+
+			// 避免重复创建
+			/*if (!$percent.length) {
+				$percent = $('<p class="progress"><span></span></p>').appendTo(
+						$li).find('span');
+			}*/
+			//$percent.show();
+			//$percent.css('width', percentage * 100 + '%');
+			loadi = layer.load('上传中…');
+		});
+
+		uploader.on('uploadAccept', function(file, response) {
+			if (response.status != "SUCCESS") {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+
+			$("#cardImage").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on('uploadSuccess', function(file) {
+			//			$( '#'+file.id ).addClass('upload-state-done');
+			$("#upload1").addClass('upload-state-done').addClass(
+					'upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on('uploadError', function(file) {
+			//			var $li = $( '#'+file.id ),
+			var $li = $("#upload1"), $error = $li.find('div.error');
+
+			// 避免重复创建
+			if (!$error.length) {
+				$error = $('<div class="error"></div>').appendTo($li);
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on('uploadComplete', function(file) {
+			//			$( '#'+file.id ).find('.progress').remove();
+			//			$("#upload1").find('.progress').remove();
+			//$('.progress_bar').hide();
+			layer.close(loadi);
+		});
+	</script>
+</body>
+</html>

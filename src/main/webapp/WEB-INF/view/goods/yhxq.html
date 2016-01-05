@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/yhxq_css.css" rel="stylesheet" type="text/css">
+<title>代金券详情</title>
+</head>
+<body>
+<!--头部----------------------------------------->
+<% include("/common/storehead.html"){}%>
+<body>
+	<div class="title">
+		<p>
+			<a href="${ctxPath}/store?storeId=${store.id}">店铺首页</a>&gt;优惠券详情
+		</p>
+	</div>
+	<div class="main">
+		<div class="mainleft fl">
+			<ul class="content">
+				<li><strong>${coupon.name!}</strong></li>
+				<li>优惠价<span style="font-size: 20px;">￥${coupon.sale_price!}</span><b>￥${coupon.coupon_money!}</b></li>
+				<li
+					style="border-bottom: 1px solid #ededed; border-top: 1px solid #ededed;">已售<span>2581</span>
+					<span style="margin: 0 200px;">4.4<span style="color: #333">分</span></span>
+					<span>814</span>人评价
+				</li>
+				<li>有效期 截止${date(coupon.end_time!,'yyyyMMddHHmmss'),'yyyy-MM-dd hh:mm'}<span>周末、节假日通用</span></li>
+				<button class="anniu" href="javascript:void(0)" onclick="buy('${coupon.id}')" title="抢购">抢购</button>
+			</ul>
+			<table class="mainlist">
+				<thead>
+					<tr class="titletop">
+						<th style="width: 495px; text-align: left">套餐内容</th>
+						<th>单价</th>
+						<th>数量/规格</th>
+						<th>小计</th>
+					</tr>
+				</thead>
+				<tr>
+					<th style="width: 495px; text-align: left">${coupon.name!}</th>
+					<th>￥${coupon.sale_price!}</th>
+					<th>1张</th>
+					<th>￥${coupon.sale_price!}</th>
+				</tr>
+			</table>
+			<b class="jz fr">价值：<span>￥${coupon.sale_price!}</span> 优惠价：<span>￥${coupon.coupon_money!}</span></b>
+		</div>
+		<div class="mainright fr">
+			<div class="kg">
+				<b>看过本产品的用户还看了</b>
+			</div>
+			<%var count=0;%>	
+			<% for(b in advertAd){%>
+				<%count=count+1;%>
+			<div class="cp">
+				<a target="_blank" href="${b.ad_url!}"><img src="/img${b.ad.pic!}" width="225" height="154" title="产品" /></a><b>农夫大盘鸡</b><br />
+				<div class="jj">
+					<span class="jg fl">￥%{b.ad_price!}</span>
+					<button class="fr qq" title="抢购">抢购</button>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<%}%>
+			<%for(var a=0; a<2-count;a++){%>
+			<div class="cp">
+				<a><img src="${ctxPath}/static/custom/images/pic01.png" width="225" height="154" title="产品" /></a><b>农夫大盘鸡</b><br />
+				<div class="jj">
+					<span class="jg fl">￥78</span>
+					<button class="fr qq" title="抢购">抢购</button>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<%}%>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/common.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/buycoupon.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+</body>
+</html>

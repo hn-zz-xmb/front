@@ -1,0 +1,160 @@
+
+/*内容*/
+.content{
+	width:1158px;
+	margin:10px auto;
+	border:1px solid #8bc73c;
+	padding:10px;
+	font-size:14px;
+	background-color:#fff;
+}
+.content_top{
+	background:url(../images/member/bg01.jpg);
+	height:146px;
+	padding:10px;
+	color:#4c4c4c;
+}
+.content_top_l{
+	float:left;
+}
+.head_img{
+	float:left;
+}
+.head_img img{
+	width:148px;
+	height:148px;
+}
+.account_info{
+	float:left;
+	margin-left:10px;
+}
+.account_info p{
+	line-height:30px;
+}
+.account_info a,.account_info span{
+	color:#409300;
+}
+.content_top_r{
+	float:right;
+}
+.account_pane{
+	width:332px;
+	height:132px;
+	background-color:#f2f2f2;
+	border:1px solid #d9d9d9;
+	float:left;
+	margin-right:20px;
+}
+.account_pane span{
+	color:#fe3001;
+}
+.account_pane_t{
+	padding-top:30px;
+	padding-left:10px;
+	padding-bottom:10px;
+}
+.account_pane_t div{
+	padding-top:10px;
+}
+.account_pane_t .money span{
+	font-size:20px;
+}
+.account_pane_t a{
+	margin-left:10px;
+}
+.account_pane_t .green{
+	background-color:#81c02f;
+	border:1px solid #75a435;
+	color:#fff;
+	padding:5px 10px;
+}
+.account_pane_t .grey{
+	background-color:#f3f3f3;
+	border:1px solid #afafaf;
+	color:#999;
+	padding:5px 10px;
+}
+.account_pane_b{
+	border-top:1px solid #d9d9d9;
+	padding:10px;
+}
+.account_pane_b a{
+	color:#409300;
+	margin-left:10px;
+}
+.hr0{
+	width:1px;
+	height:123px;
+	border:none;
+	border-left:1px dashed #8bc73c;
+}
+.fl{
+	float:left;
+}
+.advertisement{
+	width:181px;
+	height:133px;
+	float:left;
+	margin-left:20px;
+}
+.advertisement img{
+	width:181px;
+	height:133px;
+}
+.content_bottom{
+	color:#999;
+	margin-top:10px;
+}
+.content_bottom_l{
+	float:left;
+}
+.green_header_pane{
+	border:1px solid #b9de8a;
+	position:relative;
+	width:700px;
+	margin-bottom:10px;
+}
+.green_header_pane_title{
+	height:39px;
+	line-height:39px;
+	font-size:20px;
+	color:#409300;
+	background-color:#d9eec2;
+	padding-left:10px;
+}
+.green_header_pane_content{
+	padding:10px;
+}
+.green_header_pane_content p{
+	line-height:30px;
+}
+.green_header_pane_content p img{
+	position:relative;
+	top:2px;
+}
+.green_header_pane_content a{
+	position:absolute;
+	bottom:10px;
+	right:10px;
+	color:#409300;
+}
+.orange{
+	color:#fc7800;
+}
+.content_bottom_r{
+	float:left;
+	margin-left:10px;
+}
+.gonggao{
+	border:1px solid #b9de8a;
+	width:444px;
+	height:542px;
+}
+.gonggao_title{
+	height:39px;
+	line-height:39px;
+	font-size:20px;
+	color:#409300;
+	background-color:#d9eec2;
+	text-align:center;
+}

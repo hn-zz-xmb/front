@@ -1,0 +1,92 @@
+.shopSearchBox {
+	width: 300px;
+	height: 315px;
+	border: 1px solid #e6e6e6;
+	background-color: #FFF;
+}
+
+.shopSearchBox img {
+	margin: 7px;
+	width: 286px;
+	height: 218px;
+}
+
+.shopSearchBox_titleBox {
+	width: 286px;
+	height: 80px;
+	margin: 0 auto;
+}
+
+.shopSearchBox_title {
+	width: 286px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 3px;
+}
+
+.shopSearchBox_describe {
+	width: 286px;
+	height: 17px;
+}
+
+.shopSearchBox_D01 {
+	width: 110px;
+	float: left;
+}
+
+.shopSearchBox_D01 img {
+	width: 17px;
+	height: 17px;
+	margin: 0 1px;
+}
+
+.shopSearchBox_D02 {
+	width: 100px;
+	height: 17px;
+	line-height: 17px;
+	float: left;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #999;
+}
+
+.shopSearchBox_content {
+	width: 286px;
+	height: 30px;
+	padding-top: 5px;
+	color: #ef340b;
+	font-family: "微软雅黑";
+	font-size: 24px;
+}
+
+.shopSearchBox_content1 {
+	width: 100px;
+	float: left;
+	font-family: "微软雅黑";
+}
+
+.shopSearchBox_content span {
+	font-size: 14px;
+	font-family: "微软雅黑";
+}
+
+.shopSearchBox_content a {
+	display: block;
+	float: right;
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	color: #fff;
+	font-size: 16px;
+	font-family: "微软雅黑";
+	text-align: center;
+	background-color: #84c133;
+	text-decoration: none;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+
+.shopSearchBox_content a:hover {
+	background-color: #679728;
+}

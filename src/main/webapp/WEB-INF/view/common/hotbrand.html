@@ -1,0 +1,5 @@
+<span>热门品牌：</span>
+<% for(b in advertAdList!){%>
+<%if(strutil.startWith(b.ad_area_code,"main_index_a")){%>
+<a href="${b.ad_url !}">${b.ad_text !}</a>
+<%}}%>

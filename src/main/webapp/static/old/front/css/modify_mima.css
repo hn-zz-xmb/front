@@ -1,0 +1,91 @@
+/* CSS Document */
+
+.modify_mima {
+	margin: 20px auto;
+	width: 1180px;
+	border: 1px solid #dfdfdf;
+	height: 470px;
+}
+
+.xgmm {
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	font-weight: bold;
+	border-bottom: 2px solid #84c233;
+}
+
+.modi_pic {
+	width: 932px;
+	height: 94px;
+	margin-top: 10px;
+	background: url(../images/modify.png) no-repeat 0 -105px;
+}
+.modi_email {
+	width: 932px;
+	height: 94px;
+	margin-top: 10px;
+	background: url(../images/member/email.png) no-repeat 0 -105px;
+}
+
+.modi_phone {
+	width: 932px;
+	height: 94px;
+	margin-top: 10px;
+	background: url(../images/yiyanzheng.png) no-repeat 0 -105px;
+}
+.modi_pay {
+	width: 932px;
+	height: 94px;
+	margin-top: 10px;
+	background: url(../images/pay_mima.png) no-repeat 0 -105px;
+}
+
+.modi_mima {
+	
+}
+
+.modi_mima table {
+	
+}
+
+.modi_mima span {
+	color: #c30000;
+}
+
+.modi_mima tr {
+	line-height: 50px;
+}
+
+.modi_mima th {
+	text-align: right;
+	font-weight: normal;
+	width: 150px;
+}
+
+.text_ne {
+	text-align: left;
+	width: 150px;
+}
+
+.tisi_zifu {
+	color: #a8a7a7;
+	width: 300px;
+}
+
+.new_logn {
+	width: 185px;
+	height: 25px;
+}
+
+.modi_mima p {
+	margin-top: 10px;
+	padding-left: 430px;
+}
+
+.btne {
+	width: 98px;
+	height: 32px;
+	border: 0 none;
+	background: url(../images/subm.png) no-repeat;
+}

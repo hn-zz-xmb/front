@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Expires" content="0">
+	<meta name="keywords"
+		  content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+	<meta name="description"
+		  content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+
+	<link href="${ctxPath}/static/custom/css/member_public.css" rel="stylesheet" type="text/css">
+	<link href="${ctxPath}/static/custom/css/manage1.css" rel="stylesheet" type="text/css">
+	<link href="${ctxPath}/static/custom/css/report_common.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/report_common.js?ctx=${ctxPath}"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+</head>
+<body>
+<% include("/common/userhead.html"){}%>
+<div class="position">
+	<div class="fl">
+		当前位置：<a href="#">店铺管理</a>&gt;
+	</div>
+	<% include("../../../store_change.html"){}%>
+</div>
+
+<div class="content">
+	<% include("../../../common.html",{left_:"yun"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<select id="selReport" onchange="window.location.href=this.options[selectedIndex].value">
+					<option value="javascript:void(0);" selected="selected">报表中心</option>
+				</select>
+				<span>红冲报表</span>
+			</div>
+			<div class="main">
+				<div class="search">
+					<div class="searchTitle">筛选条件</div>
+					<div class="searchIf">
+						<form>
+							<span>日期:</span>
+							<select id="selectTime" name="date" onchange="showTime(this)">
+								<option value="0" <%if(params.date=="0"){print("selected='selected'");}%>>今天</option>
+								<option value="1" <%if(params.date=="1"){print("selected='selected'");}%>>昨天</option>
+								<option value="2" <%if(params.date=="2"){print("selected='selected'");}%>>自定义</option>
+							</select>
+							<span id="time" style="margin-right:10px; <%if(params.date != "2"){print("display: none;");}%>">
+							开始时间:&nbsp;
+							<input type="text" onclick="laydate()" class="hdS_slt" name="beginTime" value="${params.beginTime!''}" placeholder="请选择">
+							&nbsp;-&nbsp; 结束时间:&nbsp;
+							<input type="text" onclick="laydate()" class="hdS_slt" name="endTime" value="${params.endTime!''}" placeholder="请选择">
+							</span>
+							<script type="text/javascript">
+								function showTime(obj){
+									var t = document.getElementById("time");
+									if(obj.value == "2"){
+										t.style.display="";
+									} else {
+										t.style.display="none";
+									}
+								}
+							</script>
+							<span>员工:</span>
+							<select name="employee">
+								<option value="">全部</option>
+								<%for(var item in employeeYunList!){%>
+								<option value="${item.id}" <%if(item.id==params.operator){ print("selected='selected'");}%>>${item.name}</option>
+								<%}%>
+							</select>
+							<input type="submit" value="确定">
+						</form>
+					</div>
+				</div>
+				<div class="report_content">
+					<table id="tabList">
+						<thead>
+							<tr>
+								<th style="width:70px;">序号</th>
+								<th style="width:145px;">卡号</th>
+								<th style="width:95px;">类型</th>
+								<th style="width:140px;">订单号</th>
+								<th style="width:120px;">时间</th>
+								<th style="width:90px;">红冲金额</th>
+								<th style="width:90px;">操作人</th>
+								<th style="width:160px;"></th>
+							</tr>
+						</thead>
+						<tbody>
+						<%for(var item in page.list!){%>
+						<tr>
+							<td style="width:70px;">${itemLP.index}</td>
+							<td style="width:145px;">${item.card_no!''}</td>
+							<td style="width:95px;">红冲</td>
+							<td style="width:140px;">${item.record_no}</td>
+							<td style="width:120px;">${date(item.create_time,'yyyyMMddHHmmss'),'yyyy-MM-dd HH:mm:ss'}</td>
+							<td style="width:90px;"><%if(isEmpty(item.record_money)){print("0.00");}else{print(item.record_money);}%></td>
+							<td style="width:90px;">${item.emp_name}</td>
+							<td style="width:160px;"></td>
+						</tr>
+						<%}%>
+						</tbody>
+					</table>
+				</div>
+				<%include("/common/_report_pagination.html",{page:page}){}%>
+			</div>
+		</div>
+		<br class="clear" />
+	</div>
+</body>
+</html>

@@ -1,0 +1,268 @@
+@charset "utf-8";
+/* CSS Document */
+
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2, h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset, input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+body {
+	color: #000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+ol, ul, li {
+	list-style-type: none;
+}
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+.clear {
+	font: 0px/0px serif;
+	display: block;
+	clear: both;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.m5 {
+	margin-right: 50px;
+}
+.m3 {
+	margin-right: 30px;
+}
+a {
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+}
+.title {
+	width: 1180px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.mainbox {
+	height: 200px;
+	width: 1178px;
+	border: 1px solid #dbdbdb;
+	background-color: #fff;
+}
+.anniu {
+	width: 118px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	margin-right: 8px;
+	cursor: pointer;
+}
+.sx {
+	height: 30px;
+	width: 1118px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #d9dadc;
+	line-height: 30px;
+	color: #333;
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 60px;
+}
+.sx1 {
+	padding: 15px 50px;
+	background-color: #fff;
+}
+.mainbox1 {
+	width: 1180px;
+	border: 1px solid #dbdbdb;
+	margin: 0 auto;
+	background-color: #fff;
+	margin-top: 15px;
+}
+.mainbox1-top {
+	width: 1180px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+.mainbox1-top table {
+	width: 1180px;
+	height: 25px;
+	background-color: #CCC;
+}
+.mainbox1-top tr {
+	width: 120px;
+	line-height: 25px;
+	height: 25px;
+	text-align: center;
+}
+.mainbox1-bottom {
+	width: 1180px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+.mainbox1-bottom a {
+	line-height: 20px;
+	font-weight: bold;
+}
+.mainbox1-bottom table {
+	width: 1180px;
+	height: 78px;
+}
+.mainbox1-bottom td {
+	border-right: 1px solid #ddd;
+	border-collapse: collapse;
+}
+.mainbox1-bottom tr {
+	width: 130px;
+	text-align: center;
+}
+.title1 {
+	height: 25px;
+	background-color: #f5f5f5;
+	width: 1158px;
+	padding-left: 20px;
+	padding-top: 15px;
+}
+.title2 {
+	height: 125px;
+	width: 1180px;
+	padding-left: 20px;
+}
+.user {
+	width: 150px;
+	margin-right: 10px;
+	background: url(image/011906562.gif) no-repeat;
+	background-position: 110px 2px;
+}
+.xg {
+	border: 1px solid #d1d1d1;
+	float: left;
+	margin-top: 35px;
+	margin-left: 50px
+}
+.yp {
+	height: 110px;
+	border-right: 1px solid #d1d1d1;
+	width: 150px;
+	float: left;
+	line-height: 40px;
+	text-align: center;
+}
+.xfm {
+	height: 110px;
+	border-right: 1px solid #d1d1d1;
+	width: 150px;
+	float: left;
+	line-height: 100px;
+	text-align: center;
+}
+.zj {
+	height: 110px;
+	border-right: 1px solid #d1d1d1;
+	width: 150px;
+	float: left;
+	line-height: 30px;
+	text-align: center;
+}
+.xfsj {
+	height: 110px;
+	border-right: 1px solid #d1d1d1;
+	width: 150px;
+	float: left;
+	line-height: 40px;
+	text-align: center;
+}
+.wm {
+	height: 110px;
+	border-left: 1px solid #d1d1d1;
+	border-right: 1px solid #d1d1d1;
+	width: 150px;
+	float: left;
+	line-height: 100px;
+	text-align: center;
+}
+.hg {
+	float: left;
+	margin-left: 10px;
+	margin-top: 45px;
+	margin-right: 10px
+}
+.hgtp {
+	border: 1px solid #d1d1d1;
+	float: left;
+	margin-top: 15px
+}
+.bt {
+	width: 1180px;
+	height: 35px;
+	line-height: 35px;
+	text-align: left;
+	margin: 0 auto;
+	font-size: 16px;
+	height: 165px;
+	font-weight: bold;
+	color: #000;
+	border: 1px solid #ddd;
+	overflow: hidden;
+}
+.bt td {
+	font-weight: bold;
+}
+.bt td span {
+	color: #84C233;
+	font-weight: normal;
+}
+.bt-right {
+	float: left;
+	width: 978px;
+	height: 50px;
+	border-bottom: 1px solid #ddd;
+}
+.bt-right1 {
+	float: left;
+	width: 978px;
+	height: 118px;
+}
+.bt-left {
+	background-color: #e5f1d4;
+	width: 182px;
+	height: 167px;
+	float: left;
+}
+.bt-left td {
+	width: 165px;
+	text-align: center;
+}
+.bt-left td a {
+	color: #039;
+}
+.bt-rightbox {
+	width: 978px;
+	float: left;
+}
+.bt-rightbox table {
+	width: 900px;
+	margin: 0 auto;
+}
+.bt-rightbox table select {
+	width: 200px;
+	height: 30px;
+	font-weight: bold;
+}
+.bt-anniu {
+	width: 100px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 15px;
+	float: right;
+	font-weight: bold;
+}

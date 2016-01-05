@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>37美食 - 消息详情</title>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<link href="${ctxPath }/static/front/css/user_ms.css" rel="stylesheet"
+	type="text/css">
+<script type="text/javascript"
+	src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+<style type="text/css">
+.user_name {
+	position: relative;
+	bottom: 18px;
+	margin-left: 5px;
+}
+</style>
+</head>
+<body>
+	<%include("../../common/userhead.html"){}%>
+	<div id="right">
+		<ul class="tab">
+			<li class="normal"><a href="${ctxPath }/account/mail">未读消息</a></li>
+			<li class="normal"><a href="${ctxPath }/account/mail/private">私人消息</a></li>
+			<li class="normal"><a href="${ctxPath }/account/mail/system">系统消息</a></li>
+			<li class="normal"><a href="${ctxPath }/account/mail/public">公共消息</a></li>
+			<li class="active">查看消息</li>
+		</ul>
+		<div class="eject_wrap_msg">
+			<div class="fill_in">
+				<div class="eject_con">
+					<div class="msg">
+						<ul>
+							<li>
+								<h3>发件人:</h3>
+								<p>${message.sender.username!}</p>
+							</li>
+							<li>
+								<h3>时间:</h3>
+								<p>${date(message.time,'yyyyMMddHHmmss'),'yyyy-MM-dd
+									HH:mm:ss'}</p>
+							</li>
+							<li>
+								<h3>内容:</h3>
+								<p>${message.message!}</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%include("../../common/foot.html"){}%>
+</body>
+</html>

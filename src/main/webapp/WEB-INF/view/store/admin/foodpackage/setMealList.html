@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/manage.css"
+	rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/custom/css/store_manage_public.css"
+	rel="stylesheet" type="text/css">
+<title>店铺管理-套餐管理</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"foodpackage"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="#" class="active">套餐列表</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/foodpackage/saveUI" class="btn_add">新增套餐</a>
+			</div>
+			<div class="main">
+				<div class="top_bar">
+					<div class="fl">
+						<input type="checkbox" id="all" class="checkall" onclick="checkAll(this)">全选&nbsp;<a href="#"
+							class="btn_grey_b">删除</a>
+					</div>
+					<div class="fr">
+						<form action="${ctxPath}/salerManage/foodpackage" method="post">
+							<select name="status">
+								<% if(params.status==null ||params.status==""){ %>
+								<option selected="selected" value="">状态</option>
+								<% }else{ %>
+								<option value="">状态</option>
+								<%}%><%if(params.status=="show"){ %>
+								<option value="show" selected="selected">推荐的</option>
+								<% }else{%>
+								<option value="show">推荐的</option>
+								<% } %> <%if(params.status=="hide"){ %>
+								<option value="hide" selected="selected">未推荐的</option> 
+								<% }else{%>
+								<option value="hide">未推荐的</option>
+								<% } %>
+							</select>&nbsp; <input type="text" name="mealname" value="${params.mealname}"
+								placeholder="输入商品名称进行搜索">
+							<button>商品搜索</button>
+							&nbsp;<a href="#" class="btn_grey_b">清空结果</a>
+						</form>
+					</div>
+				</div>
+				<div class="list">
+					<table>
+						<tr>
+							<th width="50px"></th>
+							<th>套餐名称</th>
+							<th width="100px">销售价格（元）</th>
+							<th width="100px">原价格（元）</th>
+							<th width="90px">折扣</th>
+							<th width="100px">销量（份）</th>
+							<th width="50px">推荐</th>
+							<th width="200px">操作</th>
+						</tr>
+						<%for(foodpackage in page.list){%>
+						<tr <%if(foodpackageLP.index%2==0){%> class="tr_grey" <%}%>>
+							<td><input type="checkbox" class="checkitem" value="${foodpackage.id}"></td>
+							<td>
+							<% if(foodpackage.image!'' != ''){ %> 
+							<img style="width: 80px;height: 80px" class="goods_img" src="/img${foodpackage.image !}" />
+							<%}else{%>
+							<img style="width: 80px;height: 80px" src="${ctxPath}/static/custom/images/member/goods01.jpg" class="goods_img">
+							<%}%>
+							<a href="http://www.37meishi.com/foodpackage/view?id=${foodpackage.id!}&type=1" class="goods_name">${foodpackage.name}</a></td>
+							<td>${foodpackage.price}</td>
+							<td>${foodpackage.total_price}</td>
+							<td></td>
+							<td>${foodpackage.sales_count}</td>
+							<td><%if(foodpackage.recommend=="1"){%>
+							<a href="javascript:;" onclick="cancelRecommend('${foodpackage.id}')"><img src="${ctxPath}/static/custom/images/storeManage/right_green.png"></a></td>
+							<%}else{%>
+							<a href="javascript:;" onclick="recommend('${foodpackage.id}')"><img src="${ctxPath}/static/custom/images/storeManage/right_grey.png"></a></td>
+							<%}%>	</td>
+							<td><a href="${ctxPath}/salerManage/foodpackage/updateUI?id=${foodpackage.id}" class="btn_edit">编辑</a>
+							<!--  <a onclick="javascript:if(confirm('确定删除该套餐吗？')){ return true;}else{return false;};" href="${ctxPath}/salerManage/foodpackage/deleteSetMeal?setMealId=${foodpackage.id}" class="btn_del">删除</a>-->
+							<a href="javascript:;" onclick="deleteFoodPackage('${foodpackage.id}')" class="btn_del">删除</a></td>
+						</tr>
+						<%}%>
+					</table>
+				</div>
+				<div class="bottom_bar">
+					<input type="checkbox" id="all" class="checkall" onclick="checkAll(this)">全选&nbsp;<a href="#"
+						class="btn_grey_b">删除</a>
+				</div>
+				<div class="pagination">
+					<%include("/common/_pagination.html",{page:page}){}%></div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript">
+	function recommend(id){
+			$.layer({
+		  	  type: 2,
+		    	shadeClose: true,
+		    	title: '推荐套餐',
+		    	closeBtn: [0, true],
+		    	shade: [0.5,'#000'],
+		    	border: [10, 0.3, '#000'],
+		    	offset: ['',''],
+		    	area: ['400px', '160px'],
+		   	 	iframe: {src: '${ctxPath}/salerManage/foodpackage/recommendSetMeal?foodpackageId='+id}
+		}); 
+ }
+	function cancelRecommend(foodpackageId) {
+		var result = confirm("确定取消推荐么？");
+		if (result) {
+			var url = "${ctxPath}/salerManage/foodpackage/cancelRecommend";
+			var param = {
+				"foodpackageId" : foodpackageId
+			}
+			callText(url, param, false);
+			window.location.href = "${ctxPath}/salerManage/foodpackage";
+		}
+	}
+	
+	
+	function deleteFoodPackage(foodPackageId) {
+		if (!confirm("确定要删除该商品吗？"))
+			return;
+
+		var param = {
+			"setMealId" : foodPackageId
+		}
+		$.ajax({
+	        url : "${ctxPath}/salerManage/foodpackage/deleteSetMeal",
+	        method : "get",
+	        data : param,
+	        dataType : "json",
+	        success : function(result) {
+	        	if (result.status) {
+	        		window.location.href = "${ctxPath}/salerManage/foodpackage";
+				} else {
+					alert(result.error);
+				}
+	        }
+	    });
+	}	
+</script>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

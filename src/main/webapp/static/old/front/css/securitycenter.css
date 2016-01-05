@@ -1,0 +1,66 @@
+/* CSS Document */
+@import url("base.css");
+.security{
+	width:930px;
+	height:400px;
+	margin:20px auto;
+	border:1px solid #DFDFDF;
+}
+.security p{
+	height:30px;
+	line-height:30px;
+	padding-left:10px;
+	font-weight:bold;
+	border-bottom:2px solid #84c233;}
+.security_l{
+	width:200px;
+	float:left;
+	}
+.security_l img{
+	margin:20px 0 0 20px;}
+.security_r{
+	width:690px;
+	float:left;
+	margin-left:40px;}
+.mima{
+	width:692px;
+	height:60px;
+	margin:20px 0 ;
+	line-height:80px;
+	border-bottom:1px dashed #e3e2e2;}
+.lognmm{
+	width:120px;
+	padding-left:50px;
+	height:40px;
+	float:left;
+	line-height:40px;
+	background:url(../images/duihao.png) no-repeat;}
+.hlw{height:40px;
+line-height:40px;
+	width:400px;
+	padding-left:10px;
+	border-left:1px dashed #e3e2e2;
+	float:left;}
+.xiugai{
+	line-height:40px;
+	width:100px;
+	float:left;}
+.out_m{
+display: inline-block;
+position: relative;
+z-index: 2;
+width: 100px;
+height:12px;
+background:#e4e4e3;}
+.inside_m{
+width:50px;	
+position: absolute;
+top: 0px;
+left: 0px;
+display: inline-block;
+height: 12px;
+z-index:99;
+background-color:#d96d6a;
+	}
+	
+

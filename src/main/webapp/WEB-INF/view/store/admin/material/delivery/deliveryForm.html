@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/manage.css" rel="stylesheet"
+	type="text/css">
+<title>新增配送方式</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("/store/admin/store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("/store/admin/common.html",{left_:"peisong"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a
+						href="${ctxPath}/salerManage/materialManage/delivery/deliveryList">配送方式列表</a></li>
+					<li><a href="" class="active">新增配送方式</a></li>
+				</ul>
+				<a
+					href="${ctxPath}/salerManage/materialManage/delivery/toAddDelivery"
+					class="btn_add">新增</a>
+			</div>
+			<div class="main">
+				<form
+					action="${ctxPath}/salerManage/materialManage/delivery/addDelivery"  id="foodType" class="from" method="post">
+					<div class="form">
+						<div class="row">
+							配送名称：<input type="text" name="delivery.name">
+						</div>
+						<div class="row">
+							配送费用：<input type="text" name="delivery.money">
+						</div>
+						<div class="row_radio">
+							是否显示：<input type="radio" name="delivery.is_open" value="1" checked="checked">是<input
+								type="radio" name="delivery.is_open" value="0">否
+						</div>
+						<div class="row">
+							排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：<input type="text"
+								class="input_s" name="delivery.px">
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="btn_w">
+						<button class="btn_g_l">保存</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<script type="text/javascript" src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+	$("#foodType").validate({
+		errorPlacement: function(error, element) {  
+			layer.tips(error.text(), element, {guide: 1, time: 3,more:true});
+		},
+		rules : {
+			"delivery.name":"required",
+			"delivery.money":{
+				required:true,
+				digits:true
+			},
+			"delivery.px":{
+				required:true,
+				digits:true
+			}
+		},
+		messages:{
+			"delivery.name":"名称不能为空",
+			"delivery.money":{
+				required:"请输入配送费用",
+				digits:"格式输入错误"
+			},
+			"delivery.px":{
+				required:"序号不能为空",
+				digits:"请输入正确的数字"
+			}
+		}
+		
+	});
+});
+</script>
+</body>
+</html>

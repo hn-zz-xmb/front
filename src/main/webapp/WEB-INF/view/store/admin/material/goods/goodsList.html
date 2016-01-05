@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品列表</title>
+<link href="${ctxPath}/static/custom/css/splb.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("/store/admin/store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("/store/admin/common.html",{left_:"goods"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="" class="active">商品列表</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/materialgoodsmanage/addMaterial"
+					class="btn_add">新增商品</a>
+			</div>
+			<div class="main">
+				<div class="top_bar">
+					<div class="fl"></div>
+					<div class="fr">
+						<form action="${ctxPath}/salerManage/materialgoodsmanage"
+							method="post">
+							<select name="foodType">
+								<option value="">本店分类</option> <%if(params.foodType!''==
+								null){%> <%for(s in foodType){%>
+								<option value="${s.id}">${s.name}</option> <%}%> <%}else{%>
+								<%for(s in foodType){ if(params.foodType!''==s.id){%>
+								<option selected="selected" value="${s.id}">${s.name}</option>
+								<%}else{%>
+								<option value="${s.id}">${s.name}</option> <%}}%> <%}%>
+							</select> &nbsp; <select name="status"> <% if(params.status==null
+								||params.status==""){ %>
+								<option selected="selected" value="">状态</option> <% }else{ %>
+								<option value="">状态</option> <%}%><%if(params.status=="show"){
+								%>
+								<option value="show" selected="selected">上架的</option> <%
+								}else{%>
+								<option value="show">上架的</option> <% } %>
+								<%if(params.status=="hide"){ %>
+								<option value="hide" selected="selected">下架的</option> <%
+								}else{%>
+								<option value="hide">下架的</option> <% } %>
+							</select> &nbsp; <input name="materialname" value="${params.materialname}"
+								type="text" placeholder="输入商品名称进行搜索" />
+							<button>商品搜索</button>
+						</form>
+					</div>
+				</div>
+				<div class="list">
+					<table>
+						<tbody>
+							<tr>
+								<th width="50px"></th>
+								<th width="200px;">商品名称</th>
+								<th width="90px">分类</th>
+								<th width="100px">单价</th>
+								<th width="80px">单位</th>
+								<th width="100px">销量</th>
+								<th width="70px">销售额</th>
+								<th width="200px">操作</th>
+							</tr>
+							<%for(material in page.list){%>
+							<tr class="tr_grey">
+								<td><input type="checkbox" class="checkitem"
+									value="${material.id}" /></td>
+								<td><%if(material.material_image !''=="" ||
+									material.material_image!''== null){%> <img
+									style="width: 80px; height: 80px;" alt=""
+									src="${ctxPath}/static/custom/images/member/goods01.jpg"
+									class="goods_img"> <%}else{%> <img
+										style="width: 80px; height: 80px;"
+										src="/img${material.material_image !}" class="goods_img">
+											<%}%> <a href="http://yuanliao.37meishi.com/material/detail?id=${material.id!}" class="goods_name">${material.name !}</a>
+								</td>
+								<td>${material.categorysname !}</td>
+								<td>￥${material.sales_price!}元</td>
+								<td>${material.unit!}</td>
+								<td>${material.sale_num!}</td>
+								<td>￥${material.sale_num! * material.sales_price!}</td>
+								<td><%if(material.is_show! ==0){%> <a href="javascript:;"
+									onclick="putMaterialOnSale('${material.id}')" class="btn_edit11">上架</a>
+									<%}else{%><a href="javascript:;"
+									onclick="banMaterial('${material.id}')" class="btn_edit1">下架</a><%}%>
+									 <a
+									href="${ctxPath}/salerManage/materialgoodsmanage/toupdateMaterial?materialId=${material.id}"
+									class="btn_edit">编辑</a> <a href="javascript:;"
+									onclick="deleteMaterial('${material.id}')" class="btn_del">删除</a></td>
+							</tr>
+							<%}%>
+						</tbody>
+					</table>
+				</div>
+				<div class="bottom_bar">
+					<input type="checkbox" id="all" class="checkall"
+						onclick="checkAll(this)"> 全选&nbsp;<a href=""
+						class="btn_grey_b">删除</a>
+				</div>
+				<div class="pagination">
+					<%include("/common/_pagination.html",{page:page}){}%></div>
+			</div>
+		</div>
+	</div>
+	<div style="clear: both;"></div>
+	<% include("/common/foot.html"){}%>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript">
+		function putMaterialOnSale(materialId) {
+			if (!confirm("确定要上架吗？"))
+				return;
+
+			var url = "${ctxPath}/salerManage/materialgoodsmanage/shangjia";
+			var param = {
+				"materialId" : materialId
+			}
+			var result = callText(url, param, false);
+			if (result == "success") {
+				window.location.href = "${ctxPath}/salerManage/materialgoodsmanage";
+			} else {
+				alert("该商品已经上架请刷新页面");
+			}
+		}
+		function banMaterial(materialId) {
+			if (!confirm("确定要下架吗？"))
+				return;
+
+			var url = "${ctxPath}/salerManage/materialgoodsmanage/xiajia";
+			var param = {
+				"materialId" : materialId
+			}
+			var result = callText(url, param, false);
+			if (result == "success") {
+				window.location.href = "${ctxPath}/salerManage/materialgoodsmanage";
+			} else {
+				alert("该商品已经下架请刷新页面");
+			}
+		}
+		function deleteMaterial(materialId) {
+			if (!confirm("确定要删除该商品吗？"))
+				return;
+
+			var param = {
+				"materialId" : materialId
+			}
+			$
+					.ajax({
+						url : "${ctxPath}/salerManage/materialgoodsmanage/deleteMaterial",
+						method : "get",
+						data : param,
+						dataType : "json",
+						success : function(result) {
+							if (result.status) {
+								window.location.href = "${ctxPath}/salerManage/materialgoodsmanage";
+							} else {
+								alert(result.error);
+							}
+						}
+					});
+		}
+		function cancelRecommend(materialId) {
+			var result = confirm("确定取消推荐么？");
+			if (result) {
+				var url = "${ctxPath}/salerManage/materialgoodsmanage/cancelRecommend";
+				var param = {
+					"materialId" : materialId
+				}
+				callText(url, param, false);
+				window.location.href = "${ctxPath}/salerManage/materialgoodsmanage";
+			}
+		}
+		
+		function Recommend(materialId) {
+			var result = confirm("确定推荐此商品吗？");
+			if (result) {
+				var url = "${ctxPath}/salerManage/materialgoodsmanage/recommend";
+				var param = {
+					"materialId" : materialId
+				}
+				callText(url, param, false);
+				window.location.href = "${ctxPath}/salerManage/materialgoodsmanage";
+			}
+		}
+	</script>
+
+</body>
+</html>

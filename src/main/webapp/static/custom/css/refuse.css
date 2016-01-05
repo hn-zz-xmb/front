@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2, h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset, input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+body {
+	color: #000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+ol, ul, li {
+	list-style-type: none;
+}
+.sq {
+	width: 750px;
+	height: 250px;
+	background-color: #fff;
+	margin: 0 auto;
+	padding: 30px 0 0 10px;
+	box-shadow: 3px 3px 5px #ccc;
+	margin-top: 20px;
+	border: 3px solid #ededed;
+}
+.sq h1 {
+	font-size: 28px;
+}
+.title {
+	margin: 0 auto;
+	width: 200px;
+	margin-bottom: 30px;
+}
+.mainbox {
+	margin: 0 auto;
+	color: #333;
+	height: 55px;
+	line-height: 55px;
+	font-family: "微软雅黑";
+	width: 650px;
+}
+
+.mainbox .yy {
+	width: 450px;
+	height: 100px; float:left;
+}
+.mainbox h3 {
+	display: inline;
+	color: #999;
+	margin-left: 5px;
+}
+.mainbox li span {
+	font-size: 20px; float:left;
+}
+.anniu {
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background-color: #78C912;
+	border-radius: 10px;
+	font-size: 18px;
+	color: #fff;
+}
+.tj {
+	float: right;
+	margin-top: 30px; margin-right:150px;
+}
+.sc {
+	width: 70px;
+	height: 35px;
+}
+.imgbox {
+	width: 307px;
+	height: 220px;
+	overflow: hidden;
+	float: left;
+	border: 1px solid #333;
+	border-radius: 15px;
+	box-shadow: -0px 0px 7px #444; margin-left:50px;
+}

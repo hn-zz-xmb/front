@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/umeditor/themes/default/css/umeditor.css"
+	type="text/css" rel="stylesheet">
+<link href="${ctxPath}/static/webuploader/webuploader.css" type="text/css" rel="stylesheet"/> 	
+<link href="${ctxPath}/static/custom/css/tjsp.css" rel="stylesheet" type="text/css" />
+<title>店铺管理-商品管理</title>
+</head>
+<body>
+<% include("/common/userhead.html"){}%>
+<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+<div class="content">
+  <% include("../common.html",{left_:"goods"}){}%>
+  <div class="content_right">
+    <div class="tab">
+      <ul>
+       <li><a href="${ctxPath}/salerManage/goodsmanage">商品列表</a></li>
+	   <li><a href="#" class="active">编辑商品</a></li>
+      </ul>
+      <a href="${ctxPath}/salerManage/goodsmanage/addProduct" class="btn_add">新增商品</a>
+    </div>
+    <div class="main">
+    <form id="goodsForm" action="${ctxPath }/salerManage/goodsmanage/${action}" method="post">
+        <div class="form">
+         <input type="hidden" name="food.id" value="${goods.id !}">
+		 <input type="hidden" name="pageNum" value="${pageNum !}">
+          <div class="category">
+            <div class="title">商品分类</div>
+            <div class="category_content"> 本店分类：
+              <select name="food.food_type_id">
+				<option value="">选择分类</option> <%for(c in categorys){
+				if(goods.food_type_id!''==c.id!''){%>
+				<option selected="selected" value="${c.id}">${c.name}</option>
+				<%}else{%>
+				<option value="${c.id}">${c.name}</option> <%}}%>
+			  </select>
+            </div>
+          </div>
+          <div class="goods_info">
+            <div class="title">商品基本信息</div>
+            <div class="goods_info_content">
+              <div class="goods_imgs">
+               <div class="goods_imgs_t">
+				<%if (goods.image !''==""){%>
+				<img id="big_goods_image" alt="" src="${ctxPath}/static/custom/images/storeManage/goods01.jpg">
+				<input type="hidden" name="food.image" id="goodsImage">
+				<%}else{%>
+				<img id="big_goods_image" src="/img${goods.image !}">
+				<input type="hidden" value="${goods.image !}" name="food.image" id="goodsImage">
+				<%}%>
+				</div>
+                <div id="small_img" class="goods_imgs_b">
+				<%for(img in goodsImgs !){%>
+				<img alt="" onclick="changeImg('${img.id}')" src="/img${img.small_image!}">
+				<input id="${img.id}_input" type="hidden" name="images" value="${img.small_image !}">
+				<input id="${img.id}_input" type="hidden" name="imagesId" value="${img.id!}"> 
+				<%}%>
+				</div>
+              </div>
+              <div class="info">
+                <div style="float:left; margin-left:20px;">
+                    <div class="row">
+				             商品名称：&nbsp;<input name="food.name" value="${goods.name !}" type="text">
+					<label></label>
+					</div>
+                  <div class="row"> 单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位：
+                    <input name="food.unit" value="${goods.unit!}" type="text">
+                    <label></label>
+                  </div>
+                  <div class="row"> 价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：
+                    <input name="food.price" value="${goods.price !}" type="text">
+					<label></label>
+                  </div>
+                  <div class="row"> 排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：
+                   <input name="food.px" type="text" value="${goods.px!}">
+                  </div>
+                </div>
+                <div style="float:left;margin-left:20px;">
+                  <div class="row"> 编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：
+                    <input name="food.no" type="text" value="${goods.no!}">
+                  </div>
+                  <div class="row">兑换比例：
+                    <input name="" type="text" value="">
+                  </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;padding-left: 35px;"> 关键字：
+                  <input name="food.keyword" type="text" value="${goods.keyword!}" style="width:510px; height:30px; margin-bottom:10px;">
+                  <br />
+                  <span>（请输入2到10字词语用","隔开以便消费者搜索）</span> 
+                 </div>
+                <div style="margin-left:50px;">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述：
+                  <input type="text" name="food.description_short" style="width:400px; height:80px;" value="${goods.description_short !}"/>
+                </div>
+                <span style="margin-left:100px;">（请输入套餐简单描述以便消费者快速了解信息）</span>
+              </div>
+              <div style="clear: both;"></div>
+            </div>
+            <div class="goods_info_b">
+             <div id="upload1" >上传商品图片</div>
+			 <span class="advise">文件格式JPG、JPEG、PNG文件大小150K以内，建议尺寸230PX*230PX</span>
+            </div>
+          </div>
+          <div class="goods_description">
+            <div class="title">商品详情</div>
+            <div class="goods_description_content">
+            	<script type="text/plain" id="myEditor" name="food.description"
+				style="width:860px; height: 360px;">${description!}
+			   </script>
+            <p> (还可以输入100字) </p>
+            </div>
+          </div>
+          <div class="btn_w">
+            <button class="btn_g_l">保存</button>
+            <button class="btn_g_l">预览</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="${ctxPath}/static/umeditor/umeditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="${ctxPath}/static/umeditor/umeditor.min.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+		<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+		<script type="text/javascript">
+		var um = UM.getEditor('myEditor');
+		</script>
+		<script type="text/javascript">
+		//表单验证
+		 jQuery.validator.addMethod("pnum", function(value, element) {
+		        var tel = /^[0-9]*[1-9][0-9]*$/;
+		        return this.optional(element) || (tel.test(value));
+		    }, "请输入数字");
+		$().ready(function() {
+			$("#goodsForm").validate({
+				errorPlacement : function(error, element) {
+					layer.tips(error.text(), element, {guide: 1, time: 5,more:true});
+				},
+				rules : {
+					"goods.store_catagory" : "required",
+					"goods.name":"required",
+					"goods.sales_price":{
+						required:true,
+						digits:true
+					},
+					"goods.px":{
+						required:true,
+						pnum:true
+					},
+					"goods.description":"required",
+				},
+				messages : {
+					"goods.store_catagory" : "请选择商品分类",
+					"goods.name" :"请输入商品名称",
+					"goods.sales_price":{
+						required:"请输入商品价格",
+						digits:"格式输入错误"
+					},
+					"goods.px":{
+						required:"请输入商品排序",
+						digits:"格式输入错误"
+					},
+					"goods.description":"请输入商品描述"
+				}
+			});
+		});
+		</script>
+	<script type="text/javascript">
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto : true,
+
+			// swf文件路径
+			swf : MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server : MSConfig.BaseURL + '/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick : {
+				id : "#upload1",
+				multiple : false
+			},
+
+			// 只允许选择图片文件。
+			accept : {
+				title : 'Images',
+				extensions : 'gif,jpg,jpeg,bmp,png',
+				mimeTypes : 'image/*'
+			},
+			auto : true
+		});
+
+		// 当有文件添加进来的时候
+		uploader.on('fileQueued',function(file) {
+							//		var $li = $(
+							//						'<div id="' + file.id + '" class="file-item thumbnail">' +
+							//						'<img>' +
+							//						'<div class="info">' + file.name + '</div>' +
+							//						'</div>'
+							//				),
+							var $li = $('<span id="'+file.id+'" class="file-item thumbnail">'
+									+ '<img height="53" width="53" onclick="changeImg(\''
+									+ file.id
+									+ '\')">'
+									+ '<input id="'+file.id+'_input" name="images" type="hidden">'
+									+ '<input id="'+file.id+'_input" name="imagesId" type="hidden">'
+									+'</span>');
+							var $img = $("#big_goods_image");
+
+							var $sImg = $li.find('img');
+
+							// $list为容器jQuery实例
+							var $list = $("#small_img");
+							$list.append($li);
+
+							// 创建缩略图
+							// 如果为非图片文件，可以不用调用此方法。
+							// thumbnailWidth x thumbnailHeight 为 100 x 100
+							var thumbnailWidth = 100, thumbnailHeight = 100;
+							uploader.makeThumb(file, function(error, src) {
+								if (error) {
+									$img.replaceWith('<span>不能预览</span>');
+									return;
+								}
+
+								$img.attr('src', src);
+								$sImg.attr('src', src);
+							}, thumbnailWidth, thumbnailHeight);
+						});
+		var loadi;
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on('uploadProgress', function(file, percentage) {
+			//		var $li = $( '#'+file.id ),
+			//var $li = $("#upload1"),
+			
+			//$percent = $li.find('.progress span');
+
+			// 避免重复创建
+			//if (!$percent.length) {
+			//	$percent = $('<p class="progress"><span></span></p>').appendTo(
+			//			$li).find('span');
+			//}
+
+			//$percent.css('width', percentage * 100 + '%');
+			loadi = layer.load('上传中…');
+		});
+
+		uploader.on('uploadAccept', function(file, response) {
+			if (response.status != "SUCCESS") {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+
+			$("#" + file.file.id + "_input").val(response.url);
+			$("#goodsImage").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on('uploadSuccess', function(file) {
+			//		$( '#'+file.id ).addClass('upload-state-done');
+			$("#upload1").addClass('upload-state-done').addClass(
+					'upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on('uploadError', function(file) {
+			//		var $li = $( '#'+file.id ),
+			var $li = $("#upload1"), $error = $li.find('div.error');
+
+			// 避免重复创建
+			if (!$error.length) {
+				$error = $('<div class="error"></div>').appendTo($li);
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on('uploadComplete', function(file) {
+			//		$( '#'+file.id ).find('.progress').remove();
+			//$("#upload1").find('.progress').remove();
+			layer.close(loadi);
+		});
+	</script>
+	<script type="text/javascript">
+	function changeImg(fid){
+		var url=$("#"+fid+"_input").val();
+		$("#goodsImage").val(url);
+		$("#big_goods_image").attr("src","/img"+url);
+	}
+	</script>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

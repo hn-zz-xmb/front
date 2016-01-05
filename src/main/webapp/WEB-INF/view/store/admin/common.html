@@ -1,0 +1,58 @@
+<link href="${ctxPath }/static/custom/css/store_manage_public.css" rel="stylesheet" type="text/css">
+<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/storeInfo.js"></script>
+		<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[1].className="active";
+	</script>
+<div class="content_left">
+	<div class="left_nav">
+		<div class="left_nav_title">我是卖家</div>
+		<ul>
+			<li><a href="${ctxPath}/salerManage/storeSetting" <%if(left_=="store"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/store_info.png">店铺信息</a></li>
+			<%if(session.store.store_type_id=='normal'){%>
+			<li><a href="${ctxPath}/salerManage/ordermanage" <%if(left_=="order"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/order.png">订单管理</a></li>
+			<%}else{%>
+			<li><a href="${ctxPath}/salerManage/materialManage/ordermanage" <%if(left_=="order"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/order.png">订单管理</a></li>
+			<%}%>
+			<li><a href="${ctxPath}/salerManage/navigate/findNavigate" <%if(left_=="navi"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/nav.png" >导航管理</a></li>
+			<li><a href="${ctxPath}/salerManage/foodtype/foodtype" <%if(left_=="cate"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/category.png">分类管理</a></li>
+			<%if(session.store.store_type_id=='normal'){%>
+			<li><a href="${ctxPath}/salerManage/goodsmanage" <%if(left_=="goods"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/bag.png">商品管理</a></li>
+			<%}else{%>		
+			<li><a href="${ctxPath}/salerManage/materialgoodsmanage" <%if(left_=="goods"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/bag.png">商品管理</a></li>
+			<%}%>
+			<%if(session.store.store_type_id=='normal'){%>
+			<li><a href="${ctxPath}/salerManage/foodpackage" <%if(left_=="foodpackage"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/cheese.png">套餐管理</a></li>
+			<%}%>
+			<%if(session.store.store_type_id=='normal'){%>
+			<li><a href="${ctxPath}/salerManage/coupon" <%if(left_=="coupon"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/coupon.png">代金券管理</a></li>
+			<li><a href="${ctxPath}/salerManage/activeCenter" <%if(left_=="active"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/volume.png">活动中心</a></li>
+			<%}%>
+			<li><a href="${ctxPath}/salerManage/inviteInfo" <%if(left_=="job"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/info.png">招聘信息</a></li>
+			<li><a href="${ctxPath}/salerManage/weixin/conn" <%if(left_=="weixin"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/msg.png">微信管理</a></li>
+            <li><a href="${ctxPath}/salerManage/appraise" <%if(left_=="appraise"){%> class="active"<%}%>><img alt=""
+                   src="${ctxPath}/static/custom/images/storeManage/msg.png">评论管理</a></li>
+            <li><a href="${ctxPath}/salerManage/yun/report/menu/simple_day" <%if(left_=="yun"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/bag.png">远程管理</a></li>
+					        
+			<%if(session.store.store_type_id=='material'){%>
+			<li><a href="${ctxPath}/salerManage/materialManage/delivery/deliveryList" <%if(left_=="peisong"){%> class="active"<%}%>><img alt=""
+					src="${ctxPath}/static/custom/images/storeManage/cheese.png">配送方式</a></li>
+			<%}%>
+		</ul>
+	</div>
+</div>

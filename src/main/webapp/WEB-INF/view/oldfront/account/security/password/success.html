@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 修改成功</title>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/old/front/css/modi_succeed.css" />
+</head>
+
+<body>
+	<%include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="modi_succeed">
+		<p class="xgmm">修改登录密码</p>
+		<div class="modi_pic"></div>
+		<div class="succeed">
+			<div class="right">
+				<img src="${ctxPath}/static/old/front/images/succeed.png" width="73" height="73" />
+			</div>
+			<div class="congra">恭喜您,修改成功!</div>
+		</div>
+	</div>
+	</div>
+	<%include("/common/foot.html"){}%>
+</body>
+</html>

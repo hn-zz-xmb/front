@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/tixian.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/custom/css/pagination.css" rel="stylesheet" type="text/css">
+<title>提现记录</title>
+</head>
+<body>
+	<% include("../common/userhead.html"){}%>
+	<div class="wrap">
+		<div class="pane">
+			<div class="pane_head">
+				<span class="tixian_title">提取账户余额到银行卡</span> <span>余额：<span
+					class="money">${coin.account_money!0.00}</span>元
+				</span> <span class="right_link"><a href="#" class="add addBankBtn">添加银行卡</a>&nbsp;|&nbsp;<a
+					href="#">支付宝提现</a>&nbsp;|&nbsp;<a href="#">提现记录</a></span>
+			</div>
+			<div class="pane_content">
+				<div class="content_w">
+					<div class="top_bar">
+						<input type="text" class="input_s">-<input type="text"
+							class="input_s">
+						<button>搜索</button>
+					</div>
+					<div class="table_w">
+						<table class="tixian_record_table">
+							<tr>
+								<th width="20px"></th>
+								<th>流水号</th>
+								<th>创建时间</th>
+								<th>名称|备注</th>
+								<th>收/支</th>
+								<th>金额（元）</th>
+								<th>资金渠道</th>
+								<th>状态</th>
+							</tr>
+							<%for(r in page.list){%>
+							<tr <%if(rLP.index%2==0){%> class="tr_grey" <%}%>>
+								<td></td>
+								<td>${r.withdraw_num}</td>
+								<td>${date(r.apply_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</td>
+								<td>提现</td>
+								<td>支出</td>
+								<td>${r.withdraw_money}</td>
+								<td>${r.bank_name}<span class="grey">****${strutil.subString(r.bank_card,strutil.length(r.bank_card)-4)}</span></td>
+                                <%if(r.audit_status=='0'){%>
+								<td>审核中</td>
+								<%}else if(r.audit_status=='1'){%>
+								<td>已审核</td>
+                                <%}else if(r.audit_status=='-1'){%>
+                                <td>审核失败</td>
+								<%}%>
+							</tr>
+							<%}%>
+						</table>
+					</div>
+				</div>
+				<div class="pagination"><%
+					include("/common/_pagination.html",{page:page}){}%></div>
+			</div>
+		</div>
+	</div>
+	<% include("../common/foot.html"){}%>
+</body>
+</html>

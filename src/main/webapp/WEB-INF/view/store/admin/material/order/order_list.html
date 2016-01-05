@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加商品</title>
+<link href="${ctxPath}/static/custom/css/order_list.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<% include("/common/userhead.html"){}%>
+<div class="position">
+    <div class="fl">
+        当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+    </div>
+    <% include("../../store_change.html"){}%>
+</div>
+
+<div class="content">
+  <div class="content_left">
+      <% include("../../common.html",{left_:"order"}){}%>
+      </div>
+  <div class="content_right">
+    <div class="tab">
+      <ul>
+        <li><a href="" class="active">订单列表</a></li>
+      </ul>
+    </div>
+    <ul class="title-list">
+      <li class="title00"><b>筛选条件</b>
+        <div class="ssk">
+          <input placeholder="订单号" id="orderNo_search" value="${params.orderNo!}"/>
+          <button onclick="searchByOrderNo()">订单搜索</button>
+        </div>
+      </li>
+      <li>
+        <h3 class="dd-title">订单状态：</h3>
+        <a name="order_status_search" tid="" <%if(params.status!''==''){%>class="on"<%}%> style="z-index:1">全部</a>
+        <a name="order_status_search" tid="submitted" <%if(params.status!''=='submitted'){%>class="on"<%}%> style="width:120px;">已提交（未付款）</a>
+        <a name="order_status_search" tid="payed" <%if(params.status!''=='payed'){%>class="on"<%}%> style="width:120px;">已付款（未消费）</a>
+        <a name="order_status_search" tid="finished" <%if(params.status!''=='finished'){%>class="on"<%}%> style="width:120px;">已完成（已消费）</a>
+        <a name="order_status_search" tid="closed" <%if(params.status!''=='closed'){%>class="on"<%}%> style="z-index:1">已取消</a>
+
+      </li>
+      <div style="clear:both;"></div>
+      <li>
+        <h3 class="dd-title">消费类型：</h3>
+        <a name="type_search" tid="" <%if(params.consume_method!''==''){%>class="on"<%}%> style="z-index:1">全部</a>
+        <a name="type_search" tid="arrive_eat" <%if(params.consume_method!''=='arrive_eat'){%>class="on"<%}%>>到店消费</a>
+        <a name="type_search" tid="take_out" <%if(params.consume_method!''=='take_out'){%>class="on"<%}%>>外卖</a>
+      </li>
+
+         <div style="clear:both;"></div>
+      <li>
+        <h3 class="dd-title" >起始日期：</h3>
+        <div>
+          <input style=" margin-top:15px;" type="text" id="fromTime" value="${params.fromTime !}" onclick="laydate()" />
+          &nbsp;&nbsp;--&nbsp;&nbsp;
+          <input style=" margin-top:15px;" type="text" id="toTime" value="${params.toTime !}" onclick="laydate()" />
+        </div>
+      </li>
+      <div style="clear:both;"></div>
+      <li style="margin-top:10px;">
+          <button class="anniu" onclick="searchAll()">提交</button>
+      </li>
+    </ul>
+    <div class="mian-title">
+      <table>
+        <tr>
+          <td style="width:178px;">用户信息</td>
+          <td>消费时间</td>
+          <td>数量</td>
+          <td>总价</td>
+          <td>订单状态</td>
+          <td>操作</td>
+        </tr>
+      </table>
+    </div>
+      <%for(order in page.list!){%>
+            <div class="mian-title1">
+              <table>
+                <tr>
+                  <td style="width:10px;border-right:none;"><input type="checkbox" /></td>
+                  <td style="width:180px;">订单号：<span style="color:#ff4f04">${order.order_no !}</span></td>
+                  <td style="width:150px;">下单时间：${date(order.order_time !,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</td>
+                  <td style="width:150px;">消费时间：</td>
+                  <td></td>
+                  <td><img src="/img${order.user_img!}" /></td>
+                </tr>
+              </table>
+            </div>
+            <div class="mian-title2">
+              <table>
+                <tr>
+                  <td style="width:10px;border-right:none;"></td>
+                  <td style="width:80px; border-right:none; border-left:none;"><img src="image/pic01 (2).png" /></td>
+                  <td style="width:130px;border-right:none;border-left:none;"><table style="width:130px; height:100px; margin-left:5px;">
+                      <tr>
+                        <td style="height:20px; width:130px; text-align:left;border:none;">用户名：${order.orderUser!}</td>
+                      </tr>
+                      <tr>
+                        <td style="height:20px; width:130px; text-align:left;border:none;">消费类型：
+                            <%if(order.consume_method!''=='arrive_eat'){%>到店消费<%}else{%>外卖<%}%></td>
+                      </tr>
+                      <tr>
+                        <td style="height:20px; width:130px;  text-align:left;border:none;">电话：${order.phone !}</td>
+                      </tr>
+                      <tr>
+                        <td style="height:20px; width:130px; text-align:left; border:none;"><a style=" color:#ff4e00;" href="${ctxPath}/salerManage/materialManage/ordermanage/findOrder?id=${order.id!}
+                        ">订单信息</a></td>
+                      </tr>
+                    </table></td>
+                  <td style="width:90px;"></td>
+                  <td style="width:70px;">${order.goods_count!0}份</td>
+                  <td>￥${order.total_money!0.00}</td>
+                  <td>${order.statusname!}</td>
+                  <td>
+                      <!--订单状态处理-->
+                      <%
+                        if(order.status!''==''){
+
+                        }else if(order.status!''=='submitted'){
+
+                        }else if(order.status!''=='payed'){
+                       %>
+                      <a href="javascript:void(0);" onclick="suredelivery('${order.id}')" class="anniu01">确认配送</a><br/>
+                      <%
+                        }else if(order.status!''=='shipped'){
+
+                        }else if(order.status!''=='finished'){
+                            if(order.is_return_coupon!''==0){
+                       %>
+                      <a href="javascript:void(0);" onclick="coupon('${order.id}')" class="anniu01">返代金券</a><br/>
+                      <%
+                             }
+                        }else if(order.status!''=='closed'){
+                            if(order.reason!""=="applied"){
+                                if(info.reason_result!"" =="going"){
+                      %>
+                                 <a href="${ctxPath}/salerManage/materialManage/ordermanage/confirmRefund?id=${order.id!}">确认退款</a>
+                      <%
+                                }
+                            }else if(info.reason!"" =="applyreturn"){
+                                if(info.reason_result!"" =="going"){%>
+                       %>
+                                     <a href="${ctxPath}/salerManage/materialManage/ordermanage/confirmReturn?id=${order.id!}">确认退货</a>
+                      <%
+                                }
+                            }
+                        }
+                      %>
+
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+      <%}%>
+      <div><% include("/common/_pagination.html",{page:page}){}%></div>
+
+      <script src="${ctxPath}/static/custom/js/common.js"></script>
+      <script src="${ctxPath}/static/custom/js/ajax.js"></script>
+      <script type="text/javascript"
+              src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+      <script type="text/javascript"
+              src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+    <script>
+        $(".list-dd ul li").click(function(){
+            $("#list").toggle();
+        })
+        $(".title-list li a").click(function(){
+            $(this).parent("li").find("a").removeClass("on");
+            $(this).addClass("on");
+        })
+
+        function coupon(id) {
+            $.layer({
+                type : 2,
+                shadeClose : true,
+                title : '返代金券',
+                closeBtn : [ 0, true ],
+                shade : [ 0.5, '#000' ],
+                border : [ 10, 0.3, '#000' ],
+                offset : [ '', '' ],
+                area : [ '400px', '160px' ],
+                iframe : {
+                    src : '${ctxPath}/salerManage/ordermanage/returncoupon?orderId='
+                    + id
+                }
+            });
+        }
+        function suredelivery(orderId) {
+            if (!confirm("确定要配送吗？"))
+                return;
+
+            var url = "${ctxPath}/salerManage/ordermanage/confirmDelivery";
+            var param = {
+                "orderId" : orderId
+            }
+            var result = callText(url, param, false);
+            if (result == "success") {
+                window.location.href = "${ctxPath}/salerManage/ordermanage";
+            }else{
+                alert("该订单已经配送");
+            }
+        }
+        function agreedrawback(orderId) {
+            if (!confirm("确定要同意该商品退款么？若同意将退回该订单所有金额."))
+                return;
+
+            var url = "${ctxPath}/salerManage/ordermanage/confirmRefund";
+            var param = {
+                "orderId" : orderId
+            }
+            var result = callText(url, param, false);
+            if (result == "success") {
+                window.location.href = "${ctxPath}/salerManage/ordermanage";
+            }else{
+                alert("该订单已经关闭");
+            }
+        }
+
+        /**
+         * 根据商品编号查询商品
+         */
+        function searchByOrderNo() {
+            var orderNo=$("#orderNo_search").val();
+            var url="${ctxPath}/salerManage/ordermanage";
+            if(orderNo==""){
+                window.location.href=url;
+            }else{
+                window.location.href=url+"?orderNo="+orderNo;
+            }
+        }
+
+        /**
+         * 点击搜索
+         */
+        function searchAll(){
+            var url="${ctxPath}/salerManage/ordermanage";
+            var orderStatus=$("[name='order_status_search'][class='on']").attr("tid");
+            var type_search=$("[name='type_search'][class='on']").attr("tid");
+            var fromTime=$("#fromTime").val();
+            var toTime=$("#toTime").val();
+
+            orderStatus=orderStatus==undefined?"":orderStatus;
+            type_search=type_search==undefined?"":type_search;
+            fromTime=fromTime==undefined?"":fromTime;
+            toTime=toTime==undefined?"":toTime;
+            window.location.href=url+"?status="+orderStatus+"&consume_method="+type_search+"&fromTime="+fromTime+"&toTime="+toTime;
+        }
+
+    </script>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+</body>
+</html>

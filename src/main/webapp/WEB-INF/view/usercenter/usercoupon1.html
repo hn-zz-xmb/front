@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/youhui.css" rel="stylesheet" type="text/css">
+<link href="${ctxPath}/static/custom/css/pagination.css" rel="stylesheet" type="text/css">
+<title>优惠券列表</title>
+</head>
+<body>
+<% include("../common/userhead.html"){}%>
+	  <!--位置-->
+    <div class="position">当前位置：<a href="#">店铺管理</a>&gt;<a href="#">我的优惠券</a></div>
+      <!--筛选-->
+    <div class="search">
+    <form action="${ctxPath}/buyer/coupon" method="post">
+        <div class="searchTitle"> 筛选条件
+            <input class="searchInput" type="search" value='搜索”订单“'/>
+        </div>                
+        <div class="hdS_search"><a href="javascript:;" onclick="document.forms[0].submit()">确认搜索</a></div>
+        <div class="searchIf">
+        	优惠券状态：<span><a href="javascript:;" onclick="setCouponStatus('')" <%if(params.status!''==''){%>class="on"<%}%>>全部</a></span>
+        	<a href="javascript:;" onclick="setCouponStatus('0')" <%if(params.status!''=='0'){%>class="on"<%}%>>未使用</a>
+        	<a href="javascript:;" onclick="setCouponStatus('1')" <%if(params.status!''=='1'){%>class="on"<%}%>>已使用</a>
+        </div>
+        <div class="searchIf">
+        	获得时间：<span><a href="#"  >全部</a></span>
+            <input type="text" class="hdS_slt" onclick="laydate()" name="startTime" value="${params.startTime !}">&nbsp;-&nbsp;
+            <input type="text" class="hdS_slt" onclick="laydate()" name="endTime" value="${params.endTime !}">
+        </div>
+        <input type="hidden" name="status" id="couponStatus">
+        </form>
+    </div>
+    <%for(c in page.list!){%>
+<div class="listBoxH">
+        <!--表头-->
+        <div class="listTitle">
+          <div class="listTitleSub01"><input type="checkbox"/>店铺名称</div>
+          <div class="listTitleSub02">代金券名称</div>
+          <div class="listTitleSub03">有效期</div>
+          <div class="listTitleSub04">代金券额度</div>
+          <div class="listTitleSub05">使用规则</div>
+          <div class="listTitleSub06">状态</div></div>
+        <!--表格-->
+        <div class="listBox">
+          <div class="listContent">
+            <div class="listContentSub01">${c.storename!}
+            </div>
+                <div class="listContentSub02">
+                   ${c.couponName!}
+            </div>
+                <div class="listContentSub03">
+                   ${date(c.begin_time!,'yyyyMMddHHmmss'),'yyyy-MM-dd'}至${date(c.end_time!,'yyyyMMddHHmmss'),'yyyy-MM-dd'}
+            </div>
+                <div class="listContentSub04">
+                   ${c.coupon_money!}
+            </div>
+                <div class="listContentSub05">
+                    订单满${c.limit_money!}可以使用
+            </div>
+                <div class="listContentSub06">
+                <%if(c.is_used!''==0){%>可使用<%}else{%>已使用<%}%>
+            </div>
+            </div>
+        </div>
+    </div> 
+    <%}%>
+     <% include("../common/_pagination.html",{page:page}){}%>
+    <% include("../common/foot.html"){}%>
+<script src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+<script type="text/javascript">
+$(".searchIf a").click(function(){
+	$(this).parents(".searchIf").find("a").removeClass("on");
+	$(this).addClass("on");
+})
+function setCouponStatus(status){
+	$("#couponStatus").val(status);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加商品</title>
+<link href="${ctxPath}/static/custom/css/tjsp.css" rel="stylesheet"
+	type="text/css" />
+<link href="${ctxPath}/static/umeditor/themes/default/css/umeditor.css"
+	type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("/store/admin/store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("/store/admin/common.html",{left_:"goods"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/materialgoodsmanage">商品列表</a></li>
+					<li><a href="" class="active">编辑商品</a></li>
+				</ul>
+			</div>
+			<div class="main">
+				<form id="materialForm"
+					action="${ctxPath }/salerManage/materialgoodsmanage/saveOrupdateMaterial"
+					method="post" >
+					<div class="form">
+						<input type="hidden" name="material.id" value="${material.id !}" />
+						<input type="hidden" name="pageNum" value="1" />
+						<div class="category">
+							<div class="goods_info">
+								<div class="title">店铺分类</div>
+								<div style="height: 30px; padding: 15px;">
+									本店分类：<select name="material.store_catagory">
+										<option value="">选择分类</option> <%for(c in catagories){
+										if(material.store_catagory!''==c.id!''){%>
+										<option selected="selected" value="${c.id}">${c.name}</option>
+										<%}else{%>
+										<option value="${c.id}">${c.name}</option> <%}}%>
+									</select> &nbsp;&nbsp; 平台分类： <select onchange="finder(this)">
+										<option value="">选择分类</option> <%for(ma in materialtypeList!){
+										if(ma.id==typeyi.id!){%>
+										<option value="${ma.id!}" selected="selected">${ma.name!}</option>
+										<%}else{%>
+										<option value="${ma.id!}">${ma.name!}</option> <%}}%>
+									</select> &nbsp;&nbsp; <select onchange="findsan(this)">
+										<option value="">选择分类</option> <%for(ma in typeer!){
+										if(ma.id==type.pid!){%>
+										<option value="${ma.id!}" selected="selected">${ma.name!}</option>
+										<%}else{%>
+										<option value="${ma.id!}">${ma.name!}</option> <%}}%>
+									</select> &nbsp;&nbsp; <select id="san" name="material.material_type_id">
+										<option value="">选择分类</option> <%for(ma in typesan!){
+										if(ma.id==type.id!){%>
+										<option value="${ma.id!}" selected="selected">${ma.name!}</option>
+										<%}else{%>
+										<option value="${ma.id!}">${ma.name!}</option> <%}}%>
+									</select>
+								</div>
+								<div class="title">商品基本信息</div>
+								<div class="goods_info_content">
+									<div class="goods_imgs">
+										<div class="goods_imgs_t">
+											<%if (material.material_image !''==""){%> <img
+												id="big_goods_image" alt=""
+												src="${ctxPath}/static/custom/images/storeManage/pic01.png" />
+											<%}else{%> <img id="big_goods_image"
+												src="/img${material.material_image !}" /> <%}%><input
+												type="hidden" value="${material.material_image !}"
+												name="material.material_image" id="goodsImage" />
+										</div>
+										<div
+											style="width: 230px; height: 35px; background-color: #d0dec5;"></div>
+										<div id="small_img" class="goods_imgs_b">
+											<%for(img in materialImgs !){%> <img alt=""
+												onclick="changeImg('${img.id}')" src="/img${img.small_url}" />
+											<input id="${img.id}_input" type="hidden" name="images"
+												value="${img.small_url !}" /> 
+												<input id="${img.id}_input" type="hidden" name="imagesId" value="${img.id!}"/> 
+												<%}%>
+										</div>
+									</div>
+									<div class="info">
+										<div style="float: left; margin-left: 20px;">
+											<div class="row">
+												商品名称： <input name="material.name" value="${material.name !}"
+													type="text" />
+											</div>
+											<div class="row">
+												编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号： <input
+													name="material.material_no" type="text"
+													value="${material.material_no!}" />
+											</div>
+											<div class="row">
+												商品价格： <input name="material.sales_price"
+													value="${material.sales_price !}" type="text" />
+											</div>
+											<div class="row">
+												单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位： <select
+													name="material.unit">
+													<option value="">选择单位</option> <%for(mu in units){
+													if(mu.unit_name==material.unit!){%>
+													<option value="${mu.unit_name!}" selected="selected">${mu.unit_name!}</option>
+													<%}else{%>
+													<option value="${mu.unit_name!}">${mu.unit_name!}</option>
+													<%}}%>
+												</select> <label></label>
+											</div>
+										</div>
+										<div class="row1">
+											关键字： <input type="text" name="material.keyword"
+													value="${material.keyword!}"
+												style="width: 510px; height: 30px; margin-bottom: 10px;"/>
+												<br /> <span>（请输入2到10字词语用","隔开以便消费者搜索）</span>
+										</div>
+										<!--                <div class="row_radio"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架：
+                  <label>
+                    <input name="goods.is_show" value="1" type="radio" checked="checked">
+                    是</label>
+                  &nbsp;&nbsp;
+                  <label>
+                    <input name="goods.is_show" value="0" type="radio">
+                    否</label>
+                  <label></label>
+                </div>
+-->
+										<div class="row2">
+											<span style="float: left">描述：</span> <input type="text"
+												name="material.description_short"
+												value="${material.description_short !}"
+												style="width: 400px; height: 80px;" />
+											<div style="clear: both;"></div>
+											<span style="margin-left: 35px;">（请输入套餐简单描述以便消费者快速了解信息）</span>
+										</div>
+									</div>
+									<div style="clear: both;"></div>
+								</div>
+								<div class="goods_info_b">
+									<div id="upload1" class="webuploader-container">
+										<div id="upload1" class="webuploader-pick">上传商品图片</div>
+										<div id="rt_rt_19b6o8sohbjk146a1skja79k8k1"
+											style="position: absolute; top: 0px; left: 0px; width: 106px; height: 28px; overflow: hidden; bottom: auto; right: auto;">
+											<input type="file" name="file"
+												class="webuploader-element-invisible" accept="image/*"/>
+												<label
+												style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"></label>
+										</div>
+									</div>
+									<span class="advise">文件格式JPG、JPEG、PNG文件大小150K以内，建议尺寸230PX*230PX</span>
+								</div>
+							</div>
+							<div class="goods_description">
+								<div class="title">商品详情</div>
+								<div class="goods_description_content">
+									<script type="text/plain" id="myEditor"
+										name="material.description"
+										style="width: 730px; height: 360px;">${material.description!}
+								</script>
+									<br />
+									<p style="margin-left: 20px; font-size: 14px; color: #333;">
+										(查看套餐详情，让消费者更好的了解信息)</p>
+								</div>
+							</div>
+							<div class="btn_w">
+								<button type="submit" class="btn_g_l">保存</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="btn_g_l">预览</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<script type="text/javascript" charset="utf-8"
+		src="${ctxPath}/static/umeditor/umeditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="${ctxPath}/static/umeditor/umeditor.min.js"></script>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/webuploader/webuploader.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+		var um = UM.getEditor('myEditor');
+	</script>
+	<script type="text/javascript">
+		//表单验证
+		$().ready(function() {
+			$("#materialForm").validate({
+				errorPlacement : function(error, element) {
+					layer.tips(error.text(), element, {
+						guide : 1,
+						time : 3,
+						more : true
+					});
+				},
+				rules : {
+					"material.store_catagory" : "required",
+					"material.material_type_id" : "required",
+					"material.name" : "required",
+					"material.unit" : "required",
+					"material.sales_price" : {
+						required : true,
+						digits : true
+					},
+					"material.description_short" : "required",
+				},
+				messages : {
+					"material.store_catagory" : "请选择商品分类",
+					"material.material_type_id" : "请选择平台分类",
+					"material.name" : "请输入商品名称",
+					"material.unit" : "请选择商品单位",
+					"material.sales_price" : {
+						required : "请输入商品价格",
+						digits : "格式输入错误"
+					},
+					"material.description_short" : "请输入商品描述",
+				}
+			});
+		});
+
+		function finder(el) {
+			var pid = $(el).val();
+			var param = {
+				"pid" : pid
+			}
+			$.ajax({
+				url : MSConfig.BaseURL
+						+ "/salerManage/materialgoodsmanage/findersan",
+				method : "get",
+				data : param,
+				dataType : "json",
+				success : function(data) {
+					var htmlStr = "<option selected value=''>请选择...</option>";
+					for (var i = 0; i < data.length; i++) {
+						htmlStr += "<option value='"+data[i].id+"'>"
+								+ data[i].name + "</option>"
+					}
+					$(el).next("select").html(htmlStr);
+					$("#san").empty();
+					$("#san").append(
+							"<option selected value=''>请选择...</option>");
+				},
+				error : function() {
+
+				}
+			});
+		}
+		function findsan(el) {
+			var pid = $(el).val();
+			var param = {
+				"pid" : pid
+			}
+			$.ajax({
+				url : MSConfig.BaseURL
+						+ "/salerManage/materialgoodsmanage/findersan",
+				method : "get",
+				data : param,
+				dataType : "json",
+				success : function(data) {
+					var htmlStr = "<option selected value=''>请选择...</option>";
+					for (var i = 0; i < data.length; i++) {
+						htmlStr += "<option value='"+data[i].id+"'>"
+								+ data[i].name + "</option>"
+					}
+					$(el).next("select").html(htmlStr);
+				},
+				error : function() {
+
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		// 初始化Web Uploader
+		var uploader = WebUploader.create({
+
+			// 选完文件后，是否自动上传。
+			auto : true,
+
+			// swf文件路径
+			swf : MSConfig.BaseURL + '/static/webuploader/Uploader.swf',
+
+			// 文件接收服务端。
+			server : MSConfig.BaseURL + '/upload/img',
+
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick : {
+				id : "#upload1",
+				multiple : false
+			},
+
+			// 只允许选择图片文件。
+			accept : {
+				title : 'Images',
+				extensions : 'gif,jpg,jpeg,bmp,png',
+				mimeTypes : 'image/*'
+			},
+			auto : true
+		});
+
+		// 当有文件添加进来的时候
+		uploader
+				.on(
+						'fileQueued',
+						function(file) {
+							//		var $li = $(
+							//						'<div id="' + file.id + '" class="file-item thumbnail">' +
+							//						'<img>' +
+							//						'<div class="info">' + file.name + '</div>' +
+							//						'</div>'
+							//				),
+							var $li = $('<span id="'+file.id+'" class="file-item thumbnail">'
+									+ '<img height="53" width="53" onclick="changeImg(\''
+									+ file.id
+									+ '\')">'
+									+ '<input id="'+file.id+'_input" name="images" type="hidden">'
+									+ '</span>');
+							var $img = $("#big_goods_image");
+
+							var $sImg = $li.find('img');
+
+							// $list为容器jQuery实例
+							var $list = $("#small_img");
+							$list.append($li);
+
+							// 创建缩略图
+							// 如果为非图片文件，可以不用调用此方法。
+							// thumbnailWidth x thumbnailHeight 为 100 x 100
+							var thumbnailWidth = 100, thumbnailHeight = 100;
+							uploader.makeThumb(file, function(error, src) {
+								if (error) {
+									$img.replaceWith('<span>不能预览</span>');
+									return;
+								}
+
+								$img.attr('src', src);
+								$sImg.attr('src', src);
+							}, thumbnailWidth, thumbnailHeight);
+						});
+		var loadi;
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on('uploadProgress', function(file, percentage) {
+			//		var $li = $( '#'+file.id ),
+			//var $li = $("#upload1"),
+
+			//$percent = $li.find('.progress span');
+
+			// 避免重复创建
+			//if (!$percent.length) {
+			//	$percent = $('<p class="progress"><span></span></p>').appendTo(
+			//			$li).find('span');
+			//}
+
+			//$percent.css('width', percentage * 100 + '%');
+			loadi = layer.load('上传中…');
+		});
+
+		uploader.on('uploadAccept', function(file, response) {
+			if (response.status != "SUCCESS") {
+				// 通过return false来告诉组件，此文件上传有错。
+				return false;
+			}
+
+			$("#" + file.file.id + "_input").val(response.url);
+			$("#goodsImage").val(response.url);
+		});
+
+		// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		uploader.on('uploadSuccess', function(file) {
+			//		$( '#'+file.id ).addClass('upload-state-done');
+			$("#upload1").addClass('upload-state-done').addClass(
+					'upload-state-done');
+		});
+
+		// 文件上传失败，显示上传出错。
+		uploader.on('uploadError', function(file) {
+			//		var $li = $( '#'+file.id ),
+			var $li = $("#upload1"), $error = $li.find('div.error');
+
+			// 避免重复创建
+			if (!$error.length) {
+				$error = $('<div class="error"></div>').appendTo($li);
+			}
+
+			$error.text('上传失败');
+		});
+
+		// 完成上传完了，成功或者失败，先删除进度条。
+		uploader.on('uploadComplete', function(file) {
+			//		$( '#'+file.id ).find('.progress').remove();
+			//$("#upload1").find('.progress').remove();
+			layer.close(loadi);
+		});
+	</script>
+	<script type="text/javascript">
+		function changeImg(fid) {
+			var url = $("#" + fid + "_input").val();
+			$("#goodsImage").val(url);
+			$("#big_goods_image").attr("src", "/img" + url);
+		}
+	</script>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

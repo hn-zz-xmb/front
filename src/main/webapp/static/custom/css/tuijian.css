@@ -1,0 +1,243 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.position{
+	width:1170px;
+	height:40px;
+	line-height:40px;
+	background-color:#e5e5e5;
+	font-size:15px;
+	margin:0 auto;
+	color:#565656;
+	padding-left:10px;
+	margin-top:10px;
+}
+.position a{
+	color:#565656;
+}
+.position a:hover{
+	color:#409300;
+}
+.dropdown{
+	line-height:30px;
+	margin-top:5px;
+	position:absolute;
+	border:1px solid #75a435;
+}
+.dropdown li{
+	background-color:#84c43b;
+	padding:0 5px;
+}
+.dropdown li a{
+	background:url(../images/storeManage/triangle_down.png) no-repeat;
+	background-position:right;
+	padding-right:10px;
+	color:#fff;
+}
+.dropdown ul{
+	
+}
+.dropdown ul li{
+	background-color:#daffa7;
+	border-bottom:2px solid #fff;
+}
+.dropdown ul li a{
+	color:#565656;
+	background:none;
+	font-size:14px;
+	padding-left:5px;
+}
+.dropdown ul li:hover{
+	background-color:#b5ff56;
+}
+.content{
+	width:1178px;
+	margin:0 auto;
+	font-size:14px;
+	color:#565656;
+	margin-top:10px;
+	border:1px solid #ccc;
+	background-color:#fff;
+	clear:both;
+}
+.content_left{
+	float:left;
+	width:215px;
+	height:630px;
+	border-right:1px solid #d4d4d4;
+	background-color:#ececec;
+}
+.recommendBoxLeft{
+	float:left;
+	width:215px;
+	height:630px;
+	border-right:1px solid #d4d4d4;
+	background-color:#ececec;
+}
+.rmdTitle,.rmdShop{ 
+	height:46px; 
+	width:215px;
+	border-bottom:1px solid #d4d4d4;
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#edeef0,endColorStr=#dcdddf); /*IE 6 7 8*/ 
+	background: -ms-linear-gradient(top, #edeef0,#dcdddf);        /* IE 10 */
+	background:-moz-linear-gradient(top,#edeef0,#dcdddf);/*火狐*/ 
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#edeef0), to(#dcdddf));/*谷歌*/ 
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#edeef0), to(#dcdddf));      /* Safari 4-5, Chrome 1-9*/
+	background: -webkit-linear-gradient(top, #edeef0,#dcdddf);   /*Safari5.1 Chrome 10+*/
+	background: -o-linear-gradient(top, #edeef0,#dcdddf);  /*Opera 11.10+*/
+}
+.rmdTitle a,.rmdShop a{
+	display:block;
+	height:46px;
+	line-height:46px;
+	font-size:16px;
+	font-weight:600;
+	color:#333;
+	text-decoration:none;
+	margin-left:15px;
+	padding-left:30px;
+	background-repeat:no-repeat;
+	background-position:center left;
+}
+.rmdTitle a{
+	background-image:url(../images/arrows_down.png);
+}
+.rmdShop a{
+	background-image:url(../images/arrows_up.png);
+}
+.rmdTitleSub01,.rmdTitleSub02,.rmdTitleSubSub01{
+	height:40px; 
+	width:215px;
+	border-bottom:1px solid #d4d4d4;
+	background-color:#fff;
+}
+.rmdTitleSub01 a,.rmdTitleSub02 a,.rmdTitleSubSub01 a{
+	display:block;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	font-weight:600;
+	color:#333;
+	text-decoration:none;
+	margin-left:30px;
+	padding-left:30px;
+	background-repeat:no-repeat;
+	background-position:center left;
+}
+.rmdTitleSub01 a{
+	background-image:url(../images/arrows_up.png);
+}
+.rmdTitleSub02 a{
+	background-image:url(../images/arrows_down.png);
+}
+.rmdTitleSubSub01 a{
+	margin-left:45px;
+}
+.content_right{
+	float:left;
+	padding: 0 10px;
+    width: 942px;
+}
+.serverConfig_content{
+	overflow:hidden;
+}
+.title{
+	font-size:16px;
+	font-family:"微软雅黑";
+	height:56px;
+	color:#333;
+	line-height:56px;
+	padding-left: 10px;
+	border-bottom:1px solid #ccc;
+}
+.titleT{
+	float:left;
+	width:100px;
+	text-align:right;
+	height:27px;
+	line-height:27px;
+}
+.row{
+	margin-top:10px;
+	font-size:16px;
+	font-family:"微软雅黑";
+	float:left;
+	margin-left: 40px;
+}
+.label{
+	display:inline-block;
+	width:100px;
+	text-align:right;
+}
+.span_b{
+	border:1px solid #ccc;
+	display:inline-block;
+	height:25px;
+	padding:0 10px;
+	min-width:130px;
+	overflow:hidden;
+	line-height:25px;
+	color:#53a000;
+	font-weight:700;
+}
+.hdScreening{ min-height:150px; border:1px solid #cdcdcd; margin-top:10px;}
+.hdTitle{ height:30px; line-height:30px; color:#4a4a4a; background-image:url(../images/sub_dianpu_list_bg.png); padding-left:10px;}
+.hdS_01{ height:40px; border-bottom:1px dashed #e9e9e9;}
+.hdS_01:last-child{ border:none}
+.hdS_01T{ width:105px; text-align:center; height:40px; line-height:40px; font-size:14px; color:#9d9d9d; float:left;}
+.hdS_01C{ line-height:40px;}
+.hdS_01C li{ float:left; margin-right:15px;}
+.hdS_01CC a{ text-decoration:none;background-color:#84c133; color:#fff; padding:2px 5px;}
+.hdS_01CN a{ text-decoration:none;background-color:#fff; color:#606060; padding:2px 5px;}
+.hdS_01C a:hover{ text-decoration:underline;}
+.hdS_slt{ margin-top:11px; margin-left:10px; float:left;}
+.hdS_search{ background-image:url(../images/sub_dianpu_list_searchbg.jpg); height:23px; width:100px; line-height:23px; text-align:center; float:right; box-shadow:1px 1px 2px #9f9f9f;margin-right:20px; margin-top:10px;}
+.hdS_search a{ color:#fff; text-decoration:none;}
+.hdS_search a:hover{ text-decoration:underline;}
+.tableTitle{font-weight:bold; color:#555; background-color:#eeeeee; text-align:center;}
+.tableBg{ background-color:#fff}
+#grid tr{ height:30px;}
+.footerPage{width:100%;}
+.footerPageBox{width:520px; float:right;}
+.footerPButton{ width:60px; height:23px; line-height:23px; text-align:center; background-color:#fff; border-radius:2px; box-shadow:1px 1px 1px #b1b1b1; border:1px solid #e8e8e8; margin:15px 5px; float:left;}
+.footerPButton:hover{ background-color:#fafafa;}
+.footerPButton a{ color:#555; text-decoration:none}
+.footerPButton a:hover{text-decoration:underline}
+.footerPButton01{ width:230px; height:23px; line-height:23px;margin-top:17px; float:left;}
+.footerPButton01 a{color:#83c130; text-decoration:none; margin:0 10px;}
+.footerPButton01 span a{color:#000; font-weight:bold; text-decoration:none; margin:0 10px;}
+.footerPButton01 a:hover{text-decoration:underline}

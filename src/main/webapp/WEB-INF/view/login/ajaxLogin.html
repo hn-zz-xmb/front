@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/ajaxLogin.css" rel="stylesheet" type="text/css">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="login_r">
+				<ul class="login_style">
+					<li class="normal login_hover" id="normal_login">普通方式登录</li>
+					<li class="phone" id="phone_login">手机动态码登录</li>
+				</ul>
+				<input type="hidden" id="ajax" value="2"/>
+				<form class="form" id="normal_form">
+					<div class="input_container">
+						<span class="phone"><input id="username" name="username"
+							type="text" class="input_nr" placeholder="用户名/手机号/邮箱"></span>
+					</div>
+					<div class="input_container">
+						<span class="lock"><input id="password" name="password"
+							type="password" class="input_nr" placeholder="密码"></span>
+						<p class="errormessage"></p>
+					</div>
+					<div class="forget">
+						<a href="${ctxPath}/member/forgetPwd">忘记密码?</a>
+					</div>
+					<div class="login_btn_w">
+						<input name="" type="submit" value="" class="login_btn">
+					</div>
+				</form>
+				<!--手机动态码登录------------------->
+
+				<form class="form" style="display: none;" id="phone_form">
+					<div class="input_container">
+						<span class="phone"><input id="phone" name="phone"
+							type="text" class="input_nr" placeholder="手机号"></span>
+					</div>
+					<div class="input_container">
+						<span class="lock"><input id="dynamicCode" name="dynamicCode"
+							type="text" class="input_nr" placeholder="短信校验码"></span>
+						<p class="error"></p>
+					</div>
+					<div class="send_btn_w">
+						<input onclick="sendMessage()" id="btnSendCode" type="button" value="发送验证码" class="yanzheng">
+					</div>
+					<div class="login_btn_w">
+						<input name="" type="submit" value="" class="login_btn">
+					</div>
+				</form>
+				<!--手机动态码登录end-------->
+			</div>
+
+<script type="text/javascript" src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+<script src="${ctxPath}/static/custom/js/common.js"></script>
+<script src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+<script src="${ctxPath}/static/custom/js/ajax.js"></script>
+<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+<script src="${ctxPath}/static/custom/js/ajaxLogin.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+</body>
+</html>

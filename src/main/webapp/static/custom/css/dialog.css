@@ -1,0 +1,68 @@
+body, div, address, blockquote, iframe, ul, ol, dl, dt, dd, li, h1, h2,
+	h3, h4, h5, h6, p, pre, table, caption, th, td, form, legend, fieldset,
+	input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-style: 100%;
+	font-family: inherit
+}
+
+body {color:#000;
+	background: #f7f7f7;
+	text-aligh: center;
+	font: 12px Arial, Helvetica, sans-serif, "宋体", "微软雅黑";
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none
+}
+
+a {
+	text-decoration: none;
+	outline: none
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.clear{
+	clear:both;
+}
+.content{
+	color:#4c4c4c;
+	font-size:14px;
+	background-color:#fff;
+	padding:10px;
+}
+.row{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.area{
+	width:200px;
+	height:80px;
+	border:1px solid #ccc;
+	margin-left:100px;
+}
+.bottom{
+	border-top:1px solid #ccc;
+	background-color:#f2f2f2;
+	text-align:center;
+	padding:10px;
+}
+.btn_g{
+	background-color:#83c338;
+	padding:5px 10px;
+	font-size:30px;
+	color:#fff;
+}

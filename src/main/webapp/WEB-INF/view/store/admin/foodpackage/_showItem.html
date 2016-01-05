@@ -1,0 +1,21 @@
+<tr>
+    <th width="45px"></th>
+    <th>名称</th>
+    <th width="210px">价格（元）</th>
+    <th width="220px">数量</th>
+</tr>
+<%for(item in session.foodPackageItemMap !){%>
+<%if(!item.value.isDelete!false){%>
+<tr <%if(itemLP.index%2==0){%> class="tr_grey" <%}%>>
+<td><input class="checkitem" value="${item.value.food_id !}" type="checkbox" onclick="unCheck(this)"></td>
+<td>${item.value.foodName !}</td>
+<td>${item.value.foodPrice !}</td>
+<td><span class="input_qty">
+		<a href="javascript:void(0)" onclick="changeSelectGoodsCount('${item.key}',false)" class="minus">-</a>
+		<span>${item.value.count!0}</span>
+		<a href="javascript:void(0)" onclick="changeSelectGoodsCount('${item.key}',true)" class="plus">+</a>
+	   </span>
+</td>
+</tr>
+<%}%>
+<%}%>

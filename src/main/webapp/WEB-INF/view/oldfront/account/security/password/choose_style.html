@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<title>37美食 - 找回登录密码</title>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/old/front/css/find_pwd.css" />
+</head>
+
+<body>
+	<% include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="choose_style">
+		<div class="choose_up">
+			<p>您正在为账户 ${session.user_.username} 修改登录密码,请选择修改方式:</p>
+		</div>
+		<!--choose_center start-->
+		<div class="choose_centerl">
+			<div class="choose_center"></div>
+			<!--choose_center end-->
+			<div class="choose_er">
+				<p>通过手机短信找回密码</p>
+				<span>如果您申请时使用手机号，那么您可以使用手机短息找回您的密码</span>
+			</div>
+			<div class="choose_bt">
+				<span> <a href="${ctxPath}/account/security/modifyByTel">
+						<input name="" type="button" value="立即修改" class="zhaohui" />
+				</a>
+				</span>
+			</div>
+			<!--choose_bt end-->
+		</div>
+		<div class="choose_centerl">
+			<div class="choose_centere"></div>
+			<!--choose_center end-->
+			<div class="choose_er">
+				<p>通过邮箱找回密码</p>
+				<span>如果您申请时使用邮箱，那么您可以使用邮箱找回您的密码</span>
+			</div>
+			<div class="choose_bt">
+				<span> <a href="${ctxPath}/account/security/modifyByEmail">
+						<input name="" type="submit" value="立即修改" class="zhaohui" />
+				</a>
+				</span>
+			</div>
+			<!--choose_bt end-->
+		</div>
+		<!--chooose_centerl end--------------------->
+
+	</div>
+	<% include("/common/foot.html"){}%>
+</body>
+</html>

@@ -1,0 +1,164 @@
+@charset "utf-8";
+/* CSS Document */
+.button1 {
+	width: 15px;
+	height: 15px;
+	line-height: 9px;
+	text-align: center;
+	padding: 0;
+}
+.title {
+	margin-top: 50px;
+	margin-bottom: 30px;
+	width: 1180px;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	line-height: 30px;
+	text-align: left;
+	margin: 0 auto;
+}
+.leftbox {
+	width: 470px;
+	border: 1px solid #ddd;
+	line-height: 40px;
+	padding-left: 30px;
+	border-bottom: none;
+}
+.rightbox {
+	text-indent: 50px;
+	border: 1px solid #ddd;
+	border-left: none;
+	border-bottom: none;
+}
+.rz {
+	color: #98CD49;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: "微软雅黑";
+}
+.rightbox-top {
+	width: 676px;
+	border-bottom: 1px solid #ddd;
+}
+.rightbox-bottom {
+	width: 676px;
+}
+
+.mainbox {
+	border: 1px solid #ddd;
+	border-bottom: none;
+	width: 1180px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.anniu01 {
+	background: url(../images/jia.jpg) no-repeat;
+	background-position: center center;
+	display: inline-block;
+	cursor: pointer;
+}
+.jian {
+	background: url(../images/jian.jpg) no-repeat;
+	background-position: center center;
+	display: inline-block;
+	cursor: pointer;
+}
+td {
+	border-right: 1px solid #ddd;
+	color: #000;
+	height: 30px;
+	border-bottom: 1px solid #ddd;
+	line-height: 30px;
+	text-align: center;
+	font-family: "微软雅黑";
+}
+.content table {
+	border: 1px solid #ddd;
+	border-top: none;
+	border-bottom: none;
+}
+.content td {
+	border-right: 1px solid #ddd;
+	color: #000;
+	height: 30px;
+	border-bottom: none;
+	border-bottom: 1px solid #ddd;
+	line-height: 30px;
+	text-align: left;
+	font-family: "微软雅黑";
+}
+.content01 table {
+	border: 1px solid #ddd;
+	border-top: none;
+	border-bottom: none;
+}
+.content01 td {
+	border-right: 1px solid #ddd;
+	color: #000;
+	height: 30px;
+	border-bottom: none;
+	border-bottom: 1px solid #ddd;
+	line-height: 30px;
+	text-align: left;
+	font-family: "微软雅黑";
+}
+.user02 {
+	width: 270px;
+	padding-left: 55px;
+}
+.user03 {
+	width: 250px;
+	padding-left: 75px;
+}
+.user01 {
+	width: 290px;
+	padding-left: 35px;
+}
+.user {
+	width: 250px;
+	text-align: left;
+}
+.rs {
+	width: 550px;
+	border-right: none;
+}
+.content .number {
+	width: 100px;
+	text-align: center;
+}
+.anniu {
+	width: 100px;
+	height: 35px;
+	line-height: 35px;
+	color: #fff;
+	font-family: "宋体";
+	text-align: center;
+	background-color: #97CC46;
+	font-weight: bold;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.gg {
+	float: right;
+	line-height: 40px;
+	color: #666;
+	border: 1px solid #ddd;
+	padding: 10px;
+	border-bottom: none;
+}
+.gg span {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	margin-right: 6px;
+}
+.title {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 15px;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">8" />
+<title>37美食 - 修改支付密码</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/front/css/modify_mima.css" />
+</head>
+
+<body>
+	<%include("/common/userhead.html"){}%>
+	<script type="text/javascript">
+	var navs =document.getElementById("nav_box").getElementsByTagName("a");
+	navs[0].className="";
+	navs[3].className="active";
+	</script>
+	<div class="modify_mima">
+		<p class="xgmm">修改支付密码</p>
+		<div class="modi_pay"></div>
+		<!--modi_mima start-->
+		<div class="modi_mima">
+			<form action="${ctxPath}/account/security/modifyPayPwdByE" method="post">
+				<input type="hidden" name="CSRFToken" id="CSRFToken" value="${csrf}" />
+				<table width="900px" height="80px">
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;旧的支付密码:</th>
+						<td class="text_ne"><input name="oldPayPwd" type="password"
+							class="new_logn" /></td>
+						<td class="tisi_zifu">必须是字母、数字、字符的组合,区分大小写,6-20个字符。</td>
+					</tr>
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;新的支付密码:</th>
+						<td class="text_ne"><input name="payPwd1" type="password"
+							class="new_logn" /></td>
+						<td class="tisi_zifu">必须是字母、数字、字符的组合,区分大小写,6-20个字符。</td>
+					</tr>
+					<tr>
+						<th><span>&lowast;</span>&nbsp;&nbsp;确认新的密码:</th>
+						<td class="text_ne"><input name="payPwd" type="password"
+							class="new_logn" /></td>
+						<td class="tisi_zifu">请重新填写您的新密码</td>
+					</tr>
+				</table>
+				<p>
+					<input name="" type="submit" class="btne" value="提交" />${error!}
+				</p>
+			</form>
+		</div>
+		<!--modi_mima end-->
+	</div>
+	<%include("/common/foot.html"){}%>
+</body>
+</html>

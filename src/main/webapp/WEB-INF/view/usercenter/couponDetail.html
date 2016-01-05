@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/dialog.css" rel="stylesheet" type="text/css">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="content">
+		<div class="row">券&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：${coupon.code}</div>
+		<div class="row">
+			券&nbsp;&nbsp;名&nbsp;&nbsp;称：${coupon.couponName}<span class="fr">状态：${coupon.is_used}</span>
+		</div>
+		<div class="row">有&nbsp;&nbsp;效&nbsp;&nbsp;期：${date(coupon.begin_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}至${date(coupon.end_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</div>
+		<div class="row">使用规则：订单满${coupon.limit_money}元使用</div>
+		<div class="row">
+			<span class="fl">买家备注：</span>
+			<div class="area"></div>
+		</div>
+	</div>
+	<div class="bottom">
+		<a href="#" class="btn_g">立即使用优惠券</a>
+	</div>
+</body>
+</html>

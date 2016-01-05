@@ -1,0 +1,10 @@
+<div >
+								<label class="txt">商品分类:</label>
+									<select id="materialType" >
+										<option selected="selected" value="">请选择...</option>
+										<% for(materialType in materialTypes){ %>
+										<option value="${materialType.id }">${materialType.name }</option>
+										<% } %>
+									</select> 
+							</div>
+

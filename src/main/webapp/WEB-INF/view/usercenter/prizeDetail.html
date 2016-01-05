@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/dialog.css" rel="stylesheet"
+	type="text/css">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="content">
+		<div class="row">中奖店铺：${activePrizeInfo.name}</div>
+		<div class="row">参加活动：${activePrizeInfo.activeName}</div>
+		<div class="row">
+			奖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级：${activePrizeInfo.active}
+			<%if(activePrizeInfo.status==1){%><span style="color: blue;" class="fr">状态：可兑换</span><%}
+			else{%><span style="color: red;" class="fr">状态：已兑换</span><%}%>
+		</div>
+		<div class="row">奖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品：${activePrizeInfo.prize_item_name}</div>
+		<div class="row">中奖时间：${date(activePrizeInfo.prize_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</div>
+		<div class="row">有&nbsp;&nbsp;效&nbsp;&nbsp;期：${date(activePrizeInfo.prize_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}至${date(activePrizeInfo.loose_time,'yyyyMMddHHmmss'),'yyyy-MM-dd'}</div>
+		<div class="row">
+			<span class="fl">买家备注：</span>
+			<div class="area"></div>
+		</div>
+	</div>
+</body>
+</html>

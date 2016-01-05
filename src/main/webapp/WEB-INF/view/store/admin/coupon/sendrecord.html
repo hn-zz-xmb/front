@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/sendcoupon.css" rel="stylesheet"
+	type="text/css">
+<link href="${ctxPath}/static/custom/css/pagination.css"
+	rel="stylesheet" type="text/css">
+<title>店铺管理-代金券管理</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+<div class="content" >
+<div class="hy-left">
+	<% include("../common.html",{left_:"coupon"}){}%>
+</div>
+<div class="fh-right">
+<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/coupon" >代金券列表</a></li>
+					<li><a href="#" class="active">代金券发放记录</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/coupon/saveUI" class="btn_add">新增代金券</a>
+</div>
+ <%for(c in page.list!){%>
+  <table class="main-list">
+    <tr>
+      <th style="width:50px;"><input type="checkbox" /></th>
+      <th style="width:300px;">代金券名称</th>
+      <th style="width:250px;">过期时间</th>
+      <th style="width:250px;">发放时间</th>
+      <th style="width:200px;">领取人</th>
+      <th style="">是否使用</th>
+    </tr>
+    <tr>
+      <td style="width:50px; border:none;"></td>
+      <td style="width:300px;">${c.couponname!}</td>
+      <td style="width:250px;">${c.end_time!}</td>
+      <td style="width:250px;">${c.sendtime!}</td>
+      <td style="width:200px;">${c.username!}</td>
+     <%if(c.is_used!''==0){%>
+	 <td style="width: 150px;">未使用</td>
+	 <%}else{%>
+	 <td style="width: 150px;">已使用</td>
+	 <%}%>
+    </tr>
+  </table>
+  <%}%>
+ 	 <div class="pagination">
+			<% include("/common/_pagination.html",{page:page}){}%>
+	</div>
+</div>
+<div style="clear: both;"></div>
+</div>
+<% include("/common/foot.html"){}%>
+</body>
+</html>

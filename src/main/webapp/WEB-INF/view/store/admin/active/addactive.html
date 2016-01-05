@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<link href="${ctxPath}/static/custom/css/addactive.css"
+	rel="stylesheet" type="text/css">
+<title>店铺管理-活动管理</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"active"}){}%>
+	<form id="activeform" action="" method="post">
+	<div class="content_right">
+    <div class="tab">
+      <ul>
+					<li><a href="${ctxPath}/salerManage/activeCenter">活动中心</a></li>
+					<li><a href="#" class="active">添加活动</a></li>
+					<!--<li><a href="${ctxPath}/salerManage/prizeItem">奖项列表</a></li>-->
+					<li><a href="${ctxPath}/salerManage/prizeInfo">兑奖中心</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/activeCenter/saveUI" class="btn_add">新增活动</a>
+    </div>
+    <div class="main-hd">
+      <div class="main-hdleft">
+        <ul>
+          <li>活动名称：
+            <input name="activeProgram.name" type="text" class="required"/>
+          </li>
+          <li>活动类型：
+            <select onchange="change(this)" name="activeProgram.activetype_id">
+              <option value="" class="required">请选择</option>
+               <%for(activeType in activeTypes!){%>
+              <option value="${activeType.id !}">${activeType.name !}</option>
+              <%}%>
+            </select>
+          </li>
+          <li>活动时间：
+            <input id="start" name="activeProgram.start_time" type="text" class="required" style="width:165px;" type="date" />
+            至
+            <input id="end" name="activeProgram.end_time" type="text" class="required" style="width:168px;" type="date" />
+          </li>
+          <li>抽奖次数：
+            <input name="activeProgram.repeat_prize_count" value="1" type="text" class="digits" style="width:145px;"/>
+            次<span>&nbsp;&nbsp;（每人每天可以抽奖的次数）</span></li>
+            
+          <li>参与人数：
+            <input name="activeProgram.partake_num" value="1000" type="text" class="required digits" style="width:145px;"/>
+            	人<span>&nbsp;&nbsp;（预计参与人数）</span></li>
+          <li>
+            <h3 style="float:left;color:#333; font-size:16px; font-weight:bold;">活动说明：</h3>
+            <textarea style=" height:80px; float:left; width:360px;margin-left:15px; float:left;" 
+            name="activeProgram.description" class="required"></textarea>
+          </li>
+        </ul>
+      </div>
+      <div class="main-hdright">
+        <div class="main-hdright1" id="red"></div>
+        <div class="main-hdright2" style="display:none;" id="blue"></div>
+      </div>
+    </div>
+    <div class="main-wenzhi">
+      <ul>
+        <li><span>单奖项概率计算方式：</span>改奖项剩余奖品数量/预计参与人数 &nbsp;&nbsp;&nbsp;&nbsp;<span>中奖总概率计算方式：</span>各奖项概率综合</li>
+        <li><span>当奖项奖品数量为零时：</span>改奖项中奖概率为零&nbsp;&nbsp;&nbsp;&nbsp;<span style="margin-left:78px;">当所有奖品为零时：</span>中奖概率为零</li>
+      </ul>
+    </div>
+    <div style="margin-left:10px; margin-top:10px; font-size:18px;"><b>奖项列表</b></div>
+    <div class="main-hdlist">
+      <table>
+        <tr class="first-tr">
+          <td style="width:100px;">奖项</td>
+          <td style="width:150px;">数量</td>
+          <td style="width:200px;">类别</td>
+          <td style="width:100px;">操作</td>
+          <td style="border-right:none; width:300px;">奖项名</td>
+        </tr>
+        <tr>
+          <td>一等奖</td>
+          <td><input name="count1" type="text" class="required digits"/></td>
+          <td><select id="program1" name="program1">
+              <!--<option value="coupon">代金券</option>-->
+              <!--<option value="points">积分</option>-->
+              <option value="self">自定义</option>
+            </select></td>
+          <td><a href="javascript:;" onclick="add('1')">添加</a></td>
+          <td><div class="jxm" id="info_1"><input id="itemname_1" readonly="readonly"/></div>
+          	<input type="hidden" name="itemid_1" id="itemid_1">
+          	</div>
+          </td>
+        </tr>
+        <tr>
+          <td>二等奖</td>
+          <td><input name="count2" type="text" class="required digits"/></td>
+          <td><select id="program2" name="program2">
+              <!--<option value="coupon">代金券</option>-->
+              <!--<option value="points">积分</option>-->
+              <option value="self">自定义</option>
+            </select></td>
+          <td><a href="javascript:;" onclick="add('2')">添加</a></td>
+          <td><div class="jxm" id=""><input id="itemname_2" readonly="readonly"/></div>
+          	<input type="hidden" name="itemid_2" id="itemid_2">
+          </td>
+        </tr>
+        <tr>
+          <td>三等奖</td>
+          <td><input name="count3" type="text" class="required digits"/></td>
+           <td><select id="program3" name="program3">
+              <!--<option value="coupon">代金券</option>-->
+              <!--<option value="points">积分</option>-->
+              <option value="self">自定义</option>
+            </select></td>
+          <td><a href="javascript:;" onclick="add('3')">添加</a></td>
+          <td><div class="jxm" id=""><input id="itemname_3" readonly="readonly"/></div>
+          	<input type="hidden" name="itemid_3" id="itemid_3">
+          </td>
+        </tr>
+        <tr>
+          <td>四等奖</td>
+          <td><input name="count4" type="text" class="required digits"/></td>
+           <td><select id="program4" name="program4">
+              <!--<option value="coupon">代金券</option>-->
+              <!--<option value="points">积分</option>-->
+              <option value="self">自定义</option>
+            </select></td>
+          <td><a href="javascript:;" onclick="add('4')">添加</a></td>
+          <td><div class="jxm" id=""><input id="itemname_4" readonly="readonly"/></div>
+          	<input type="hidden" name="itemid_4" id="itemid_4">
+          </td>
+        </tr>
+        <tr>
+          <td>五等奖</td>
+          <td><input name="count5" type="text" class="required digits"/></td>
+           <td><select id="program5" name="program5">
+               <!--<option value="coupon">代金券</option>-->
+               <!--<option value="points">积分</option>-->
+              <option value="self">自定义</option>
+            </select></td>
+          <td><a href="javascript:;" onclick="add('5')">添加</a></td>
+          <td><div class="jxm" id=""><input id="itemname_5" readonly="readonly"/></div>
+          	<input type="hidden" name="itemid_5" id="itemid_5">
+          </td>
+        </tr>
+      </table>
+      <div style="margin-top:15px; width:300px; float:right;">
+      <span style="float:left; margin-top:10px; margin-right:15px; color:#8DC73D; font-weight:bold;" >
+      <input style="width:20px; height:20px; vertical-align:middle" name="issure" value="1" type="checkbox" />立即发布</span>
+      <button type="submit" class="anniu2">保存</button>
+     </div>
+    </div>
+  </div>
+  </form>
+  <div style="clear: both;"></div>
+</div>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/lang/messages_zh.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"
+		src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script type="text/javascript">
+	$().ready(function() {
+		$("#activeform").validate({
+			errorPlacement : function(error, element) {
+				layer.tips(error.text(), element, {guide: 1, time: 5,more:true});
+			},
+			submitHandler : function(form) {
+				$(form).ajaxSubmit({
+					type : "post",
+					url : "${ctxPath}/salerManage/activeCenter/saveactive",
+					dataType : "json",
+					success : function(result) {
+						if (result.status=="y") {
+							 window.location.href = "${ctxPath}/salerManage/activeCenter";
+						} else {
+							alert(result.error);
+						}
+					}
+				});
+			}
+		});
+	});
+	</script>
+	<script type="text/javascript">
+		function add(id) {
+	    var type=$("#program"+id).val();
+			$.layer({
+				type : 2,
+				shadeClose : true,
+				title : '添加奖项',
+				closeBtn : [ 0, true ],
+				shade : [ 0 ],
+				border : [ 10, 0.3, '#000' ],
+				offset : [ '20px', '' ],
+				area : [ '980px', '750px' ],
+				iframe : {
+					src : '${ctxPath}/salerManage/activeCenter/add?type='+type+'&id='+id
+				}
+			});
+		}
+	</script>
+	<script>
+var start = {
+    elem: '#start',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(), //设定最小日期为当前日期
+    max: '2099-06-16 23:59:59', //最大日期
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+         end.min = datas; //开始日选好后，重置结束日的最小日期
+         end.start = datas //将结束日的初始值设定为开始日
+    }
+};
+var end = {
+    elem: '#end',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(),
+    max: '2099-06-16 23:59:59',
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+        start.max = datas; //结束日选好后，重置开始日的最大日期
+    }
+};
+laydate(start);
+laydate(end);
+function change(el){
+	var val = el.value;
+	if(val=="bigwheel"){
+		$("#blue").show();
+		$("#red").hide();
+	}else{
+		$("#red").show();
+		$("#blue").hide();
+	}
+}
+</script>
+		<% include("/common/foot.html"){}%>
+</body>
+</html>

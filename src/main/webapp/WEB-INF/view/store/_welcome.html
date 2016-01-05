@@ -1,0 +1,20 @@
+<div class="welcome_box">
+	<img alt="" src="${ctxPath}/static/custom/images/welcome.jpg">
+	<div class="welcome_text">
+		<span>工作时间</span>
+		<div>${store.worktime_from!}至${store.worktime_to!}<br/>全年无休</div>
+	</div>
+	<div class="welcome_text" style="height:90px;border:0;">
+		<span>联系方式</span>
+		<div>联系电话：${store.tel!}<br />地址：${store.address!}</div>
+	</div>
+    <div class="map">
+        <div class="map_t">
+            <div id="container" style="width:230px;height:200px"></div>
+        </div>
+        <div class="map_b">
+            <img alt="" src="${ctxPath}/static/custom/images/search.jpg"><a
+                href="#">查看完整地图</a>
+        </div>
+    </div>
+</div>

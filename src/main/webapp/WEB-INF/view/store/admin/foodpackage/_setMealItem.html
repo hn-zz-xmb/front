@@ -1,0 +1,25 @@
+<table class="table_grey">
+	<tr>
+		<th><input class="checkall" onclick="checkAll(this)" type="checkbox"></th>
+		<th>商品名称</th>
+		<th>单价（元）</th>
+		<th>数量</th>
+		<th>操作</th>
+	</tr>
+	<%for(item in session.foodPackageItemMap !){%>
+	<%if(!item.value.isDelete!false){%>
+	<tr <%if(itemLP.index%2==0){%> class="tr_grey" <%}%>>
+		<td><input class="checkitem" value="${item.value.goods_id !}" type="checkbox" onclick="unCheck(this)"></td>
+		<td>${item.value.foodName !}</td>
+		<td>${item.value.foodPrice !}</td>
+	<td><span class="input_qty">
+		<a href="javascript:void(0)" onclick="changeSelectGoodsCount('${item.key}',false)" class="minus">-</a>
+		<span>${item.value.count!0}</span>
+		<a href="javascript:void(0)" onclick="changeSelectGoodsCount('${item.key}',true)" class="plus">+</a>
+	   </span>
+	</td>
+	<td><a href="javascript:void(0)" onclick="delSelectGoods('${item.key}')"><img alt="" src="${ctxPath}/static/custom/images/del.jpg"></a></td>
+	</tr>
+	<%}%>
+	<%}%>
+</table>

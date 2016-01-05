@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>订单生成</title>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/custom/css/write_order.css">
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/custom/css/public.css">
+</head>
+<body>
+<%include("/common/head.html"){}%>
+<div class="wrap">
+  <div class="submit_order"></div>
+  <div class="succeed">
+    <div class="order_success">
+      <img src="${ctxPath}/static/custom/images/right_pic.png" width="
+     169px" height="139px"><span>订单提交成功,请您尽快支付!</span>
+    </div>
+    <div class="succeed_info">
+     <ul>
+     <li><span>订单号:<span class="color">${order.no!}</span></span></li>
+     <li><span>订单总价:<span class="color">￥${order.fact_money!0.00}</span></span></li>
+     <li>您还可以在用户中心"<a href="${ctxPath}/buyerOrder/findUserOrder">我的订单</a>"中查看订单</li>
+     </ul>
+    </div>
+    <p>立即支付<span class="color">￥${order.fact_money!0.00}</span>元 请您在24小时内完成支付,否则订单会被自动取消</p>
+  </div>
+<!--succeed end----------------------->
+ <div class="paychoose_style">
+  <p class="style_pay">请选择支付方式</p>
+   <!--choice start-------------->
+  <div class="choice">
+  <div class="choose_title">
+   <ul>
+   <li id="style_one" class="style_a style_b">余额支付</li>
+   <li id="style_two" class="style_a"> 支付宝</li>
+   <li id="style_three" class="style_a">网银</li>
+   </ul>
+  </div>
+  <div class="choose_nr">
+  <!--余额支付开始---------------------->
+   <div class="yue_style" id="yue_style">
+   <div class="yue_pic"><img src="${ctxPath}/static/custom/images/yue_style.png"></div>
+   <div class="password_style">
+   <p>请输入您的支付密码:<p>
+   <p><input id="paypwd" name="paypwd" type="password"></p>
+   </div>
+   <div class="sure_btn">
+ <a href="#">  忘记密码?</a>
+    <input id="normalpay" name="aa" type="button" value="" class="sure_ok">
+   </div>
+   </div>
+  <!-- 余额支付完成---------------------->
+  <!--支付宝开始------------------------>
+  <div class="alipay" id="alipay">
+  <div class="alipay-pic">
+  <label class="bank_logo selected">
+      <input name="payType" id="zfb" type="radio" class="radio select_radio" checked="checked" value="zfb">
+  </label>
+  <img src="${ctxPath}/static/custom/images/alipay.png" width="148" height="50"></div>
+  <div class="sure_btn">
+   <input id="zfbBtn" type="button"  class="sure_ok">
+  </div>
+  </div>
+     <!-- 支付宝完成-------------->
+    <!-- 银联支付开始----------------------->
+     <div class="bank_pay" id="bank_pay">
+     <ul class="bank-list bank-list--bank">
+      <li class="item">
+      <input name="payType" type="radio" value="ICBC-DEBIT" class="radio select_radio" id="bank-type-ICBCB2C">
+      <label class="bank-logo" title="中国工商银行" for="bank-type-ICBCB2C">
+      <span class="bank bank--icbc">中国工商银行</span>
+      </label>
+      </li>
+   <li class="item">
+      <input name="payType" type="radio" value="CMB-DEBIT" class="radio select_radio" id="bank-type-CMB">
+      <label class="bank-logo" title="招商银行" for="bank-type-CMB">
+      <span class="bank bank--cmb">招商银行</span>
+      </label>
+      </li>
+       <li class="item">
+      <input name="payType" type="radio" value="CCB-DEBIT" class="radio select_radio" id="bank-type-CCB">
+      <label class="bank-logo" title="建设银行" for="bank-type-CCB">
+      <span class="bank bank--ccb">建设银行</span>
+      </label>
+      </li>
+      <li class="item">
+      <input name="payType" type="radio" value="COMM-DEBIT" class="radio select_radio" id="bank-type-COMM">
+      <label class="bank-logo" title="交通银行" for="bank-type-COMM">
+       <span class="bank bank--boc">交通银行</span>
+      </label>
+      </li>
+       <li class="item">
+      <input name="payType" type="radio" value="CEB-DEBIT" class="radio select_radio" id="bank_type_CEB_DEBIT" id="bank_type_CEB_DEBIT">
+      <label class="bank-logo" title="中国光大银行" for="bank_type_CEB_DEBIT">
+      <span class="bank bank--cebb">中国光大银行</span> 
+      </label>
+      </li>
+        <li class="item">
+      <input name="payType" type="radio" value="SPDB-DEBIT" class="radio select_radio" id="bank_type_SPDB">
+      <label class="bank-logo" title="上海浦东发展银行" for="bank_type_SPDB">
+       <span class="bank bank--spdb">上海浦东发展银行</span>
+      </label>
+      </li>
+      </li>
+       <li class="item">
+      <input name="payType" type="radio" value="CMBC" class="radio select_radio" id="bank_type_CMBC">
+      <label class="bank-logo" title="中国民生银行" for="bank_type_CMBC">
+       <span class="bank bank--cmbc">中国民生银行</span>
+      </label>
+      </li>
+       <li class="item">
+      <input name="payType" type="radio" value="PSBC-DEBIT" class="radio select_radio" id="bank-type-PSBC-DEBIT">
+      <label class="bank-logo" title="中国邮政储蓄银行" for="bank-type-PSBC-DEBIT">
+      <span class="bank bank--pspc">中国邮政储蓄银行</span>
+      </label>
+      </li>
+     <li style="clear:both;"></li>
+     </ul>
+      <p>
+   <input id="bankBtn" type="button" value="" class="sure_ok">
+  </p> 
+     </div>
+     
+    <!-- 银联支付结束------------------------>
+  </div>
+  </div>
+  <!--chooice end-------------->
+ </div>
+</div>
+<%include("/common/foot.html"){}%>
+
+<script type="text/javascript">
+    $(function(){
+        $("#yue_style").show();
+        $("#alipay").hide();
+        $("#bank_pay").hide();
+        $("#style_one").click(function(){
+            $(this).addClass("style_b");
+            $("#style_two").removeClass("style_b");
+            $("#style_three").removeClass("style_b");
+            $("#yue_style").show();
+            $("#alipay").hide();
+            $("#bank_pay").hide();
+        })
+        $("#style_two").click(function(){
+            $(this).addClass("style_b");
+            $("#style_one").removeClass("style_b");
+            $("#style_three").removeClass("style_b");
+            $("#alipay").show();
+            $("#yue_style").hide();
+            $("#bank_pay").hide();
+        })
+        $("#style_three").click(function(){
+            $(this).addClass("style_b");
+            $("#style_one").removeClass("style_b");
+            $("#style_two").removeClass("style_b");
+            $("#bank_pay").show();
+            $("#alipay").hide();
+            $("#yue_style").hide();
+        })
+    })
+</script>
+<script type="text/javascript">
+$(function(){
+	$(".bank-logo").click(function(){
+		$(".bank-logo,.bank_logo").removeClass("selected");
+		$(this).addClass("selected");
+		$(".radio").attr("checked",false);
+		$(this).prev().attr("checked",true);
+	});
+	$(".bank_logo").click(function(){
+		$(".bank_logo,.bank-logo").removeClass("selected");
+		$(this).addClass("selected");
+		$(".radio").attr("checked",false);
+		$(this).find("input").attr("checked",true);
+	});
+
+    $("#normalpay").click(function(){
+    	var params={
+				"paypwd":$("#paypwd").val()
+		}
+		$.ajax({
+			type : 'POST',
+			url : '${ctxPath}/order/pay/normalPay?orderNo=${order.no!}&orderType=${orderType!}',
+			data:params,
+			dataType : 'json',
+			cache : false,
+			success : function(result) {
+				if(result.isPay){
+                    window.location.href=MSConfig.BaseURL+"/buyerOrder/findUserOrder";
+				}else{
+					alert(result.error);
+				}
+			}
+		});
+	})
+	 
+    $("#zfbBtn").click(function(){
+        window.location.href=MSConfig.BaseURL+"/alipay/api?orderNo=${order.no!}&payWay=";
+    })
+
+    $("#bankBtn").click(function(){
+        var payType=$("input[name=payType]:checked").val();
+        if(payType!=undefined){
+            window.location.href=MSConfig.BaseURL+"/alipay/api?orderNo=${order.no!}&payWay="+payType;
+        }
+    })
+});
+</script>
+</body>
+</html>

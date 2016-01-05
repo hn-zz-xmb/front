@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="${ctxPath}/static/custom/css/manage.css" rel="stylesheet"
+	type="text/css">
+	<link href="${ctxPath}/static/umeditor/themes/default/css/umeditor.css"
+	type="text/css" rel="stylesheet">
+<title>新增导航</title>
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="${ctxPath}/storeManage">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"navi"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/navigate/findNavigate">导航列表</a></li>
+					<li><a href="${ctxPath}/salerManage/navigate/toaddNavigate"
+						class="active">编辑导航</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/navigate/toaddNavigate"
+					class="btn_add">新增导航</a>
+			</div>
+			<div class="main">
+				<form action="${ctxPath }/salerManage/navigate/updateNavigate" id="Navigate" class="from" method="post">
+				<input type="hidden" name="store_id" value="${navigate.store_id}" />
+				<input type="hidden" name="id" value="${navigate.id}" />
+					<div class="form">
+						<div class="row">
+							导航名称：<input type="text" name="name" value="${navigate.name}">
+						</div>
+						<div class="row_radio">
+							是否显示：
+							<%if(navigate.is_show == 1){%>
+							<label><input type="radio" name="isShow" checked="checked" value="1">是</label><label><input name="isShow" type="radio" value="0">否</label>
+							<%}else{%>
+							<label><input type="radio" name="isShow" value="1">是</label><label><input name="isShow" checked="checked" type="radio" value="0">否</label>
+							<%}%>
+						</div>
+						<div class="row">
+							排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：<input type="text" name="px" value="${navigate.px}"
+								class="input_s">
+						</div>
+						<div>
+							<div class="fl">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容：</div>
+							<div class="fl">
+							<script type="text/plain" id="myEditor"
+									name="substance"
+									style="width: 730px; height: 360px;">${navigate.substance}
+								</script>
+								<p>
+									还可以输入<span class="green">5</span>字<span class="word_surplus"></span>
+								</p>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+						<div class="btn_w">
+							<button class="btn_g_l">保存</button>
+						</div>
+						<p class="error"></p>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+	
+<script src="${ctxPath}/static/custom/js/common.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="${ctxPath}/static/umeditor/umeditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8"	src="${ctxPath}/static/umeditor/umeditor.min.js"></script>
+	<script src="${ctxPath}/static/jquery/validator/jquery.validate.min.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript"src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+	$("#Navigate").validate({
+		errorPlacement: function(error, element) {  
+			layer.tips(error.text(), element, {guide: 1, time: 3,more:true});
+		},
+		rules : {
+			name:"required",
+			px:{
+				required:true,
+				digits:true
+			}
+		},
+		messages:{
+			name:"名称不能为空",
+			px:{
+				required:"序号不能为空",
+				digits:"请输入正确的数字"
+			}
+		}
+		
+	});
+});
+</script>
+<script type="text/javascript">
+var um = UM.getEditor('myEditor');
+</script>
+</body>
+</html>

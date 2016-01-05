@@ -1,0 +1,66 @@
+<div class="pingjia_items">
+    <%for(appraise in page.list!){%>
+    <!--评价列表开始-->
+    <div class="mainbox-pj">
+        <ul>
+            <li>
+                <div class="pj-fl">
+                    <div>${appraise.appraise_desc!}</div>
+                    <div>
+                        <h3 style="color:#666; font-size:12px;">今天</h3>
+                    </div>
+                    <div style="margin-top:10px;">
+                        <%if(appraise.storeBackAppraiseId!''!=''){%>
+                        <h4 style="float:left;">店家回复:</h4>
+                        <div style="float:left; margin-bottom:20px; color:#FC7800;">${appraise.storeBackAppraiseDesc!}</div>
+                        <%}%>
+                    </div>
+                </div>
+                <div class="pj-fr">
+                    <div style="float:left; width:200px;">
+                        <ul>
+                            <li>订单号：${appraise.order_no!}</li>
+                            <li ><span class="name01">服务级别：</span>
+                                <%
+                                for(var i=0;i<5;i++){
+                                if(i<appraise.server_points!){
+                                print("<span class=' star star-yes'></span>");
+                                }else{
+                                print("<span class=' star star-no'></span>");
+                                }
+                                }
+                                %>
+                                </li>
+                            <li><span class="name01">餐厅环境：</span>
+                                <%
+                                for(var i=0;i<5;i++){
+                                if(i<appraise.env_points!){
+                                print("<span class=' star star-yes'></span>");
+                                }else{
+                                print("<span class=' star star-no'></span>");
+                                }
+                                }
+                                %>
+                            </li>
+                            <li><span class="name01">饭菜口味：</span>
+                                <%
+                                for(var i=0;i<5;i++){
+                                if(i<appraise.taste_points!){
+                                print("<span class=' star star-yes'></span>");
+                                }else{
+                                print("<span class=' star star-no'></span>");
+                                }
+                                }
+                                %>
+                            </li>
+                        </ul>
+                    </div>
+                    <div  class="name"> <span class="name01">${appraise.username!}</span> </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--评价列表结束-->
+    <%}%>
+</div>
+<% include("/common/_ajaxpagination.html",{page:page}){}%>

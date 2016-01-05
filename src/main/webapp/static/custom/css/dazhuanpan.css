@@ -1,0 +1,5 @@
+body,ul{ margin:0; padding:0}
+img{ border:none;}
+.gameBox{ width:472px; height:472px; position:relative;}
+#outer{ position:absolute; top:0; left:0;}
+#inner{ position:absolute; top:0; left:0; z-index:2}

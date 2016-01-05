@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+<meta name="description"
+	content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+<title>37美食网_一站式高品质餐饮美食服务网站</title>
+
+<link href="${ctxPath}/static/custom/css/weixin.css" rel="stylesheet"
+	type="text/css">
+	<link href="${ctxPath}/static/custom/css/wx_menu.css" rel="stylesheet"
+	type="text/css">
+</head>
+<body>
+	<% include("/common/userhead.html"){}%>
+	<div class="position">
+		<div class="fl">
+			当前位置：<a href="#">店铺管理</a>&gt;
+		</div>
+		<% include("../store_change.html"){}%>
+	</div>
+	<div class="content">
+		<% include("../common.html",{left_:"weixin"}){}%>
+		<div class="content_right">
+			<div class="tab">
+				<ul>
+					<li><a href="${ctxPath}/salerManage/weixin/conn">接入微信</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/menu" class="active">菜单管理</a></li>
+					<li><a href="${ctxPath}/salerManage/weixin/matter">素材管理</a></li>
+				</ul>
+				<a href="${ctxPath}/salerManage/weixin/matter/saveUI" class="btn_add">图文消息</a>
+			</div>
+			<div class="main">
+				<div class="main_left">
+				<div class="mainLeftDisplay" id="yulan">
+	            	<div class="mainLeftDisplay01">菜单管理</div>
+	            	<div class="mainLeftDisplay02">
+	            	<div class="sub-menu"></div>
+	            	<ul class="top-menu"></ul>
+	            	</div>
+	            	</div>
+					<div class="description">
+						<div class="description_title">功能说明：</div>
+						<div class="description_content">
+							<p>第一步：选中菜单，菜单显示为绿色</p>
+							<p>第二步：填写菜单名称</p>
+							<p>第三步：选择菜单点击事件</p>
+							<p>第四步：保存菜单</p>
+							<p>第五步：菜单全部创建完成之后，发布菜单</p>
+						</div>
+					</div>
+				</div>
+ 
+ 					<div class="mainRight">
+			        	<table width="650px" cellpadding="0" cellspacing="0" class="mainBoxRight" id="testTabLv1">
+			             <tr>
+			                <td width="288px" class="create"><span class="title">菜单列表</span><button id="addItemLv1" type="button" class="ui-btn" onclick="insertTrLv1();">新建</button></td>
+			                <td width="350px" class="bound">绑定菜单功能</td>
+			             </tr>
+			             <div class="form" style="display: none;" id="form2;">
+												<div class="error"></div>
+												<%for(tuwen in tuwenList!){%>
+												<div class="row">
+													<input type="radio" name="tuwen" value="${tuwen.id}">&nbsp;${tuwen.title}
+												</div>
+												<%}elsefor{%>
+												<a href="${ctxPath}/salerManage/weixin/matter/saveUI">添加图文</a>
+												<%}%>
+
+												<div class="btns">
+													<button class="btn_green">删除</button>
+													<button class="btn_green marginL1" onclick="saveMenu(2)">保存</button>
+												</div>
+											</div>
+			            </table>
+			        </div>
+ 					<div class="error1"></div>
+							<div class="btn_w1" style="clear:both;">
+								<a href="javascript:void(0)" class="btn_g" onclick="publishMenus()" >发布菜单</a><a href="#"
+									class="btn_g marginL1" style="margin-left: 50px; margin-top: 30px;">停用菜单</a>
+							</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<% include("/common/foot.html"){}%>
+	<input type="hidden" value="${ctxPath}" id="ctx">
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/common.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/ajax.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/custom/js/weixin_menu.js"></script>
+	
+</body>
+</html>

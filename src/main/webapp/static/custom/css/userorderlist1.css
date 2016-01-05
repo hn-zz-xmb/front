@@ -1,0 +1,266 @@
+@charset "utf-8";
+/* CSS Document */
+.title-list {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 5px;
+	border: 1px solid #ddd;
+	height: 212px;
+}
+.title-list .xxk {
+	width: 130px;
+	height: 30px;
+	background-color: #8cd44c;
+	border: none;
+	margin-top: 5px;
+	color: #fff;
+	font-size: 16px;
+	text-indent: 5px;
+	font-family: '微软雅黑';
+	text-align: center;
+	border: 1px solid #ddd;
+	margin-left: 50px;
+}
+.title-list .dd-title {
+	margin-left: 20px;
+	font-size: 16px;
+	margin-top: 10px;
+	display: inline-block;
+	float: left;
+	font-family: '微软雅黑';
+}
+.title-list .dd-title input {
+	width: 224px;
+	height: 24px;
+	border: 1px solid #ddd;
+	margin-top: 20px;
+	float: left;
+	display: inline-block;
+}
+.title-list span {
+	width: 70px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	border: 1px solid #ddd;
+	margin: 5px 15px;
+	display: inline-block;
+	font-size: 14px;
+	float: left;
+	font-family: '宋体';
+	cursor: pointer;
+	background-color: #f1f1f1;
+}
+.title-list span.on {
+	background-color: #83c233;
+	color: #fff;
+}
+.title-list .title00 {
+	background-image: url(file:///C|/Users/Administrator/Desktop/%E4%BC%9A%E5%91%98%E8%AE%A2%E5%8D%95/images/shuxian.png);
+	height: 40px;
+	border: 1px solid #ddd;
+}
+.title-list .title00 b {
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 20px;
+	font-size: 18px;
+	font-family: '微软雅黑';
+	float: left;
+}
+.title-list li {
+	height: 25px;
+}
+.ssk {
+	border: 1px solid #ededed;
+	float: left;
+	margin-left: 200px;
+	margin-top: 5px;
+}
+.ssk input {
+	float: left;
+	height: 25px;
+	text-align: left;
+	text-indent: 5px;
+	width: 252px;
+	outline: none;
+}
+.ssk button {
+	float: left;
+	height: 30px;
+	text-align: center;
+	background-color: #f5f5f5;
+	outline: none;
+	width: 65px;
+}
+.anniu {
+	float: right;
+	border: 1px solid #ededed;
+	color: #fff;
+	background-color: #83c233;
+	width: 100px;
+	height: 30px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 16px;
+	font-family: '微软雅黑';
+	margin-right: 250px;
+	cursor: pointer;
+	outline: none;
+	margin-top: 5px;
+}
+.mian-title table {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 15px;
+	border-collapse: collapse;
+}
+.mian-title td {
+	width: 180px;
+	border: 1px solid #ddd;
+	height: 44px;
+	background-color: #f3f3f3;
+	text-align: center;
+	font-size: 14px;
+}
+.mian-title1 table {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.mian-title1 td {
+	width: 180px;
+	background-color: #f3f3f3;
+	text-align: center;
+	font-size: 14px;
+}
+.mian-title2 table {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+.mian-title2 td {
+	width: 180px;
+	background-color: #f3f3f3;
+	text-align: center;
+	font-size: 14px;
+	height: 100px;
+	border: 1px solid #ddd;
+}
+.mian-title table {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 15px;
+	border-collapse: collapse;
+}
+.mian-title td {
+	width: 180px;
+	border: 1px solid #ddd;
+	height: 44px;
+	background-color: #f3f3f3;
+	text-align: center;
+	font-size: 14px;
+}
+.mian-title1 table {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.mian-title1 td {
+	width: 180px;
+	background-color: #f3f3f3;
+	text-align: center;
+	font-size: 14px;
+}
+.mian-title2 table {
+	width: 1180px;
+	margin: 0 auto;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+.mian-title2 td {
+	width: 180px;
+	background-color: #f3f3f3;
+	text-align: center;
+	font-size: 14px;
+	height: 100px;
+	border: 1px solid #ddd;
+}
+.mian-title2 .anniu01 {
+	width: 68px;
+	height: 28px;
+	text-align: center;
+	color: #82c230;
+	cursor: pointer;
+}
+.mian-title2 a {
+	color: #333;
+	font-weight: bold;
+	font-family: '微软雅黑';
+}
+/*分页*/
+.pagination {
+	text-align: center;
+	height: 50px;
+	margin-top: 10px;
+}
+.pagination a {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	border: 1px solid #ccc;
+	background-color: white;
+	font-family: "宋体";
+	font-size: 16px;
+	color: #000;
+	text-align: center;
+	line-height: 36px;
+}
+.list-dd {
+	float: left;
+	margin-top: 5px;
+	margin-left: 50px;
+	background-color: #8bd84c;
+	color: #fff;
+	width: 100px;
+	text-align: center;
+	font-size: 12px;
+	cursor: pointer;
+}
+#list {
+	z-index: 9999;
+	position: absolute;
+}
+#list li {
+	color: #fff;
+	width: 100px;
+	background-color: #8bd84c;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 12px;
+}
+#list li a {
+	text-decoration: none;
+}
+.pagination .btn.active {
+	color: white;
+	background-color: #84c233;
+}
+.pagination a:hover {
+	color: white;
+	background-color: #84c233;
+}
+.input_ss {
+	width: 50px;
+}
+.dropdown a {
+	text-decoration: none;
+}
+.menu {
+	text-decoration: none;
+	background-color: #8bd84c;
+	color: #fff;
+	border: none;
+}

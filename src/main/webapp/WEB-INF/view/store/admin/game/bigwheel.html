@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大转盘游戏</title>
+<link type="text/css" rel="stylesheet" href="${ctxPath}/static/custom/css/dazhuanpan.css" />
+<script type="text/javascript" src="${ctxPath}/static/custom/js/jquery.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom/js/jQueryRotate.2.2.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#inner").click(function() {
+			lottery();
+		});
+	});
+	function lottery() {
+		var params={
+				"storeId":$("#storeId").val(),
+				"programId":$("#programId").val()
+		}
+		$.ajax({
+			type : 'POST',
+			url : '${ctxPath}/salerManage/playgamebigwheel/award',
+			data:params,
+			dataType : 'json',
+			cache : false,
+			error : function() {
+				alert('出错了！');
+				return false;
+			},
+			success : function(json) {
+				$("#inner").unbind('click').css("cursor", "default");
+				var json_=eval(json);
+				var angle = parseInt(json_.angle); //角度 
+				var msg = json_.msg; //提示信息
+				var isRight=json.isRight;
+				if(isRight){
+					$("#outer").rotate({ //inner内部指针转动，outer外部转盘转动
+						duration : 5000, //转动时间 
+						angle : 0, //开始角度 
+						animateTo : 3600 + angle, //转动角度 
+						easing : $.easing.easeOutSine, //动画扩展 
+						callback : function() {
+							var con = confirm(msg + '\n还要再来一次吗？');
+							if (con) {
+								lottery();
+							} else {
+								return false;
+							}
+						}
+					});
+				}else{
+					alert(msg);
+				}
+			}
+		});
+	}
+</script>
+</head>
+<body>
+<div class="gameBox">
+    <div id="outer">
+        <img src="${ctxPath}/static/custom/images/bigwheel/activity-lottery-1.png">
+    </div>
+    <div id="inner">
+        <img src="${ctxPath}/static/custom/images/bigwheel/activity-lottery-2.png">
+    </div>
+</div>
+	<input id="storeId" value="${storeId!}" type="hidden">
+	<input id="programId" value="${activeProgram.id!}" type="hidden">
+</body>
+</html>

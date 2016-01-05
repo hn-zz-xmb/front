@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0">
+<link href="${ctxPath}/static/custom/css/store.css" rel="stylesheet"
+	type="text/css">
+
+	<title>${store.name !}-店铺主页</title>
+
+</head>
+<body>
+	<% include("../common/storehead.html"){}%>
+	
+	<!-- 排序 -->
+	<div class="sort" id="sort">
+		<a href="${ctxPath}/store?storeId=${store.id}&foodTypeId=${params.foodTypeId!}&nav=0" class="active01">默认</a>
+		 <a href="${ctxPath}/store?storeId=${store.id}&foodTypeId=${params.foodTypeId!}&sort=info.sale_num&nav=1">销量</a>
+		 <a href="${ctxPath}/store?storeId=${store.id}&foodTypeId=${params.foodTypeId!}&sort=price&nav=2">价格</a>
+        <div class="box">
+            <div class="t_news">
+                <b>最新活动：</b>
+                <ul class="news_li" id="activeList">
+                    <li><a href="" target="_blank">美食广告的艺术，不仅是视觉上的冲击，还勾起了人的食欲觉上的冲击，还勾起了人的食欲</a></li>
+                    <li><a href="" target="_blank">美食广告的艺术，不仅是视觉上的冲击，还勾起了人的食欲觉上的冲击，还勾起了人的食欲</a></li>
+                    <li><a href="" target="_blank">美食广告的艺术，不仅是视觉上的冲击，还勾起了人的食欲觉上的冲击，还勾起了人的食欲</a></li>
+                    <li><a href="" target="_blank">美食广告的艺术，不仅是视觉上的冲击，还勾起了人的食欲觉上的冲击，还勾起了人的食欲</a></li>
+                    <li><a href="" target="_blank">美食广告的艺术，不仅是视觉上的冲击，还勾起了人的食欲觉上的冲击，还勾起了人的食欲</a></li>
+                    <li><a href="" target="_blank">美食广告的艺术，不仅是视觉上的冲击，还勾起了人的食欲觉上的冲击，还勾起了人的食欲</a></li>
+                    <li><a href="" target="_blank">美食广告的艺术，不仅是视觉上的冲击，还勾起了人的食欲觉上的冲击，还勾起了人的食欲</a></li>
+                </ul>
+
+                <ul class="swap"></ul>
+            </div>
+        </div>
+	</div>
+	<script type="text/javascript">
+		var navs = document.getElementById("sort").getElementsByTagName("a");
+		navs[0].className = "";
+		navs[${params.nav!0}].className = "active01";
+	</script>
+	<!-- 内容 -->
+	<div class="main">
+		<div class="main_left">
+			<div class="main_content">
+				<%for (g in goods.list){%>
+				<div class="shopSearchBox">
+					<div>
+						<a target="_blank" href="${ctxPath}/goods/view?id=${g.id}">
+						<% if(g.image!'' != ''){ %> 
+							<img  src="/img${g.image !}"  onerror="javascript:this.src='${ctxPath}/static/custom/images/defaultgoods.jpg';"/>
+							<%}else{%>
+							<img src="${ctxPath}/static/custom/images/defaultgoods.jpg"  />
+						<%}%>
+						</a>
+					</div>
+					<div class="shopSearchBox_titleBox">
+						<div class="shopSearchBox_title">${g.name}</div>
+						<div class="shopSearchBox_describe">
+							<div class="shopSearchBox_D01">
+								<img src="${ctxPath}/static/custom/images/star.jpg" /><img
+									src="${ctxPath}/static/custom/images/star.jpg" /><img
+									src="${ctxPath}/static/custom/images/star.jpg" /><img
+									src="${ctxPath}/static/custom/images/star.jpg" /><img
+									src="${ctxPath}/static/custom/images/star.jpg" />
+							</div>
+							<div class="shopSearchBox_D02">已售${g.sale_num!0}份</div>
+						</div>
+						<div class="shopSearchBox_content">
+							<div class="shopSearchBox_content1">
+								<span>￥</span>${g.price}
+							</div>
+							<div id="gshow_${g.id}" style="height: 50px;width: 50px; display:none"><img style="height: 50px;width: 50px;" src="${ctxPath}/static/custom/images/star.jpg" alt=""/></div>
+							<a href="javascript:void(0)" onclick="addCart('${store.id}','${g.id}','${isSetMeal!0}',this,$('#flyItem_${g.id}'))">抢购</a>
+						</div>
+					</div>
+				</div>
+
+				<div id="flyItem_${g.id}" style="display: none;height: 50px;width: 50px;">
+					<img height="50" width="50" src="/img${g.goods_image}">
+				</div>
+				<%}%>
+			</div>
+			<div class="pagination">
+				<% include("../common/_pagination.html",{page:goods}){}%>
+			</div>
+		</div>
+		<div class="main_right">
+		<!-- 
+			<div class="welcome_box">
+				<img alt="" src="${ctxPath}/static/custom/images/welcome.jpg">
+				<div class="welcome_text">
+					<b>工作时间</b>
+					<p>早${store.worktime_from}~晚${store.worktime_to}</p>
+					<p>全年无休</p>
+				</div>
+				<div class="welcome_text">
+					<b>联系方式</b>
+					<p>联系电话：${store.tel}</p>
+					<p>地址：${store.address}</p>
+				</div>
+			</div> -->
+			<% include("_welcome.html"){}%>
+			<!-- menu end -->
+			<div class="store_info">
+				<div class="store_info_title">基本信息</div>
+				<div class="store_info_content">
+					<div class="description">
+						<div style="padding-left: 42.5px;
+							margin-top: 2px;
+							margin-bottom: 2px;">
+							<% if(store.logo_image!''=="" || store.logo_image!'' == null){ %>
+							<img style="width: 170px;height: 170px;" alt="" src="${ctxPath}/static/custom/images/writestore_info_pic.png">
+							<% }else{ %>
+							<img style="width: 170px;height: 170px;" alt="" src="/img${store.logo_image !}">
+							<%}%>
+						</div>
+							<p>${store.description !}</p>
+					</div>
+				</div>
+			</div>
+			<!-- store info end -->
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<script type="text/javascript">
+		//	$("#goods").load("./store/searchGoods?storeId=${store.id}");
+	</script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/custom/js/ajax.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/custom/js/goods.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/custom/js/lrtk.js"></script>
+	<script type="text/javascript" src="http://map.qq.com/api/js?v=2.exp&callback=init&key=TB5BZ-RRLWP-7Z2DL-VDY7Y-SKQUE-BMBIS"></script>
+    <script>
+        function loadActive(url,storeId){
+            var ctxPath='${ctxPath}/';
+            var storeId='${store.id}';
+            var url=ctxPath+"store/findStoreActive";
+            var activeList=$("#activeList");
+            //开始清空,填充
+            activeList.find('li').remove()
+            var result= callJson(url,{"storeId":storeId},false);
+            if(result.activeProgramList){
+                $.each(result.activeProgramList,function(i,item){
+                    var $li='<li><a href="'+ctxPath+'salerManage/joingame/joinActive?activeId='+item.id+'" target="_blank">'+item.name+'</a></li>';
+                    activeList.append($li);
+                })
+            }
+        }
+
+        loadActive();
+    </script>
+
+<script type="text/javascript">
+	var lat_= new Number('${store.position_lat}');
+	var lng_= new Number('${store.position_lng}');
+	function init() {
+		var center = new qq.maps.LatLng(lat_,lng_);
+		var map = new qq.maps.Map(document.getElementById('container'),{
+			center: center,
+			zoom: 13
+		});
+		var marker = new qq.maps.Marker({
+			position: center,
+			map: map
+		});
+	}
+</script>
+	<% include("../common/foot.html"){}%>
+</body>
+</html>

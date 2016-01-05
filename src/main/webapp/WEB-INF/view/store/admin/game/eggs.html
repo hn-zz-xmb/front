@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>egg</title>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/static/custom/css/eggs.css" />
+</head>
+<body>
+	<div class="egg">
+		<ul class="eggList">
+			<p class="hammer" id="hammer"></p>
+			<p class="resultTip" id="resultTip">
+					<b id="result">哈哈哈</b>
+			</p>
+			<li><span>奖</span><sup></sup></li>
+		</ul>
+		<a href="#" class="again">再来一次</a>
+	</div>
+	<a href="${ctxPath}/salerManage/joingame/checkActive?activeId=${activeProgram.id}" >再来一次</a>
+	<input id="storeId" value="${storeId!}" type="hidden">
+	<input id="programId" value="${activeProgram.id!}" type="hidden">
+	<script type="text/javascript"
+		src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		function eggClick(obj) {
+			var _this = obj;
+			var params = {
+				"storeId" : $("#storeId").val(),
+				"programId" : $("#programId").val()
+			}
+			if (_this.hasClass("curr")) {
+				alert("蛋都碎了，别砸了！刷新再来.");
+				return false;
+			}
+			$.ajax({
+				type : 'POST',
+				url : '${ctxPath}/salerManage/playgameeggs/award',
+				data : params,
+				dataType : 'json',
+				cache : false,
+				error : function() {
+					alert('出错了！');
+					return false;
+				},
+				success : function(res) {
+					if (res.msg == 2) {
+						alert("您的抽奖次数已经用完");
+						return false;
+					}
+					if (res.msg == 3) {
+						alert("您已中奖，今天不能再抽！");
+						return false;
+					}
+					//_this.unbind('click');
+					$(".hammer").css({
+						"top" : _this.position().top - 55,
+						"left" : _this.position().left + 185
+					});
+					$(".hammer").animate({
+						"top" : _this.position().top - 25,
+						"left" : _this.position().left + 125
+					}, 30, function() {
+						_this.addClass("curr"); //蛋碎效果
+						_this.find("sup").show(); //金花四溅
+						$(".hammer").hide();
+						$('.resultTip').css({
+							display : 'block',
+							top : '100px',
+							left : _this.position().left + 45,
+							opacity : 0
+						}).animate({
+							top : '50px',
+							opacity : 1
+						}, 300, function() {
+							if (res.msg == 1) {
+								$("#result").html("恭喜，您中得" + res.prize + "!");
+							} else {
+								$("#result").html("很遗憾,您没能中奖!");
+							}
+						});
+					});
+				}
+			});
+		}
+
+		$(".eggList li").click(function() {
+			$(this).children("span").hide();
+			eggClick($(this));
+		});
+
+		$(".eggList li").hover(function() {
+			var posL = $(this).position().left + $(this).width();
+			$("#hammer").show().css('left', posL);
+		})
+	</script>
+</body>
+</html>
