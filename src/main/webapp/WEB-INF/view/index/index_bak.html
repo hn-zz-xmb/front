@@ -1,0 +1,944 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Expires" content="0">
+<meta name="keywords"
+	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
+	<meta name="description"
+		content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
+		<title>${session.cur_city.name!"郑州市"}-37美食网一站式高品质餐饮美食服务网站</title>
+</head>
+<body>
+	<% include("../common/head.html"){}%>
+	<!--焦点图开始----------------------------------------->
+	<div class="carousel">
+		<div class="carousel_left">
+				<a id="target_id" target="_blank" <%if(!has(advertAdList) || advertAdList.~size<1){%>onclick="clickToShow()"<%}%>>
+				<img  src="${ctxPath}/static/custom/images/default/index/carousel_rigth/1.jpg"
+				id="carousel_img_big" tag="1"/></a>
+		</div>
+		<div class="carousel_right">
+			<%var count=0; %>
+			<% for(b in advertAdList!){%>
+			<%if(strutil.startWith(b.ad_area_code,"main_index_b")){%>
+			<%count++; %>
+			<div class="carousel_item" tag="1">
+				<input class="url" type="hidden" value="${b.ad_url !}"/> 
+				<div class="carousel_item_tx">${b.ad_text !}</div>
+				<div class="carousel_item_img"><img src="/img${b.ad_pic !}"></div>
+			</div>
+			<%}}%>
+			<%for(var a=0; a<8-count;a++){%>
+			<div class="carousel_item"  tag="2" >
+				<div class="carousel_item_tx">找食材，上37美食网</div>
+				<div class="carousel_item_img"><img  src="${ctxPath}/static/custom/images/default/index/carousel_rigth/1.jpg"></div>
+			</div>
+			<%}%>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<!--焦点图结束------------------------------------------->
+	<!--商品筛选开始----------------------------------------->
+	<div class="buyBoxRight01">
+		<div class="buyBoxRight02">
+			商品筛选
+			<div id='buy_down' onclick="showup()"></div>
+		</div>
+		<div id='buyBR02Hide'></div>
+		<script>
+			function showup() {
+				var buyBR02Hide = document.getElementById("buyBR02Hide");
+				if (buyBR02Hide.style.display == 'block') {
+					buyBR02Hide.style.display = 'none';
+					buy_down.style.background = 'url(${ctxPath}/static/custom/images/selection_down.png)';
+				} else {
+					buyBR02Hide.style.display = 'block';
+					buy_down.style.background = 'url(${ctxPath}/static/custom/images/selection_up.png)';
+				}
+			}
+		</script>
+	</div>
+	<!--商品筛选结束---------------------------------------->
+	<!--轮播图开始----------------------------------------->
+	<div class="scroll" id="scroll">
+		<img src="${ctxPath}/static/custom/images/shufflingLeftBtn.png"
+			class="left" id="left" />
+		<div class="mask">
+			<ul class="pic">
+				<li>
+				<%var count1=0;%>	
+				<% for(c in advertAdList){%>
+				<%if(strutil.startWith(c.ad_area_code,"main_index_c")){%>
+					<%count1=count1+1;%>
+				<div class="picBox">
+				<a target="_blank" href="${c.ad_url !}"><img src="/img${c.ad_pic !}" /></a>
+				<div class="picBox1"><a target="_blank" href="${c.ad_url !}">${c.ad_text !}</a></div>
+				</div>
+				 <%}}%>
+				</li>
+				 <%for(var a=0; a<21-count1;a++){%>
+				 	<li>
+					 	<div class="picBox" onclick="clickToShow()">
+						 	<a ><img src="${ctxPath}/static/custom/images/default/index/scrollpicBox/01.jpg" /></a>
+						 	<div class="picBox1"><a >水饺</a></div>
+					 	</div>
+					 	<div class="picBox" onclick="clickToShow()">
+					 		<a ><img src="${ctxPath}/static/custom/images/default/index/scrollpicBox/02.jpg" /></a>
+					 		<div class="picBox1"><a >油葱拌面</a></div>
+					 	</div>
+					 	<div class="picBox" onclick="clickToShow()">
+						 	<a ><img src="${ctxPath}/static/custom/images/default/index/scrollpicBox/03.jpg" /></a>
+						 	<div class="picBox1"><a >炖鸡</a></div>
+					 	</div>
+					 	<div class="picBox" onclick="clickToShow()">
+						 	<a ><img src="${ctxPath}/static/custom/images/default/index/scrollpicBox/04.jpg" /></a>
+						 	<div class="picBox1"><a >干煸茶树菇豆角</a></div>
+					 	</div>
+					 	<div class="picBox" onclick="clickToShow()">
+						 	<a ><img src="${ctxPath}/static/custom/images/default/index/scrollpicBox/05.jpg" /></a>
+						 	<div class="picBox1"><a >红烧茄子盖饭</a></div>
+					 	</div>
+					 	<div class="picBox" onclick="clickToShow()">
+						 	<a ><img src="${ctxPath}/static/custom/images/default/index/scrollpicBox/06.jpg" /></a>
+						 	<div class="picBox1"><a >尖椒黄牛肉</a></div>
+					 	</div>
+					 	<div class="picBox" onclick="clickToShow()">
+						 	<a ><img src="${ctxPath}/static/custom/images/default/index/scrollpicBox/07.jpg" /></a>
+						 	<div class="picBox1"><a >砂锅土豆粉</a></div>
+					 	</div>
+	 				</li>
+				 <%}%>
+			</ul>
+		</div>
+		<img src="${ctxPath}/static/custom/images/shufflingRightBtn.png"
+			class="right" id="right" />
+	</div>
+	<!--轮播图结束------------------------------------------->
+	<!--人气美食，吃货专享，宅神必备------------------------------------------->
+	<div class="findfoodBox">
+		<div class="findfood" id="chooseBox01">
+			<span id="tab1" onclick="show(0)" class="findfood_this"><a
+				href="javascript:void(0);"
+				onclick="switchTab('tab1','con1');this.blur();return false;">人气美食</a></span>
+			<span id="tab2" onclick="show(1)"><a
+				href="javascript:void(0);"
+				onclick="switchTab('tab2','con2');this.blur();return false;">吃货专享</a></span>
+			<span id="tab3" onclick="show(2)"><a
+				href="javascript:void(0);"
+				onclick="switchTab('tab3','con3');this.blur();return false;">宅神必备</a></span>
+		</div>
+		<script>
+			var spanos = document.getElementById("chooseBox01")
+					.getElementsByTagName("span")
+			function show(num) {
+				for (var i = 0; i < spanos.length; i++) {
+					if (i == num) {
+						spanos[num].className = "findfood_this";
+					} else {
+						spanos[i].className = "";
+					}
+				}
+			}
+		</script>
+		<div id="chooseBox02">
+			<ul id="con1">
+				<%var count2=0;%>	
+				<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_d")){%>
+					<%count2=count2+1;%>
+				<div class="findfoodBoxMod">
+				<div class="findfoodBoxMod1">
+            		<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+           		</div>
+           	    <div class="findfoodBoxMod2">
+            		<span class="findfoodBoxMod2S1"><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a></span><br />
+            		<span class="findfoodBoxMod2S2">价格:</span>
+            		<span class="findfoodBoxMod2S3">￥${b.ad_price !}</span>
+           		</div>
+				</div>
+				<%}}%>
+				 <%for(var a=0; a<10-count2;a++){%>
+				 <div class="findfoodBoxMod" onclick="clickToShow()">
+        			 <div class="findfoodBoxMod1">
+            				<a ><img src="${ctxPath}/static/custom/images/default/index/renqimeishi/01.jpg" /></a>
+           			 </div>
+           			 <div class="findfoodBoxMod2">
+            			<span class="findfoodBoxMod2S1"><a >芹菜虾仁</a></span><br /><span class="findfoodBoxMod2S2">价格:</span><span class="findfoodBoxMod2S3">￥29.90</span>
+           			 </div>
+                 </div>
+				  <%}%>
+			</ul>
+			<ul id="con2" style="display: none">
+				<%var count3=0;%>	
+				<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_e")){%>
+					<%count3=count3+1;%>
+				<div class="findfoodBoxMod">
+				<div class="findfoodBoxMod1">
+            		<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+           		</div>
+           	    <div class="findfoodBoxMod2">
+            		<span class="findfoodBoxMod2S1"><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a></span><br />
+            		<span class="findfoodBoxMod2S2">价格:</span>
+            		<span class="findfoodBoxMod2S3">￥${b.ad_price !}</span>
+           		</div>
+				</div>
+				<%}}%>
+				 <%for(var a=0; a<10-count3;a++){%>
+                 <div class="findfoodBoxMod" onclick="clickToShow()">
+        			 <div class="findfoodBoxMod1">
+            				<a><img src="${ctxPath}/static/custom/images/default/index/chihuozhuanxiang/01.jpg" /></a>
+           			 </div>
+           			 <div class="findfoodBoxMod2">
+            			<span class="findfoodBoxMod2S1"><a >地三鲜</a></span><br /><span class="findfoodBoxMod2S2">价格:</span><span class="findfoodBoxMod2S3">￥29.90</span>
+           			 </div>
+                 </div>
+				  <%}%>
+			</ul>
+			<ul id="con3" style="display: none">
+				<%var count4=0;%>	
+				<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_f")){%>
+					<%count4=count4+1;%>
+				<div class="findfoodBoxMod">
+					<div class="findfoodBoxMod1">
+            		<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+           		</div>
+           	    <div class="findfoodBoxMod2">
+            		<span class="findfoodBoxMod2S1"><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a></span><br />
+            		<span class="findfoodBoxMod2S2">价格:</span>
+            		<span class="findfoodBoxMod2S3">￥${b.ad_price !}</span>
+           		</div>
+				</div>
+				<%}}%>
+				 <%for(var a=0; a<10-count4;a++){%>
+				 <div class="findfoodBoxMod" onclick="clickToShow()">
+        			 <div class="findfoodBoxMod1">
+            				<a ><img src="${ctxPath}/static/custom/images/default/index/zhaishenbibei/01.jpg" /></a>
+           			 </div>
+           			 <div class="findfoodBoxMod2">
+            			<span class="findfoodBoxMod2S1"><a >馄饨</a></span><br /><span class="findfoodBoxMod2S2">价格:</span><span class="findfoodBoxMod2S3">￥29.90</span>
+           			 </div>
+                 </div>
+				  <%}%>
+			</ul>
+		</div>
+	</div>
+	<!--人气美食，吃货专享，宅神必备结束------------------------------------------->
+	<!--1楼开始------------------------------------------------------------------>
+	<div class="floor">
+		<div class="floorBanner">
+			<%var count5=0;%>	
+			<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_g")){%>
+				<%count5=count5+1;%>
+			<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" />
+			</a>
+			<%}}%>
+			 <%for(var a=0; a<1-count5;a++){%>
+			<div class="floorBanner">
+			<a href=""><img src="${ctxPath}/static/custom/images/default/index/guanggaotiao/1.jpg" />
+			</a>
+			</div>
+			 <%}%>
+		</div>
+		<div class="floor_left">
+			<div class="floor_left_head">
+				<span class="floor_left_head_title">1F&nbsp;&nbsp;特色美食推荐</span><a
+					href="#">更多&gt;&gt;</a>
+			</div>
+			<div class="floor_left_content">
+				<div class="floor_left_content_l">
+					<%var count6=0;%>
+					<% for(b in advertAdList){%>
+					<%if(strutil.startWith(b.ad_area_code,"main_index_h")){%>
+						<%count6=count6+1;%>
+					<div class="floor_left_content_l_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+         			<div class="floor_left_content_l_b">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a><br/>${b.ad_desc !}</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>${b.ad_price !}</div>
+            		<div style="clear:both;"></div>
+        			</div>
+					<%}}%>
+					<%for(var a=0; a<1-count6;a++){%>
+					<div class="floor_left_content_l_t"><a  onclick="clickToShow()"><img alt="" src="${ctxPath}/static/custom/images/default/index/teshetuijian/00.jpg"></a></div>
+         			<div class="floor_left_content_l_b" onclick="clickToShow()">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a >泡芙</a><br />4人餐，包间免费，提供免费wifi</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>108</div>
+            		<div style="clear:both;"></div>
+        			</div>
+				 <%}%>
+				</div>
+				<div class="floor_left_content_r">
+					<%var count7=0;%>
+				<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_i")){%>
+					<%count7=count7+1;%>
+					<div class="item">
+					 <div class="item_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+                    <div class="item_m">
+                        <div><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a></div>
+                        <div>${b.ad_desc !}</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥${b.ad_price !}</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+					</div>
+				<%}}%>
+				 <%for(var a=0; a<6-count7;a++){%>
+				 	 <div class="item" onclick="clickToShow()">
+                    <div class="item_t"><a ><img alt="" src="${ctxPath}/static/custom/images/default/index/teshetuijian/01.jpg"></a></div>
+                    <div class="item_m">
+                        <div><a>拔丝香蕉</a></div>
+                        <div>可叠加使用，免费WiFi。</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥35</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+                </div>
+				  <%}%>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div class="floor_right_box">
+			<div class="floor_right" style="height: 300px;">
+				<div class="floor_right_head">商家资讯</div>
+				<div class="floor_right_content">
+					<div class="floor_right_content_b">
+						<ul><%var count8=0;%>
+							<% for(a in sjzx !){%><%count8=count8+1;%>
+							<li><a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">${a.title}</a></li>
+							<%}%>
+							  <%for(var i=0;i<8-count8;i++){%>
+							 	<li><a href="#">西红柿怎么样防挨效果最好？</a></li>
+							 <%}%>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<%var count9=0;%>
+			<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_j")){%>
+				<%count9=count9+1;%>
+				<div class="floor_right_box_down">
+				<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+				</div>
+			<%}}%>
+			 <%for(var a=0; a<2-count9;a++){%>
+			 		<div class="floor_right_box_down">
+   						 <a ><img src="${ctxPath}/static/custom/images/default/index/yangsheng/1_01.jpg" /></a>
+    				</div>
+			  <%}%>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<!---1楼结束--------------------------------------------------------------->
+	<!--2楼开始------------------------------------------------------------------>
+	<div class="floor">
+		<div class="floorBanner">
+			<%var count10=0;%>
+			<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_k")){%>
+					<%count10=count10+1;%>
+					<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+				<%}}%>
+				 <%for(var a=0; a<1-count10;a++){%>
+			 	<a href=""><img src="${ctxPath}/static/custom/images/default/index/guanggaotiao/2.jpg" /></a>
+			 <%}%>
+		</div>
+		<div class="floor_left">
+			<div class="floor_left_head">
+				<span class="floor_left_head_title"
+					style="background-color: #a8c930;">2F&nbsp;&nbsp;品牌美食推荐</span><a
+					href="#">更多&gt;&gt;</a>
+			</div>
+			<div class="floor_left_content">
+				<div class="floor_left_content_l">
+				<%var count11=0;%>
+					<% for(b in advertAdList){%>
+					<%if(strutil.startWith(b.ad_area_code,"main_index_l")){%>
+					<%count11=count11+1;%>
+					<div class="floor_left_content_l_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+         			<div class="floor_left_content_l_b">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a><br/>${b.ad_desc !}</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>${b.ad_price !}</div>
+            		<div style="clear:both;"></div>
+        			</div>
+				<%}}%>
+				 <%for(var a=0; a<1-count11;a++){%>
+					<div class="floor_left_content_l_t"><a  onclick="clickToShow()"><img alt="" src="${ctxPath}/static/custom/images/default/index/pinpai/00.jpg"></a></div>
+         			<div class="floor_left_content_l_b" onclick="clickToShow()">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a >风味羊排</a><br />4人餐，包间免费，提供免费wifi</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>108</div>
+            		<div style="clear:both;"></div>
+        		</div>
+				 <%}%>
+				</div>
+				<div class="floor_left_content_r">
+				<%var count12=0;%>
+					 <% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_m")){%>
+				<%count12=count12+1;%>
+					<div class="item">
+					 <div class="item_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+                    <div class="item_m">
+                        <div><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a></div>
+                        <div>${b.ad_desc !}</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥${b.ad_price !}</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+					</div>
+				<%}}%>
+				 <%for(var a=0; a<6-count12;a++){%>
+					<div class="item" onclick="clickToShow()">
+                    <div class="item_t"><a ><img alt="" src="${ctxPath}/static/custom/images/default/index/pinpai/01.jpg"></a></div>
+                    <div class="item_m">
+                        <div><a >包头小肥羊火锅</a></div>
+                        <div>可叠加使用，免费WiFi。</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥35</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+                </div>
+				 <%}%>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div class="floor_right_box">
+			<div class="floor_right">
+				<div class="floor_right_head">行业资讯</div>
+				<div class="floor_right_content">
+					<div class="floor_right_content_t">
+					<%var count13=0;%>
+						<% for(a in hyzx!){
+							if(count13==2){
+							 break;
+							}
+							count13++;
+						%>
+						
+						<div class="item">
+							<div class="item_l">
+								<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}"><img style="width: 87px; height: 67px;"  src="/img${a.image!}"/></a>
+							</div>
+							<div class="item_r">
+								<div class="title">
+									<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">${a.title!}</a>
+								</div>
+								<div class="item_content">
+									${strutil.subStringTo(a.article_info,0,18)}...
+									<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">[详细]</a>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+						<%}elsefor{%>
+						<div class="item">
+							<div class="item_l">
+								<img style="width: 87px; height: 67px;" alt="" src="${ctxPath}/static/custom/images/default/index/yangsheng/2_01.jpg">
+							</div>
+							<div class="item_r">
+								<div class="title">
+									<a href="#">国家工作人员</a>
+								</div>
+								<div class="item_content">
+									<div>方式方式的方式</div>
+									<a href="#">[详细]</a>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+							
+               		 <div class="item">
+                   				 <div class="item_l"><img style="width: 87px; height: 67px;" alt="" src="${ctxPath}/static/custom/images/default/index/yangsheng/2_02.jpg"></div>
+                    		<div class="item_r">
+                        <div class="title"><a href="#">国家工作人员</a></div>
+                        <div class="item_content">积分<a href="#">[详细]</a></div>
+                   	 </div>
+                    	<div style="clear:both;"></div>
+               		 </div> 
+						<%}%>
+					</div>
+					<div class="floor_right_content_b">
+						<ul>
+						<%var count14=0;%>
+							<% for(a in hyzx){%>
+							<%count14=count14+1;%>
+							<li><a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">${a.title}</a></li>
+						<%}%>
+						<%for(var i=0;i<8-count14;i++){%>
+							<li><a href="#">西红柿怎么样防挨效果最好？</a></li>
+						<%}%>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<!---2楼结束--------------------------------------------------------------->
+	<!--3楼开始------------------------------------------------------------------>
+	<div class="floor">
+		<div class="floorBanner">
+			<%var count15=0;%>
+			<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_n")){%>
+					<%count15=count15+1;%>
+					<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+				<%}}%>
+				 <%for(var a=0; a<1-count15;a++){%>
+			 	<a href=""><img src="${ctxPath}/static/custom/images/default/index/guanggaotiao/3.jpg" /></a>
+			 <%}%>
+		</div>
+		<div class="floor_left">
+			<div class="floor_left_head">
+				<span class="floor_left_head_title"
+					style="background-color: #4dc2bc;">3F&nbsp;&nbsp;外卖专区</span><a
+					href="#">更多&gt;&gt;</a>
+			</div>
+			<div class="floor_left_content">
+				<div class="floor_left_content_l">
+					<%var count16=0;%>
+					<% for(b in advertAdList){%>
+					<%if(strutil.startWith(b.ad_area_code,"main_index_o")){%>
+					<%count16=count16+1;%>
+					<div class="floor_left_content_l_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+         			<div class="floor_left_content_l_b">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a><br/>${b.ad_desc !}</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>${b.ad_price !}</div>
+            		<div style="clear:both;"></div>
+        			</div>
+				<%}}%>
+				 <%for(var a=0; a<1-count16;a++){%>
+					<div class="floor_left_content_l_t"><a  onclick="clickToShow()"><img alt="" src="${ctxPath}/static/custom/images/default/index/waimai/00.jpg"></a></div>
+         			<div class="floor_left_content_l_b" onclick="clickToShow()">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a >外卖快餐</a><br />4人餐，包间免费，提供免费wifi</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>108</div>
+            		<div style="clear:both;"></div>
+        		</div>
+				 <%}%>
+				</div>
+				<div class="floor_left_content_r">
+					<%var count17=0;%>
+					 <% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_p")){%>
+				<%count17=count17+1;%>
+					<div class="item">
+					 <div class="item_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+                    <div class="item_m">
+                        <div><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a></div>
+                        <div>${b.ad_desc !}</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥${b.ad_price !}</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+					</div>
+				<%}}%>
+				 <%for(var a=0; a<6-count17;a++){%>
+					<div class="item" onclick="clickToShow()">
+                    <div class="item_t"><a ><img alt="" src="${ctxPath}/static/custom/images/default/index/waimai/01.jpg"></a></div>
+                    <div class="item_m">
+                        <div><a >海鲜乌冬面</a></div>
+                        <div>可叠加使用，免费WiFi。</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥35</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+                </div>
+				 <%}%>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div class="floor_right_box">
+			<div class="floor_right" style="height: 300px;">
+				<div class="floor_right_head">饮食健康</div>
+				<div class="floor_right_content">
+					<div class="floor_right_content_b">
+						<ul><%var count18=0;%>
+							<% for(a in ysjk){%><%count18=count18+1;%>
+							<% if(aLP.index>8)break;%>
+							<li><a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">${a.title}</a></li>
+						<%}%>
+							<%for(var i=0;i<8-count18;i++){%> 
+								<li><a href="#">西红柿怎么样防挨效果最好？</a></li>
+							<%}%>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<%var count20=0;%>
+			 <% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_q")){%>
+				<%count20=count20+1;%>
+				<div class="floor_right_box_down">
+				<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+				</div>
+				<%}}%>
+				 <%for(var a=0; a<2-count20;a++){%>
+					<div class="floor_right_box_down">
+    					<a href="#"><img src="${ctxPath}/static/custom/images/default/index/yangsheng/3_01.jpg" /></a>
+   				    </div>
+				<%}%>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<!---3楼结束--------------------------------------------------------------->
+	<!--4楼开始------------------------------------------------------------------>
+	<div class="floor">
+		<div class="floorBanner">
+			<%var count21=0;%>
+			<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_r")){%>
+					<%count21=count21+1;%>
+					<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+				<%}}%>
+				 <%for(var a=0; a<1-count21;a++){%>
+			 	<a href=""><img src="${ctxPath}/static/custom/images/default/index/guanggaotiao/4.jpg" /></a>
+			 <%}%>
+		</div>
+		<div class="floor_left">
+			<div class="floor_left_head">
+				<span class="floor_left_head_title"
+					style="background-color: #f38083;">4F&nbsp;&nbsp;新品尝鲜</span><a
+					href="#">更多&gt;&gt;</a>
+			</div>
+			<div class="floor_left_content">
+				<div class="floor_left_content_l">
+					<%var count22=0;%>
+					<% for(b in advertAdList){%>
+					<%if(strutil.startWith(b.ad_area_code,"main_index_s")){%>
+					<%count22=count22+1;%>
+					<div class="floor_left_content_l_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+         			<div class="floor_left_content_l_b">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a><br/>${b.ad_desc !}</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>${b.ad_price !}</div>
+            		<div style="clear:both;"></div>
+        			</div>
+				<%}}%>
+				 <%for(var a=0; a<1-count22;a++){%>
+					<div class="floor_left_content_l_t"><a onclick="clickToShow()"><img alt="" src="${ctxPath}/static/custom/images/default/index/xinpin/00.jpg"></a></div>
+         			<div class="floor_left_content_l_b" onclick="clickToShow()">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a>香酥鸡</a><br />4人餐，包间免费，提供免费wifi</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>108</div>
+            		<div style="clear:both;"></div>
+        		</div>
+				 <%}%>
+				</div>
+				<div class="floor_left_content_r">
+					<%var count23=0;%>
+					 <% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_t")){%>
+				<%count23=count23+1;%>
+					<div class="item">
+					 <div class="item_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+                    <div class="item_m">
+                        <div><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a></div>
+                        <div>${b.ad_desc !}</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥${b.ad_price !}</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+					</div>
+				<%}}%>
+				 <%for(var a=0; a<6-count23;a++){%>
+					<div class="item" onclick="clickToShow()">
+                    <div class="item_t"><a><img alt="" src="${ctxPath}/static/custom/images/default/index/xinpin/01.jpg"></a></div>
+                    <div class="item_m">
+                        <div><a>饼干</a></div>
+                        <div>可叠加使用，免费WiFi。</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥35</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+                </div>
+				 <%}%>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div class="floor_right_box">
+			<div class="floor_right">
+				<div class="floor_right_head">美食DIY</div>
+				<div class="floor_right_content">
+					<div class="floor_right_content_t">
+						<%var count24=0;%>
+						<% for(a in msdiy){
+						if(count24==2){
+						break;
+						}
+						count24++;
+						%>
+						<div class="item">
+							<div class="item_l">
+								<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}"><img style="width: 87px; height: 67px;"  src="/img${a.image}"/></a>
+							</div>
+							<div class="item_r">
+								<div class="title">
+									<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">${a.title}</a>
+								</div>
+								<div class="item_content">
+									${strutil.subStringTo(a.article_info,0,18)}...
+									<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">[详细]</a>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+						<%}elsefor{%>
+								<div class="item">
+                    <div class="item_l"><img style="width: 87px; height: 67px;" alt="" src="${ctxPath}/static/custom/images/default/index/yangsheng/4_01.jpg"></div>
+                    <div class="item_r">
+                        <div class="title"><a href="#">国家人员</a></div>
+                        <div class="item_content">方式<a href="#">[详细]</a></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+                <div class="item">
+                    <div class="item_l"><img style="width: 87px; height: 67px;" alt="" src="${ctxPath}/static/custom/images/default/index/yangsheng/4_02.jpg"></div>
+                    <div class="item_r">
+                        <div class="title"><a href="#">工作人员</a></div>
+                        <div class="item_content">方式方式的方式<a href="#">[详细]</a></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+						 <%}%>
+					</div>
+					<div class="floor_right_content_b">
+						<ul>
+						<%var count25=0;%>
+							<% for(a in msdiy){%>
+							<%count25=count25+1;%>
+							<li><a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">${a.title}</a></li>
+						<%}%>
+						<%for(var i=0;i<8-count25;i++){%>
+							<li><a href="#">西红柿怎么样防挨效果最好？</a></li>
+						<%}%>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<!---4楼结束--------------------------------------------------------------->
+	<!--5楼开始------------------------------------------------------------------>
+	<div class="floor">
+		<div class="floorBanner">
+			<%var count26=0;%>
+			<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_u")){%>
+					<%count26=count26+1;%>
+					<a target="_blank" href="${b.ad_url !}"><img src="/img${b.ad_pic !}" /></a>
+				<%}}%>
+				 <%for(var a=0; a<1-count26;a++){%>
+			 	<a href=""><img src="${ctxPath}/static/custom/images/default/index/guanggaotiao/5.jpg" /></a>
+			 <%}%>
+		</div>
+		<div class="floor_left">
+			<div class="floor_left_head">
+				<span class="floor_left_head_title"
+					style="background-color: #2f89e1;">5F&nbsp;&nbsp;畅销专区</span><a
+					href="#">更多&gt;&gt;</a>
+			</div>
+			<div class="floor_left_content">
+				<div class="floor_left_content_l">
+				<%var count27=0;%>
+					<% for(b in advertAdList){%>
+					<%if(strutil.startWith(b.ad_area_code,"main_index_v")){%>
+					<%count27=count27+1;%>
+					<div class="floor_left_content_l_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+         			<div class="floor_left_content_l_b">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a><br/>${b.ad_desc !}</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>${b.ad_price !}</div>
+            		<div style="clear:both;"></div>
+        			</div> 
+				<%}}%>
+				 <%for(var a=0; a<1-count27;a++){%>
+					<div class="floor_left_content_l_t"><a  onclick="clickToShow()"><img alt="" src="${ctxPath}/static/custom/images/default/index/changxiao/00.jpg"></a></div>
+         			<div class="floor_left_content_l_b" onclick="clickToShow()">
+            		<div class="floor_left_content_l_b_l">
+                        <div class="title"><a >重庆火锅</a><br />4人餐，包间免费，提供免费wifi</div>
+           			</div>
+           			<div class="floor_left_content_l_b_r"><span>￥</span>108</div>
+            		<div style="clear:both;"></div>
+        		</div>
+				 <%}%>
+				</div>
+				<div class="floor_left_content_r">
+				 <%var count28=0;%>
+					 <% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_w")){%>
+				<%count28=count28+1;%>
+					<div class="item">
+					 <div class="item_t"><a target="_blank" href="${b.ad_url !}"><img alt="" src="/img${b.ad_pic !}"></a></div>
+                    <div class="item_m">
+                        <div><a target="_blank" href="${b.ad_url !}">${b.ad_text !}</a></div>
+                        <div>${b.ad_desc !}</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥${b.ad_price !}</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+					</div>
+				<%}}%>
+				 <%for(var a=0; a<6-count28;a++){%>
+					<div class="item" onclick="clickToShow()">
+                    <div class="item_t"><a ><img alt="" src=${ctxPath}/static/custom/images/default/index/changxiao/01.jpg></a></div>
+                    <div class="item_m">
+                        <div><a >炸鸡</a></div>
+                        <div>可叠加使用，免费WiFi。</div>
+                    </div>
+                    <div class="item_b">
+                        <span class="item_b_c">￥35</span>
+                        <span class="item_b_a">100</span><span class="item_b_b">已售</span>
+                    </div>
+                </div>
+				 <%}%>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div class="floor_right_box">
+			<div class="floor_right">
+				<div class="floor_right_head">养生小贴</div>
+				<div class="floor_right_content">
+					<div class="floor_right_content_t">
+						<div class="item"
+							style="height: 230px; margin: 0 0; width: 250px; padding-left: 5px; padding-top: 10px;">
+							<%var count29=0;%>
+							<% for(a in ysxt){
+							if(count29==4){
+							break;
+							}
+							count29++;
+							%>
+							<div class="item_l_down">
+								<a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}"><img style="width: 87px; height: 67px;" 
+									src="/img${a.image}" /></a><a class="title" target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">${a.title}</a>
+							</div>
+							<%}elsefor{%>
+								 <div class="item_l_down"><a href="#"><img alt="" src="${ctxPath}/static/custom/images/default/index/yangsheng/5_01.jpg" /></a><a href="#">国家工作人员</a></div>
+								 <div class="item_l_down"><a href="#"><img alt="" src="${ctxPath}/static/custom/images/default/index/yangsheng/5_02.jpg" /></a><a href="#">国家工作人员</a></div>
+								 <div class="item_l_down"><a href="#"><img alt="" src="${ctxPath}/static/custom/images/default/index/yangsheng/5_03.jpg" /></a><a href="#">国家工作人员</a></div>
+								 <div class="item_l_down"><a href="#"><img alt="" src="${ctxPath}/static/custom/images/default/index/yangsheng/5_04.jpg" /></a><a href="#">国家工作人员</a></div>
+							<%}%>
+						</div>
+					</div>
+					<div class="floor_right_content_b">
+						<ul>
+						<%var count30=0;%>
+							<% for(a in ysxt){%>
+							<%count30=count30+1;%>
+							<li><a target="_blank" href="${ctxPath}/article/articleDetail?articleId=${a.id !}&typeId=${a.type_id}">${a.title}</a></li>
+						<%}%>
+						<%for(var i=0;i<5-count30;i++){%>
+							<li><a href="#">西红柿怎么样防挨效果最好？</a></li>
+						<%}%>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<!---5楼结束--------------------------------------------------------------->
+	<!---美食品牌推荐开始--------------------------------------------------------------->
+	<div class="brandBox">
+		<div class="brandBoxTitleBg">
+			<div class="brandBoxTitle">美食品牌推荐</div>
+		</div>
+		<div class="brandBoxContent">
+			<div class="brandBoxContent_01 brandbottom">
+			<%var count31=0;%>	
+				<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_x")){%>
+					<%count31=count31+1;%>
+				<a href="${b.ad_url!}"><img
+					src="/img${b.ad_pic!}"/></a>
+			<%}}%>
+			<%for(var a=0; a<27-count31;a++){%>
+			<a onclick="clickToShow()"><img
+					src="${ctxPath}/static/custom/images/default/index/meishipinpai/01.jpg" /></a>
+			<%}%>
+			</div>
+		</div>
+	</div>
+	<!---美食品牌推荐结束--------------------------------------------------------------->
+	<!---专题活动开始--------------------------------------------------------------->
+	<div class="brandBox" style="height: 230px;">
+		<div class="brandBoxTitleBg">
+			<div class="brandBoxTitle">专题活动</div>
+			<div class="brandBoxTitleMore">
+				<a href="">专题中心>></a>
+			</div>
+		</div>
+		<div class="brandBoxContent01">
+		<%var count32=0;%>	
+				<% for(b in advertAdList){%>
+				<%if(strutil.startWith(b.ad_area_code,"main_index_y")){%>
+					<%count32=count32+1;%>
+			<div class="brandBoxContent01_sub" onclick="clickToShow()">
+				<div class="brandBoxContent01_sub01">
+					<a href="${b.ad_url!}"><img
+						src="/img${b.ad_pic!}"/></a>
+				</div>
+				<div class="brandBoxContent01_sub02">
+					<a href="${b.ad_url!}">${b.ad_text!}</a><br />${b.ad_desc!}
+				</div>
+			</div>
+			<%}}%>
+			<%for(var a=0; a<6-count32;a++){%>
+				<div class="brandBoxContent01_sub" onclick="clickToShow()">
+				<div class="brandBoxContent01_sub01">
+					<a ><img
+						src="${ctxPath}/static/custom/images/default/index/huodong/1_03.jpg" /></a>
+				</div>
+				<div class="brandBoxContent01_sub02">
+					<a >柏翠客浦烘焙大赛</a><br />金秋10月，为爱起烘！全民金等你拿！
+				</div>
+			</div>
+			<%}%>
+		</div>
+	</div>
+	<!-----专题活动结束------------------------------------------------------------->
+	<% include("../common/foot.html"){}%>
+	<div id="tong" style="display:none;" ><img src="${ctxPath}/static/custom/images/default/index/1_03.jpg"  /></div>
+	<script type="text/javascript"src="${ctxPath}/static/jquery/jquery-1.9.1.min.js"></script>
+	<script src="${ctxPath}/static/layer/1.8.5/layer.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/layer/laydate/laydate.js"></script>
+	<script src="${ctxPath}/static/jquery/jquery.form.js"></script>
+	
+</body>
+</html>

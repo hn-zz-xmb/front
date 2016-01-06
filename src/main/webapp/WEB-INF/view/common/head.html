@@ -1,152 +1,54 @@
-<link type="text/css" rel="stylesheet"
-	href="${ctxPath}/static/custom/css/public.css" />
-<link type="text/css" rel="stylesheet"
-	href="${ctxPath}/static/custom/css/index.css" />
-	<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${ctxPath}/static/custom/js/common.js"></script>
-<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/storeSearch.js"></script>
-<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/public.js"></script>
-	<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/index-jq.js"></script>
-<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/checkAll.js"></script>
-<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/navFixed.js"></script>
-
-<!--头部----------------------------------------->
-<a name="gotop"></a>
-<div class="headerBox">
-	<div class="headerBoxSub">
-		<%if(session.user_==null){%>
-		<div class="headerBoxSpan">
-			<a class="headerBoxSpan1" href="${ctxPath}/login"><span>欢迎您，请登录</span></a>
-			<a class="headerBoxSpan2" href="${ctxPath}/register"><span>注册</span></a>
-		</div>
-		<%} else{%> 
-		<div class="headerBoxSpan">
-			<span>您好：${session.user_.username}</span> <a class="headerBoxSpan1"
-				href="${ctxPath}/account/accountcenter">会员中心</a> <a class="headerBoxSpan2"
-				href="${ctxPath}/buyerOrder/findUserOrder">我的订单</a> <a class="headerBoxSpan3"
-				href="${ctxPath}/logout">退出</a>
-		</div>
-		<%}%>
-		<div class="headerBoxUl">
-			<ul>
-				<li
-					style="background-image: url(${ctxPath}/static/custom/images/header_3.png)"><a
-					href="${ctxPath}/">网站首页</a></li>
-				<li
-					style="background-image: url(${ctxPath}/static/custom/images/header_4.png)"><a
-					href="${ctxPath}/buyerOrder/findUserOrder">我的订单</a></li>
-				<li
-					style="background-image: url(${ctxPath}/static/custom/images/header_5.png)"><a
-					href="${ctxPath}/cart/list">我的菜单</a></li>
-				<li
-					style="background-image: url(${ctxPath}/static/custom/images/header_6.png)"><a
-					href="#">收藏</a></li>
-			</ul>
-		</div>
-		<div class="headerBoxImg">
-			<ul id="headerBoxImgBox">
-				<li class="mainlevel" id="mainlevel_01"><a href="#"><img
-						src="${ctxPath}/static/custom/images/header_1.png" /></a>
-					<ul>
-						<li><a href="#"><img
-								src="${ctxPath}/static/custom/images/head_xinlang.png" /></a></li>
-					</ul></li>
-				<li class="mainlevel" id="mainlevel_02"><a href="#"><img
-						src="${ctxPath}/static/custom/images/header_2.png" /></a>
-					<ul>
-						<li><a href="#"><img
-								src="${ctxPath}/static/custom/images/head_weixin.jpg" /></a></li>
-					</ul></li>
-			</ul>
-		</div>
-	</div>
+<!--头部start-->
+<div id="header">
+  <div class="topnav">
+    <div id="wrap">
+      <ul class="fl">
+        <li>
+          <p class="font01">您好，<a href="##" target="" class="font01">请登录</a></p>
+        </li>
+        <li><a href="##" target="_blank">免费注册</a></li>
+        <li><a href="##" target="_blank" class="font01">邀请返利</a></li>
+      </ul>
+      <ul class="fr">
+        <li><a href="##" title="" class="font02 ico01">手机版</a></li>
+        <li class="spacer"></li>
+        <li><a href="##" title="">免费开店</a></li>
+        <li class="spacer"></li>
+        <li><a href="##" title="">我的订单</a></li>
+        <li class="spacer"></li>
+        <li><a href="##" title="">我的菜单</a></li>
+        <li class="spacer"></li>
+        <li><a href="##" title="">客户服务</a></li>
+        <li class="spacer"></li>
+        <li><a href="##" title="">站点导航</a></li>
+        <li class="spacer"></li>
+        <li><a href="##" title="" class="ico02">关注我们</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="headermain" id="wrap">
+    <ul class="logo fl">
+      <a href="##" title=""><img src="${ctxPath}/static/custom_new/images/logo.jpg" width="201" height="66" alt="" /></a>
+      <h1>餐点点</h1>
+    </ul>
+    <ul class="area fl">
+      <b>郑州市</b> <a href="javascript:void(0)">切换城市</a>
+    </ul>
+    <ul class="search fl">
+      <li class="searchinfo">
+        <input type="text" value="店铺" readonly onClick="searchtype(true)" id="searchtype"/>
+        <input type="text" value="" placeholder="输入关键词" class="searchtext" />
+        <input type="button" value="搜索" class="searchbutton" />
+        <div id="searchlist">
+          <p pl="店铺">店铺</p>
+          <p pl="商品">商品</p>         
+        </div>
+      </li>
+    </ul>
+    <ul class="shop fr">
+      <li><a href="#" title="" class="ico03">我的菜单</a></li>
+      <li><a href="#" title="" class="ico04">去购物车结算<i class="radius">55</i></a></li>
+    </ul>
+  </div>
 </div>
-<!--头部结束----------------------------------------->
-<!--LOGO开始---------------------------------------->
-<div class="logoBox">
-	<div class="logoBoxImg">
-		<a href="${ctxPath}/"><img src="${ctxPath}/static/custom/images/logo.jpg" /></a>
-	</div>
-	<div class="logoBoxCity">
-		<span class="logoBoxCityS1">${session.cur_city.name!"郑州市"}</span><br />
-		<span class="logoBoxCityS2"> <a href="javascript:;"
-			style="color: #000;" onclick="changeCity()">[切换城市]</a></span>
-	</div>
-	<div class="logoBoxSearch">
-		<div id="tit" class="logoBoxSearchSpan">
-			<span onclick="showUp(0)" class="logoBoxSearchSpanS1"><a
-				href="#">商品</a></span> <span onclick="showUp(1)"
-				class="logoBoxSearchSpanS2"><a href="#">店家</a></span>
-		</div>
-		<script>
-			var spans = document.getElementById("tit").getElementsByTagName(
-					"span")
-			function showUp(num) {
-				for (var i = 0; i < spans.length; i++) {
-					if (i == num) {
-						spans[num].className = "logoBoxSearchSpanS1";
-					} else {
-						spans[i].className = "logoBoxSearchSpanS2";
-					}
-				}
-			}
-		</script>
-		<script type="text/javascript">
-			function changeCity() {
-				var pathname = window.location.pathname;
-				var ctxPath = "${ctxPath}";
-				var last_url = pathname.replace(ctxPath, "");
-				window.location.href = "${ctxPath}/city/toChangeCity?last_url=" + last_url;
-			}
-		</script>
-		<div style="clear: both;"></div>
-		<div class="logoBoxSearchBtn">
-			<input class="logoBoxBtnInput" type="text" maxlength="15"></input>
-			<div class="logoBoxSubmit">
-				<a href="#">搜索</a>
-			</div>
-		</div>
-		<div class="logoBoxSearchTip_w">
-		<div class="logoBoxSearchTip" style="display:none;">
-		<ul>
-		<li><a href="#">呵呵</a></li>
-		<li><a href="#">呵呵</a></li>
-		</ul>
-		</div>
-		</div>
-		<div class="logoBoxSubmitHot" id="hotbrand">
-		</div>
-	</div>
-	<!--  
-	<div class="logoBoxShop">
-		<div class="logoBoxShopPic">
-			<a href="#" class="qty">0</a>
-		</div>
-		<a href="#"><img
-			src="${ctxPath}/static/custom/images/logoShopping.png" /></a>
-	</div>
-	-->
-</div>
-<!--LOGO结束----------------------------------------->
-<!--导航栏开始----------------------------------------->
-<div class="navBoxBg" id="navBox">
-	<div class="navBoxSub">
-		<ul>
-			<li class="navBoxDown"><a href="${ctxPath}/">首页</a></li>
-			<li><a href="${ctxPath}/foodpackageSearch">优惠套餐</a></li>
-			<li><a href="${ctxPath}/goodsSearch">特色美食</a></li>
-			<li><a href="${ctxPath}/storeSearch">店家搜索</a></li>
-			<li><a href="http://yuanliao.37meishi.com/">原料采购</a></li>
-		</ul>
-	</div>
-</div>
-<!--导航栏结束----------------------------------------->
-<script type="text/javascript">
-$("#hotbrand").load("${ctxPath}/ajaxHotBrand");
-</script>
+<!--头部end--> 

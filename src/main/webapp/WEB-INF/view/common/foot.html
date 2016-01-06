@@ -1,75 +1,43 @@
-<link href="${ctxPath}/static/custom/css/foot.css" rel="stylesheet" type="text/css">
 <!----底部开始-------------------------------------------------------------->
-<div class="footBox">
-	<div class="foot">
-		<div class="foot_top">
-			<div class="foot_top_t">
-				<img alt="" src="${ctxPath}/static/custom/images/foot_weixin.jpg">
-				<img alt="" src="${ctxPath}/static/custom/images/foot_weibo.jpg">
-				<img alt="" src="${ctxPath}/static/custom/images/foot_meishi.jpg">
-				<img alt="" src="${ctxPath}/static/custom/images/foot_tel.jpg">
-			</div>
-			<div id="friendurl" class="foot_top_b">
-				友情链接:
-				<%for(link in friendLinkList!){%>
-				<a target='_blank' href='${link.url_link}'>${link.url_name}</a>
-				<%}%>
-			</div>
-		</div>
-		<div class="footLine"></div>
-		<div class="foot_bottom">
-			<div class="foot_bottom_t">
-				<a href="#">关于我们</a>&nbsp;｜&nbsp;<a href="#">联系我们</a>&nbsp;｜&nbsp;<a
-					href="#">人才招聘</a>&nbsp;｜&nbsp;<a href="#">合作客户</a>&nbsp;｜&nbsp;<a
-					href="#">隐身政策</a>&nbsp;｜&nbsp;<a href="#">网站地图</a>&nbsp;｜&nbsp;<a
-					href="#">设37美食网为首页</a>
-			</div>
-			<div class="foot_bottom_m">
-				COPYRIGHT©2007-2009&nbsp版权所有:37美食网&nbsp©2013豫ICP号:14006919(1/3)&nbsp技术支持:心网科技
-				<!--CNZZ统计代码开始-->
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253515799'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253515799%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
-<!--CNZZ统计代码结束-->
-<!--百度统计代码开始-->
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc2649b9a1047584640ee9a963c67a946' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-<!--百度统计代码结束-->
-				</div>
-			<div class="foot_bottom_b">
-				<a href="#"><img alt=""
-					src="${ctxPath}/static/custom/images/foot_beian.png"></a><a
-					href="#"><img alt=""
-					src="${ctxPath}/static/custom/images/foot_zhifubao.png"></a><a
-					href="#"><img alt=""
-					src="${ctxPath}/static/custom/images/foot_caifutong.png"></a><a
-					href="#"><img alt=""
-					src="${ctxPath}/static/custom/images/foot_kexin.png"></a><a
-					href="#"><img alt=""
-					src="${ctxPath}/static/custom/images/foot_12315.png"></a>
-			</div>
-		</div>
-	</div>
+<!--底部start-->
+<div id="footer">
+  <div class="app">
+    <ul id="wrap" class="container">
+      <li><img src="${ctxPath}/static/custom_new/images/ms14.jpg" width="285" height="119" alt="" /></li>
+      <li><img src="${ctxPath}/static/custom_new/images/ms15.jpg" width="285" height="119" alt="" /></li>
+      <li><img src="${ctxPath}/static/custom_new/images/ms16.jpg" width="285" height="119" alt="" /></li>
+      <li><img src="${ctxPath}/static/custom_new/images/ms17.jpg" width="285" height="119" alt="" /></li>
+    </ul>
+  </div>
+  <div class="container" id="wrap">
+    <ul class="friendlink clearfix">
+      <li><span>友情链接:</span></li>
+      <%for(link in friendLinkList!){%>
+		<li><a href="${link.url_link}" target="_blank">${link.url_name}</a></li>
+	  <%}%>
+    </ul>
+    <ul class="footerabout">
+      <li><a href="##" target="_blank">关于我们</a></li>
+      <li>|</li>
+      <li><a href="##" target="_blank">联系我们</a></li>
+      <li>|</li>
+      <li><a href="##" target="_blank">人才招聘</a></li>
+      <li>|</li>
+      <li><a href="##" target="_blank">隐身政策</a></li>
+      <li>|</li>
+      <li><a href="##" target="_blank">网站地图</a></li>
+      <li>|</li>
+      <li><a href="##" target="_blank">设餐点点网为首页</a></li> 
+    </ul>
+    <ul class="copyright">
+      <p>COPYRIGHT©2007-2009 版权所有：北京餐点点科技有限公司 备案号：京ICP备15053846号-1</p>
+    </ul>
+    <ul class="footerimg">
+    <li><img src="${ctxPath}/static/custom_new/images/cp01.jpg" width="121" height="45" alt="" /></li>
+    <li><img src="${ctxPath}/static/custom_new/images/cp02.jpg" width="175" height="45" alt="" /></li>
+    <li><img src="${ctxPath}/static/custom_new/images/cp03.jpg" width="128" height="45" alt="" /></li>
+    <li><img src="${ctxPath}/static/custom_new/images/cp04.jpg" width="150" height="45" alt="" /></li>
+    </ul>
+  </div>
 </div>
-<!---底部结束--------------------------------------------------------------->
-<!--侧边浮动开始---------------------------------------------------------------->
-<div class="floatRight">
-	<div class="floatRight01">
-		<a href="#gotop"></a>
-	</div>
-	<div class="floatRight02">
-		<a href="${ctxPath}/help"></a>
-	</div>
-	<div class="floatRight03">
-		<a href="#"></a>
-	</div>
-</div>
-<!--侧边浮动结束---------------------------------------------------------------->
-<!--  
-<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/storeSearch.js"></script>
-<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/public.js"></script>
-	<script type="text/javascript"
-	src="${ctxPath}/static/custom/js/index-jq.js"></script>-->
+<!--底部end-->

@@ -1,199 +1,224 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!doctype html>
+<html>
 <head>
-<meta name="content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="Pragma" content="no-cache"/>
-<meta http-equiv="Cache-Control" content="no-cache"/>
-<meta http-equiv="Expires" content="0">
-<meta name="keywords"
-	content="美食,37,37美食,美食网,色美食,美食网站,餐饮,餐饮网站,餐饮加盟,餐饮服务,特色小吃,外卖,外卖网,网上订餐,在线订餐,特色餐厅食">
-	<meta name="description"
-		content="37美食网是中国最大的餐饮服务平台，集团购、外卖、餐饮招聘、餐饮原材料购买为一体的多元化网站。超低折扣，100%品质保证,每天多单精品团购,为您精选美食；37美食网是您身边最大最好的餐饮美食服务平台。">
-		<title>${session.cur_city.name!"郑州市"}-特色美食</title>
-		<link type="text/css" rel="stylesheet"
-	href="${ctxPath}/static/custom/css/storeSearch.css" />
+<meta charset="utf-8">
+<link type="text/css" href="${ctxPath}/static/custom_new/css/common.css" rel="stylesheet" />
+<link type="text/css" href="${ctxPath}/static/custom_new/css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="${ctxPath}/static/custom_new/js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/custom_new/js/global.js"></script>
+<title>餐点点</title>
 </head>
-<body>
-<% include("../common/head.html"){}%>
+
+<!--[if IE 6]>
+<script type="text/javascript" src="js/DD_belatedPNG.js"></script>
 <script type="text/javascript">
-	var navs =document.getElementById("navBox").getElementsByTagName("li");
-	navs[0].className="";
-	navs[2].className="navBoxDown";
-	</script>
-	<!--商品筛选开始----------------------------------------->
-	<div class="buyBoxRight01">
-		<div id='buyBR02Hide'></div>
-		<script>
-			function showup() {
-				var buyBR02Hide = document.getElementById("buyBR02Hide");
-				if (buyBR02Hide.style.display == 'block') {
-					buyBR02Hide.style.display = 'none';
-					buy_down.style.background = 'url(${ctxPath}/static/custom/images/selection_down.png)';
-				} else {
-					buyBR02Hide.style.display = 'block';
-					buy_down.style.background = 'url(${ctxPath}/static/custom/images/selection_up.png)';
-				}
-			}
-		</script>
+DD_belatedPNG.fix('input,img,a,div,ul,li,p,i,b,ol');
+</script>
+<![endif]-->
+<style>
+body
+{
+	behavior: url("css/csshover.htc");/*绝对路径*/
+}
+</style>
+
+<body>
+<% include("../common/head.html"){}%> 
+
+<!--导航start-->
+	<div id="nav">
+		<ul>
+			<li><a href="${ctxPath}/" target="_self" >首&nbsp;&nbsp;页</a></li>
+			<li><a href="${ctxPath}/foodpackageSearch" target="_self" >优惠套餐</a></li>
+			<li><a href="${ctxPath}/goodsSearch" target="_self" class="current">特色美食</a></li>
+			<li><a href="${ctxPath}/storeSearch" target="_self">店家搜索</a></li>
+			<li><a href="${ctxPath}/" target="_self">商学院</a></li>
+		</ul>
 	</div>
-	<!--商品筛选结束---------------------------------------->
-	<!--zhuti开始----------------------------------------->
-	<div class="content">
-		<div class="position">当前位置：<a href="${ctxPath}/">首页</a>&gt;优惠套餐</div>
-		<div class="filter">
-			<div class="area">
-				<div class="area_title">菜系分类： </div><div class="area_content"><a <%if (params.goodsTypeId!""==""){%>class="on"<%}%> href="${ctxPath}/goodsSearch?goodsTypeId=&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=${params.sort}">不限</a>
-				<% for (gtype in goodsTypeList){%>
-				 
-				  <a <%if(params.goodsTypeId!""==gtype.id){%>class="on"<%}%> href="${ctxPath}/goodsSearch?goodsTypeId=${gtype.id}&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=${params.sort}">${gtype.name}</a>
-				
-				<%}%>
-				</div>
-				<div style="clear:both;"></div>
-			</div>
-			<div class="border area">
-				<div class="area_title">区域分类： </div><div class="area_content"><a <%if (params.areaId!""==""){%>class="on"<%}%> href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=${params.sort}">不限</a>
-				<%for (area in areaList){%>
-				 
-				  <a <%if (params.areaId!""==area.id){%>class="on"<%}%> href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${area.id}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=${params.sort}">${area.name}</a>
-				
-				<%}%>
-				</div>
-				<div style="clear:both;"></div>
-			</div>
-			<div class="area">
-				<% var price1=params.smallPrice!''; var price2=params.largePrice!''; var result=price1+"-"+price2;
+	<!--导航end-->
+
+<!--当前位置start-->
+<div class="NewsListArea">
+  <ul class="NewsListArea_Nav01"><p>当前位置：<a href="##" target="_blank" title="">首页</a><span>&gt;</span><i>优惠套餐</i></p></ul>
+</div>
+<!--当前位置end-->
+
+
+<!--main start-->
+<div class="container" id="wrap">
+<!--筛选start-->
+<div class="productselect">
+  <b>筛选</b>
+  <ul>
+    <li class="clearfix">
+      <label>菜系分类：</label>
+       <p>
+		<a <%if (params.goodsTypeId!""==""){%>class="current"<%}%> 
+		    href="${ctxPath}/goodsSearch?goodsTypeId=&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=${params.sort}">不限</a>
+		<% for (gtype in goodsTypeList){%>
+		<a <%if(params.goodsTypeId!""==gtype.id){%>class="current"<%}%> 
+		    href="${ctxPath}/goodsSearch?goodsTypeId=${gtype.id}&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=${params.sort}">${gtype.name}</a>
+		<%}%>
+      </p>
+    </li>
+    <li class="clearfix">
+      <label>区域分类：</label>
+      <p>
+        <a <%if (params.areaId!""==""){%>class="current"<%}%> 
+           href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=${params.sort}">不限</a>
+		<%for (area in areaList){%>
+		<a <%if (params.areaId!""==area.id){%>class="current"<%}%> 
+		   href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${area.id}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=${params.sort}">${area.name}</a>
+		<%}%>
+      </p>
+    </li>
+    <li class="clearfix">
+      <label>价格区间：</label>
+      <% var price1=params.smallPrice!''; var price2=params.largePrice!''; var result=price1+"-"+price2;
 					%>
-				<div class="area1">
-					价格区间：<a <%if(result=='-'){%>class="on"<%}%> href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=&largePrice=&sort=${params.sort}">不限</a>
-					<%for (data in dataDicList){%>
-					<a <%if(result==data.code){%>class="on"<%}%> href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=${strutil.subStringTo(data.code!'',0,2)}&largePrice=${strutil.subStringTo(data.code!'',3,5)}&sort=${params.sort}">${data.code_name}</a>
+      <p>
+        <a <%if(result=='-'){%>class="current"<%}%> 
+           href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=&largePrice=&sort=${params.sort}">不限</a>
+		<%for (data in dataDicList){%>
+		<a <%if(result==data.code){%>class="current"<%}%> 
+		   href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=${strutil.subStringTo(data.code!'',0,2)}&largePrice=${strutil.subStringTo(data.code!'',3,5)}&sort=${params.sort}">${data.code_name}</a>
+		<%}%>
+      </p>
+    </li>
+  </ul>
+</div>
+<!--筛选end-->
+
+
+<!--排序start-->
+<div id="sort" class="producttair">
+  <label>排序：</label>
+  <a href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&nav=0" title="" class="current radius">默认</a>
+  <a href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=info.sale_num&nav=1" title="" class="radius">销量</a>
+  <a href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=g.price&nav=2" title="" class="radius">价格</a> 
+</div>
+<script type="text/javascript">
+	var navs = document.getElementById("sort").getElementsByTagName("a");
+	navs[0].className = "radius";
+	navs[${params.nav!0}].className = "current radius";
+</script>
+<!--排序end-->
+
+
+<!--列表start-->
+<div>
+  <ul class="clearfix">
+    <!--左栏目start-->
+    <li class="productlistleft fl">
+      <div class="food">
+        <ul class="clearfix">
+          <%for (g in page.list){%>
+			<li>
+			   <% var current_img = ctxPath+"/static/custom/images/defaultgoods.jpg";
+			      if(g.image!'' != ''){ current_img = "http://www.37meishi.com/img"+g.image; }   %>
+				<div class="food01">
+					<a href="${ctxPath}/goods/view?id=${g.id}" target="_blank">
+					<img src="${current_img !}" width="244" height="179" alt="${g.name !}" />
+					</a>
+				</div>
+				<h4 class="padding04">
+				<a href="${ctxPath}/goods/view?id=${g.id}" target="_blank">${g.name !}</a></h4>
+				<div class="food02 padding04">
+				    <% for (var i =0 ;i<4;i++){%>
+					<img src="${ctxPath}/static/custom/imagesPage03/star.jpg" alt="" />
 					<%}%>
 				</div>
-				<div class="area2">
-					<input type="text" class="input_short">-<input type="text"
-						class="input_short"><a href="#">确定</a>
+				<p class="padding04">
+					<i>￥1998.00</i>
+				</p>
+				<div class="food03 padding04">
+					<input type="button" value="加入购物车" class="fl" /><input
+						type="button" value="抢购" class="fr" onclick="${ctxPath}/goods/view?id=${g.id}"/>
 				</div>
-				<div style="clear:both;"></div>
-			</div>
-		</div>
-		<div class="sort" id="sort">
-			<a href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&nav=0" class="active01">默认</a> 
-			<a href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=info.sale_num&nav=1">销量</a>
-			 <a href="${ctxPath}/goodsSearch?goodsTypeId=${params.goodsTypeId}&areaId=${params.areaId}&smallPrice=${params.smallPrice}&largePrice=${params.largePrice}&sort=g.price&nav=2">价格</a>
-		</div>
-		<script type="text/javascript">
-		var navs = document.getElementById("sort").getElementsByTagName("a");
-		navs[0].className = "";
-		navs[${params.nav!0}].className = "active01";
-	</script>
-		<div class="main">
-			<div class="main_left">
-				<div class="main_content">
-					<%for (g in page.list){%>
-					<div class="shopSearchBox">
-						<div>
-							<a target="_blank" href="${ctxPath}/goods/view?id=${g.id}">
-							<% if(g.image!'' != ''){ %> 
-							<img  src="/img${g.image !}" onerror="javascript:this.src='${ctxPath}/static/custom/images/defaultgoods.jpg';"/>
-							<%}else{%>
-							<img alt="${g.name !}" src="${ctxPath}/static/custom/images/defaultgoods.jpg"  />
-							<%}%>
-							</a>
-						</div>
-						<div class="shopSearchBox_titleBox">
-							<div class="shopSearchBox_title"><a href="${ctxPath}/goods/view?id=${g.id}">${g.name !}</a>【<a href="${ctxPath}/store?storeId=${g.store_id}">${g.store_name !}</a>】</div>
-							<div class="shopSearchBox_describe">
-								<div class="shopSearchBox_D01">
-									<img src="${ctxPath}/static/custom/imagesPage03/star.jpg" /><img
-										src="${ctxPath}/static/custom/imagesPage03/star.jpg" /><img
-										src="${ctxPath}/static/custom/imagesPage03/star.jpg" /><img
-										src="${ctxPath}/static/custom/imagesPage03/star.jpg" /><img
-										src="${ctxPath}/static/custom/imagesPage03/star.jpg" />
-								</div>
-								<div class="shopSearchBox_D02">已售${g.sale_num}份</div>
-							</div>
-							<div class="shopSearchBox_content">
-								<div class="shopSearchBox_content1">
-									<span>￥</span>${g.price}元
-								</div>
-								<a target="_blank" href="${ctxPath}/goods/view?id=${g.id}">抢购</a>
-							</div>
-						</div>
-					</div>
-					<%}%>
-				</div>
-				<div class="pagination">
-					<% include("../common/_pagination.html",{page:page}){}%>
-				</div>
-			</div>
-			<div class="main_right">
-				<div class="title">热门商品</div>
-				<%var count=0;%>	
-				<% for(b in advertAd){%>
-				<%count=count+1;%>
-				<div class="goods">
-					<div class="goods_t">
-						<a target="_BLANK" href="${b.ad_url!}"><img alt=""
-							src="/img${b.ad_pic!}"></a>
-					</div>
-					<div class="goods_b">
-						<span class="price">￥${b.ad_price!}</span><span class="sale_count">销量：233</span>
-					</div>
-				</div>
-				<%}%>
-				<%for(var a=0; a<5-count;a++){%>
-				<div class="goods">
-					<div class="goods_t">
-						<a><img alt=""
-							src="${ctxPath}/static/custom/imagesPage04/goods01.jpg"></a>
-					</div>
-					<div class="goods_b">
-						<span class="price">￥68.60</span><span class="sale_count">销量：233</span>
-					</div>
-				</div>
-				<%}%>
-			</div>
-			<div class="floor_right_box" style="margin-left: 0px;">
-				<div class="floor_right">
-					<div class="floor_right_head">养生小贴</div>
-					<div class="floor_right_content">
-						<div class="floor_right_content_t">
-							<div class="item"
-								style="height: 230px; margin: 0 0; width: 250px; padding-left: 5px; padding-top: 10px;">
-								<div class="item_l_down">
-									<a href="#"><img alt=""
-										src="${ctxPath}/static/custom/images/3.jpg" /></a><a href="#">国家工作人员</a>
-								</div>
-								<div class="item_l_down">
-									<a href="#"><img alt=""
-										src="${ctxPath}/static/custom/images/3.jpg" /></a><a href="#">国家工作人员</a>
-								</div>
-								<div class="item_l_down">
-									<a href="#"><img alt=""
-										src="${ctxPath}/static/custom/images/3.jpg" /></a><a href="#">国家工作人员</a>
-								</div>
-								<div class="item_l_down">
-									<a href="#"><img alt=""
-										src="${ctxPath}/static/custom/images/3.jpg" /></a><a href="#">国家工作人员</a>
-								</div>
-							</div>
-						</div>
-						<div class="floor_right_content_b">
-							<ul>
-								<li><a href="#">西红柿怎么样防挨效果最好？</a></li>
-								<li><a href="#">西红柿怎么样防挨效果最好？？</a></li>
-								<li><a href="#">西红柿怎么样防挨效果最好？</a></li>
-								<li><a href="#">西红柿怎么样防挨效果最好？？</a></li>
-								<li><a href="#">西红柿怎么样防挨效果最好？</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div style="clear: both;"></div>
-		</div>
-	</div>
+			</li> <%}%>
+		</ul>
+        
+         <!--分页 -->
+         <%include("../common/_pagination.html",{page:page}){}%>
+      </div>
+    </li>
+    <!--左栏目start-->
+    
+    <!--右栏目start-->
+    <li class="productlistright fr">
+    
+    <!--热门商品start-->
+    <div class="hotproduct">
+      <h3>热门商品</h3>
+      <ul class="hotproductlist">
+      <% for(b in advertAd){%>
+        <li>
+        <div><a href="${b.ad_url!}" target="_blank">
+        <img src="http://www.37meishi.com/img${b.ad_pic!}" width="159" height="114" alt="" /></a></div>
+        <h4><a href="${b.ad_url!}" target="_blank">${b.ad_text!}</a></h4>
+        <p>￥${b.ad_price!}</p>
+        </li>
+       <%}%>
+      </ul>
+    </div>
+    <!--热门商品end-->
+    
+    <div class="line01"></div>
+    <!--养生小贴start-->
+    <div class="hotproduct">
+      <h3>养生小贴</h3>
+      <ul class="newslist01 padding06">
+            <li>
+              <div class="fl"><a href="##" target="_blank"><img src="images/ms03.jpg" width="75" height="55" alt=""></a></div>
+              <div class="fr">
+                <h4><a href="##" target="_blank">黄豆焖猪蹄</a></h4>
+                <p><i>美容养颜</i><i>抗衰老</i><i>美容养颜</i><i>抗衰老</i></p>
+              </div>
+            </li>
+            <li>
+              <div class="fl"><a href="##" target="_blank"><img src="images/ms03.jpg" width="75" height="55" alt=""></a></div>
+              <div class="fr">
+                <h4><a href="##" target="_blank">黄豆焖猪蹄</a></h4>
+                <p><i>美容养颜</i><i>抗衰老</i><i>美容养颜</i><i>抗衰老</i></p>
+              </div>
+            </li>
+          </ul>
+          <ul class="newslist02 padding05">
+            <li>
+              <p class="fl"><a href="##" target="_blank">黄瓜育苗种子咋消毒</a></p>
+            </li>
+            <li>
+              <p class="fl"><a href="##" target="_blank">秋菠菜越冬的保苗技术</a></p>
+            </li>
+            <li>
+              <p class="fl"><a href="##" target="_blank">秋菠菜越冬的保苗技术</a></p>
+            </li>
+            <li>
+              <p class="fl"><a href="##" target="_blank">香菜快速出苗法方法</a></p>
+            </li>
+            <li>
+              <p class="fl"><a href="##" target="_blank">如何育葱苗</a></p>
+            </li>
+            <li>
+              <p class="fl"><a href="##" target="_blank">水芹的留种技术</a></p>
+            </li>
+            <li>
+              <p class="fl"><a href="##" target="_blank">越夏番茄育壮苗技术</a></p>
+            </li>
+            <li>
+              <p class="fl"><a href="##" target="_blank">香菜快速出苗法方法</a></p>
+            </li>
+          </ul>
+    </div>  
+    <!--养生小贴end--> 
+    </li>
+    <!--右栏目end-->
+  </ul>
+</div>
+<!--列表end-->
+</div>
+<!--main end-->
+<div class="line02"></div>
 <% include("../common/foot.html"){}%>
 </body>
 </html>

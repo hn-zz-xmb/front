@@ -1,0 +1,196 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*字体颜色*/
+.font01{ color:#ff0101;}
+.font02{ color:#db4412;}
+.font03{ color:#ff6d00;}
+.font04{ color:#d12e4b;}
+.font05{ color:#fa638e;}
+.font06{ color:#ad96da;}
+.font07{ color:#1bbacf;}　　 
+
+
+/*背景*/
+.ico01{ background-image:url(../images/phone.png) !important;}
+.ico02{ background-image:url(../images/wx.png) !important;}
+.ico03{ background:url(../images/ms06.jpg) no-repeat 7px 6px,url(../images/ms09.jpg) no-repeat 86px 12px; width:50px;}
+.ico04{ background:url(../images/ms07.jpg) no-repeat 6px 6px,url(../images/ms10.jpg) no-repeat 110px 9px; width:74px;}
+.ico05{ background-repeat:no-repeat; background-position:center bottom; }
+.ico06{ background-repeat:no-repeat; background-position:center bottom; background-image:url(../images/bg05.jpg);}
+.ico07{ background:#fff url(../images/bg11.jpg) no-repeat 11px 6px; } 
+.ico08{ background:#fff url(../images/bg08.jpg) no-repeat 15px 4px; }
+.ico09{ background:#fff url(../images/bg09.jpg) no-repeat 15px 5px; } 
+.ico10{ background:url(../images/ms02.png) no-repeat 20px 25px; color:#cc0033 !important;padding-left:58px;}
+.ico11{ background:url(../images/ms03.png) no-repeat 18px 22px; padding-left:44px;}
+.phone{ background:url(../images/ms05.png) no-repeat 1px center; }
+.areai{ background:url(../images/ms06.png) no-repeat 5px center;}
+.ico14{ background-image:url(../images/ms55.jpg);}
+.ico15{ background-image:url(../images/ms56.jpg);}
+.ico16{ background-image:url(../images/ms59.jpg) !important;}
+.ico17{ background:url(../images/ms69.jpg) no-repeat left center;}
+.ico18{ background:url(../images/ms70.jpg) no-repeat left center;}
+.ico19{ background:url(../images/ms76.jpg) no-repeat left center; color:#fff;}
+
+/*圆角*/
+.radius{behavior:url(css/ie-css3.htc);}
+
+/*边框*/
+.foodborderleft{ border-left:none;}
+.foodfbottom{ border-bottom:3px #ff6d00 solid;}
+.foodfbottom01{ border-bottom:3px #d12e4b solid;}
+.foodfbottom02{ border-bottom:3px #fa638e solid;}
+.foodfbottom03{ border-bottom:3px #ad96da solid;}
+.foodfbottom04{ border-bottom:3px #1bbacf solid;}
+.foodfbottom05{ border-bottom:3px #77b272 solid;}
+.foodfbottom06{ border-bottom:3px #679902 solid;}
+
+/*背景色*/
+.gbcolor01{ background-color:#ff6d00;}
+.gbcolor02{ background-color:#d12e4b;}
+.gbcolor03{ background-color:#fa638e;}
+.gbcolor04{ background-color:#ad96da;}
+.gbcolor05{ background-color:#1bbacf;}
+.gbcolor06{ background-color:#77b272;}
+.gbcolor07{ background-color:#679902;}
+.gbcolor08{ background-color:#f5f5f5;}
+.gbcolor09{ background-color:#fff;}
+.gbcolor10{ background-color:#bdbdbd;}
+.gbcolor11{ background-color:#d1071d;}
+.gbcolor12{ background-color:#fafafa;}
+
+/*对齐*/
+.align01{ padding-left:0px !important; text-align:center; letter-spacing:0.4em;}
+.align02{ text-align:center;}
+.align03{ text-align:left !important;}
+.align04{ text-align:right;}
+
+/*宽度*/
+.width01{ width:204px;}
+.width02{ width:70px;}
+.width03{ width:247px;}
+.width04{ width:83px;}
+.width05{ width:246px;}
+.width06{ width:104px; padding-right:45px;}
+.width07{ width:309px;}
+.width08{ width:226px;}
+.width09{ width:203px;}
+.width10{ width:69px;}
+.width11{ width:192px;}
+.width12{ width:53px; position:relative;}
+.width13{ width:370px; padding-right:183px;}
+.width14{ width:284px;}
+.width15{ width:76px;}
+.width16{ width:211px;}
+.width17{ width:269px;}
+.width18{ width:200px}
+.width19{ width:227px;}
+.width20{ width:197px;}
+.width21{ width:44px;}
+.width22{ width:258px;}
+.width23{ width:295px;}
+.width24{ width:191px;}
+.width25{ width:209px;}
+.width26{ width:198px;}
+.width27{ width:425px;}
+.width28{ width:276px;}
+.width29{ width:83px;}
+.width30{ width:101px !important;}
+.width31{ width:55px;}
+.width32{ width:173px;}
+.width33{ width:195px;}
+.width34{ width:89px;}
+.width35{ width:183px;}
+.width36{ width:126px;}
+.width37{ width:130px;}
+.width38{ width:141px;}
+.width39{ width:85px;}
+.width40{ width:70px;}
+.width41{ width:89px;}
+.width42{ width:293px;}
+.width43{ width:236px;}
+.width44{ width:175px;}
+.width45{ width:220px;}
+.width46{ width:190px;}
+.width47{ width:135px;}
+.width48{ width:150px;}
+.width49{ width:108px;}
+.width50{ width:124px;}
+.width51{ width:132px;}
+.width52{ width:110px;}
+.width53{ width:60px;}
+.width54{ width:305px;}
+.width55{ width:115px;}
+.width55{ width:340px; padding-right:0px;}
+.width56{ width:122px;}
+.width57{ width:550px;}
+.width58{ width:150px;}
+.width59{ width:75px;}
+.width60{ width:230px;}
+.width61{ width:216px;}
+.width62{ width:188px;}
+.width63{ width:220px; padding-left:50px;}
+.width64{ width:125px;}
+.width65{ width:50px;}
+.width66{ width:38px; border-left:1px #dcdcdc solid;}
+.width67{ width:67px;}
+.width68{ width:250px;}
+.width69{ width:143px;}
+.width70{ width:162px;}
+.width71{ width:75px;}
+.width72{ width:79px;}
+.width73{ width:82px;}
+.width74{ width:76px;}
+
+/*空行*/
+.line01{width:100%; height:10px; overflow:hidden;}
+.line02{width:100%; height:14px; overflow:hidden;}
+.line03{width:100%; height:55px; overflow:hidden;}
+
+/*外边距*/
+.mr{ margin-left:12px; margin-top:5px;}
+.mr01{ margin-top:90px; margin-bottom:120px;}
+.mr03{ margin-top:3px}
+.mr04{ margin-right:3px;}
+.mr05{ margin-top:5px;} 
+.mr06{ margin-top:0px;} 
+
+/*内边距*/
+.padding01{ padding-top:30px;}
+.padding02{ padding-left:52px; width:232px;}
+.padding03{ padding-top:44px;}
+.padding04{ padding:0px 20px;}
+.padding05{ padding:0px 10px !important;}
+.padding06{ padding-left:10px;}
+.padding07{ padding-top:0px !important;}
+.padding08{ padding:15px 20px;}
+.padding09{ padding-left:22px;}
+.padding10{ padding-left:18px;}
+.padding11{ padding-top:20px;}
+.padding12{ padding-left:0px !important; padding-right:30px;}
+.padding13{ padding-left:30px;}
+
+/*定位*/
+.position01{ position:relative; z-index:1;}
+
+/*位置*/
+.seat01{ left:453px !important;}
+
+
+/*边框*/
+.borderright01{ border-right:1px #dcdcdc solid;}
+.borderright02{ border-right:none !important;}
+.bordertop01{ border-top:1px #e6e6e6 solid;}
+.border01{ border:1px #e3e3e3 solid;}
+
+/*层*/
+.zindex3{ z-index:3;}
+.zindex2{ z-index:2;}
+
+
+
+
+#wrap{ margin:0 auto;}
+.container{ width:1200px;}
+#footer{ min-width:1200px; width:100%; overflow:hidden;}
+
