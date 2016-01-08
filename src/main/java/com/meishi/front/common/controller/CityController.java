@@ -23,23 +23,18 @@ public class CityController extends BaseController {
 		Map<String, List<City>> cityMap = new TreeMap<String, List<City>>();
 		List<City> tmpList = null;
 		String tmpStr = "";
-		for (int i = 0; i < cities.size(); i++) {
-			City city = cities.get(i);
-			tmpList = new ArrayList<City>();
-
-			if (cityMap.containsKey(city.getStr("inital"))) {
-				continue;
+		City cityTmp = null;
+		for (int j = 0; j < cities.size(); j++) {
+			cityTmp = cities.get(j);
+			tmpStr = cityTmp.getStr("inital");
+			// 判断是否为空，map集中key不能为空
+			tmpStr = tmpStr==null?"":tmpStr;
+			if(cityMap.get(tmpStr)==null){
+				tmpList = new ArrayList<City>();
+				cityMap.put(tmpStr,tmpList);
+			}else{
+				cityMap.get(tmpStr).add(cityTmp);
 			}
-			// 存放上次
-			tmpStr = city.getStr("inital");
-
-			for (int j = 0; j < cities.size(); j++) {
-				City cityTmp = cities.get(j);
-				if (tmpStr.equals(cityTmp.getStr("inital"))) {
-					tmpList.add(cityTmp);
-				}
-			}
-			cityMap.put(tmpStr, tmpList);
 		}
 		setAttr("regionList", provinces);
 		setAttr("cityMap", cityMap);
